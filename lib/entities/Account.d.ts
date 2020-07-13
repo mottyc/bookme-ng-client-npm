@@ -1,8 +1,8 @@
+import { AccountStatusCode } from '../enums/AccountStatusCode';
 import { AccountSettings } from '../common/AccountSettings';
 import { ResourceTypeCode } from '../enums/ResourceTypeCode';
 import { BaseEntity } from '../entities/BaseEntity';
 import { AccountTypeCode } from '../enums/AccountTypeCode';
-import { AccountStatusCode } from '../enums/AccountStatusCode';
 export declare class Account extends BaseEntity {
     name: string;
     key: string;

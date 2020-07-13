@@ -1,7 +1,7 @@
-import { RowingBoatTypeCode } from '../enums/RowingBoatTypeCode';
-import { BaseEntity } from '../entities/BaseEntity';
 import { ResourceTypeCode } from '../enums/ResourceTypeCode';
 import { UseTypeCode } from '../enums/UseTypeCode';
+import { RowingBoatTypeCode } from '../enums/RowingBoatTypeCode';
+import { BaseEntity } from '../entities/BaseEntity';
 export declare class RowingBoat extends BaseEntity {
     resourceType: ResourceTypeCode;
     resourceId: string;
