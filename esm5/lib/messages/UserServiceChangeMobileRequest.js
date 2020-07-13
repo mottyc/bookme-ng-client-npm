@@ -1,0 +1,10 @@
+/*
+*/
+var UserServiceChangeMobileRequest = /** @class */ (function () {
+    function UserServiceChangeMobileRequest(body) {
+        this.body = body;
+    }
+    return UserServiceChangeMobileRequest;
+}());
+export { UserServiceChangeMobileRequest };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVXNlclNlcnZpY2VDaGFuZ2VNb2JpbGVSZXF1ZXN0LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG1vdHR5Yy9uZy1jb3JlLWxpYi8iLCJzb3VyY2VzIjpbImxpYi9tZXNzYWdlcy9Vc2VyU2VydmljZUNoYW5nZU1vYmlsZVJlcXVlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRTtBQUNGO0lBS0ksd0NBQVksSUFBYTtRQUNyQixJQUFJLENBQUMsSUFBSSxHQUFHLElBQUksQ0FBQztJQUNyQixDQUFDO0lBRUwscUNBQUM7QUFBRCxDQUFDLEFBVEQsSUFTQyIsInNvdXJjZXNDb250ZW50IjpbIlxuLyogIFxuKi9cbmV4cG9ydCBjbGFzcyBVc2VyU2VydmljZUNoYW5nZU1vYmlsZVJlcXVlc3Qge1xuIFxuICAgIC8vIFVzZXIgbW9iaWxlIHRvIHVwZGF0ZSBcbiAgICBwdWJsaWMgYm9keTogc3RyaW5nO1xuIFxuICAgIGNvbnN0cnVjdG9yKGJvZHk/OiBzdHJpbmcpIHsgXG4gICAgICAgIHRoaXMuYm9keSA9IGJvZHk7XG4gICAgfVxuXG59XG5cblxuIl19

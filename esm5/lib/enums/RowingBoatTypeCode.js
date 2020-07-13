@@ -1,0 +1,45 @@
+/*
+   Rowing boat type code
+*/
+export var RowingBoatTypeCode;
+(function (RowingBoatTypeCode) {
+    // Undefined [0] 
+    RowingBoatTypeCode[RowingBoatTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // Sculling 1X [1] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X"] = 1] = "SCULL_1X";
+    // Sculling 1X Wide [2] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_WIDE"] = 2] = "SCULL_1X_WIDE";
+    // Sculling 1X Competition [3] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_COMP"] = 3] = "SCULL_1X_COMP";
+    // Sculling 1X Para Olympic [4] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_PARA"] = 4] = "SCULL_1X_PARA";
+    // Sculling 2X [5] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X"] = 5] = "SCULL_2X";
+    // Sculling 2X Wide [6] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_WIDE"] = 6] = "SCULL_2X_WIDE";
+    // Sculling 2X Competition [7] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_COMP"] = 7] = "SCULL_2X_COMP";
+    // Sculling 2X Para Olympic [8] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_PARA"] = 8] = "SCULL_2X_PARA";
+    // Sweeping 2- Coxless Pair [9] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_2_COXLESS"] = 9] = "SWEEP_2_COXLESS";
+    // Coastal 2X [10] 
+    RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_2X"] = 10] = "COASTAL_2X";
+    // Sculling 4X Quad [11] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X"] = 11] = "SCULL_4X";
+    // Sculling 4X Quad with cox [12] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COX"] = 12] = "SCULL_4X_COX";
+    // Sweeping 4- Coxless Quad [13] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_4_COXLESS"] = 13] = "SWEEP_4_COXLESS";
+    // Sculling 4X Competition [14] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COMP"] = 14] = "SCULL_4X_COMP";
+    // Sculling 4X Para Olympic [15] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_PARA"] = 15] = "SCULL_4X_PARA";
+    // Coastal 4X with cox [16] 
+    RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_4X_COX"] = 16] = "COASTAL_4X_COX";
+    // Sweeping 8 - with cox [17] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_8_COX"] = 17] = "SWEEP_8_COX";
+    // Sculling 8 - with cox [18] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_8X_COX"] = 18] = "SCULL_8X_COX";
+})(RowingBoatTypeCode || (RowingBoatTypeCode = {}));
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiUm93aW5nQm9hdFR5cGVDb2RlLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG1vdHR5Yy9uZy1jb3JlLWxpYi8iLCJzb3VyY2VzIjpbImxpYi9lbnVtcy9Sb3dpbmdCb2F0VHlwZUNvZGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0VBRUU7QUFDRixNQUFNLENBQU4sSUFBWSxrQkEyRFg7QUEzREQsV0FBWSxrQkFBa0I7SUFFMUIsaUJBQWlCO0lBQ2pCLHFFQUFhLENBQUE7SUFFYixtQkFBbUI7SUFDbkIsbUVBQVksQ0FBQTtJQUVaLHdCQUF3QjtJQUN4Qiw2RUFBaUIsQ0FBQTtJQUVqQiwrQkFBK0I7SUFDL0IsNkVBQWlCLENBQUE7SUFFakIsZ0NBQWdDO0lBQ2hDLDZFQUFpQixDQUFBO0lBRWpCLG1CQUFtQjtJQUNuQixtRUFBWSxDQUFBO0lBRVosd0JBQXdCO0lBQ3hCLDZFQUFpQixDQUFBO0lBRWpCLCtCQUErQjtJQUMvQiw2RUFBaUIsQ0FBQTtJQUVqQixnQ0FBZ0M7SUFDaEMsNkVBQWlCLENBQUE7SUFFakIsZ0NBQWdDO0lBQ2hDLGlGQUFtQixDQUFBO0lBRW5CLG1CQUFtQjtJQUNuQix3RUFBZSxDQUFBO0lBRWYseUJBQXlCO0lBQ3pCLG9FQUFhLENBQUE7SUFFYixrQ0FBa0M7SUFDbEMsNEVBQWlCLENBQUE7SUFFakIsaUNBQWlDO0lBQ2pDLGtGQUFvQixDQUFBO0lBRXBCLGdDQUFnQztJQUNoQyw4RUFBa0IsQ0FBQTtJQUVsQixpQ0FBaUM7SUFDakMsOEVBQWtCLENBQUE7SUFFbEIsNEJBQTRCO0lBQzVCLGdGQUFtQixDQUFBO0lBRW5CLDhCQUE4QjtJQUM5QiwwRUFBZ0IsQ0FBQTtJQUVoQiw4QkFBOEI7SUFDOUIsNEVBQWlCLENBQUE7QUFFckIsQ0FBQyxFQTNEVyxrQkFBa0IsS0FBbEIsa0JBQWtCLFFBMkQ3QiIsInNvdXJjZXNDb250ZW50IjpbIi8qIFxuICAgUm93aW5nIGJvYXQgdHlwZSBjb2RlIFxuKi9cbmV4cG9ydCBlbnVtIFJvd2luZ0JvYXRUeXBlQ29kZSB7XG4gXG4gICAgLy8gVW5kZWZpbmVkIFswXSBcbiAgICBVTkRFRklORUQgPSAwLFxuIFxuICAgIC8vIFNjdWxsaW5nIDFYIFsxXSBcbiAgICBTQ1VMTF8xWCA9IDEsXG4gXG4gICAgLy8gU2N1bGxpbmcgMVggV2lkZSBbMl0gXG4gICAgU0NVTExfMVhfV0lERSA9IDIsXG4gXG4gICAgLy8gU2N1bGxpbmcgMVggQ29tcGV0aXRpb24gWzNdIFxuICAgIFNDVUxMXzFYX0NPTVAgPSAzLFxuIFxuICAgIC8vIFNjdWxsaW5nIDFYIFBhcmEgT2x5bXBpYyBbNF0gXG4gICAgU0NVTExfMVhfUEFSQSA9IDQsXG4gXG4gICAgLy8gU2N1bGxpbmcgMlggWzVdIFxuICAgIFNDVUxMXzJYID0gNSxcbiBcbiAgICAvLyBTY3VsbGluZyAyWCBXaWRlIFs2XSBcbiAgICBTQ1VMTF8yWF9XSURFID0gNixcbiBcbiAgICAvLyBTY3VsbGluZyAyWCBDb21wZXRpdGlvbiBbN10gXG4gICAgU0NVTExfMlhfQ09NUCA9IDcsXG4gXG4gICAgLy8gU2N1bGxpbmcgMlggUGFyYSBPbHltcGljIFs4XSBcbiAgICBTQ1VMTF8yWF9QQVJBID0gOCxcbiBcbiAgICAvLyBTd2VlcGluZyAyLSBDb3hsZXNzIFBhaXIgWzldIFxuICAgIFNXRUVQXzJfQ09YTEVTUyA9IDksXG4gXG4gICAgLy8gQ29hc3RhbCAyWCBbMTBdIFxuICAgIENPQVNUQUxfMlggPSAxMCxcbiBcbiAgICAvLyBTY3VsbGluZyA0WCBRdWFkIFsxMV0gXG4gICAgU0NVTExfNFggPSAxMSxcbiBcbiAgICAvLyBTY3VsbGluZyA0WCBRdWFkIHdpdGggY294IFsxMl0gXG4gICAgU0NVTExfNFhfQ09YID0gMTIsXG4gXG4gICAgLy8gU3dlZXBpbmcgNC0gQ294bGVzcyBRdWFkIFsxM10gXG4gICAgU1dFRVBfNF9DT1hMRVNTID0gMTMsXG4gXG4gICAgLy8gU2N1bGxpbmcgNFggQ29tcGV0aXRpb24gWzE0XSBcbiAgICBTQ1VMTF80WF9DT01QID0gMTQsXG4gXG4gICAgLy8gU2N1bGxpbmcgNFggUGFyYSBPbHltcGljIFsxNV0gXG4gICAgU0NVTExfNFhfUEFSQSA9IDE1LFxuIFxuICAgIC8vIENvYXN0YWwgNFggd2l0aCBjb3ggWzE2XSBcbiAgICBDT0FTVEFMXzRYX0NPWCA9IDE2LFxuIFxuICAgIC8vIFN3ZWVwaW5nIDggLSB3aXRoIGNveCBbMTddIFxuICAgIFNXRUVQXzhfQ09YID0gMTcsXG4gXG4gICAgLy8gU2N1bGxpbmcgOCAtIHdpdGggY294IFsxOF0gXG4gICAgU0NVTExfOFhfQ09YID0gMTgsXG4gXG59Il19

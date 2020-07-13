@@ -1,0 +1,12 @@
+/*
+   Key Value string tuple
+*/
+var StringKeyValue = /** @class */ (function () {
+    function StringKeyValue(key, value) {
+        this.key = key;
+        this.value = value;
+    }
+    return StringKeyValue;
+}());
+export { StringKeyValue };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU3RyaW5nS2V5VmFsdWUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AbW90dHljL25nLWNvcmUtbGliLyIsInNvdXJjZXMiOlsibGliL2NvbW1vbi9TdHJpbmdLZXlWYWx1ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTs7RUFFRTtBQUNGO0lBUUksd0JBQVksR0FBWSxFQUFFLEtBQWM7UUFDcEMsSUFBSSxDQUFDLEdBQUcsR0FBRyxHQUFHLENBQUM7UUFDZixJQUFJLENBQUMsS0FBSyxHQUFHLEtBQUssQ0FBQztJQUN2QixDQUFDO0lBRUwscUJBQUM7QUFBRCxDQUFDLEFBYkQsSUFhQyIsInNvdXJjZXNDb250ZW50IjpbIlxuLyogXG4gICBLZXkgVmFsdWUgc3RyaW5nIHR1cGxlIFxuKi9cbmV4cG9ydCBjbGFzcyBTdHJpbmdLZXlWYWx1ZSB7XG4gXG4gICAgLy8gS2V5IG9mIHR1cGxlIFxuICAgIHB1YmxpYyBrZXk6IHN0cmluZztcbiBcbiAgICAvLyBWYWx1ZSBvZiB0dXBsZSBcbiAgICBwdWJsaWMgdmFsdWU6IHN0cmluZztcbiBcbiAgICBjb25zdHJ1Y3RvcihrZXk/OiBzdHJpbmcsIHZhbHVlPzogc3RyaW5nKSB7IFxuICAgICAgICB0aGlzLmtleSA9IGtleTtcbiAgICAgICAgdGhpcy52YWx1ZSA9IHZhbHVlO1xuICAgIH1cblxufVxuXG5cbiJdfQ==

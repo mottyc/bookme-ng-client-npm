@@ -1,0 +1,7 @@
+/*
+*/
+export class EmptyResponse {
+    constructor() {
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRW1wdHlSZXNwb25zZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Btb3R0eWMvbmctY29yZS1saWIvIiwic291cmNlcyI6WyJsaWIvbWVzc2FnZXMvRW1wdHlSZXNwb25zZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNFO0FBQ0YsTUFBTSxPQUFPLGFBQWE7SUFFdEI7SUFDQSxDQUFDO0NBRUoiLCJzb3VyY2VzQ29udGVudCI6WyJcbi8qICBcbiovXG5leHBvcnQgY2xhc3MgRW1wdHlSZXNwb25zZSB7XG4gXG4gICAgY29uc3RydWN0b3IoKSB7IFxuICAgIH1cblxufVxuXG5cbiJdfQ==

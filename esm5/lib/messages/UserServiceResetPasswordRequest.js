@@ -1,0 +1,10 @@
+/*
+*/
+var UserServiceResetPasswordRequest = /** @class */ (function () {
+    function UserServiceResetPasswordRequest(code) {
+        this.code = code;
+    }
+    return UserServiceResetPasswordRequest;
+}());
+export { UserServiceResetPasswordRequest };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVXNlclNlcnZpY2VSZXNldFBhc3N3b3JkUmVxdWVzdC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Btb3R0eWMvbmctY29yZS1saWIvIiwic291cmNlcyI6WyJsaWIvbWVzc2FnZXMvVXNlclNlcnZpY2VSZXNldFBhc3N3b3JkUmVxdWVzdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNFO0FBQ0Y7SUFLSSx5Q0FBWSxJQUFhO1FBQ3JCLElBQUksQ0FBQyxJQUFJLEdBQUcsSUFBSSxDQUFDO0lBQ3JCLENBQUM7SUFFTCxzQ0FBQztBQUFELENBQUMsQUFURCxJQVNDIiwic291cmNlc0NvbnRlbnQiOlsiXG4vKiAgXG4qL1xuZXhwb3J0IGNsYXNzIFVzZXJTZXJ2aWNlUmVzZXRQYXNzd29yZFJlcXVlc3Qge1xuIFxuICAgIC8vIFZlcmlmaWNhdGlvbiBjb2RlIFxuICAgIHB1YmxpYyBjb2RlOiBzdHJpbmc7XG4gXG4gICAgY29uc3RydWN0b3IoY29kZT86IHN0cmluZykgeyBcbiAgICAgICAgdGhpcy5jb2RlID0gY29kZTtcbiAgICB9XG5cbn1cblxuXG4iXX0=

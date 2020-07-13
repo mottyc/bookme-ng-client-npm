@@ -1,0 +1,12 @@
+/*
+   Account role represents the role of the user in the account
+*/
+var AccountRole = /** @class */ (function () {
+    function AccountRole(accountId, role) {
+        this.accountId = accountId;
+        this.role = role;
+    }
+    return AccountRole;
+}());
+export { AccountRole };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiQWNjb3VudFJvbGUuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AbW90dHljL25nLWNvcmUtbGliLyIsInNvdXJjZXMiOlsibGliL2NvbW1vbi9BY2NvdW50Um9sZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFFQTs7RUFFRTtBQUNGO0lBUUkscUJBQVksU0FBa0IsRUFBRSxJQUFzQjtRQUNsRCxJQUFJLENBQUMsU0FBUyxHQUFHLFNBQVMsQ0FBQztRQUMzQixJQUFJLENBQUMsSUFBSSxHQUFHLElBQUksQ0FBQztJQUNyQixDQUFDO0lBRUwsa0JBQUM7QUFBRCxDQUFDLEFBYkQsSUFhQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7IEFjY291bnRSb2xlQ29kZSB9IGZyb20gJy4uL2VudW1zL0FjY291bnRSb2xlQ29kZSc7XG5cbi8qIFxuICAgQWNjb3VudCByb2xlIHJlcHJlc2VudHMgdGhlIHJvbGUgb2YgdGhlIHVzZXIgaW4gdGhlIGFjY291bnQgXG4qL1xuZXhwb3J0IGNsYXNzIEFjY291bnRSb2xlIHtcbiBcbiAgICAvLyBBY2NvdW50IElkIFxuICAgIHB1YmxpYyBhY2NvdW50SWQ6IHN0cmluZztcbiBcbiAgICAvLyBVc2VyIHJvbGUgaW4gdGhlIGFjY291bnQgXG4gICAgcHVibGljIHJvbGU6IEFjY291bnRSb2xlQ29kZTtcbiBcbiAgICBjb25zdHJ1Y3RvcihhY2NvdW50SWQ/OiBzdHJpbmcsIHJvbGU/OiBBY2NvdW50Um9sZUNvZGUpIHsgXG4gICAgICAgIHRoaXMuYWNjb3VudElkID0gYWNjb3VudElkO1xuICAgICAgICB0aGlzLnJvbGUgPSByb2xlO1xuICAgIH1cblxufVxuXG5cbiJdfQ==

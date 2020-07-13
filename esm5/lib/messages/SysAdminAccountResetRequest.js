@@ -1,0 +1,11 @@
+/*
+*/
+var SysAdminAccountResetRequest = /** @class */ (function () {
+    function SysAdminAccountResetRequest(id, days) {
+        this.id = id;
+        this.days = days;
+    }
+    return SysAdminAccountResetRequest;
+}());
+export { SysAdminAccountResetRequest };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiU3lzQWRtaW5BY2NvdW50UmVzZXRSZXF1ZXN0LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG1vdHR5Yy9uZy1jb3JlLWxpYi8iLCJzb3VyY2VzIjpbImxpYi9tZXNzYWdlcy9TeXNBZG1pbkFjY291bnRSZXNldFJlcXVlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRTtBQUNGO0lBUUkscUNBQVksRUFBVyxFQUFFLElBQWE7UUFDbEMsSUFBSSxDQUFDLEVBQUUsR0FBRyxFQUFFLENBQUM7UUFDYixJQUFJLENBQUMsSUFBSSxHQUFHLElBQUksQ0FBQztJQUNyQixDQUFDO0lBRUwsa0NBQUM7QUFBRCxDQUFDLEFBYkQsSUFhQyIsInNvdXJjZXNDb250ZW50IjpbIlxuLyogIFxuKi9cbmV4cG9ydCBjbGFzcyBTeXNBZG1pbkFjY291bnRSZXNldFJlcXVlc3Qge1xuIFxuICAgIC8vIEFjY291bnQgSWQgXG4gICAgcHVibGljIGlkOiBzdHJpbmc7XG4gXG4gICAgLy8gUmV0ZW50aW9uIHRpbWUgaW4gZGF5cyBcbiAgICBwdWJsaWMgZGF5czogbnVtYmVyO1xuIFxuICAgIGNvbnN0cnVjdG9yKGlkPzogc3RyaW5nLCBkYXlzPzogbnVtYmVyKSB7IFxuICAgICAgICB0aGlzLmlkID0gaWQ7XG4gICAgICAgIHRoaXMuZGF5cyA9IGRheXM7XG4gICAgfVxuXG59XG5cblxuIl19

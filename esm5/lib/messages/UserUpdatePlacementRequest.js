@@ -1,0 +1,10 @@
+/*
+*/
+var UserUpdatePlacementRequest = /** @class */ (function () {
+    function UserUpdatePlacementRequest(body) {
+        this.body = body;
+    }
+    return UserUpdatePlacementRequest;
+}());
+export { UserUpdatePlacementRequest };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVXNlclVwZGF0ZVBsYWNlbWVudFJlcXVlc3QuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AbW90dHljL25nLWNvcmUtbGliLyIsInNvdXJjZXMiOlsibGliL21lc3NhZ2VzL1VzZXJVcGRhdGVQbGFjZW1lbnRSZXF1ZXN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUVBO0VBQ0U7QUFDRjtJQUtJLG9DQUFZLElBQWdCO1FBQ3hCLElBQUksQ0FBQyxJQUFJLEdBQUcsSUFBSSxDQUFDO0lBQ3JCLENBQUM7SUFFTCxpQ0FBQztBQUFELENBQUMsQUFURCxJQVNDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgUGxhY2VtZW50IH0gZnJvbSAnLi4vZW50aXRpZXMvUGxhY2VtZW50JztcblxuLyogIFxuKi9cbmV4cG9ydCBjbGFzcyBVc2VyVXBkYXRlUGxhY2VtZW50UmVxdWVzdCB7XG4gXG4gICAgLy8gUGxhY2VtZW50IGRhdGEgXG4gICAgcHVibGljIGJvZHk6IFBsYWNlbWVudDtcbiBcbiAgICBjb25zdHJ1Y3Rvcihib2R5PzogUGxhY2VtZW50KSB7IFxuICAgICAgICB0aGlzLmJvZHkgPSBib2R5O1xuICAgIH1cblxufVxuXG5cbiJdfQ==

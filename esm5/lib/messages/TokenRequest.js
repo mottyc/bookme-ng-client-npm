@@ -1,0 +1,13 @@
+/*
+   Token request message
+*/
+var TokenRequest = /** @class */ (function () {
+    function TokenRequest(code, error, accountId) {
+        this.code = code;
+        this.error = error;
+        this.accountId = accountId;
+    }
+    return TokenRequest;
+}());
+export { TokenRequest };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVG9rZW5SZXF1ZXN0LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG1vdHR5Yy9uZy1jb3JlLWxpYi8iLCJzb3VyY2VzIjpbImxpYi9tZXNzYWdlcy9Ub2tlblJlcXVlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7O0VBRUU7QUFDRjtJQVdJLHNCQUFZLElBQWEsRUFBRSxLQUFjLEVBQUUsU0FBa0I7UUFDekQsSUFBSSxDQUFDLElBQUksR0FBRyxJQUFJLENBQUM7UUFDakIsSUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7UUFDbkIsSUFBSSxDQUFDLFNBQVMsR0FBRyxTQUFTLENBQUM7SUFDL0IsQ0FBQztJQUVMLG1CQUFDO0FBQUQsQ0FBQyxBQWpCRCxJQWlCQyIsInNvdXJjZXNDb250ZW50IjpbIlxuLyogXG4gICBUb2tlbiByZXF1ZXN0IG1lc3NhZ2UgXG4qL1xuZXhwb3J0IGNsYXNzIFRva2VuUmVxdWVzdCB7XG4gXG4gICAgLy8gRXJyb3IgY29kZSAoMCBmb3Igc3VjY2VzcykgXG4gICAgcHVibGljIGNvZGU6IG51bWJlcjtcbiBcbiAgICAvLyBFcnJvciBtZXNzYWdlIFxuICAgIHB1YmxpYyBlcnJvcjogc3RyaW5nO1xuIFxuICAgIC8vIEFjY291bnQgSWQgXG4gICAgcHVibGljIGFjY291bnRJZDogc3RyaW5nO1xuIFxuICAgIGNvbnN0cnVjdG9yKGNvZGU/OiBudW1iZXIsIGVycm9yPzogc3RyaW5nLCBhY2NvdW50SWQ/OiBzdHJpbmcpIHsgXG4gICAgICAgIHRoaXMuY29kZSA9IGNvZGU7XG4gICAgICAgIHRoaXMuZXJyb3IgPSBlcnJvcjtcbiAgICAgICAgdGhpcy5hY2NvdW50SWQgPSBhY2NvdW50SWQ7XG4gICAgfVxuXG59XG5cblxuIl19

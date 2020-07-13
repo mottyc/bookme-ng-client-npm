@@ -1,0 +1,10 @@
+/*
+*/
+var UserServiceVerifyLoginRequest = /** @class */ (function () {
+    function UserServiceVerifyLoginRequest(key) {
+        this.key = key;
+    }
+    return UserServiceVerifyLoginRequest;
+}());
+export { UserServiceVerifyLoginRequest };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVXNlclNlcnZpY2VWZXJpZnlMb2dpblJlcXVlc3QuanMiLCJzb3VyY2VSb290Ijoibmc6Ly9AbW90dHljL25nLWNvcmUtbGliLyIsInNvdXJjZXMiOlsibGliL21lc3NhZ2VzL1VzZXJTZXJ2aWNlVmVyaWZ5TG9naW5SZXF1ZXN0LnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBO0VBQ0U7QUFDRjtJQUtJLHVDQUFZLEdBQVk7UUFDcEIsSUFBSSxDQUFDLEdBQUcsR0FBRyxHQUFHLENBQUM7SUFDbkIsQ0FBQztJQUVMLG9DQUFDO0FBQUQsQ0FBQyxBQVRELElBU0MiLCJzb3VyY2VzQ29udGVudCI6WyJcbi8qICBcbiovXG5leHBvcnQgY2xhc3MgVXNlclNlcnZpY2VWZXJpZnlMb2dpblJlcXVlc3Qge1xuIFxuICAgIC8vIFxuICAgIHB1YmxpYyBrZXk6IHN0cmluZztcbiBcbiAgICBjb25zdHJ1Y3RvcihrZXk/OiBzdHJpbmcpIHsgXG4gICAgICAgIHRoaXMua2V5ID0ga2V5O1xuICAgIH1cblxufVxuXG5cbiJdfQ==

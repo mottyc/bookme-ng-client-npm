@@ -1,0 +1,10 @@
+/*
+*/
+var UserServiceCheckPasswordRequest = /** @class */ (function () {
+    function UserServiceCheckPasswordRequest(body) {
+        this.body = body;
+    }
+    return UserServiceCheckPasswordRequest;
+}());
+export { UserServiceCheckPasswordRequest };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVXNlclNlcnZpY2VDaGVja1Bhc3N3b3JkUmVxdWVzdC5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Btb3R0eWMvbmctY29yZS1saWIvIiwic291cmNlcyI6WyJsaWIvbWVzc2FnZXMvVXNlclNlcnZpY2VDaGVja1Bhc3N3b3JkUmVxdWVzdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNFO0FBQ0Y7SUFLSSx5Q0FBWSxJQUFhO1FBQ3JCLElBQUksQ0FBQyxJQUFJLEdBQUcsSUFBSSxDQUFDO0lBQ3JCLENBQUM7SUFFTCxzQ0FBQztBQUFELENBQUMsQUFURCxJQVNDIiwic291cmNlc0NvbnRlbnQiOlsiXG4vKiAgXG4qL1xuZXhwb3J0IGNsYXNzIFVzZXJTZXJ2aWNlQ2hlY2tQYXNzd29yZFJlcXVlc3Qge1xuIFxuICAgIC8vIFxuICAgIHB1YmxpYyBib2R5OiBzdHJpbmc7XG4gXG4gICAgY29uc3RydWN0b3IoYm9keT86IHN0cmluZykgeyBcbiAgICAgICAgdGhpcy5ib2R5ID0gYm9keTtcbiAgICB9XG5cbn1cblxuXG4iXX0=

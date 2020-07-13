@@ -1,0 +1,7 @@
+/*
+*/
+export class EmptyRequest {
+    constructor() {
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRW1wdHlSZXF1ZXN0LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG1vdHR5Yy9uZy1jb3JlLWxpYi8iLCJzb3VyY2VzIjpbImxpYi9tZXNzYWdlcy9FbXB0eVJlcXVlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRTtBQUNGLE1BQU0sT0FBTyxZQUFZO0lBRXJCO0lBQ0EsQ0FBQztDQUVKIiwic291cmNlc0NvbnRlbnQiOlsiXG4vKiAgXG4qL1xuZXhwb3J0IGNsYXNzIEVtcHR5UmVxdWVzdCB7XG4gXG4gICAgY29uc3RydWN0b3IoKSB7IFxuICAgIH1cblxufVxuXG5cbiJdfQ==

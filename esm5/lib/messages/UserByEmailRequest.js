@@ -1,0 +1,10 @@
+/*
+*/
+var UserByEmailRequest = /** @class */ (function () {
+    function UserByEmailRequest(email) {
+        this.email = email;
+    }
+    return UserByEmailRequest;
+}());
+export { UserByEmailRequest };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVXNlckJ5RW1haWxSZXF1ZXN0LmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG1vdHR5Yy9uZy1jb3JlLWxpYi8iLCJzb3VyY2VzIjpbImxpYi9tZXNzYWdlcy9Vc2VyQnlFbWFpbFJlcXVlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQ0E7RUFDRTtBQUNGO0lBS0ksNEJBQVksS0FBYztRQUN0QixJQUFJLENBQUMsS0FBSyxHQUFHLEtBQUssQ0FBQztJQUN2QixDQUFDO0lBRUwseUJBQUM7QUFBRCxDQUFDLEFBVEQsSUFTQyIsInNvdXJjZXNDb250ZW50IjpbIlxuLyogIFxuKi9cbmV4cG9ydCBjbGFzcyBVc2VyQnlFbWFpbFJlcXVlc3Qge1xuIFxuICAgIC8vIFVzZXIgZW1haWwgXG4gICAgcHVibGljIGVtYWlsOiBzdHJpbmc7XG4gXG4gICAgY29uc3RydWN0b3IoZW1haWw/OiBzdHJpbmcpIHsgXG4gICAgICAgIHRoaXMuZW1haWwgPSBlbWFpbDtcbiAgICB9XG5cbn1cblxuXG4iXX0=

@@ -1,0 +1,12 @@
+/*
+   Time frame (for search and reports)
+*/
+var TimeFrame = /** @class */ (function () {
+    function TimeFrame(from, to) {
+        this.from = from;
+        this.to = to;
+    }
+    return TimeFrame;
+}());
+export { TimeFrame };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiVGltZUZyYW1lLmpzIiwic291cmNlUm9vdCI6Im5nOi8vQG1vdHR5Yy9uZy1jb3JlLWxpYi8iLCJzb3VyY2VzIjpbImxpYi9jb21tb24vVGltZUZyYW1lLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBOztFQUVFO0FBQ0Y7SUFRSSxtQkFBWSxJQUFhLEVBQUUsRUFBVztRQUNsQyxJQUFJLENBQUMsSUFBSSxHQUFHLElBQUksQ0FBQztRQUNqQixJQUFJLENBQUMsRUFBRSxHQUFHLEVBQUUsQ0FBQztJQUNqQixDQUFDO0lBRUwsZ0JBQUM7QUFBRCxDQUFDLEFBYkQsSUFhQyIsInNvdXJjZXNDb250ZW50IjpbIlxuLyogXG4gICBUaW1lIGZyYW1lIChmb3Igc2VhcmNoIGFuZCByZXBvcnRzKSBcbiovXG5leHBvcnQgY2xhc3MgVGltZUZyYW1lIHtcbiBcbiAgICAvLyBTdGFydCB0aW1lIFtFcG9jaCBtaWxsaXNlY29uZHMgVGltZXN0YW1wXSBcbiAgICBwdWJsaWMgZnJvbTogbnVtYmVyO1xuIFxuICAgIC8vIEVuZCB0aW1lIFtFcG9jaCBtaWxsaXNlY29uZHMgVGltZXN0YW1wXSBcbiAgICBwdWJsaWMgdG86IG51bWJlcjtcbiBcbiAgICBjb25zdHJ1Y3Rvcihmcm9tPzogbnVtYmVyLCB0bz86IG51bWJlcikgeyBcbiAgICAgICAgdGhpcy5mcm9tID0gZnJvbTtcbiAgICAgICAgdGhpcy50byA9IHRvO1xuICAgIH1cblxufVxuXG5cbiJdfQ==

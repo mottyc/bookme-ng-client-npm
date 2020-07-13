@@ -1,0 +1,12 @@
+/*
+   Entities response message returned for read operation on multiple entities
+*/
+var EntitiesResponse = /** @class */ (function () {
+    function EntitiesResponse(code, error) {
+        this.code = code;
+        this.error = error;
+    }
+    return EntitiesResponse;
+}());
+export { EntitiesResponse };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiRW50aXRpZXNSZXNwb25zZS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL0Btb3R0eWMvbmctY29yZS1saWIvIiwic291cmNlcyI6WyJsaWIvbWVzc2FnZXMvRW50aXRpZXNSZXNwb25zZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTs7RUFFRTtBQUNGO0lBUUksMEJBQVksSUFBYSxFQUFFLEtBQWM7UUFDckMsSUFBSSxDQUFDLElBQUksR0FBRyxJQUFJLENBQUM7UUFDakIsSUFBSSxDQUFDLEtBQUssR0FBRyxLQUFLLENBQUM7SUFDdkIsQ0FBQztJQUVMLHVCQUFDO0FBQUQsQ0FBQyxBQWJELElBYUMiLCJzb3VyY2VzQ29udGVudCI6WyJcbi8qIFxuICAgRW50aXRpZXMgcmVzcG9uc2UgbWVzc2FnZSByZXR1cm5lZCBmb3IgcmVhZCBvcGVyYXRpb24gb24gbXVsdGlwbGUgZW50aXRpZXMgXG4qL1xuZXhwb3J0IGNsYXNzIEVudGl0aWVzUmVzcG9uc2Uge1xuIFxuICAgIC8vIEVycm9yIGNvZGUgKDAgZm9yIHN1Y2Nlc3MpIFxuICAgIHB1YmxpYyBjb2RlOiBudW1iZXI7XG4gXG4gICAgLy8gRXJyb3IgbWVzc2FnZSBcbiAgICBwdWJsaWMgZXJyb3I6IHN0cmluZztcbiBcbiAgICBjb25zdHJ1Y3Rvcihjb2RlPzogbnVtYmVyLCBlcnJvcj86IHN0cmluZykgeyBcbiAgICAgICAgdGhpcy5jb2RlID0gY29kZTtcbiAgICAgICAgdGhpcy5lcnJvciA9IGVycm9yO1xuICAgIH1cblxufVxuXG5cbiJdfQ==

@@ -1,0 +1,21 @@
+export declare enum RowingBoatTypeCode {
+    UNDEFINED = 0,
+    SCULL_1X = 1,
+    SCULL_1X_WIDE = 2,
+    SCULL_1X_COMP = 3,
+    SCULL_1X_PARA = 4,
+    SCULL_2X = 5,
+    SCULL_2X_WIDE = 6,
+    SCULL_2X_COMP = 7,
+    SCULL_2X_PARA = 8,
+    SWEEP_2_COXLESS = 9,
+    COASTAL_2X = 10,
+    SCULL_4X = 11,
+    SCULL_4X_COX = 12,
+    SWEEP_4_COXLESS = 13,
+    SCULL_4X_COMP = 14,
+    SCULL_4X_PARA = 15,
+    COASTAL_4X_COX = 16,
+    SWEEP_8_COX = 17,
+    SCULL_8X_COX = 18
+}
