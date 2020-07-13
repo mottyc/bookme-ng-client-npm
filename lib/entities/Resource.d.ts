@@ -1,6 +1,6 @@
-import { BaseEntity } from '../entities/BaseEntity';
 import { ResourceTypeCode } from '../enums/ResourceTypeCode';
 import { UseTypeCode } from '../enums/UseTypeCode';
+import { BaseEntity } from '../entities/BaseEntity';
 export declare class Resource extends BaseEntity {
     resourceType: ResourceTypeCode;
     resourceId: string;
