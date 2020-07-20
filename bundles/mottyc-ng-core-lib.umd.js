@@ -369,6 +369,17 @@
     }());
 
     /*
+       Weight Range
+    */
+    var WeightRange = /** @class */ (function () {
+        function WeightRange(min, max) {
+            this.min = min;
+            this.max = max;
+        }
+        return WeightRange;
+    }());
+
+    /*
        Base entity includes common fields for all entities (persistence objects) in the system
     */
     var BaseEntity = /** @class */ (function () {
@@ -463,17 +474,6 @@
     }(BaseEntity));
 
     /*
-       Kayak resource type (derived from Resource)
-    */
-    var Kayak = /** @class */ (function (_super) {
-        __extends(Kayak, _super);
-        function Kayak() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        return Kayak;
-    }(BaseEntity));
-
-    /*
        Placement - after booking approval, it is becoming a placement (derived from Booking)
     */
     var Placement = /** @class */ (function (_super) {
@@ -493,17 +493,6 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return Resource;
-    }(BaseEntity));
-
-    /*
-       Rowing boat resource type (derived from Resource)
-    */
-    var RowingBoat = /** @class */ (function (_super) {
-        __extends(RowingBoat, _super);
-        function RowingBoat() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        return RowingBoat;
     }(BaseEntity));
 
     /*
@@ -664,26 +653,80 @@
     (function (KayakTypeCode) {
         // Undefined [0] 
         KayakTypeCode[KayakTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-        // Ocean Kayak [1] 
-        KayakTypeCode[KayakTypeCode["OCEAN"] = 1] = "OCEAN";
-        // Surf Ski Kayak [2] 
-        KayakTypeCode[KayakTypeCode["SURFSKI"] = 2] = "SURFSKI";
-        // Waves Kayak [3] 
-        KayakTypeCode[KayakTypeCode["WAVES"] = 3] = "WAVES";
+        // Ocean Kayak [2048 + 1] 
+        KayakTypeCode[KayakTypeCode["OCEAN"] = 2049] = "OCEAN";
+        // Double Ocean Kayak [2048 + 2] 
+        KayakTypeCode[KayakTypeCode["OCEAN_X2"] = 2050] = "OCEAN_X2";
+        // SurfSki Kayak [2048 + 4096 + 1] 
+        KayakTypeCode[KayakTypeCode["SURFSKI"] = 6145] = "SURFSKI";
+        // Double SurfSki Kayak [2048 + 4096 + 2] 
+        KayakTypeCode[KayakTypeCode["SURFSKI_X2"] = 6146] = "SURFSKI_X2";
+        // Waves (short) kayak [2048 + 1 + 8192] 
+        KayakTypeCode[KayakTypeCode["WAVES"] = 10241] = "WAVES";
     })(exports.KayakTypeCode || (exports.KayakTypeCode = {}));
 
     /*
-       Resource type code (represent resource in the system)
+       Resource class code (represent resource in the system)
     */
 
-    (function (ResourceTypeCode) {
+    (function (ResourceClassCode) {
         // Undefined [0] 
-        ResourceTypeCode[ResourceTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-        // Rowing Boat [1] 
-        ResourceTypeCode[ResourceTypeCode["ROWING_BOAT"] = 1] = "ROWING_BOAT";
-        // Kayak [2] 
-        ResourceTypeCode[ResourceTypeCode["KAYAK"] = 2] = "KAYAK";
-    })(exports.ResourceTypeCode || (exports.ResourceTypeCode = {}));
+        ResourceClassCode[ResourceClassCode["UNDEFINED"] = 0] = "UNDEFINED";
+        // Rowing Boat [1024] 
+        ResourceClassCode[ResourceClassCode["RBOAT"] = 1] = "RBOAT";
+        // Kayak [2048] 
+        ResourceClassCode[ResourceClassCode["KAYAK"] = 2] = "KAYAK";
+    })(exports.ResourceClassCode || (exports.ResourceClassCode = {}));
+
+    /*
+       Resource status code
+    */
+
+    (function (ResourceStatusCode) {
+        // Undefined [0] 
+        ResourceStatusCode[ResourceStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
+        // Available [1] 
+        ResourceStatusCode[ResourceStatusCode["AVAILABLE"] = 1] = "AVAILABLE";
+        // Non-available [2] 
+        ResourceStatusCode[ResourceStatusCode["NONAVAILABLE"] = 2] = "NONAVAILABLE";
+    })(exports.ResourceStatusCode || (exports.ResourceStatusCode = {}));
+
+    /*
+       General Resource Type (Attributes bit mask)
+    */
+
+    (function (ResourceTypeMask) {
+        // Undefined [0] 
+        ResourceTypeMask[ResourceTypeMask["UNDEFINED"] = 0] = "UNDEFINED";
+        // Single [1] 
+        ResourceTypeMask[ResourceTypeMask["P1"] = 1] = "P1";
+        // Double [2] 
+        ResourceTypeMask[ResourceTypeMask["P2"] = 2] = "P2";
+        // Quad [4] 
+        ResourceTypeMask[ResourceTypeMask["P4"] = 4] = "P4";
+        // Eight [8] 
+        ResourceTypeMask[ResourceTypeMask["P8"] = 8] = "P8";
+        // Wide [16] 
+        ResourceTypeMask[ResourceTypeMask["WIDE"] = 16] = "WIDE";
+        // Sculling (2 oars) [32] 
+        ResourceTypeMask[ResourceTypeMask["SCULL"] = 32] = "SCULL";
+        // Need Cox [64] 
+        ResourceTypeMask[ResourceTypeMask["COX"] = 64] = "COX";
+        // Coastal (use in sea) [128] 
+        ResourceTypeMask[ResourceTypeMask["COASTAL"] = 128] = "COASTAL";
+        // For competition [254] 
+        ResourceTypeMask[ResourceTypeMask["COMP"] = 254] = "COMP";
+        // For para-olympic [512] 
+        ResourceTypeMask[ResourceTypeMask["PARA"] = 512] = "PARA";
+        // Rowing Boat [1024] 
+        ResourceTypeMask[ResourceTypeMask["RBOAT"] = 1024] = "RBOAT";
+        // Kayak [2048] 
+        ResourceTypeMask[ResourceTypeMask["KAYAK"] = 2048] = "KAYAK";
+        // Surf Ski [4096] 
+        ResourceTypeMask[ResourceTypeMask["SURFSKI"] = 4096] = "SURFSKI";
+        // Waves Kayak [8192] 
+        ResourceTypeMask[ResourceTypeMask["WAVES"] = 8192] = "WAVES";
+    })(exports.ResourceTypeMask || (exports.ResourceTypeMask = {}));
 
     /*
        Rowing boat type code
@@ -692,42 +735,42 @@
     (function (RowingBoatTypeCode) {
         // Undefined [0] 
         RowingBoatTypeCode[RowingBoatTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-        // Sculling 1X [1] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X"] = 1] = "SCULL_1X";
-        // Sculling 1X Wide [2] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_WIDE"] = 2] = "SCULL_1X_WIDE";
-        // Sculling 1X Competition [3] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_COMP"] = 3] = "SCULL_1X_COMP";
-        // Sculling 1X Para Olympic [4] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_PARA"] = 4] = "SCULL_1X_PARA";
-        // Sculling 2X [5] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X"] = 5] = "SCULL_2X";
-        // Sculling 2X Wide [6] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_WIDE"] = 6] = "SCULL_2X_WIDE";
-        // Sculling 2X Competition [7] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_COMP"] = 7] = "SCULL_2X_COMP";
-        // Sculling 2X Para Olympic [8] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_PARA"] = 8] = "SCULL_2X_PARA";
-        // Sweeping 2- Coxless Pair [9] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_2_COXLESS"] = 9] = "SWEEP_2_COXLESS";
-        // Coastal 2X [10] 
-        RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_2X"] = 10] = "COASTAL_2X";
-        // Sculling 4X Quad [11] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X"] = 11] = "SCULL_4X";
-        // Sculling 4X Quad with cox [12] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COX"] = 12] = "SCULL_4X_COX";
-        // Sweeping 4- Coxless Quad [13] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_4_COXLESS"] = 13] = "SWEEP_4_COXLESS";
-        // Sculling 4X Competition [14] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COMP"] = 14] = "SCULL_4X_COMP";
-        // Sculling 4X Para Olympic [15] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_PARA"] = 15] = "SCULL_4X_PARA";
-        // Coastal 4X with cox [16] 
-        RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_4X_COX"] = 16] = "COASTAL_4X_COX";
-        // Sweeping 8 - with cox [17] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_8_COX"] = 17] = "SWEEP_8_COX";
-        // Sculling 8 - with cox [18] 
-        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_8X_COX"] = 18] = "SCULL_8X_COX";
+        // Sculling 1X [1024 + 1 + 32] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X"] = 1057] = "SCULL_1X";
+        // Sculling 1X Wide [1024 + 1 + 32 + 16] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_WIDE"] = 1073] = "SCULL_1X_WIDE";
+        // Sculling 1X Competition [1024 + 1 + 32 + 254] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_COMP"] = 1311] = "SCULL_1X_COMP";
+        // Sculling 1X Para Olympic [1024 + 1 + 32 + 512] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_PARA"] = 1569] = "SCULL_1X_PARA";
+        // Sculling 2X [1024 + 2 + 32] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X"] = 1058] = "SCULL_2X";
+        // Sculling 2X Wide [1024 + 2 + 32 + 16] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_WIDE"] = 1074] = "SCULL_2X_WIDE";
+        // Sculling 2X Competition [1024 + 2 + 32 + 254] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_COMP"] = 1312] = "SCULL_2X_COMP";
+        // Sculling 2X Para Olympic [1024 + 2 + 32 + 512] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_PARA"] = 1570] = "SCULL_2X_PARA";
+        // Sweeping 2- Coxless Pair [1024 + 2] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_2_COXLESS"] = 1026] = "SWEEP_2_COXLESS";
+        // Coastal 2X [1024 + 2 + 32 + 128] 
+        RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_2X"] = 1186] = "COASTAL_2X";
+        // Sculling 4X Quad [1024 + 4 + 32] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X"] = 1060] = "SCULL_4X";
+        // Sculling 4X Quad with cox [1024 + 4 + 32 + 64] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COX"] = 1124] = "SCULL_4X_COX";
+        // Sweeping 4- Coxless Quad [1024 + 4] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_4_COXLESS"] = 10283] = "SWEEP_4_COXLESS";
+        // Sculling 4X Competition [1024 + 4 + 32 + 254] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COMP"] = 1314] = "SCULL_4X_COMP";
+        // Sculling 4X Para Olympic [1024 + 4 + 32 + 512] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_PARA"] = 1572] = "SCULL_4X_PARA";
+        // Coastal 4X with cox [1024 + 4 + 32 + 64 + 128] 
+        RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_4X_COX"] = 1252] = "COASTAL_4X_COX";
+        // Sweeping 8 - with cox [1024 + 8 + 64] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_8_COX"] = 1096] = "SWEEP_8_COX";
+        // Sculling 8 - with cox [1024 + 8 + 32 + 64] 
+        RowingBoatTypeCode[RowingBoatTypeCode["SCULL_8X_COX"] = 1128] = "SCULL_8X_COX";
     })(exports.RowingBoatTypeCode || (exports.RowingBoatTypeCode = {}));
 
     /*
@@ -767,6 +810,19 @@
         // Used by para-olympic team [4] 
         UseTypeCode[UseTypeCode["PARA"] = 4] = "PARA";
     })(exports.UseTypeCode || (exports.UseTypeCode = {}));
+
+    /*
+       User gender code
+    */
+
+    (function (UserGenderCode) {
+        // Undefined [0] 
+        UserGenderCode[UserGenderCode["UNDEFINED"] = 0] = "UNDEFINED";
+        // Male [1] 
+        UserGenderCode[UserGenderCode["MALE"] = 1] = "MALE";
+        // Female [2] 
+        UserGenderCode[UserGenderCode["FEMALE"] = 2] = "FEMALE";
+    })(exports.UserGenderCode || (exports.UserGenderCode = {}));
 
     /*
        User status code
@@ -826,73 +882,36 @@
 
     /*
     */
-    var AdminBoatFindRequest = /** @class */ (function () {
-        function AdminBoatFindRequest(usedBy, resourceId, sort, page, pageSize) {
-            this.usedBy = usedBy;
-            this.resourceId = resourceId;
+    var AdminCreateResourceRequest = /** @class */ (function () {
+        function AdminCreateResourceRequest(body) {
+            this.body = body;
+        }
+        return AdminCreateResourceRequest;
+    }());
+
+    /*
+    */
+    var AdminResourceFindRequest = /** @class */ (function () {
+        function AdminResourceFindRequest(search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
+            this.search = search;
+            this.resourceClass = resourceClass;
+            this.resourceType = resourceType;
+            this.status = status;
+            this.forUseBy = forUseBy;
             this.sort = sort;
             this.page = page;
             this.pageSize = pageSize;
         }
-        return AdminBoatFindRequest;
+        return AdminResourceFindRequest;
     }());
 
     /*
     */
-    var AdminCreateBoatRequest = /** @class */ (function () {
-        function AdminCreateBoatRequest(body) {
+    var AdminUpdateResourceRequest = /** @class */ (function () {
+        function AdminUpdateResourceRequest(body) {
             this.body = body;
         }
-        return AdminCreateBoatRequest;
-    }());
-
-    /*
-    */
-    var AdminCreateKayakRequest = /** @class */ (function () {
-        function AdminCreateKayakRequest(body) {
-            this.body = body;
-        }
-        return AdminCreateKayakRequest;
-    }());
-
-    /*
-    */
-    var AdminKayakFindRequest = /** @class */ (function () {
-        function AdminKayakFindRequest(usedBy, resourceId, sort, page, pageSize) {
-            this.usedBy = usedBy;
-            this.resourceId = resourceId;
-            this.sort = sort;
-            this.page = page;
-            this.pageSize = pageSize;
-        }
-        return AdminKayakFindRequest;
-    }());
-
-    /*
-    */
-    var AdminUpdateBoatRequest = /** @class */ (function () {
-        function AdminUpdateBoatRequest(body) {
-            this.body = body;
-        }
-        return AdminUpdateBoatRequest;
-    }());
-
-    /*
-    */
-    var AdminUpdateKayakRequest = /** @class */ (function () {
-        function AdminUpdateKayakRequest(body) {
-            this.body = body;
-        }
-        return AdminUpdateKayakRequest;
-    }());
-
-    /*
-    */
-    var BoatIdRequest = /** @class */ (function () {
-        function BoatIdRequest(id) {
-            this.id = id;
-        }
-        return BoatIdRequest;
+        return AdminUpdateResourceRequest;
     }());
 
     /*
@@ -965,16 +984,6 @@
 
     /*
     */
-    var EntitiesResponseOfKayak = /** @class */ (function (_super) {
-        __extends(EntitiesResponseOfKayak, _super);
-        function EntitiesResponseOfKayak() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        return EntitiesResponseOfKayak;
-    }(EntitiesResponse));
-
-    /*
-    */
     var EntitiesResponseOfPlacement = /** @class */ (function (_super) {
         __extends(EntitiesResponseOfPlacement, _super);
         function EntitiesResponseOfPlacement() {
@@ -985,12 +994,12 @@
 
     /*
     */
-    var EntitiesResponseOfRowingBoat = /** @class */ (function (_super) {
-        __extends(EntitiesResponseOfRowingBoat, _super);
-        function EntitiesResponseOfRowingBoat() {
+    var EntitiesResponseOfResource = /** @class */ (function (_super) {
+        __extends(EntitiesResponseOfResource, _super);
+        function EntitiesResponseOfResource() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        return EntitiesResponseOfRowingBoat;
+        return EntitiesResponseOfResource;
     }(EntitiesResponse));
 
     /*
@@ -1026,16 +1035,6 @@
 
     /*
     */
-    var EntityResponseOfKayak = /** @class */ (function (_super) {
-        __extends(EntityResponseOfKayak, _super);
-        function EntityResponseOfKayak() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        return EntityResponseOfKayak;
-    }(EntityResponse));
-
-    /*
-    */
     var EntityResponseOfLoginData = /** @class */ (function (_super) {
         __extends(EntityResponseOfLoginData, _super);
         function EntityResponseOfLoginData() {
@@ -1056,12 +1055,12 @@
 
     /*
     */
-    var EntityResponseOfRowingBoat = /** @class */ (function (_super) {
-        __extends(EntityResponseOfRowingBoat, _super);
-        function EntityResponseOfRowingBoat() {
+    var EntityResponseOfResource = /** @class */ (function (_super) {
+        __extends(EntityResponseOfResource, _super);
+        function EntityResponseOfResource() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        return EntityResponseOfRowingBoat;
+        return EntityResponseOfResource;
     }(EntityResponse));
 
     /*
@@ -1083,15 +1082,6 @@
         }
         return EntityResponseOfUserAccountInfo;
     }(EntityResponse));
-
-    /*
-    */
-    var KayakIdRequest = /** @class */ (function () {
-        function KayakIdRequest(id) {
-            this.id = id;
-        }
-        return KayakIdRequest;
-    }());
 
     /*
     */
@@ -1141,16 +1131,6 @@
 
     /*
     */
-    var QueryResponseOfKayak = /** @class */ (function (_super) {
-        __extends(QueryResponseOfKayak, _super);
-        function QueryResponseOfKayak() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
-        return QueryResponseOfKayak;
-    }(QueryResponse));
-
-    /*
-    */
     var QueryResponseOfPlacement = /** @class */ (function (_super) {
         __extends(QueryResponseOfPlacement, _super);
         function QueryResponseOfPlacement() {
@@ -1161,12 +1141,12 @@
 
     /*
     */
-    var QueryResponseOfRowingBoat = /** @class */ (function (_super) {
-        __extends(QueryResponseOfRowingBoat, _super);
-        function QueryResponseOfRowingBoat() {
+    var QueryResponseOfResource = /** @class */ (function (_super) {
+        __extends(QueryResponseOfResource, _super);
+        function QueryResponseOfResource() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
-        return QueryResponseOfRowingBoat;
+        return QueryResponseOfResource;
     }(QueryResponse));
 
     /*
@@ -1178,6 +1158,15 @@
         }
         return QueryResponseOfUser;
     }(QueryResponse));
+
+    /*
+    */
+    var ResourceIdRequest = /** @class */ (function () {
+        function ResourceIdRequest(id) {
+            this.id = id;
+        }
+        return ResourceIdRequest;
+    }());
 
     /*
        Response of byte array
@@ -1765,14 +1754,14 @@
         }
         /**
          * Create new boat resource
-         * @Return: EntityResponse<RowingBoat>
+         * @Return: EntityResponse<Resource>
          */
         AdminBoatsService.prototype.create = function (body) {
             return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
         };
         /**
          * Update boat resource
-         * @Return: EntityResponse<RowingBoat>
+         * @Return: EntityResponse<Resource>
          */
         AdminBoatsService.prototype.update = function (body) {
             return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
@@ -1786,23 +1775,32 @@
         };
         /**
          * Get single boat by id
-         * @Return: EntityResponse<RowingBoat>
+         * @Return: EntityResponse<Resource>
          */
         AdminBoatsService.prototype.get = function (id) {
             return this.rest.get(this.baseUrl + "/" + id);
         };
         /**
          * Find boats by filters
-         * @Return: QueryResponse<RowingBoat>
+         * @Return: QueryResponse<Resource>
          */
-        AdminBoatsService.prototype.find = function (usedBy, resourceId, sort, page, pageSize) {
+        AdminBoatsService.prototype.find = function (search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
             var _a;
             var params = new Array();
-            if (usedBy != null) {
-                params.push("usedBy=" + usedBy);
+            if (search != null) {
+                params.push("search=" + search);
             }
-            if (resourceId != null) {
-                params.push("resourceId=" + resourceId);
+            if (resourceClass != null) {
+                params.push("resourceClass=" + resourceClass);
+            }
+            if (resourceType != null) {
+                params.push("resourceType=" + resourceType);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (forUseBy != null) {
+                params.push("forUseBy=" + forUseBy);
             }
             if (sort != null) {
                 params.push("sort=" + sort);
@@ -1844,14 +1842,14 @@
         }
         /**
          * Create new kayak resource
-         * @Return: EntityResponse<Kayak>
+         * @Return: EntityResponse<Resource>
          */
         AdminKayaksService.prototype.create = function (body) {
             return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
         };
         /**
          * Update kayak resource
-         * @Return: EntityResponse<Kayak>
+         * @Return: EntityResponse<Resource>
          */
         AdminKayaksService.prototype.update = function (body) {
             return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
@@ -1865,23 +1863,32 @@
         };
         /**
          * Get single kayak by id
-         * @Return: EntityResponse<Kayak>
+         * @Return: EntityResponse<Resource>
          */
         AdminKayaksService.prototype.get = function (id) {
             return this.rest.get(this.baseUrl + "/" + id);
         };
         /**
          * Find kayaks by filters
-         * @Return: QueryResponse<Kayak>
+         * @Return: QueryResponse<Resource>
          */
-        AdminKayaksService.prototype.find = function (usedBy, resourceId, sort, page, pageSize) {
+        AdminKayaksService.prototype.find = function (search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
             var _a;
             var params = new Array();
-            if (usedBy != null) {
-                params.push("usedBy=" + usedBy);
+            if (search != null) {
+                params.push("search=" + search);
             }
-            if (resourceId != null) {
-                params.push("resourceId=" + resourceId);
+            if (resourceClass != null) {
+                params.push("resourceClass=" + resourceClass);
+            }
+            if (resourceType != null) {
+                params.push("resourceType=" + resourceType);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (forUseBy != null) {
+                params.push("forUseBy=" + forUseBy);
             }
             if (sort != null) {
                 params.push("sort=" + sort);
@@ -1899,6 +1906,94 @@
         return AdminKayaksService;
     }());
     /*@__PURE__*/ (function () { core.ɵsetClassMetadata(AdminKayaksService, [{
+            type: core.Injectable
+        }], function () { return [{ type: CoreConfig, decorators: [{
+                    type: core.Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; }, null); })();
+
+    /**
+     * Services for managing club resources - for account administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (portal)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var AdminResourcesService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function AdminResourcesService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/admin/resources';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Create new resource
+         * @Return: EntityResponse<Resource>
+         */
+        AdminResourcesService.prototype.create = function (body) {
+            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Update resource
+         * @Return: EntityResponse<Resource>
+         */
+        AdminResourcesService.prototype.update = function (body) {
+            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Delete resource
+         * @Return: ActionResponse
+         */
+        AdminResourcesService.prototype.delete = function (id) {
+            return this.rest.delete("" + this.baseUrl);
+        };
+        /**
+         * Get single resource by id
+         * @Return: EntityResponse<Resource>
+         */
+        AdminResourcesService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find resources by filters
+         * @Return: QueryResponse<Resource>
+         */
+        AdminResourcesService.prototype.find = function (search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (resourceClass != null) {
+                params.push("resourceClass=" + resourceClass);
+            }
+            if (resourceType != null) {
+                params.push("resourceType=" + resourceType);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (forUseBy != null) {
+                params.push("forUseBy=" + forUseBy);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        /** @nocollapse */ AdminResourcesService.ɵfac = function AdminResourcesService_Factory(t) { return new (t || AdminResourcesService)(core.ɵɵinject('config'), core.ɵɵinject(RestUtil)); };
+        /** @nocollapse */ AdminResourcesService.ɵprov = core.ɵɵdefineInjectable({ token: AdminResourcesService, factory: AdminResourcesService.ɵfac });
+        return AdminResourcesService;
+    }());
+    /*@__PURE__*/ (function () { core.ɵsetClassMetadata(AdminResourcesService, [{
             type: core.Injectable
         }], function () { return [{ type: CoreConfig, decorators: [{
                     type: core.Inject,
@@ -2637,6 +2732,7 @@
         SysUsersService,
         AdminBoatsService,
         AdminKayaksService,
+        AdminResourcesService,
         UserBookingsService,
         UserPlacementsService,
     ];
@@ -2672,18 +2768,15 @@
     exports.AccountRole = AccountRole;
     exports.AccountSettings = AccountSettings;
     exports.ActionResponse = ActionResponse;
-    exports.AdminBoatFindRequest = AdminBoatFindRequest;
     exports.AdminBoatsService = AdminBoatsService;
-    exports.AdminCreateBoatRequest = AdminCreateBoatRequest;
-    exports.AdminCreateKayakRequest = AdminCreateKayakRequest;
-    exports.AdminKayakFindRequest = AdminKayakFindRequest;
+    exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
     exports.AdminKayaksService = AdminKayaksService;
-    exports.AdminUpdateBoatRequest = AdminUpdateBoatRequest;
-    exports.AdminUpdateKayakRequest = AdminUpdateKayakRequest;
+    exports.AdminResourceFindRequest = AdminResourceFindRequest;
+    exports.AdminResourcesService = AdminResourcesService;
+    exports.AdminUpdateResourceRequest = AdminUpdateResourceRequest;
     exports.ApiKey = ApiKey;
     exports.AuditLog = AuditLog;
     exports.BaseEntity = BaseEntity;
-    exports.BoatIdRequest = BoatIdRequest;
     exports.Booking = Booking;
     exports.BookingIdRequest = BookingIdRequest;
     exports.ChangePasswordRequest = ChangePasswordRequest;
@@ -2694,24 +2787,20 @@
     exports.EntitiesResponse = EntitiesResponse;
     exports.EntitiesResponseOfAccount = EntitiesResponseOfAccount;
     exports.EntitiesResponseOfBooking = EntitiesResponseOfBooking;
-    exports.EntitiesResponseOfKayak = EntitiesResponseOfKayak;
     exports.EntitiesResponseOfPlacement = EntitiesResponseOfPlacement;
-    exports.EntitiesResponseOfRowingBoat = EntitiesResponseOfRowingBoat;
+    exports.EntitiesResponseOfResource = EntitiesResponseOfResource;
     exports.EntityResponse = EntityResponse;
     exports.EntityResponseOfAccount = EntityResponseOfAccount;
     exports.EntityResponseOfBooking = EntityResponseOfBooking;
-    exports.EntityResponseOfKayak = EntityResponseOfKayak;
     exports.EntityResponseOfLoginData = EntityResponseOfLoginData;
     exports.EntityResponseOfPlacement = EntityResponseOfPlacement;
-    exports.EntityResponseOfRowingBoat = EntityResponseOfRowingBoat;
+    exports.EntityResponseOfResource = EntityResponseOfResource;
     exports.EntityResponseOfUser = EntityResponseOfUser;
     exports.EntityResponseOfUserAccountInfo = EntityResponseOfUserAccountInfo;
     exports.Feature = Feature;
     exports.FeaturesGroup = FeaturesGroup;
     exports.HealthCheckService = HealthCheckService;
     exports.Incident = Incident;
-    exports.Kayak = Kayak;
-    exports.KayakIdRequest = KayakIdRequest;
     exports.LoginData = LoginData;
     exports.LoginParams = LoginParams;
     exports.Placement = Placement;
@@ -2719,14 +2808,13 @@
     exports.QueryResponse = QueryResponse;
     exports.QueryResponseOfAccount = QueryResponseOfAccount;
     exports.QueryResponseOfBooking = QueryResponseOfBooking;
-    exports.QueryResponseOfKayak = QueryResponseOfKayak;
     exports.QueryResponseOfPlacement = QueryResponseOfPlacement;
-    exports.QueryResponseOfRowingBoat = QueryResponseOfRowingBoat;
+    exports.QueryResponseOfResource = QueryResponseOfResource;
     exports.QueryResponseOfUser = QueryResponseOfUser;
     exports.RecurrentTimeFrame = RecurrentTimeFrame;
     exports.Resource = Resource;
+    exports.ResourceIdRequest = ResourceIdRequest;
     exports.RestUtil = RestUtil;
-    exports.RowingBoat = RowingBoat;
     exports.Services = Services;
     exports.StreamResponse = StreamResponse;
     exports.StringKeyValue = StringKeyValue;
@@ -2781,6 +2869,7 @@
     exports.UsersServiceUpdateRequest = UsersServiceUpdateRequest;
     exports.Verification = Verification;
     exports.WebSocketMessageHeader = WebSocketMessageHeader;
+    exports.WeightRange = WeightRange;
     exports.getToken = getToken;
     exports.removeToken = removeToken;
     exports.setToken = setToken;

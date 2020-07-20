@@ -1,6 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { Kayak } from '../entities/Kayak';
+import { Resource } from '../entities/Resource';
+import { ResourceClassCode } from '../enums/ResourceClassCode';
+import { ResourceTypeMask } from '../enums/ResourceTypeMask';
+import { ResourceStatusCode } from '../enums/ResourceStatusCode';
+import { UseTypeCode } from '../enums/UseTypeCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing kayak resources - for account administrator only
@@ -17,14 +21,14 @@ export declare class AdminKayaksService {
     constructor(config: CoreConfig, rest: RestUtil);
     /**
      * Create new kayak resource
-     * @Return: EntityResponse<Kayak>
+     * @Return: EntityResponse<Resource>
      */
-    create(body?: Kayak): import("rxjs").Observable<any>;
+    create(body?: Resource): import("rxjs").Observable<any>;
     /**
      * Update kayak resource
-     * @Return: EntityResponse<Kayak>
+     * @Return: EntityResponse<Resource>
      */
-    update(body?: Kayak): import("rxjs").Observable<any>;
+    update(body?: Resource): import("rxjs").Observable<any>;
     /**
      * Delete kayak resource
      * @Return: ActionResponse
@@ -32,14 +36,14 @@ export declare class AdminKayaksService {
     delete(id?: string): import("rxjs").Observable<any>;
     /**
      * Get single kayak by id
-     * @Return: EntityResponse<Kayak>
+     * @Return: EntityResponse<Resource>
      */
     get(id?: string): import("rxjs").Observable<any>;
     /**
      * Find kayaks by filters
-     * @Return: QueryResponse<Kayak>
+     * @Return: QueryResponse<Resource>
      */
-    find(usedBy?: string, resourceId?: string, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
+    find(search?: string, resourceClass?: ResourceClassCode, resourceType?: ResourceTypeMask, status?: ResourceStatusCode, forUseBy?: UseTypeCode, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminKayaksService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminKayaksService>;
 }

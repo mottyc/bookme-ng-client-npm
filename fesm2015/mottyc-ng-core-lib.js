@@ -143,6 +143,16 @@ class UserRegistration {
 }
 
 /*
+   Weight Range
+*/
+class WeightRange {
+    constructor(min, max) {
+        this.min = min;
+        this.max = max;
+    }
+}
+
+/*
    Base entity includes common fields for all entities (persistence objects) in the system
 */
 class BaseEntity {
@@ -201,12 +211,6 @@ class Incident extends BaseEntity {
 }
 
 /*
-   Kayak resource type (derived from Resource)
-*/
-class Kayak extends BaseEntity {
-}
-
-/*
    Placement - after booking approval, it is becoming a placement (derived from Booking)
 */
 class Placement extends BaseEntity {
@@ -216,12 +220,6 @@ class Placement extends BaseEntity {
    Resource type
 */
 class Resource extends BaseEntity {
-}
-
-/*
-   Rowing boat resource type (derived from Resource)
-*/
-class RowingBoat extends BaseEntity {
 }
 
 /*
@@ -372,26 +370,80 @@ var KayakTypeCode;
 (function (KayakTypeCode) {
     // Undefined [0] 
     KayakTypeCode[KayakTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-    // Ocean Kayak [1] 
-    KayakTypeCode[KayakTypeCode["OCEAN"] = 1] = "OCEAN";
-    // Surf Ski Kayak [2] 
-    KayakTypeCode[KayakTypeCode["SURFSKI"] = 2] = "SURFSKI";
-    // Waves Kayak [3] 
-    KayakTypeCode[KayakTypeCode["WAVES"] = 3] = "WAVES";
+    // Ocean Kayak [2048 + 1] 
+    KayakTypeCode[KayakTypeCode["OCEAN"] = 2049] = "OCEAN";
+    // Double Ocean Kayak [2048 + 2] 
+    KayakTypeCode[KayakTypeCode["OCEAN_X2"] = 2050] = "OCEAN_X2";
+    // SurfSki Kayak [2048 + 4096 + 1] 
+    KayakTypeCode[KayakTypeCode["SURFSKI"] = 6145] = "SURFSKI";
+    // Double SurfSki Kayak [2048 + 4096 + 2] 
+    KayakTypeCode[KayakTypeCode["SURFSKI_X2"] = 6146] = "SURFSKI_X2";
+    // Waves (short) kayak [2048 + 1 + 8192] 
+    KayakTypeCode[KayakTypeCode["WAVES"] = 10241] = "WAVES";
 })(KayakTypeCode || (KayakTypeCode = {}));
 
 /*
-   Resource type code (represent resource in the system)
+   Resource class code (represent resource in the system)
 */
-var ResourceTypeCode;
-(function (ResourceTypeCode) {
+var ResourceClassCode;
+(function (ResourceClassCode) {
     // Undefined [0] 
-    ResourceTypeCode[ResourceTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-    // Rowing Boat [1] 
-    ResourceTypeCode[ResourceTypeCode["ROWING_BOAT"] = 1] = "ROWING_BOAT";
-    // Kayak [2] 
-    ResourceTypeCode[ResourceTypeCode["KAYAK"] = 2] = "KAYAK";
-})(ResourceTypeCode || (ResourceTypeCode = {}));
+    ResourceClassCode[ResourceClassCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // Rowing Boat [1024] 
+    ResourceClassCode[ResourceClassCode["RBOAT"] = 1] = "RBOAT";
+    // Kayak [2048] 
+    ResourceClassCode[ResourceClassCode["KAYAK"] = 2] = "KAYAK";
+})(ResourceClassCode || (ResourceClassCode = {}));
+
+/*
+   Resource status code
+*/
+var ResourceStatusCode;
+(function (ResourceStatusCode) {
+    // Undefined [0] 
+    ResourceStatusCode[ResourceStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // Available [1] 
+    ResourceStatusCode[ResourceStatusCode["AVAILABLE"] = 1] = "AVAILABLE";
+    // Non-available [2] 
+    ResourceStatusCode[ResourceStatusCode["NONAVAILABLE"] = 2] = "NONAVAILABLE";
+})(ResourceStatusCode || (ResourceStatusCode = {}));
+
+/*
+   General Resource Type (Attributes bit mask)
+*/
+var ResourceTypeMask;
+(function (ResourceTypeMask) {
+    // Undefined [0] 
+    ResourceTypeMask[ResourceTypeMask["UNDEFINED"] = 0] = "UNDEFINED";
+    // Single [1] 
+    ResourceTypeMask[ResourceTypeMask["P1"] = 1] = "P1";
+    // Double [2] 
+    ResourceTypeMask[ResourceTypeMask["P2"] = 2] = "P2";
+    // Quad [4] 
+    ResourceTypeMask[ResourceTypeMask["P4"] = 4] = "P4";
+    // Eight [8] 
+    ResourceTypeMask[ResourceTypeMask["P8"] = 8] = "P8";
+    // Wide [16] 
+    ResourceTypeMask[ResourceTypeMask["WIDE"] = 16] = "WIDE";
+    // Sculling (2 oars) [32] 
+    ResourceTypeMask[ResourceTypeMask["SCULL"] = 32] = "SCULL";
+    // Need Cox [64] 
+    ResourceTypeMask[ResourceTypeMask["COX"] = 64] = "COX";
+    // Coastal (use in sea) [128] 
+    ResourceTypeMask[ResourceTypeMask["COASTAL"] = 128] = "COASTAL";
+    // For competition [254] 
+    ResourceTypeMask[ResourceTypeMask["COMP"] = 254] = "COMP";
+    // For para-olympic [512] 
+    ResourceTypeMask[ResourceTypeMask["PARA"] = 512] = "PARA";
+    // Rowing Boat [1024] 
+    ResourceTypeMask[ResourceTypeMask["RBOAT"] = 1024] = "RBOAT";
+    // Kayak [2048] 
+    ResourceTypeMask[ResourceTypeMask["KAYAK"] = 2048] = "KAYAK";
+    // Surf Ski [4096] 
+    ResourceTypeMask[ResourceTypeMask["SURFSKI"] = 4096] = "SURFSKI";
+    // Waves Kayak [8192] 
+    ResourceTypeMask[ResourceTypeMask["WAVES"] = 8192] = "WAVES";
+})(ResourceTypeMask || (ResourceTypeMask = {}));
 
 /*
    Rowing boat type code
@@ -400,42 +452,42 @@ var RowingBoatTypeCode;
 (function (RowingBoatTypeCode) {
     // Undefined [0] 
     RowingBoatTypeCode[RowingBoatTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-    // Sculling 1X [1] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X"] = 1] = "SCULL_1X";
-    // Sculling 1X Wide [2] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_WIDE"] = 2] = "SCULL_1X_WIDE";
-    // Sculling 1X Competition [3] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_COMP"] = 3] = "SCULL_1X_COMP";
-    // Sculling 1X Para Olympic [4] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_PARA"] = 4] = "SCULL_1X_PARA";
-    // Sculling 2X [5] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X"] = 5] = "SCULL_2X";
-    // Sculling 2X Wide [6] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_WIDE"] = 6] = "SCULL_2X_WIDE";
-    // Sculling 2X Competition [7] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_COMP"] = 7] = "SCULL_2X_COMP";
-    // Sculling 2X Para Olympic [8] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_PARA"] = 8] = "SCULL_2X_PARA";
-    // Sweeping 2- Coxless Pair [9] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_2_COXLESS"] = 9] = "SWEEP_2_COXLESS";
-    // Coastal 2X [10] 
-    RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_2X"] = 10] = "COASTAL_2X";
-    // Sculling 4X Quad [11] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X"] = 11] = "SCULL_4X";
-    // Sculling 4X Quad with cox [12] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COX"] = 12] = "SCULL_4X_COX";
-    // Sweeping 4- Coxless Quad [13] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_4_COXLESS"] = 13] = "SWEEP_4_COXLESS";
-    // Sculling 4X Competition [14] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COMP"] = 14] = "SCULL_4X_COMP";
-    // Sculling 4X Para Olympic [15] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_PARA"] = 15] = "SCULL_4X_PARA";
-    // Coastal 4X with cox [16] 
-    RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_4X_COX"] = 16] = "COASTAL_4X_COX";
-    // Sweeping 8 - with cox [17] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_8_COX"] = 17] = "SWEEP_8_COX";
-    // Sculling 8 - with cox [18] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_8X_COX"] = 18] = "SCULL_8X_COX";
+    // Sculling 1X [1024 + 1 + 32] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X"] = 1057] = "SCULL_1X";
+    // Sculling 1X Wide [1024 + 1 + 32 + 16] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_WIDE"] = 1073] = "SCULL_1X_WIDE";
+    // Sculling 1X Competition [1024 + 1 + 32 + 254] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_COMP"] = 1311] = "SCULL_1X_COMP";
+    // Sculling 1X Para Olympic [1024 + 1 + 32 + 512] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_PARA"] = 1569] = "SCULL_1X_PARA";
+    // Sculling 2X [1024 + 2 + 32] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X"] = 1058] = "SCULL_2X";
+    // Sculling 2X Wide [1024 + 2 + 32 + 16] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_WIDE"] = 1074] = "SCULL_2X_WIDE";
+    // Sculling 2X Competition [1024 + 2 + 32 + 254] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_COMP"] = 1312] = "SCULL_2X_COMP";
+    // Sculling 2X Para Olympic [1024 + 2 + 32 + 512] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_PARA"] = 1570] = "SCULL_2X_PARA";
+    // Sweeping 2- Coxless Pair [1024 + 2] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_2_COXLESS"] = 1026] = "SWEEP_2_COXLESS";
+    // Coastal 2X [1024 + 2 + 32 + 128] 
+    RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_2X"] = 1186] = "COASTAL_2X";
+    // Sculling 4X Quad [1024 + 4 + 32] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X"] = 1060] = "SCULL_4X";
+    // Sculling 4X Quad with cox [1024 + 4 + 32 + 64] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COX"] = 1124] = "SCULL_4X_COX";
+    // Sweeping 4- Coxless Quad [1024 + 4] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_4_COXLESS"] = 10283] = "SWEEP_4_COXLESS";
+    // Sculling 4X Competition [1024 + 4 + 32 + 254] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COMP"] = 1314] = "SCULL_4X_COMP";
+    // Sculling 4X Para Olympic [1024 + 4 + 32 + 512] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_PARA"] = 1572] = "SCULL_4X_PARA";
+    // Coastal 4X with cox [1024 + 4 + 32 + 64 + 128] 
+    RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_4X_COX"] = 1252] = "COASTAL_4X_COX";
+    // Sweeping 8 - with cox [1024 + 8 + 64] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_8_COX"] = 1096] = "SWEEP_8_COX";
+    // Sculling 8 - with cox [1024 + 8 + 32 + 64] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_8X_COX"] = 1128] = "SCULL_8X_COX";
 })(RowingBoatTypeCode || (RowingBoatTypeCode = {}));
 
 /*
@@ -475,6 +527,19 @@ var UseTypeCode;
     // Used by para-olympic team [4] 
     UseTypeCode[UseTypeCode["PARA"] = 4] = "PARA";
 })(UseTypeCode || (UseTypeCode = {}));
+
+/*
+   User gender code
+*/
+var UserGenderCode;
+(function (UserGenderCode) {
+    // Undefined [0] 
+    UserGenderCode[UserGenderCode["UNDEFINED"] = 0] = "UNDEFINED";
+    // Male [1] 
+    UserGenderCode[UserGenderCode["MALE"] = 1] = "MALE";
+    // Female [2] 
+    UserGenderCode[UserGenderCode["FEMALE"] = 2] = "FEMALE";
+})(UserGenderCode || (UserGenderCode = {}));
 
 /*
    User status code
@@ -532,10 +597,21 @@ class ActionResponse {
 
 /*
 */
-class AdminBoatFindRequest {
-    constructor(usedBy, resourceId, sort, page, pageSize) {
-        this.usedBy = usedBy;
-        this.resourceId = resourceId;
+class AdminCreateResourceRequest {
+    constructor(body) {
+        this.body = body;
+    }
+}
+
+/*
+*/
+class AdminResourceFindRequest {
+    constructor(search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
+        this.search = search;
+        this.resourceClass = resourceClass;
+        this.resourceType = resourceType;
+        this.status = status;
+        this.forUseBy = forUseBy;
         this.sort = sort;
         this.page = page;
         this.pageSize = pageSize;
@@ -544,53 +620,9 @@ class AdminBoatFindRequest {
 
 /*
 */
-class AdminCreateBoatRequest {
+class AdminUpdateResourceRequest {
     constructor(body) {
         this.body = body;
-    }
-}
-
-/*
-*/
-class AdminCreateKayakRequest {
-    constructor(body) {
-        this.body = body;
-    }
-}
-
-/*
-*/
-class AdminKayakFindRequest {
-    constructor(usedBy, resourceId, sort, page, pageSize) {
-        this.usedBy = usedBy;
-        this.resourceId = resourceId;
-        this.sort = sort;
-        this.page = page;
-        this.pageSize = pageSize;
-    }
-}
-
-/*
-*/
-class AdminUpdateBoatRequest {
-    constructor(body) {
-        this.body = body;
-    }
-}
-
-/*
-*/
-class AdminUpdateKayakRequest {
-    constructor(body) {
-        this.body = body;
-    }
-}
-
-/*
-*/
-class BoatIdRequest {
-    constructor(id) {
-        this.id = id;
     }
 }
 
@@ -649,17 +681,12 @@ class EntitiesResponseOfBooking extends EntitiesResponse {
 
 /*
 */
-class EntitiesResponseOfKayak extends EntitiesResponse {
-}
-
-/*
-*/
 class EntitiesResponseOfPlacement extends EntitiesResponse {
 }
 
 /*
 */
-class EntitiesResponseOfRowingBoat extends EntitiesResponse {
+class EntitiesResponseOfResource extends EntitiesResponse {
 }
 
 /*
@@ -684,11 +711,6 @@ class EntityResponseOfBooking extends EntityResponse {
 
 /*
 */
-class EntityResponseOfKayak extends EntityResponse {
-}
-
-/*
-*/
 class EntityResponseOfLoginData extends EntityResponse {
 }
 
@@ -699,7 +721,7 @@ class EntityResponseOfPlacement extends EntityResponse {
 
 /*
 */
-class EntityResponseOfRowingBoat extends EntityResponse {
+class EntityResponseOfResource extends EntityResponse {
 }
 
 /*
@@ -710,14 +732,6 @@ class EntityResponseOfUser extends EntityResponse {
 /*
 */
 class EntityResponseOfUserAccountInfo extends EntityResponse {
-}
-
-/*
-*/
-class KayakIdRequest {
-    constructor(id) {
-        this.id = id;
-    }
 }
 
 /*
@@ -756,22 +770,25 @@ class QueryResponseOfBooking extends QueryResponse {
 
 /*
 */
-class QueryResponseOfKayak extends QueryResponse {
-}
-
-/*
-*/
 class QueryResponseOfPlacement extends QueryResponse {
 }
 
 /*
 */
-class QueryResponseOfRowingBoat extends QueryResponse {
+class QueryResponseOfResource extends QueryResponse {
 }
 
 /*
 */
 class QueryResponseOfUser extends QueryResponse {
+}
+
+/*
+*/
+class ResourceIdRequest {
+    constructor(id) {
+        this.id = id;
+    }
 }
 
 /*
@@ -1289,14 +1306,14 @@ class AdminBoatsService {
     }
     /**
      * Create new boat resource
-     * @Return: EntityResponse<RowingBoat>
+     * @Return: EntityResponse<Resource>
      */
     create(body) {
         return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Update boat resource
-     * @Return: EntityResponse<RowingBoat>
+     * @Return: EntityResponse<Resource>
      */
     update(body) {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
@@ -1310,22 +1327,31 @@ class AdminBoatsService {
     }
     /**
      * Get single boat by id
-     * @Return: EntityResponse<RowingBoat>
+     * @Return: EntityResponse<Resource>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
      * Find boats by filters
-     * @Return: QueryResponse<RowingBoat>
+     * @Return: QueryResponse<Resource>
      */
-    find(usedBy, resourceId, sort, page, pageSize) {
+    find(search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
         const params = new Array();
-        if (usedBy != null) {
-            params.push(`usedBy=${usedBy}`);
+        if (search != null) {
+            params.push(`search=${search}`);
         }
-        if (resourceId != null) {
-            params.push(`resourceId=${resourceId}`);
+        if (resourceClass != null) {
+            params.push(`resourceClass=${resourceClass}`);
+        }
+        if (resourceType != null) {
+            params.push(`resourceType=${resourceType}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (forUseBy != null) {
+            params.push(`forUseBy=${forUseBy}`);
         }
         if (sort != null) {
             params.push(`sort=${sort}`);
@@ -1366,14 +1392,14 @@ class AdminKayaksService {
     }
     /**
      * Create new kayak resource
-     * @Return: EntityResponse<Kayak>
+     * @Return: EntityResponse<Resource>
      */
     create(body) {
         return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Update kayak resource
-     * @Return: EntityResponse<Kayak>
+     * @Return: EntityResponse<Resource>
      */
     update(body) {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
@@ -1387,22 +1413,31 @@ class AdminKayaksService {
     }
     /**
      * Get single kayak by id
-     * @Return: EntityResponse<Kayak>
+     * @Return: EntityResponse<Resource>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
      * Find kayaks by filters
-     * @Return: QueryResponse<Kayak>
+     * @Return: QueryResponse<Resource>
      */
-    find(usedBy, resourceId, sort, page, pageSize) {
+    find(search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
         const params = new Array();
-        if (usedBy != null) {
-            params.push(`usedBy=${usedBy}`);
+        if (search != null) {
+            params.push(`search=${search}`);
         }
-        if (resourceId != null) {
-            params.push(`resourceId=${resourceId}`);
+        if (resourceClass != null) {
+            params.push(`resourceClass=${resourceClass}`);
+        }
+        if (resourceType != null) {
+            params.push(`resourceType=${resourceType}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (forUseBy != null) {
+            params.push(`forUseBy=${forUseBy}`);
         }
         if (sort != null) {
             params.push(`sort=${sort}`);
@@ -1419,6 +1454,92 @@ class AdminKayaksService {
 /** @nocollapse */ AdminKayaksService.ɵfac = function AdminKayaksService_Factory(t) { return new (t || AdminKayaksService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
 /** @nocollapse */ AdminKayaksService.ɵprov = ɵɵdefineInjectable({ token: AdminKayaksService, factory: AdminKayaksService.ɵfac });
 /*@__PURE__*/ (function () { ɵsetClassMetadata(AdminKayaksService, [{
+        type: Injectable
+    }], function () { return [{ type: CoreConfig, decorators: [{
+                type: Inject,
+                args: ['config']
+            }] }, { type: RestUtil }]; }, null); })();
+
+/**
+ * Services for managing club resources - for account administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (portal)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class AdminResourcesService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/admin/resources';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create new resource
+     * @Return: EntityResponse<Resource>
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update resource
+     * @Return: EntityResponse<Resource>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete resource
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}`);
+    }
+    /**
+     * Get single resource by id
+     * @Return: EntityResponse<Resource>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find resources by filters
+     * @Return: QueryResponse<Resource>
+     */
+    find(search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
+        const params = new Array();
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (resourceClass != null) {
+            params.push(`resourceClass=${resourceClass}`);
+        }
+        if (resourceType != null) {
+            params.push(`resourceType=${resourceType}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (forUseBy != null) {
+            params.push(`forUseBy=${forUseBy}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+/** @nocollapse */ AdminResourcesService.ɵfac = function AdminResourcesService_Factory(t) { return new (t || AdminResourcesService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
+/** @nocollapse */ AdminResourcesService.ɵprov = ɵɵdefineInjectable({ token: AdminResourcesService, factory: AdminResourcesService.ɵfac });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(AdminResourcesService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2142,6 +2263,7 @@ const Services = [
     SysUsersService,
     AdminBoatsService,
     AdminKayaksService,
+    AdminResourcesService,
     UserBookingsService,
     UserPlacementsService,
 ];
@@ -2175,5 +2297,5 @@ class CoreLibModule {
  * Generated bundle index. Do not edit.
  */
 
-export { AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AdminBoatFindRequest, AdminBoatsService, AdminCreateBoatRequest, AdminCreateKayakRequest, AdminKayakFindRequest, AdminKayaksService, AdminUpdateBoatRequest, AdminUpdateKayakRequest, ApiKey, AuditLog, BaseEntity, BoatIdRequest, Booking, BookingIdRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, DayOfWeekCode, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfBooking, EntitiesResponseOfKayak, EntitiesResponseOfPlacement, EntitiesResponseOfRowingBoat, EntityResponse, EntityResponseOfAccount, EntityResponseOfBooking, EntityResponseOfKayak, EntityResponseOfLoginData, EntityResponseOfPlacement, EntityResponseOfRowingBoat, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, HealthCheckService, Incident, Kayak, KayakIdRequest, KayakTypeCode, LoginData, LoginParams, Placement, PlacementIdRequest, QueryResponse, QueryResponseOfAccount, QueryResponseOfBooking, QueryResponseOfKayak, QueryResponseOfPlacement, QueryResponseOfRowingBoat, QueryResponseOfUser, RecurrentTimeFrame, Resource, ResourceTypeCode, RestUtil, RowingBoat, RowingBoatTypeCode, Services, StreamResponse, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, UseTypeCode, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreatePlacementRequest, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdatePlacementRequest, UsersService, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, Verification, WebSocketMessageHeader, getToken, removeToken, setToken };
+export { AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, AdminBoatsService, AdminCreateResourceRequest, AdminKayaksService, AdminResourceFindRequest, AdminResourcesService, AdminUpdateResourceRequest, ApiKey, AuditLog, BaseEntity, Booking, BookingIdRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, DayOfWeekCode, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfBooking, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntityResponse, EntityResponseOfAccount, EntityResponseOfBooking, EntityResponseOfLoginData, EntityResponseOfPlacement, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Placement, PlacementIdRequest, QueryResponse, QueryResponseOfAccount, QueryResponseOfBooking, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentTimeFrame, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, RestUtil, RowingBoatTypeCode, Services, StreamResponse, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, UseTypeCode, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdatePlacementRequest, UsersService, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
 //# sourceMappingURL=mottyc-ng-core-lib.js.map

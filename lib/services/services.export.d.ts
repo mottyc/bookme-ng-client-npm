@@ -6,6 +6,7 @@ import { SysAccountsService } from './sysAccountsService';
 import { SysUsersService } from './sysUsersService';
 import { AdminBoatsService } from './adminBoatsService';
 import { AdminKayaksService } from './adminKayaksService';
+import { AdminResourcesService } from './adminResourcesService';
 import { UserBookingsService } from './userBookingsService';
 import { UserPlacementsService } from './userPlacementsService';
-export declare const Services: (typeof AdminBoatsService | typeof AdminKayaksService | typeof HealthCheckService | typeof UsersService | typeof UserAccountsService | typeof UserService | typeof SysAccountsService | typeof SysUsersService | typeof UserBookingsService | typeof UserPlacementsService)[];
+export declare const Services: (typeof AdminBoatsService | typeof AdminKayaksService | typeof AdminResourcesService | typeof HealthCheckService | typeof UsersService | typeof UserAccountsService | typeof UserService | typeof SysAccountsService | typeof SysUsersService | typeof UserBookingsService | typeof UserPlacementsService)[];

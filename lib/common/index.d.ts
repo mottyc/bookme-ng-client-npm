@@ -9,3 +9,4 @@ export * from './TimeFrame';
 export * from './UserAccountInfo';
 export * from './UserInvitation';
 export * from './UserRegistration';
+export * from './WeightRange';

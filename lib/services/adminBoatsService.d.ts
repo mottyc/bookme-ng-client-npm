@@ -1,6 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { RowingBoat } from '../entities/RowingBoat';
+import { ResourceStatusCode } from '../enums/ResourceStatusCode';
+import { UseTypeCode } from '../enums/UseTypeCode';
+import { Resource } from '../entities/Resource';
+import { ResourceClassCode } from '../enums/ResourceClassCode';
+import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import * as i0 from "@angular/core";
 /**
  * Services for managing boats resources - for account administrator only
@@ -17,14 +21,14 @@ export declare class AdminBoatsService {
     constructor(config: CoreConfig, rest: RestUtil);
     /**
      * Create new boat resource
-     * @Return: EntityResponse<RowingBoat>
+     * @Return: EntityResponse<Resource>
      */
-    create(body?: RowingBoat): import("rxjs").Observable<any>;
+    create(body?: Resource): import("rxjs").Observable<any>;
     /**
      * Update boat resource
-     * @Return: EntityResponse<RowingBoat>
+     * @Return: EntityResponse<Resource>
      */
-    update(body?: RowingBoat): import("rxjs").Observable<any>;
+    update(body?: Resource): import("rxjs").Observable<any>;
     /**
      * Delete boat resource
      * @Return: ActionResponse
@@ -32,14 +36,14 @@ export declare class AdminBoatsService {
     delete(id?: string): import("rxjs").Observable<any>;
     /**
      * Get single boat by id
-     * @Return: EntityResponse<RowingBoat>
+     * @Return: EntityResponse<Resource>
      */
     get(id?: string): import("rxjs").Observable<any>;
     /**
      * Find boats by filters
-     * @Return: QueryResponse<RowingBoat>
+     * @Return: QueryResponse<Resource>
      */
-    find(usedBy?: string, resourceId?: string, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
+    find(search?: string, resourceClass?: ResourceClassCode, resourceType?: ResourceTypeMask, status?: ResourceStatusCode, forUseBy?: UseTypeCode, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminBoatsService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminBoatsService>;
 }
