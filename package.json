@@ -2,20 +2,18 @@
   "name": "@mottyc/ng-core-lib",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "~9.1.11",
-    "@angular/core": "~9.1.11"
+    "@angular/common": "~10.0.5",
+    "@angular/core": "~10.0.5"
   },
   "main": "bundles/mottyc-ng-core-lib.umd.js",
-  "module": "fesm5/mottyc-ng-core-lib.js",
+  "module": "fesm2015/mottyc-ng-core-lib.js",
   "es2015": "fesm2015/mottyc-ng-core-lib.js",
-  "esm5": "esm5/mottyc-ng-core-lib.js",
   "esm2015": "esm2015/mottyc-ng-core-lib.js",
-  "fesm5": "fesm5/mottyc-ng-core-lib.js",
   "fesm2015": "fesm2015/mottyc-ng-core-lib.js",
   "typings": "mottyc-ng-core-lib.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "tslib": "^1.10.0"
+    "tslib": "^2.0.0"
   },
   "scripts": {
     "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy. This is not allowed.\\nPlease delete and rebuild the package, without compiling with Ivy, before attempting to publish.\\n')\" && exit 1"

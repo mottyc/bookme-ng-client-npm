@@ -1,10 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { ResourceStatusCode } from '../enums/ResourceStatusCode';
-import { UseTypeCode } from '../enums/UseTypeCode';
 import { Resource } from '../entities/Resource';
 import { ResourceClassCode } from '../enums/ResourceClassCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
+import { ResourceStatusCode } from '../enums/ResourceStatusCode';
+import { UseTypeCode } from '../enums/UseTypeCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing boats resources - for account administrator only
