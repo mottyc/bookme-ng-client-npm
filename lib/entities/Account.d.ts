@@ -1,8 +1,8 @@
-import { ResourceClassCode } from '../enums/ResourceClassCode';
 import { BaseEntity } from '../entities/BaseEntity';
 import { AccountTypeCode } from '../enums/AccountTypeCode';
 import { AccountStatusCode } from '../enums/AccountStatusCode';
 import { AccountSettings } from '../common/AccountSettings';
+import { ResourceClassCode } from '../enums/ResourceClassCode';
 export declare class Account extends BaseEntity {
     name: string;
     key: string;
