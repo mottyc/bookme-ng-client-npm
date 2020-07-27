@@ -1,3 +1,2 @@
-export declare class EmptyRequest {
-    constructor();
+export interface EmptyRequest {
 }

@@ -1,4 +1,3 @@
-export declare class AccountIdRequest {
-    id: string;
-    constructor(id?: string);
+export interface AccountIdRequest {
+    id?: string;
 }

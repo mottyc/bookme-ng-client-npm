@@ -1,7 +1,6 @@
-export declare class ActionResponse {
-    code: number;
-    error: string;
-    key: string;
-    data: string;
-    constructor(code?: number, error?: string, key?: string, data?: string);
+export interface ActionResponse {
+    code?: number;
+    error?: string;
+    key?: string;
+    data?: string;
 }

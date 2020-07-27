@@ -1,5 +1,4 @@
-export declare class StringKeyValue {
-    key: string;
-    value: string;
-    constructor(key?: string, value?: string);
+export interface StringKeyValue {
+    key?: string;
+    value?: string;
 }

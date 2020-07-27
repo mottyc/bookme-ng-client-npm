@@ -5,592 +5,6 @@
 }(this, (function (exports, i0, i1, operators, common) { 'use strict';
 
    /*
-      Schedule time frame
-      Times are described in ISO 8601 format (See: https://www.w3.org/TR/NOTE-datetime).
-      The format is: YYYY-MM-DDThh:mm:ssTZD where:
-      <ul>
-      <li>YYYY = four-digit year</li>
-      <li>MM   = two-digit month (01=January, etc.)</li>
-      <li>DD   = two-digit day of month (01 through 31)</li>
-      <li>hh   = two digits of hour (00 through 23) (am/pm NOT allowed)</li>
-      <li>mm   = two digits of minute (00 through 59)</li>
-      <li>ss   = two digits of second (00 through 59)
-      <li>TZD  = time zone designator (Z for UTC or +hh:mm or -hh:mm for Timezone offset)</li>
-      </ul>
-   */
-   var AbsoluteTimeFrame = /** @class */ (function () {
-       function AbsoluteTimeFrame(name, startTime, endTime, active) {
-           this.name = name;
-           this.startTime = startTime;
-           this.endTime = endTime;
-           this.active = active;
-       }
-       return AbsoluteTimeFrame;
-   }());
-
-   /*
-      Account role represents the role of the user in the account
-   */
-   var AccountRole = /** @class */ (function () {
-       function AccountRole(accountId, role) {
-           this.accountId = accountId;
-           this.role = role;
-       }
-       return AccountRole;
-   }());
-
-   /*
-      Account specific settings
-   */
-   var AccountSettings = /** @class */ (function () {
-       function AccountSettings(retentionDays) {
-           this.retentionDays = retentionDays;
-       }
-       return AccountSettings;
-   }());
-
-   /*
-      Login data (returned by the API after successful login)
-   */
-   var LoginData = /** @class */ (function () {
-       function LoginData(accessToken, accountRole, userId, userName, userEmail, userType, userStatus, changePassword) {
-           this.accessToken = accessToken;
-           this.accountRole = accountRole;
-           this.userId = userId;
-           this.userName = userName;
-           this.userEmail = userEmail;
-           this.userType = userType;
-           this.userStatus = userStatus;
-           this.changePassword = changePassword;
-       }
-       return LoginData;
-   }());
-
-   /*
-      Login parameters data model
-   */
-   var LoginParams = /** @class */ (function () {
-       function LoginParams(email, password, accessToken) {
-           this.email = email;
-           this.password = password;
-           this.accessToken = accessToken;
-       }
-       return LoginParams;
-   }());
-
-   /*
-      Schedule recurrent time frame
-   */
-   var RecurrentTimeFrame = /** @class */ (function () {
-       function RecurrentTimeFrame(dayOfWeek, startTime, endTime) {
-           this.dayOfWeek = dayOfWeek;
-           this.startTime = startTime;
-           this.endTime = endTime;
-       }
-       return RecurrentTimeFrame;
-   }());
-
-   /*
-      Key Value string tuple
-   */
-   var StringKeyValue = /** @class */ (function () {
-       function StringKeyValue(key, value) {
-           this.key = key;
-           this.value = value;
-       }
-       return StringKeyValue;
-   }());
-
-   /*
-      Time frame (for search and reports)
-   */
-   var TimeFrame = /** @class */ (function () {
-       function TimeFrame(from, to) {
-           this.from = from;
-           this.to = to;
-       }
-       return TimeFrame;
-   }());
-
-   /*
-      User Account info (returned by switch-account method)
-   */
-   var UserAccountInfo = /** @class */ (function () {
-       function UserAccountInfo(account, loginData, features) {
-           this.account = account;
-           this.loginData = loginData;
-           this.features = features;
-       }
-       return UserAccountInfo;
-   }());
-
-   /*
-      User invitation data model - used by account admin to invite user to the account
-   */
-   var UserInvitation = /** @class */ (function () {
-       function UserInvitation(email, role) {
-           this.email = email;
-           this.role = role;
-       }
-       return UserInvitation;
-   }());
-
-   /*
-      User registration data model - used by self registered users
-   */
-   var UserRegistration = /** @class */ (function () {
-       function UserRegistration(name, email, mobile, defaultAccount, accountRoles, type, tempPassword, changePassword, verifyByEmail, description) {
-           this.name = name;
-           this.email = email;
-           this.mobile = mobile;
-           this.defaultAccount = defaultAccount;
-           this.accountRoles = accountRoles;
-           this.type = type;
-           this.tempPassword = tempPassword;
-           this.changePassword = changePassword;
-           this.verifyByEmail = verifyByEmail;
-           this.description = description;
-       }
-       return UserRegistration;
-   }());
-
-   /*
-      Weight Range
-   */
-   var WeightRange = /** @class */ (function () {
-       function WeightRange(min, max) {
-           this.min = min;
-           this.max = max;
-       }
-       return WeightRange;
-   }());
-
-   /*! *****************************************************************************
-   Copyright (c) Microsoft Corporation. All rights reserved.
-   Licensed under the Apache License, Version 2.0 (the "License"); you may not use
-   this file except in compliance with the License. You may obtain a copy of the
-   License at http://www.apache.org/licenses/LICENSE-2.0
-
-   THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-   KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
-   WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
-   MERCHANTABLITY OR NON-INFRINGEMENT.
-
-   See the Apache Version 2.0 License for specific language governing permissions
-   and limitations under the License.
-   ***************************************************************************** */
-   /* global Reflect, Promise */
-   var extendStatics = function (d, b) {
-       extendStatics = Object.setPrototypeOf ||
-           ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-           function (d, b) { for (var p in b)
-               if (b.hasOwnProperty(p))
-                   d[p] = b[p]; };
-       return extendStatics(d, b);
-   };
-   function __extends(d, b) {
-       extendStatics(d, b);
-       function __() { this.constructor = d; }
-       d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-   }
-   var __assign = function () {
-       __assign = Object.assign || function __assign(t) {
-           for (var s, i = 1, n = arguments.length; i < n; i++) {
-               s = arguments[i];
-               for (var p in s)
-                   if (Object.prototype.hasOwnProperty.call(s, p))
-                       t[p] = s[p];
-           }
-           return t;
-       };
-       return __assign.apply(this, arguments);
-   };
-   function __rest(s, e) {
-       var t = {};
-       for (var p in s)
-           if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-               t[p] = s[p];
-       if (s != null && typeof Object.getOwnPropertySymbols === "function")
-           for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-               if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                   t[p[i]] = s[p[i]];
-           }
-       return t;
-   }
-   function __decorate(decorators, target, key, desc) {
-       var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
-           r = Reflect.decorate(decorators, target, key, desc);
-       else
-           for (var i = decorators.length - 1; i >= 0; i--)
-               if (d = decorators[i])
-                   r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-       return c > 3 && r && Object.defineProperty(target, key, r), r;
-   }
-   function __param(paramIndex, decorator) {
-       return function (target, key) { decorator(target, key, paramIndex); };
-   }
-   function __metadata(metadataKey, metadataValue) {
-       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
-           return Reflect.metadata(metadataKey, metadataValue);
-   }
-   function __awaiter(thisArg, _arguments, P, generator) {
-       function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-       return new (P || (P = Promise))(function (resolve, reject) {
-           function fulfilled(value) { try {
-               step(generator.next(value));
-           }
-           catch (e) {
-               reject(e);
-           } }
-           function rejected(value) { try {
-               step(generator["throw"](value));
-           }
-           catch (e) {
-               reject(e);
-           } }
-           function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-           step((generator = generator.apply(thisArg, _arguments || [])).next());
-       });
-   }
-   function __generator(thisArg, body) {
-       var _ = { label: 0, sent: function () { if (t[0] & 1)
-               throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-       return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
-       function verb(n) { return function (v) { return step([n, v]); }; }
-       function step(op) {
-           if (f)
-               throw new TypeError("Generator is already executing.");
-           while (_)
-               try {
-                   if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
-                       return t;
-                   if (y = 0, t)
-                       op = [op[0] & 2, t.value];
-                   switch (op[0]) {
-                       case 0:
-                       case 1:
-                           t = op;
-                           break;
-                       case 4:
-                           _.label++;
-                           return { value: op[1], done: false };
-                       case 5:
-                           _.label++;
-                           y = op[1];
-                           op = [0];
-                           continue;
-                       case 7:
-                           op = _.ops.pop();
-                           _.trys.pop();
-                           continue;
-                       default:
-                           if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
-                               _ = 0;
-                               continue;
-                           }
-                           if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
-                               _.label = op[1];
-                               break;
-                           }
-                           if (op[0] === 6 && _.label < t[1]) {
-                               _.label = t[1];
-                               t = op;
-                               break;
-                           }
-                           if (t && _.label < t[2]) {
-                               _.label = t[2];
-                               _.ops.push(op);
-                               break;
-                           }
-                           if (t[2])
-                               _.ops.pop();
-                           _.trys.pop();
-                           continue;
-                   }
-                   op = body.call(thisArg, _);
-               }
-               catch (e) {
-                   op = [6, e];
-                   y = 0;
-               }
-               finally {
-                   f = t = 0;
-               }
-           if (op[0] & 5)
-               throw op[1];
-           return { value: op[0] ? op[1] : void 0, done: true };
-       }
-   }
-   function __exportStar(m, exports) {
-       for (var p in m)
-           if (!exports.hasOwnProperty(p))
-               exports[p] = m[p];
-   }
-   function __values(o) {
-       var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
-       if (m)
-           return m.call(o);
-       if (o && typeof o.length === "number")
-           return {
-               next: function () {
-                   if (o && i >= o.length)
-                       o = void 0;
-                   return { value: o && o[i++], done: !o };
-               }
-           };
-       throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
-   }
-   function __read(o, n) {
-       var m = typeof Symbol === "function" && o[Symbol.iterator];
-       if (!m)
-           return o;
-       var i = m.call(o), r, ar = [], e;
-       try {
-           while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-               ar.push(r.value);
-       }
-       catch (error) {
-           e = { error: error };
-       }
-       finally {
-           try {
-               if (r && !r.done && (m = i["return"]))
-                   m.call(i);
-           }
-           finally {
-               if (e)
-                   throw e.error;
-           }
-       }
-       return ar;
-   }
-   function __spread() {
-       for (var ar = [], i = 0; i < arguments.length; i++)
-           ar = ar.concat(__read(arguments[i]));
-       return ar;
-   }
-   function __spreadArrays() {
-       for (var s = 0, i = 0, il = arguments.length; i < il; i++)
-           s += arguments[i].length;
-       for (var r = Array(s), k = 0, i = 0; i < il; i++)
-           for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-               r[k] = a[j];
-       return r;
-   }
-   ;
-   function __await(v) {
-       return this instanceof __await ? (this.v = v, this) : new __await(v);
-   }
-   function __asyncGenerator(thisArg, _arguments, generator) {
-       if (!Symbol.asyncIterator)
-           throw new TypeError("Symbol.asyncIterator is not defined.");
-       var g = generator.apply(thisArg, _arguments || []), i, q = [];
-       return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
-       function verb(n) { if (g[n])
-           i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
-       function resume(n, v) { try {
-           step(g[n](v));
-       }
-       catch (e) {
-           settle(q[0][3], e);
-       } }
-       function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
-       function fulfill(value) { resume("next", value); }
-       function reject(value) { resume("throw", value); }
-       function settle(f, v) { if (f(v), q.shift(), q.length)
-           resume(q[0][0], q[0][1]); }
-   }
-   function __asyncDelegator(o) {
-       var i, p;
-       return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
-       function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
-   }
-   function __asyncValues(o) {
-       if (!Symbol.asyncIterator)
-           throw new TypeError("Symbol.asyncIterator is not defined.");
-       var m = o[Symbol.asyncIterator], i;
-       return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
-       function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
-       function settle(resolve, reject, d, v) { Promise.resolve(v).then(function (v) { resolve({ value: v, done: d }); }, reject); }
-   }
-   function __makeTemplateObject(cooked, raw) {
-       if (Object.defineProperty) {
-           Object.defineProperty(cooked, "raw", { value: raw });
-       }
-       else {
-           cooked.raw = raw;
-       }
-       return cooked;
-   }
-   ;
-   function __importStar(mod) {
-       if (mod && mod.__esModule)
-           return mod;
-       var result = {};
-       if (mod != null)
-           for (var k in mod)
-               if (Object.hasOwnProperty.call(mod, k))
-                   result[k] = mod[k];
-       result.default = mod;
-       return result;
-   }
-   function __importDefault(mod) {
-       return (mod && mod.__esModule) ? mod : { default: mod };
-   }
-   function __classPrivateFieldGet(receiver, privateMap) {
-       if (!privateMap.has(receiver)) {
-           throw new TypeError("attempted to get private field on non-instance");
-       }
-       return privateMap.get(receiver);
-   }
-   function __classPrivateFieldSet(receiver, privateMap, value) {
-       if (!privateMap.has(receiver)) {
-           throw new TypeError("attempted to set private field on non-instance");
-       }
-       privateMap.set(receiver, value);
-       return value;
-   }
-
-   /*
-      Base entity includes common fields for all entities (persistence objects) in the system
-   */
-   var BaseEntity = /** @class */ (function () {
-       function BaseEntity(id, docType, createdOn, updatedOn) {
-           this.id = id;
-           this._type = docType;
-           this.createdOn = createdOn;
-           this.updatedOn = updatedOn;
-       }
-       return BaseEntity;
-   }());
-
-   /*
-      Account entity in the system represents a club
-   */
-   var Account = /** @class */ (function (_super) {
-       __extends(Account, _super);
-       function Account() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return Account;
-   }(BaseEntity));
-
-   /*
-      API Key is used per application (e.g. Portal, Mobile App) or service to identify the consumer.
-      The access to sets of REST endpoints is restricted according the API key.
-      API key also dictates the default session TTL per application (e.g. 20 minutes for Portal or Console, 30 days for Mobile app)
-      The application/system name is the Entity Id, the API key itself is not stored in the DB but generated on the fly.
-   */
-   var ApiKey = /** @class */ (function (_super) {
-       __extends(ApiKey, _super);
-       function ApiKey() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return ApiKey;
-   }(BaseEntity));
-
-   /*
-      Audit Log entry - represents a single action done by user
-   */
-   var AuditLog = /** @class */ (function (_super) {
-       __extends(AuditLog, _super);
-       function AuditLog() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return AuditLog;
-   }(BaseEntity));
-
-   /*
-      Booking request
-      A booking is a pending request to book a resource for specific time for user(s), once it is approved, it becomes a placement
-   */
-   var Booking = /** @class */ (function (_super) {
-       __extends(Booking, _super);
-       function Booking() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return Booking;
-   }(BaseEntity));
-
-   /*
-      System functionality (feature) description
-   */
-   var Feature = /** @class */ (function (_super) {
-       __extends(Feature, _super);
-       function Feature() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return Feature;
-   }(BaseEntity));
-
-   /*
-      Group of features
-   */
-   var FeaturesGroup = /** @class */ (function (_super) {
-       __extends(FeaturesGroup, _super);
-       function FeaturesGroup() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return FeaturesGroup;
-   }(BaseEntity));
-
-   /*
-      Incident
-   */
-   var Incident = /** @class */ (function (_super) {
-       __extends(Incident, _super);
-       function Incident() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return Incident;
-   }(BaseEntity));
-
-   /*
-      Placement - after booking approval, it is becoming a placement (derived from Booking)
-   */
-   var Placement = /** @class */ (function (_super) {
-       __extends(Placement, _super);
-       function Placement() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return Placement;
-   }(BaseEntity));
-
-   /*
-      Resource type
-   */
-   var Resource = /** @class */ (function (_super) {
-       __extends(Resource, _super);
-       function Resource() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return Resource;
-   }(BaseEntity));
-
-   /*
-      User type
-   */
-   var User = /** @class */ (function (_super) {
-       __extends(User, _super);
-       function User() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return User;
-   }(BaseEntity));
-
-   /*
-      Verification type used to verify user with a temporary code
-   */
-   var Verification = /** @class */ (function (_super) {
-       __extends(Verification, _super);
-       function Verification() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return Verification;
-   }(BaseEntity));
-
-   /*
       Account role code (represent role of user in the account)
    */
    (function (AccountRoleCode) {
@@ -914,720 +328,292 @@
        UserTypeCode[UserTypeCode["SERVICE"] = 5] = "SERVICE";
    })(exports.UserTypeCode || (exports.UserTypeCode = {}));
 
-   /*
-   */
-   var AccountIdRequest = /** @class */ (function () {
-       function AccountIdRequest(id) {
-           this.id = id;
-       }
-       return AccountIdRequest;
-   }());
-
-   /*
-      Entity action response message returned for any create/update action on entity
-   */
-   var ActionResponse = /** @class */ (function () {
-       function ActionResponse(code, error, key, data) {
-           this.code = code;
-           this.error = error;
-           this.key = key;
-           this.data = data;
-       }
-       return ActionResponse;
-   }());
-
-   /*
-   */
-   var AdminCreateResourceRequest = /** @class */ (function () {
-       function AdminCreateResourceRequest(body) {
-           this.body = body;
-       }
-       return AdminCreateResourceRequest;
-   }());
-
-   /*
-   */
-   var AdminResourceFindRequest = /** @class */ (function () {
-       function AdminResourceFindRequest(search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
-           this.search = search;
-           this.resourceClass = resourceClass;
-           this.resourceType = resourceType;
-           this.status = status;
-           this.forUseBy = forUseBy;
-           this.sort = sort;
-           this.page = page;
-           this.pageSize = pageSize;
-       }
-       return AdminResourceFindRequest;
-   }());
-
-   /*
-   */
-   var AdminUpdateResourceRequest = /** @class */ (function () {
-       function AdminUpdateResourceRequest(body) {
-           this.body = body;
-       }
-       return AdminUpdateResourceRequest;
-   }());
-
-   /*
-   */
-   var BookingIdRequest = /** @class */ (function () {
-       function BookingIdRequest(id) {
-           this.id = id;
-       }
-       return BookingIdRequest;
-   }());
-
-   /*
-      Change Password request message
-   */
-   var ChangePasswordRequest = /** @class */ (function () {
-       function ChangePasswordRequest(userId, oldPassword, newPassword) {
-           this.userId = userId;
-           this.oldPassword = oldPassword;
-           this.newPassword = newPassword;
-       }
-       return ChangePasswordRequest;
-   }());
-
-   /*
-   */
-   var EmptyRequest = /** @class */ (function () {
-       function EmptyRequest() {
-       }
-       return EmptyRequest;
-   }());
-
-   /*
-   */
-   var EmptyResponse = /** @class */ (function () {
-       function EmptyResponse() {
-       }
-       return EmptyResponse;
-   }());
-
-   /*
-      Entities response message returned for read operation on multiple entities
-   */
-   var EntitiesResponse = /** @class */ (function () {
-       function EntitiesResponse(code, error) {
-           this.code = code;
-           this.error = error;
-       }
-       return EntitiesResponse;
-   }());
-
-   /*
-   */
-   var EntitiesResponseOfAccount = /** @class */ (function (_super) {
-       __extends(EntitiesResponseOfAccount, _super);
-       function EntitiesResponseOfAccount() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntitiesResponseOfAccount;
-   }(EntitiesResponse));
-
-   /*
-   */
-   var EntitiesResponseOfBooking = /** @class */ (function (_super) {
-       __extends(EntitiesResponseOfBooking, _super);
-       function EntitiesResponseOfBooking() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntitiesResponseOfBooking;
-   }(EntitiesResponse));
-
-   /*
-   */
-   var EntitiesResponseOfPlacement = /** @class */ (function (_super) {
-       __extends(EntitiesResponseOfPlacement, _super);
-       function EntitiesResponseOfPlacement() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntitiesResponseOfPlacement;
-   }(EntitiesResponse));
-
-   /*
-   */
-   var EntitiesResponseOfResource = /** @class */ (function (_super) {
-       __extends(EntitiesResponseOfResource, _super);
-       function EntitiesResponseOfResource() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntitiesResponseOfResource;
-   }(EntitiesResponse));
-
-   /*
-      Entity response message returned for read operation on a single entity
-   */
-   var EntityResponse = /** @class */ (function () {
-       function EntityResponse(code, error) {
-           this.code = code;
-           this.error = error;
-       }
-       return EntityResponse;
-   }());
-
-   /*
-   */
-   var EntityResponseOfAccount = /** @class */ (function (_super) {
-       __extends(EntityResponseOfAccount, _super);
-       function EntityResponseOfAccount() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntityResponseOfAccount;
-   }(EntityResponse));
-
-   /*
-   */
-   var EntityResponseOfBooking = /** @class */ (function (_super) {
-       __extends(EntityResponseOfBooking, _super);
-       function EntityResponseOfBooking() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntityResponseOfBooking;
-   }(EntityResponse));
-
-   /*
-   */
-   var EntityResponseOfLoginData = /** @class */ (function (_super) {
-       __extends(EntityResponseOfLoginData, _super);
-       function EntityResponseOfLoginData() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntityResponseOfLoginData;
-   }(EntityResponse));
-
-   /*
-   */
-   var EntityResponseOfPlacement = /** @class */ (function (_super) {
-       __extends(EntityResponseOfPlacement, _super);
-       function EntityResponseOfPlacement() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntityResponseOfPlacement;
-   }(EntityResponse));
-
-   /*
-   */
-   var EntityResponseOfResource = /** @class */ (function (_super) {
-       __extends(EntityResponseOfResource, _super);
-       function EntityResponseOfResource() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntityResponseOfResource;
-   }(EntityResponse));
-
-   /*
-   */
-   var EntityResponseOfUser = /** @class */ (function (_super) {
-       __extends(EntityResponseOfUser, _super);
-       function EntityResponseOfUser() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntityResponseOfUser;
-   }(EntityResponse));
-
-   /*
-   */
-   var EntityResponseOfUserAccountInfo = /** @class */ (function (_super) {
-       __extends(EntityResponseOfUserAccountInfo, _super);
-       function EntityResponseOfUserAccountInfo() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return EntityResponseOfUserAccountInfo;
-   }(EntityResponse));
-
-   /*
-   */
-   var PlacementIdRequest = /** @class */ (function () {
-       function PlacementIdRequest(id) {
-           this.id = id;
-       }
-       return PlacementIdRequest;
-   }());
-
-   /*
-      Query response message returned for find operation (with pagination) on multiple entities
-   */
-   var QueryResponse = /** @class */ (function () {
-       function QueryResponse(code, error, page, pageSize, pages, total, queryDef, docType) {
-           this.code = code;
-           this.error = error;
-           this.page = page;
-           this.pageSize = pageSize;
-           this.pages = pages;
-           this.total = total;
-           this.queryDef = queryDef;
-           this.docType = docType;
-       }
-       return QueryResponse;
-   }());
-
-   /*
-   */
-   var QueryResponseOfAccount = /** @class */ (function (_super) {
-       __extends(QueryResponseOfAccount, _super);
-       function QueryResponseOfAccount() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return QueryResponseOfAccount;
-   }(QueryResponse));
-
-   /*
-   */
-   var QueryResponseOfBooking = /** @class */ (function (_super) {
-       __extends(QueryResponseOfBooking, _super);
-       function QueryResponseOfBooking() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return QueryResponseOfBooking;
-   }(QueryResponse));
-
-   /*
-   */
-   var QueryResponseOfPlacement = /** @class */ (function (_super) {
-       __extends(QueryResponseOfPlacement, _super);
-       function QueryResponseOfPlacement() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return QueryResponseOfPlacement;
-   }(QueryResponse));
-
-   /*
-   */
-   var QueryResponseOfResource = /** @class */ (function (_super) {
-       __extends(QueryResponseOfResource, _super);
-       function QueryResponseOfResource() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return QueryResponseOfResource;
-   }(QueryResponse));
-
-   /*
-   */
-   var QueryResponseOfUser = /** @class */ (function (_super) {
-       __extends(QueryResponseOfUser, _super);
-       function QueryResponseOfUser() {
-           return _super !== null && _super.apply(this, arguments) || this;
-       }
-       return QueryResponseOfUser;
-   }(QueryResponse));
-
-   /*
-   */
-   var ResourceIdRequest = /** @class */ (function () {
-       function ResourceIdRequest(id) {
-           this.id = id;
-       }
-       return ResourceIdRequest;
-   }());
-
-   /*
-      Response of byte array
-   */
-   var StreamResponse = /** @class */ (function () {
-       function StreamResponse(content) {
-           this.content = content;
-       }
-       return StreamResponse;
-   }());
-
-   /*
-   */
-   var SysAdminAccountCreateRequest = /** @class */ (function () {
-       function SysAdminAccountCreateRequest(body) {
-           this.body = body;
-       }
-       return SysAdminAccountCreateRequest;
-   }());
-
-   /*
-   */
-   var SysAdminAccountResetRequest = /** @class */ (function () {
-       function SysAdminAccountResetRequest(id, days) {
-           this.id = id;
-           this.days = days;
-       }
-       return SysAdminAccountResetRequest;
-   }());
-
-   /*
-   */
-   var SysAdminAccountUpdateRequest = /** @class */ (function () {
-       function SysAdminAccountUpdateRequest(body) {
-           this.body = body;
-       }
-       return SysAdminAccountUpdateRequest;
-   }());
-
-   /*
-   */
-   var SysAdminAccountsFindRequest = /** @class */ (function () {
-       function SysAdminAccountsFindRequest(search, type, status, sort, page, pageSize) {
-           this.search = search;
-           this.type = type;
-           this.status = status;
-           this.sort = sort;
-           this.page = page;
-           this.pageSize = pageSize;
-       }
-       return SysAdminAccountsFindRequest;
-   }());
-
-   /*
-      Token request message
-   */
-   var TokenRequest = /** @class */ (function () {
-       function TokenRequest(code, error, accountId) {
-           this.code = code;
-           this.error = error;
-           this.accountId = accountId;
-       }
-       return TokenRequest;
-   }());
-
-   /*
-   */
-   var UserAccountsFindRequest = /** @class */ (function () {
-       function UserAccountsFindRequest(search, type, status, sort, page, pageSize) {
-           this.search = search;
-           this.type = type;
-           this.status = status;
-           this.sort = sort;
-           this.page = page;
-           this.pageSize = pageSize;
-       }
-       return UserAccountsFindRequest;
-   }());
-
-   /*
-   */
-   var UserBookingFindRequest = /** @class */ (function () {
-       function UserBookingFindRequest(userId, resourceId, from, to, sort, page, pageSize) {
-           this.userId = userId;
-           this.resourceId = resourceId;
-           this.from = from;
-           this.to = to;
-           this.sort = sort;
-           this.page = page;
-           this.pageSize = pageSize;
-       }
-       return UserBookingFindRequest;
-   }());
-
-   /*
-   */
-   var UserByEmailRequest = /** @class */ (function () {
-       function UserByEmailRequest(email) {
-           this.email = email;
-       }
-       return UserByEmailRequest;
-   }());
-
-   /*
-   */
-   var UserCreateBookingRequest = /** @class */ (function () {
-       function UserCreateBookingRequest(body) {
-           this.body = body;
-       }
-       return UserCreateBookingRequest;
-   }());
-
-   /*
-   */
-   var UserCreatePlacementRequest = /** @class */ (function () {
-       function UserCreatePlacementRequest(body) {
-           this.body = body;
-       }
-       return UserCreatePlacementRequest;
-   }());
-
-   /*
-   */
-   var UserIdRequest = /** @class */ (function () {
-       function UserIdRequest(id) {
-           this.id = id;
-       }
-       return UserIdRequest;
-   }());
-
-   /*
-   */
-   var UserIdsRequest = /** @class */ (function () {
-       function UserIdsRequest(id) {
-           this.id = id;
-       }
-       return UserIdsRequest;
-   }());
-
-   /*
-   */
-   var UserPlacementFindRequest = /** @class */ (function () {
-       function UserPlacementFindRequest(userId, resourceId, from, to, bookingId, status, sort, page, pageSize) {
-           this.userId = userId;
-           this.resourceId = resourceId;
-           this.from = from;
-           this.to = to;
-           this.bookingId = bookingId;
-           this.status = status;
-           this.sort = sort;
-           this.page = page;
-           this.pageSize = pageSize;
-       }
-       return UserPlacementFindRequest;
-   }());
-
-   /*
-   */
-   var UserServiceChangeMobileRequest = /** @class */ (function () {
-       function UserServiceChangeMobileRequest(body) {
-           this.body = body;
-       }
-       return UserServiceChangeMobileRequest;
-   }());
-
-   /*
-   */
-   var UserServiceChangeNameRequest = /** @class */ (function () {
-       function UserServiceChangeNameRequest(body) {
-           this.body = body;
-       }
-       return UserServiceChangeNameRequest;
-   }());
-
-   /*
-   */
-   var UserServiceChangePasswordRequest = /** @class */ (function () {
-       function UserServiceChangePasswordRequest(body) {
-           this.body = body;
-       }
-       return UserServiceChangePasswordRequest;
-   }());
-
-   /*
-   */
-   var UserServiceCheckPasswordRequest = /** @class */ (function () {
-       function UserServiceCheckPasswordRequest(body) {
-           this.body = body;
-       }
-       return UserServiceCheckPasswordRequest;
-   }());
-
-   /*
-   */
-   var UserServiceLoginRequest = /** @class */ (function () {
-       function UserServiceLoginRequest(body) {
-           this.body = body;
-       }
-       return UserServiceLoginRequest;
-   }());
-
-   /*
-   */
-   var UserServiceResetPasswordRequest = /** @class */ (function () {
-       function UserServiceResetPasswordRequest(code) {
-           this.code = code;
-       }
-       return UserServiceResetPasswordRequest;
-   }());
-
-   /*
-   */
-   var UserServiceSendVerificationRequest = /** @class */ (function () {
-       function UserServiceSendVerificationRequest(body) {
-           this.body = body;
-       }
-       return UserServiceSendVerificationRequest;
-   }());
-
-   /*
-   */
-   var UserServiceSwitchAccountRequest = /** @class */ (function () {
-       function UserServiceSwitchAccountRequest(body) {
-           this.body = body;
-       }
-       return UserServiceSwitchAccountRequest;
-   }());
-
-   /*
-   */
-   var UserServiceVerifyLoginRequest = /** @class */ (function () {
-       function UserServiceVerifyLoginRequest(key) {
-           this.key = key;
-       }
-       return UserServiceVerifyLoginRequest;
-   }());
-
-   /*
-   */
-   var UserTokenRequest = /** @class */ (function () {
-       function UserTokenRequest(id, exp) {
-           this.id = id;
-           this.exp = exp;
-       }
-       return UserTokenRequest;
-   }());
-
-   /*
-   */
-   var UserUpdateBookingRequest = /** @class */ (function () {
-       function UserUpdateBookingRequest(body) {
-           this.body = body;
-       }
-       return UserUpdateBookingRequest;
-   }());
-
-   /*
-   */
-   var UserUpdatePlacementRequest = /** @class */ (function () {
-       function UserUpdatePlacementRequest(body) {
-           this.body = body;
-       }
-       return UserUpdatePlacementRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceChangeDefaultAccountRequest = /** @class */ (function () {
-       function UsersServiceChangeDefaultAccountRequest(id, accountId) {
-           this.id = id;
-           this.accountId = accountId;
-       }
-       return UsersServiceChangeDefaultAccountRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceChangeMobileRequest = /** @class */ (function () {
-       function UsersServiceChangeMobileRequest(id, body) {
-           this.id = id;
-           this.body = body;
-       }
-       return UsersServiceChangeMobileRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceChangeNameRequest = /** @class */ (function () {
-       function UsersServiceChangeNameRequest(id, body) {
-           this.id = id;
-           this.body = body;
-       }
-       return UsersServiceChangeNameRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceChangeRoleRequest = /** @class */ (function () {
-       function UsersServiceChangeRoleRequest(id, role) {
-           this.id = id;
-           this.role = role;
-       }
-       return UsersServiceChangeRoleRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceChangeStatusRequest = /** @class */ (function () {
-       function UsersServiceChangeStatusRequest(id, status) {
-           this.id = id;
-           this.status = status;
-       }
-       return UsersServiceChangeStatusRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceChangeTypeRequest = /** @class */ (function () {
-       function UsersServiceChangeTypeRequest(id, type) {
-           this.id = id;
-           this.type = type;
-       }
-       return UsersServiceChangeTypeRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceCreateRequest = /** @class */ (function () {
-       function UsersServiceCreateRequest(body) {
-           this.body = body;
-       }
-       return UsersServiceCreateRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceExportRequest = /** @class */ (function () {
-       function UsersServiceExportRequest(search, type, status, sort, format, fields) {
-           this.search = search;
-           this.type = type;
-           this.status = status;
-           this.sort = sort;
-           this.format = format;
-           this.fields = fields;
-       }
-       return UsersServiceExportRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceFindRequest = /** @class */ (function () {
-       function UsersServiceFindRequest(accountId, search, type, status, sort, page, pageSize) {
-           this.accountId = accountId;
-           this.search = search;
-           this.type = type;
-           this.status = status;
-           this.sort = sort;
-           this.page = page;
-           this.pageSize = pageSize;
-       }
-       return UsersServiceFindRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceInviteRequest = /** @class */ (function () {
-       function UsersServiceInviteRequest(body) {
-           this.body = body;
-       }
-       return UsersServiceInviteRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceSetRolesRequest = /** @class */ (function () {
-       function UsersServiceSetRolesRequest(id, roles) {
-           this.id = id;
-           this.roles = roles;
-       }
-       return UsersServiceSetRolesRequest;
-   }());
-
-   /*
-   */
-   var UsersServiceUpdateRequest = /** @class */ (function () {
-       function UsersServiceUpdateRequest(id, body) {
-           this.id = id;
-           this.body = body;
-       }
-       return UsersServiceUpdateRequest;
-   }());
-
-   /*
-      @WebSocketMessage Message header for all web socket messages
-   */
-   var WebSocketMessageHeader = /** @class */ (function () {
-       function WebSocketMessageHeader(opcode, version, messageId, correlationId, sessionId) {
-           this.op = opcode;
-           this.ver = version;
-           this.id = messageId;
-           this.cid = correlationId;
-           this.sid = sessionId;
-       }
-       return WebSocketMessageHeader;
-   }());
+   /*! *****************************************************************************
+   Copyright (c) Microsoft Corporation. All rights reserved.
+   Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+   this file except in compliance with the License. You may obtain a copy of the
+   License at http://www.apache.org/licenses/LICENSE-2.0
+
+   THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+   KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+   WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+   MERCHANTABLITY OR NON-INFRINGEMENT.
+
+   See the Apache Version 2.0 License for specific language governing permissions
+   and limitations under the License.
+   ***************************************************************************** */
+   /* global Reflect, Promise */
+   var extendStatics = function (d, b) {
+       extendStatics = Object.setPrototypeOf ||
+           ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+           function (d, b) { for (var p in b)
+               if (b.hasOwnProperty(p))
+                   d[p] = b[p]; };
+       return extendStatics(d, b);
+   };
+   function __extends(d, b) {
+       extendStatics(d, b);
+       function __() { this.constructor = d; }
+       d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+   }
+   var __assign = function () {
+       __assign = Object.assign || function __assign(t) {
+           for (var s, i = 1, n = arguments.length; i < n; i++) {
+               s = arguments[i];
+               for (var p in s)
+                   if (Object.prototype.hasOwnProperty.call(s, p))
+                       t[p] = s[p];
+           }
+           return t;
+       };
+       return __assign.apply(this, arguments);
+   };
+   function __rest(s, e) {
+       var t = {};
+       for (var p in s)
+           if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+               t[p] = s[p];
+       if (s != null && typeof Object.getOwnPropertySymbols === "function")
+           for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+               if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                   t[p[i]] = s[p[i]];
+           }
+       return t;
+   }
+   function __decorate(decorators, target, key, desc) {
+       var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+       if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+           r = Reflect.decorate(decorators, target, key, desc);
+       else
+           for (var i = decorators.length - 1; i >= 0; i--)
+               if (d = decorators[i])
+                   r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+       return c > 3 && r && Object.defineProperty(target, key, r), r;
+   }
+   function __param(paramIndex, decorator) {
+       return function (target, key) { decorator(target, key, paramIndex); };
+   }
+   function __metadata(metadataKey, metadataValue) {
+       if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+           return Reflect.metadata(metadataKey, metadataValue);
+   }
+   function __awaiter(thisArg, _arguments, P, generator) {
+       function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+       return new (P || (P = Promise))(function (resolve, reject) {
+           function fulfilled(value) { try {
+               step(generator.next(value));
+           }
+           catch (e) {
+               reject(e);
+           } }
+           function rejected(value) { try {
+               step(generator["throw"](value));
+           }
+           catch (e) {
+               reject(e);
+           } }
+           function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+           step((generator = generator.apply(thisArg, _arguments || [])).next());
+       });
+   }
+   function __generator(thisArg, body) {
+       var _ = { label: 0, sent: function () { if (t[0] & 1)
+               throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+       return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
+       function verb(n) { return function (v) { return step([n, v]); }; }
+       function step(op) {
+           if (f)
+               throw new TypeError("Generator is already executing.");
+           while (_)
+               try {
+                   if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
+                       return t;
+                   if (y = 0, t)
+                       op = [op[0] & 2, t.value];
+                   switch (op[0]) {
+                       case 0:
+                       case 1:
+                           t = op;
+                           break;
+                       case 4:
+                           _.label++;
+                           return { value: op[1], done: false };
+                       case 5:
+                           _.label++;
+                           y = op[1];
+                           op = [0];
+                           continue;
+                       case 7:
+                           op = _.ops.pop();
+                           _.trys.pop();
+                           continue;
+                       default:
+                           if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                               _ = 0;
+                               continue;
+                           }
+                           if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
+                               _.label = op[1];
+                               break;
+                           }
+                           if (op[0] === 6 && _.label < t[1]) {
+                               _.label = t[1];
+                               t = op;
+                               break;
+                           }
+                           if (t && _.label < t[2]) {
+                               _.label = t[2];
+                               _.ops.push(op);
+                               break;
+                           }
+                           if (t[2])
+                               _.ops.pop();
+                           _.trys.pop();
+                           continue;
+                   }
+                   op = body.call(thisArg, _);
+               }
+               catch (e) {
+                   op = [6, e];
+                   y = 0;
+               }
+               finally {
+                   f = t = 0;
+               }
+           if (op[0] & 5)
+               throw op[1];
+           return { value: op[0] ? op[1] : void 0, done: true };
+       }
+   }
+   function __exportStar(m, exports) {
+       for (var p in m)
+           if (!exports.hasOwnProperty(p))
+               exports[p] = m[p];
+   }
+   function __values(o) {
+       var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+       if (m)
+           return m.call(o);
+       if (o && typeof o.length === "number")
+           return {
+               next: function () {
+                   if (o && i >= o.length)
+                       o = void 0;
+                   return { value: o && o[i++], done: !o };
+               }
+           };
+       throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+   }
+   function __read(o, n) {
+       var m = typeof Symbol === "function" && o[Symbol.iterator];
+       if (!m)
+           return o;
+       var i = m.call(o), r, ar = [], e;
+       try {
+           while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+               ar.push(r.value);
+       }
+       catch (error) {
+           e = { error: error };
+       }
+       finally {
+           try {
+               if (r && !r.done && (m = i["return"]))
+                   m.call(i);
+           }
+           finally {
+               if (e)
+                   throw e.error;
+           }
+       }
+       return ar;
+   }
+   function __spread() {
+       for (var ar = [], i = 0; i < arguments.length; i++)
+           ar = ar.concat(__read(arguments[i]));
+       return ar;
+   }
+   function __spreadArrays() {
+       for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+           s += arguments[i].length;
+       for (var r = Array(s), k = 0, i = 0; i < il; i++)
+           for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+               r[k] = a[j];
+       return r;
+   }
+   ;
+   function __await(v) {
+       return this instanceof __await ? (this.v = v, this) : new __await(v);
+   }
+   function __asyncGenerator(thisArg, _arguments, generator) {
+       if (!Symbol.asyncIterator)
+           throw new TypeError("Symbol.asyncIterator is not defined.");
+       var g = generator.apply(thisArg, _arguments || []), i, q = [];
+       return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+       function verb(n) { if (g[n])
+           i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+       function resume(n, v) { try {
+           step(g[n](v));
+       }
+       catch (e) {
+           settle(q[0][3], e);
+       } }
+       function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+       function fulfill(value) { resume("next", value); }
+       function reject(value) { resume("throw", value); }
+       function settle(f, v) { if (f(v), q.shift(), q.length)
+           resume(q[0][0], q[0][1]); }
+   }
+   function __asyncDelegator(o) {
+       var i, p;
+       return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+       function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+   }
+   function __asyncValues(o) {
+       if (!Symbol.asyncIterator)
+           throw new TypeError("Symbol.asyncIterator is not defined.");
+       var m = o[Symbol.asyncIterator], i;
+       return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+       function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+       function settle(resolve, reject, d, v) { Promise.resolve(v).then(function (v) { resolve({ value: v, done: d }); }, reject); }
+   }
+   function __makeTemplateObject(cooked, raw) {
+       if (Object.defineProperty) {
+           Object.defineProperty(cooked, "raw", { value: raw });
+       }
+       else {
+           cooked.raw = raw;
+       }
+       return cooked;
+   }
+   ;
+   function __importStar(mod) {
+       if (mod && mod.__esModule)
+           return mod;
+       var result = {};
+       if (mod != null)
+           for (var k in mod)
+               if (Object.hasOwnProperty.call(mod, k))
+                   result[k] = mod[k];
+       result.default = mod;
+       return result;
+   }
+   function __importDefault(mod) {
+       return (mod && mod.__esModule) ? mod : { default: mod };
+   }
+   function __classPrivateFieldGet(receiver, privateMap) {
+       if (!privateMap.has(receiver)) {
+           throw new TypeError("attempted to get private field on non-instance");
+       }
+       return privateMap.get(receiver);
+   }
+   function __classPrivateFieldSet(receiver, privateMap, value) {
+       if (!privateMap.has(receiver)) {
+           throw new TypeError("attempted to set private field on non-instance");
+       }
+       privateMap.set(receiver, value);
+       return value;
+   }
 
    // Access token key in the local storage
    var tokenKey = 'portalAccessToken';
@@ -2872,114 +1858,21 @@
     * Generated bundle index. Do not edit.
     */
 
-   exports.AbsoluteTimeFrame = AbsoluteTimeFrame;
-   exports.Account = Account;
-   exports.AccountIdRequest = AccountIdRequest;
-   exports.AccountRole = AccountRole;
-   exports.AccountSettings = AccountSettings;
-   exports.ActionResponse = ActionResponse;
    exports.AdminBoatsService = AdminBoatsService;
-   exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
    exports.AdminKayaksService = AdminKayaksService;
-   exports.AdminResourceFindRequest = AdminResourceFindRequest;
    exports.AdminResourcesService = AdminResourcesService;
-   exports.AdminUpdateResourceRequest = AdminUpdateResourceRequest;
-   exports.ApiKey = ApiKey;
-   exports.AuditLog = AuditLog;
-   exports.BaseEntity = BaseEntity;
-   exports.Booking = Booking;
-   exports.BookingIdRequest = BookingIdRequest;
-   exports.ChangePasswordRequest = ChangePasswordRequest;
    exports.CoreConfig = CoreConfig;
    exports.CoreLibModule = CoreLibModule;
-   exports.EmptyRequest = EmptyRequest;
-   exports.EmptyResponse = EmptyResponse;
-   exports.EntitiesResponse = EntitiesResponse;
-   exports.EntitiesResponseOfAccount = EntitiesResponseOfAccount;
-   exports.EntitiesResponseOfBooking = EntitiesResponseOfBooking;
-   exports.EntitiesResponseOfPlacement = EntitiesResponseOfPlacement;
-   exports.EntitiesResponseOfResource = EntitiesResponseOfResource;
-   exports.EntityResponse = EntityResponse;
-   exports.EntityResponseOfAccount = EntityResponseOfAccount;
-   exports.EntityResponseOfBooking = EntityResponseOfBooking;
-   exports.EntityResponseOfLoginData = EntityResponseOfLoginData;
-   exports.EntityResponseOfPlacement = EntityResponseOfPlacement;
-   exports.EntityResponseOfResource = EntityResponseOfResource;
-   exports.EntityResponseOfUser = EntityResponseOfUser;
-   exports.EntityResponseOfUserAccountInfo = EntityResponseOfUserAccountInfo;
-   exports.Feature = Feature;
-   exports.FeaturesGroup = FeaturesGroup;
    exports.HealthCheckService = HealthCheckService;
-   exports.Incident = Incident;
-   exports.LoginData = LoginData;
-   exports.LoginParams = LoginParams;
-   exports.Placement = Placement;
-   exports.PlacementIdRequest = PlacementIdRequest;
-   exports.QueryResponse = QueryResponse;
-   exports.QueryResponseOfAccount = QueryResponseOfAccount;
-   exports.QueryResponseOfBooking = QueryResponseOfBooking;
-   exports.QueryResponseOfPlacement = QueryResponseOfPlacement;
-   exports.QueryResponseOfResource = QueryResponseOfResource;
-   exports.QueryResponseOfUser = QueryResponseOfUser;
-   exports.RecurrentTimeFrame = RecurrentTimeFrame;
-   exports.Resource = Resource;
-   exports.ResourceIdRequest = ResourceIdRequest;
    exports.RestUtil = RestUtil;
    exports.Services = Services;
-   exports.StreamResponse = StreamResponse;
-   exports.StringKeyValue = StringKeyValue;
    exports.SysAccountsService = SysAccountsService;
-   exports.SysAdminAccountCreateRequest = SysAdminAccountCreateRequest;
-   exports.SysAdminAccountResetRequest = SysAdminAccountResetRequest;
-   exports.SysAdminAccountUpdateRequest = SysAdminAccountUpdateRequest;
-   exports.SysAdminAccountsFindRequest = SysAdminAccountsFindRequest;
    exports.SysUsersService = SysUsersService;
-   exports.TimeFrame = TimeFrame;
-   exports.TokenRequest = TokenRequest;
-   exports.User = User;
-   exports.UserAccountInfo = UserAccountInfo;
-   exports.UserAccountsFindRequest = UserAccountsFindRequest;
    exports.UserAccountsService = UserAccountsService;
-   exports.UserBookingFindRequest = UserBookingFindRequest;
    exports.UserBookingsService = UserBookingsService;
-   exports.UserByEmailRequest = UserByEmailRequest;
-   exports.UserCreateBookingRequest = UserCreateBookingRequest;
-   exports.UserCreatePlacementRequest = UserCreatePlacementRequest;
-   exports.UserIdRequest = UserIdRequest;
-   exports.UserIdsRequest = UserIdsRequest;
-   exports.UserInvitation = UserInvitation;
-   exports.UserPlacementFindRequest = UserPlacementFindRequest;
    exports.UserPlacementsService = UserPlacementsService;
-   exports.UserRegistration = UserRegistration;
    exports.UserService = UserService;
-   exports.UserServiceChangeMobileRequest = UserServiceChangeMobileRequest;
-   exports.UserServiceChangeNameRequest = UserServiceChangeNameRequest;
-   exports.UserServiceChangePasswordRequest = UserServiceChangePasswordRequest;
-   exports.UserServiceCheckPasswordRequest = UserServiceCheckPasswordRequest;
-   exports.UserServiceLoginRequest = UserServiceLoginRequest;
-   exports.UserServiceResetPasswordRequest = UserServiceResetPasswordRequest;
-   exports.UserServiceSendVerificationRequest = UserServiceSendVerificationRequest;
-   exports.UserServiceSwitchAccountRequest = UserServiceSwitchAccountRequest;
-   exports.UserServiceVerifyLoginRequest = UserServiceVerifyLoginRequest;
-   exports.UserTokenRequest = UserTokenRequest;
-   exports.UserUpdateBookingRequest = UserUpdateBookingRequest;
-   exports.UserUpdatePlacementRequest = UserUpdatePlacementRequest;
    exports.UsersService = UsersService;
-   exports.UsersServiceChangeDefaultAccountRequest = UsersServiceChangeDefaultAccountRequest;
-   exports.UsersServiceChangeMobileRequest = UsersServiceChangeMobileRequest;
-   exports.UsersServiceChangeNameRequest = UsersServiceChangeNameRequest;
-   exports.UsersServiceChangeRoleRequest = UsersServiceChangeRoleRequest;
-   exports.UsersServiceChangeStatusRequest = UsersServiceChangeStatusRequest;
-   exports.UsersServiceChangeTypeRequest = UsersServiceChangeTypeRequest;
-   exports.UsersServiceCreateRequest = UsersServiceCreateRequest;
-   exports.UsersServiceExportRequest = UsersServiceExportRequest;
-   exports.UsersServiceFindRequest = UsersServiceFindRequest;
-   exports.UsersServiceInviteRequest = UsersServiceInviteRequest;
-   exports.UsersServiceSetRolesRequest = UsersServiceSetRolesRequest;
-   exports.UsersServiceUpdateRequest = UsersServiceUpdateRequest;
-   exports.Verification = Verification;
-   exports.WebSocketMessageHeader = WebSocketMessageHeader;
-   exports.WeightRange = WeightRange;
    exports.getToken = getToken;
    exports.removeToken = removeToken;
    exports.setToken = setToken;

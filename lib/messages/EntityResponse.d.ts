@@ -1,5 +1,4 @@
-export declare class EntityResponse {
-    code: number;
-    error: string;
-    constructor(code?: number, error?: string);
+export interface EntityResponse {
+    code?: number;
+    error?: string;
 }

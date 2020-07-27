@@ -1,7 +1,7 @@
-import { UserAccountInfo } from '../common/UserAccountInfo';
 import { EntityResponse } from '../messages/EntityResponse';
-export declare class EntityResponseOfUserAccountInfo extends EntityResponse {
-    entity: UserAccountInfo;
-    code: number;
-    error: string;
+import { UserAccountInfo } from '../common/UserAccountInfo';
+export interface EntityResponseOfUserAccountInfo extends EntityResponse {
+    entity?: UserAccountInfo;
+    code?: number;
+    error?: string;
 }

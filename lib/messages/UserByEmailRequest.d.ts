@@ -1,4 +1,3 @@
-export declare class UserByEmailRequest {
-    email: string;
-    constructor(email?: string);
+export interface UserByEmailRequest {
+    email?: string;
 }

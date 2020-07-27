@@ -1,4 +1,3 @@
-export declare class UserServiceSendVerificationRequest {
-    body: string;
-    constructor(body?: string);
+export interface UserServiceSendVerificationRequest {
+    body?: string;
 }

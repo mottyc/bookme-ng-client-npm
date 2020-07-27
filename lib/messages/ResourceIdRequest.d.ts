@@ -1,4 +1,3 @@
-export declare class ResourceIdRequest {
-    id: string;
-    constructor(id?: string);
+export interface ResourceIdRequest {
+    id?: string;
 }

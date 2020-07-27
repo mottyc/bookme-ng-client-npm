@@ -1,15 +1,14 @@
-import { UserTypeCode } from '../enums/UserTypeCode';
 import { AccountRole } from '../common/AccountRole';
-export declare class UserRegistration {
-    name: string;
-    email: string;
-    mobile: string;
-    defaultAccount: string;
-    accountRoles: AccountRole[];
-    type: UserTypeCode;
-    tempPassword: string;
-    changePassword: boolean;
-    verifyByEmail: boolean;
-    description: string;
-    constructor(name?: string, email?: string, mobile?: string, defaultAccount?: string, accountRoles?: AccountRole[], type?: UserTypeCode, tempPassword?: string, changePassword?: boolean, verifyByEmail?: boolean, description?: string);
+import { UserTypeCode } from '../enums/UserTypeCode';
+export interface UserRegistration {
+    name?: string;
+    email?: string;
+    mobile?: string;
+    defaultAccount?: string;
+    accountRoles?: AccountRole[];
+    type?: UserTypeCode;
+    tempPassword?: string;
+    changePassword?: boolean;
+    verifyByEmail?: boolean;
+    description?: string;
 }

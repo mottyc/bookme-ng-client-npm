@@ -1,4 +1,3 @@
-export declare class AccountSettings {
-    retentionDays: number;
-    constructor(retentionDays?: number);
+export interface AccountSettings {
+    retentionDays?: number;
 }

@@ -1,4 +1,3 @@
-export declare class UserServiceVerifyLoginRequest {
-    key: string;
-    constructor(key?: string);
+export interface UserServiceVerifyLoginRequest {
+    key?: string;
 }

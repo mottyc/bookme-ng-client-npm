@@ -1,4 +1,3 @@
-export declare class UserServiceResetPasswordRequest {
-    code: string;
-    constructor(code?: string);
+export interface UserServiceResetPasswordRequest {
+    code?: string;
 }

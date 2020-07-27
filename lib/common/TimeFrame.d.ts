@@ -1,5 +1,4 @@
-export declare class TimeFrame {
-    from: number;
-    to: number;
-    constructor(from?: number, to?: number);
+export interface TimeFrame {
+    from?: number;
+    to?: number;
 }
