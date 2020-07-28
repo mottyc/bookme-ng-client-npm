@@ -1,5 +1,10 @@
 import { UserStatusCode } from '../enums/UserStatusCode';
-export interface UsersServiceChangeStatusRequest {
+export declare class UsersServiceChangeStatusRequest {
+    id: string;
+    status: UserStatusCode;
+    constructor(id?: string, status?: UserStatusCode);
+}
+export interface IUsersServiceChangeStatusRequest {
     id?: string;
     status?: UserStatusCode;
 }

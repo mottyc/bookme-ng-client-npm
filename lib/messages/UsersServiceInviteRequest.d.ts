@@ -1,4 +1,8 @@
 import { UserInvitation } from '../common/UserInvitation';
-export interface UsersServiceInviteRequest {
+export declare class UsersServiceInviteRequest {
+    body: UserInvitation;
+    constructor(body?: UserInvitation);
+}
+export interface IUsersServiceInviteRequest {
     body?: UserInvitation;
 }

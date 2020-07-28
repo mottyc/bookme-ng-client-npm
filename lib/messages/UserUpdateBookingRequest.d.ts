@@ -1,4 +1,8 @@
 import { Booking } from '../entities/Booking';
-export interface UserUpdateBookingRequest {
+export declare class UserUpdateBookingRequest {
+    body: Booking;
+    constructor(body?: Booking);
+}
+export interface IUserUpdateBookingRequest {
     body?: Booking;
 }

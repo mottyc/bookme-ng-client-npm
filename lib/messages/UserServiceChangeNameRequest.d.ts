@@ -1,3 +1,7 @@
-export interface UserServiceChangeNameRequest {
+export declare class UserServiceChangeNameRequest {
+    body: string;
+    constructor(body?: string);
+}
+export interface IUserServiceChangeNameRequest {
     body?: string;
 }

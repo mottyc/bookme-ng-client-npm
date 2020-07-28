@@ -1,4 +1,8 @@
 import { ChangePasswordRequest } from '../messages/ChangePasswordRequest';
-export interface UserServiceChangePasswordRequest {
+export declare class UserServiceChangePasswordRequest {
+    body: ChangePasswordRequest;
+    constructor(body?: ChangePasswordRequest);
+}
+export interface IUserServiceChangePasswordRequest {
     body?: ChangePasswordRequest;
 }
