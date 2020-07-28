@@ -11,7 +11,6 @@ export declare class Placement extends BaseEntity {
     approvedOn: number;
     status: BookingStatusCode;
     id: string;
-    _type: string;
     createdOn: number;
     updatedOn: number;
 }
@@ -25,7 +24,6 @@ export interface IPlacement extends IBaseEntity {
     approvedOn?: number;
     status?: BookingStatusCode;
     id?: string;
-    _type?: string;
     createdOn?: number;
     updatedOn?: number;
 }

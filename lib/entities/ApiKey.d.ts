@@ -9,7 +9,6 @@ export declare class ApiKey extends BaseEntity {
     isSystemKey: boolean;
     isEnabled: boolean;
     id: string;
-    _type: string;
     createdOn: number;
     updatedOn: number;
 }
@@ -21,7 +20,6 @@ export interface IApiKey extends IBaseEntity {
     isSystemKey?: boolean;
     isEnabled?: boolean;
     id?: string;
-    _type?: string;
     createdOn?: number;
     updatedOn?: number;
 }

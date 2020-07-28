@@ -7,7 +7,6 @@ export declare class Verification extends BaseEntity {
     mobile: string;
     sent: number;
     id: string;
-    _type: string;
     createdOn: number;
     updatedOn: number;
 }
@@ -18,7 +17,6 @@ export interface IVerification extends IBaseEntity {
     mobile?: string;
     sent?: number;
     id?: string;
-    _type?: string;
     createdOn?: number;
     updatedOn?: number;
 }

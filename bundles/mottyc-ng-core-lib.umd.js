@@ -453,12 +453,11 @@
     }
 
     /*
-     *  Base entity includes common fields for all entities (persistence objects) in the system
+     *  Base entity includes common fields for all entities (persistence objects) in the system: id, create and update time
     */
     var BaseEntity = /** @class */ (function () {
-        function BaseEntity(id, docType, createdOn, updatedOn) {
+        function BaseEntity(id, createdOn, updatedOn) {
             this.id = id;
-            this._type = docType;
             this.createdOn = createdOn;
             this.updatedOn = updatedOn;
         }
@@ -1795,190 +1794,6 @@
     }());
 
     /**
-     * Services for managing boats resources - for account administrator only
-     * @RequestHeader X-API-KEY The key to identify the application (portal)
-     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
-     */
-    var AdminBoatsService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function AdminBoatsService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/admin/boats';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Create new boat resource
-         * @Return: EntityResponse<Resource>
-         */
-        AdminBoatsService.prototype.create = function (body) {
-            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Update boat resource
-         * @Return: EntityResponse<Resource>
-         */
-        AdminBoatsService.prototype.update = function (body) {
-            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Delete boat resource
-         * @Return: ActionResponse
-         */
-        AdminBoatsService.prototype.delete = function (id) {
-            return this.rest.delete("" + this.baseUrl);
-        };
-        /**
-         * Get single boat by id
-         * @Return: EntityResponse<Resource>
-         */
-        AdminBoatsService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Find boats by filters
-         * @Return: QueryResponse<Resource>
-         */
-        AdminBoatsService.prototype.find = function (search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (resourceClass != null) {
-                params.push("resourceClass=" + resourceClass);
-            }
-            if (resourceType != null) {
-                params.push("resourceType=" + resourceType);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (forUseBy != null) {
-                params.push("forUseBy=" + forUseBy);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return AdminBoatsService;
-    }());
-    /** @nocollapse */ AdminBoatsService.ɵfac = function AdminBoatsService_Factory(t) { return new (t || AdminBoatsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ AdminBoatsService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminBoatsService, factory: AdminBoatsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(AdminBoatsService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * Services for managing kayak resources - for account administrator only
-     * @RequestHeader X-API-KEY The key to identify the application (portal)
-     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
-     */
-    var AdminKayaksService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function AdminKayaksService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/admin/kayaks';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Create new kayak resource
-         * @Return: EntityResponse<Resource>
-         */
-        AdminKayaksService.prototype.create = function (body) {
-            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Update kayak resource
-         * @Return: EntityResponse<Resource>
-         */
-        AdminKayaksService.prototype.update = function (body) {
-            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Delete kayak resource
-         * @Return: ActionResponse
-         */
-        AdminKayaksService.prototype.delete = function (id) {
-            return this.rest.delete("" + this.baseUrl);
-        };
-        /**
-         * Get single kayak by id
-         * @Return: EntityResponse<Resource>
-         */
-        AdminKayaksService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Find kayaks by filters
-         * @Return: QueryResponse<Resource>
-         */
-        AdminKayaksService.prototype.find = function (search, resourceClass, resourceType, status, forUseBy, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (resourceClass != null) {
-                params.push("resourceClass=" + resourceClass);
-            }
-            if (resourceType != null) {
-                params.push("resourceType=" + resourceType);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (forUseBy != null) {
-                params.push("forUseBy=" + forUseBy);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return AdminKayaksService;
-    }());
-    /** @nocollapse */ AdminKayaksService.ɵfac = function AdminKayaksService_Factory(t) { return new (t || AdminKayaksService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ AdminKayaksService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminKayaksService, factory: AdminKayaksService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(AdminKayaksService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
      * Services for managing club resources - for account administrator only
      * @RequestHeader X-API-KEY The key to identify the application (portal)
      * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
@@ -2826,8 +2641,6 @@
     })();
 
     var Services = [
-        AdminBoatsService,
-        AdminKayaksService,
         AdminResourcesService,
         UserBookingsService,
         UserPlacementsService,
@@ -2878,9 +2691,7 @@
     exports.AccountRole = AccountRole;
     exports.AccountSettings = AccountSettings;
     exports.ActionResponse = ActionResponse;
-    exports.AdminBoatsService = AdminBoatsService;
     exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
-    exports.AdminKayaksService = AdminKayaksService;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
     exports.AdminResourcesService = AdminResourcesService;
     exports.AdminUpdateResourceRequest = AdminUpdateResourceRequest;

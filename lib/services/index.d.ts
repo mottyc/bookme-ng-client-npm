@@ -1,5 +1,3 @@
-export * from './adminBoatsService';
-export * from './adminKayaksService';
 export * from './adminResourcesService';
 export * from './healthCheckService';
 export * from './services.export';
