@@ -32,6 +32,7 @@ export declare class User extends BaseEntity {
     trainingTime: number;
     restrictions: string;
     id: string;
+    _type: string;
     createdOn: number;
     updatedOn: number;
 }
@@ -63,6 +64,7 @@ export interface IUser extends IBaseEntity {
     trainingTime?: number;
     restrictions?: string;
     id?: string;
+    _type?: string;
     createdOn?: number;
     updatedOn?: number;
 }

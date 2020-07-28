@@ -6,6 +6,7 @@ export declare class Incident extends BaseEntity {
     occurredOn: number;
     description: string;
     id: string;
+    _type: string;
     createdOn: number;
     updatedOn: number;
 }
@@ -15,6 +16,7 @@ export interface IIncident extends IBaseEntity {
     occurredOn?: number;
     description?: string;
     id?: string;
+    _type?: string;
     createdOn?: number;
     updatedOn?: number;
 }

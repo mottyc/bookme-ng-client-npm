@@ -7,6 +7,7 @@ export declare class Feature extends BaseEntity {
     description: string;
     category: string;
     id: string;
+    _type: string;
     createdOn: number;
     updatedOn: number;
 }
@@ -16,6 +17,7 @@ export interface IFeature extends IBaseEntity {
     description?: string;
     category?: string;
     id?: string;
+    _type?: string;
     createdOn?: number;
     updatedOn?: number;
 }

@@ -1,5 +1,5 @@
-import { BaseEntity } from '../entities/BaseEntity';
 import { BookingStatusCode } from '../enums/BookingStatusCode';
+import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Placement extends BaseEntity {
     placementOn: number;
@@ -11,6 +11,7 @@ export declare class Placement extends BaseEntity {
     approvedOn: number;
     status: BookingStatusCode;
     id: string;
+    _type: string;
     createdOn: number;
     updatedOn: number;
 }
@@ -24,6 +25,7 @@ export interface IPlacement extends IBaseEntity {
     approvedOn?: number;
     status?: BookingStatusCode;
     id?: string;
+    _type?: string;
     createdOn?: number;
     updatedOn?: number;
 }

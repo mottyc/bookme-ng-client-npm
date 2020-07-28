@@ -453,11 +453,12 @@
     }
 
     /*
-     *  Base entity includes common fields for all entities (persistence objects) in the system: id, create and update time
+     *  Base entity includes common fields for all entities (persistence objects) in the system
     */
     var BaseEntity = /** @class */ (function () {
-        function BaseEntity(id, createdOn, updatedOn) {
+        function BaseEntity(id, docType, createdOn, updatedOn) {
             this.id = id;
+            this._type = docType;
             this.createdOn = createdOn;
             this.updatedOn = updatedOn;
         }
@@ -2106,178 +2107,6 @@
     })();
 
     /**
-     * Services for managing kayak resources - for account administrator only
-     * @RequestHeader X-API-KEY The key to identify the application (portal)
-     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
-     */
-    var UserBookingsService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function UserBookingsService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/user/bookings';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Create new booking
-         * @Return: EntityResponse<Booking>
-         */
-        UserBookingsService.prototype.create = function (body) {
-            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Update booking
-         * @Return: EntityResponse<Booking>
-         */
-        UserBookingsService.prototype.update = function (body) {
-            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Delete booking
-         * @Return: ActionResponse
-         */
-        UserBookingsService.prototype.delete = function (id) {
-            return this.rest.delete("" + this.baseUrl);
-        };
-        /**
-         * Get single booking by id
-         * @Return: EntityResponse<Booking>
-         */
-        UserBookingsService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Find bookings by filters
-         * @Return: QueryResponse<Booking>
-         */
-        UserBookingsService.prototype.find = function (userId, resourceId, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (userId != null) {
-                params.push("userId=" + userId);
-            }
-            if (resourceId != null) {
-                params.push("resourceId=" + resourceId);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return UserBookingsService;
-    }());
-    /** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UserBookingsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserBookingsService, factory: UserBookingsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UserBookingsService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * Services for managing user placements (approved bookings)
-     * @RequestHeader X-API-KEY The key to identify the application (portal)
-     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
-     */
-    var UserPlacementsService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function UserPlacementsService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/user/placements';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Create new placement
-         * @Return: EntityResponse<Placement>
-         */
-        UserPlacementsService.prototype.create = function (body) {
-            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Update placement
-         * @Return: EntityResponse<Placement>
-         */
-        UserPlacementsService.prototype.update = function (body) {
-            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Delete placement
-         * @Return: ActionResponse
-         */
-        UserPlacementsService.prototype.delete = function (id) {
-            return this.rest.delete("" + this.baseUrl);
-        };
-        /**
-         * Get single placement by id
-         * @Return: EntityResponse<Placement>
-         */
-        UserPlacementsService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Find placements by filters
-         * @Return: QueryResponse<Placement>
-         */
-        UserPlacementsService.prototype.find = function (userId, resourceId, bookingId, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (userId != null) {
-                params.push("userId=" + userId);
-            }
-            if (resourceId != null) {
-                params.push("resourceId=" + resourceId);
-            }
-            if (bookingId != null) {
-                params.push("bookingId=" + bookingId);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return UserPlacementsService;
-    }());
-    /** @nocollapse */ UserPlacementsService.ɵfac = function UserPlacementsService_Factory(t) { return new (t || UserPlacementsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UserPlacementsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UserPlacementsService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
      * List of all user related actions for account administrator only
      */
     var UsersService = /** @class */ (function () {
@@ -2824,18 +2653,190 @@
         }, null);
     })();
 
+    /**
+     * Services for managing kayak resources - for account administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (portal)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var UserBookingsService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function UserBookingsService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/user/bookings';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Create new booking
+         * @Return: EntityResponse<Booking>
+         */
+        UserBookingsService.prototype.create = function (body) {
+            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Update booking
+         * @Return: EntityResponse<Booking>
+         */
+        UserBookingsService.prototype.update = function (body) {
+            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Delete booking
+         * @Return: ActionResponse
+         */
+        UserBookingsService.prototype.delete = function (id) {
+            return this.rest.delete("" + this.baseUrl);
+        };
+        /**
+         * Get single booking by id
+         * @Return: EntityResponse<Booking>
+         */
+        UserBookingsService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find bookings by filters
+         * @Return: QueryResponse<Booking>
+         */
+        UserBookingsService.prototype.find = function (userId, resourceId, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (userId != null) {
+                params.push("userId=" + userId);
+            }
+            if (resourceId != null) {
+                params.push("resourceId=" + resourceId);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return UserBookingsService;
+    }());
+    /** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UserBookingsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserBookingsService, factory: UserBookingsService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(UserBookingsService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * Services for managing user placements (approved bookings)
+     * @RequestHeader X-API-KEY The key to identify the application (portal)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var UserPlacementsService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function UserPlacementsService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/user/placements';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Create new placement
+         * @Return: EntityResponse<Placement>
+         */
+        UserPlacementsService.prototype.create = function (body) {
+            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Update placement
+         * @Return: EntityResponse<Placement>
+         */
+        UserPlacementsService.prototype.update = function (body) {
+            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Delete placement
+         * @Return: ActionResponse
+         */
+        UserPlacementsService.prototype.delete = function (id) {
+            return this.rest.delete("" + this.baseUrl);
+        };
+        /**
+         * Get single placement by id
+         * @Return: EntityResponse<Placement>
+         */
+        UserPlacementsService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find placements by filters
+         * @Return: QueryResponse<Placement>
+         */
+        UserPlacementsService.prototype.find = function (userId, resourceId, bookingId, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (userId != null) {
+                params.push("userId=" + userId);
+            }
+            if (resourceId != null) {
+                params.push("resourceId=" + resourceId);
+            }
+            if (bookingId != null) {
+                params.push("bookingId=" + bookingId);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return UserPlacementsService;
+    }());
+    /** @nocollapse */ UserPlacementsService.ɵfac = function UserPlacementsService_Factory(t) { return new (t || UserPlacementsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UserPlacementsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(UserPlacementsService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
     var Services = [
-        AdminBoatsService,
-        AdminKayaksService,
-        AdminResourcesService,
-        UserBookingsService,
-        UserPlacementsService,
         UsersService,
         UserAccountsService,
         UserService,
         HealthCheckService,
         SysAccountsService,
         SysUsersService,
+        AdminBoatsService,
+        AdminKayaksService,
+        AdminResourcesService,
+        UserBookingsService,
+        UserPlacementsService,
     ];
 
     var CoreLibModule = /** @class */ (function () {
