@@ -153,12 +153,11 @@ class WeightRange {
 }
 
 /*
- *  Base entity includes common fields for all entities (persistence objects) in the system
+ *  Base entity includes common fields for all entities (persistence objects) in the system: id, create and update time
 */
 class BaseEntity {
-    constructor(id, docType, createdOn, updatedOn) {
+    constructor(id, createdOn, updatedOn) {
         this.id = id;
-        this._type = docType;
         this.createdOn = createdOn;
         this.updatedOn = updatedOn;
     }

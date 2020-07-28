@@ -5,7 +5,6 @@ export declare class FeaturesGroup extends BaseEntity {
     name: string;
     features: FeatureCode[];
     id: string;
-    _type: string;
     createdOn: number;
     updatedOn: number;
 }
@@ -13,7 +12,6 @@ export interface IFeaturesGroup extends IBaseEntity {
     name?: string;
     features?: FeatureCode[];
     id?: string;
-    _type?: string;
     createdOn?: number;
     updatedOn?: number;
 }
