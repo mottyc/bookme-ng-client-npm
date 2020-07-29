@@ -73,6 +73,11 @@ export declare class UsersService {
      * @Return: ActionResponse
      */
     getUserToken(id?: string, exp?: number): import("rxjs").Observable<any>;
+    /**
+     * Import bulk set of users
+     * @Return: ActionResponse
+     */
+    bulkCreate(body?: User[]): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<UsersService, never>;
     static ɵprov: i0.ɵɵInjectableDef<UsersService>;
 }

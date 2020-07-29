@@ -44,6 +44,11 @@ export declare class AdminResourcesService {
      * @Return: QueryResponse<Resource>
      */
     find(search?: string, resourceClass?: ResourceClassCode, resourceType?: ResourceTypeMask, status?: ResourceStatusCode, forUseBy?: UseTypeCode, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
+    /**
+     * Import bulk set of resources
+     * @Return: ActionResponse
+     */
+    bulkCreate(body?: Resource[]): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminResourcesService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminResourcesService>;
 }
