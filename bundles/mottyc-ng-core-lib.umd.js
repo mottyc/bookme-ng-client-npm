@@ -1911,6 +1911,144 @@
     })();
 
     /**
+     * List of all user related actions for account administrator only
+     */
+    var AdminUsersService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function AdminUsersService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/admin/users';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Send invitation to a new user for the current account
+         * @Return: ActionResponse
+         */
+        AdminUsersService.prototype.invite = function (body) {
+            return this.rest.post(this.baseUrl + "/invite", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Resend invitation to an existing user for the current account
+         * @Return: ActionResponse
+         */
+        AdminUsersService.prototype.reInvite = function (id) {
+            return this.rest.post(this.baseUrl + "/re-invite/" + id, null);
+        };
+        /**
+         * Update user
+         * @Return: EntityResponse<User>
+         */
+        AdminUsersService.prototype.update = function (id, body) {
+            return this.rest.put(this.baseUrl + "/" + id, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user name
+         * @Return: EntityResponse<User>
+         */
+        AdminUsersService.prototype.changeName = function (id, body) {
+            return this.rest.put(this.baseUrl + "/" + id + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user mobile
+         * @Return: EntityResponse<User>
+         */
+        AdminUsersService.prototype.changeMobile = function (id, body) {
+            return this.rest.put(this.baseUrl + "/" + id + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user type
+         * @Return: EntityResponse<User>
+         */
+        AdminUsersService.prototype.changeType = function (id, type) {
+            return this.rest.put(this.baseUrl + "/" + id + "/type/" + type, null);
+        };
+        /**
+         * Delete user from the system
+         * The user will be removed from the account, if no accounts associated with the user, it will be deleted
+         * @Return: ActionResponse
+         */
+        AdminUsersService.prototype.delete = function (id) {
+            return this.rest.delete(this.baseUrl + "/" + id);
+        };
+        /**
+         * Get single user by id
+         * @Return: EntityResponse<User>
+         */
+        AdminUsersService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Get single user by email
+         * @Return: EntityResponse<User>
+         */
+        AdminUsersService.prototype.getByEmail = function (email) {
+            return this.rest.get(this.baseUrl + "/byEmail/" + email);
+        };
+        /**
+         * Find list of users and filter the list
+         * System user will see all users, Account system will see all users of the account, registered user will get an error.
+         * @Return: QueryResponse<User>
+         */
+        AdminUsersService.prototype.find = function (accountId, search, type, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (accountId != null) {
+                params.push("accountId=" + accountId);
+            }
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        /**
+         * Get access token for user
+         * @Return: ActionResponse
+         */
+        AdminUsersService.prototype.getUserToken = function (id, exp) {
+            return this.rest.get(this.baseUrl + "/" + id + "/token/" + exp);
+        };
+        /**
+         * Import bulk set of users
+         * @Return: ActionResponse
+         */
+        AdminUsersService.prototype.bulkCreate = function (body) {
+            return this.rest.post(this.baseUrl + "/import", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        return AdminUsersService;
+    }());
+    /** @nocollapse */ AdminUsersService.ɵfac = function AdminUsersService_Factory(t) { return new (t || AdminUsersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminUsersService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminUsersService, factory: AdminUsersService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(AdminUsersService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
      * Health check service, no X-API-KEY or X-ACCESS-TOKEN are required
      */
     var HealthCheckService = /** @class */ (function () {
@@ -2109,144 +2247,6 @@
     /** @nocollapse */ UserPlacementsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
     /*@__PURE__*/ (function () {
         i0.ɵsetClassMetadata(UserPlacementsService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * List of all user related actions for account administrator only
-     */
-    var UsersService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function UsersService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/admin/users';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Send invitation to a new user for the current account
-         * @Return: ActionResponse
-         */
-        UsersService.prototype.invite = function (body) {
-            return this.rest.post(this.baseUrl + "/invite", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Resend invitation to an existing user for the current account
-         * @Return: ActionResponse
-         */
-        UsersService.prototype.reInvite = function (id) {
-            return this.rest.post(this.baseUrl + "/re-invite/" + id, null);
-        };
-        /**
-         * Update user
-         * @Return: EntityResponse<User>
-         */
-        UsersService.prototype.update = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user name
-         * @Return: EntityResponse<User>
-         */
-        UsersService.prototype.changeName = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user mobile
-         * @Return: EntityResponse<User>
-         */
-        UsersService.prototype.changeMobile = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user type
-         * @Return: EntityResponse<User>
-         */
-        UsersService.prototype.changeType = function (id, type) {
-            return this.rest.put(this.baseUrl + "/" + id + "/type/" + type, null);
-        };
-        /**
-         * Delete user from the system
-         * The user will be removed from the account, if no accounts associated with the user, it will be deleted
-         * @Return: ActionResponse
-         */
-        UsersService.prototype.delete = function (id) {
-            return this.rest.delete(this.baseUrl + "/" + id);
-        };
-        /**
-         * Get single user by id
-         * @Return: EntityResponse<User>
-         */
-        UsersService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Get single user by email
-         * @Return: EntityResponse<User>
-         */
-        UsersService.prototype.getByEmail = function (email) {
-            return this.rest.get(this.baseUrl + "/byEmail/" + email);
-        };
-        /**
-         * Find list of users and filter the list
-         * System user will see all users, Account system will see all users of the account, registered user will get an error.
-         * @Return: QueryResponse<User>
-         */
-        UsersService.prototype.find = function (accountId, search, type, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (accountId != null) {
-                params.push("accountId=" + accountId);
-            }
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (type != null) {
-                params.push("type=" + type);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        /**
-         * Get access token for user
-         * @Return: ActionResponse
-         */
-        UsersService.prototype.getUserToken = function (id, exp) {
-            return this.rest.get(this.baseUrl + "/" + id + "/token/" + exp);
-        };
-        /**
-         * Import bulk set of users
-         * @Return: ActionResponse
-         */
-        UsersService.prototype.bulkCreate = function (body) {
-            return this.rest.post(this.baseUrl + "/import", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        return UsersService;
-    }());
-    /** @nocollapse */ UsersService.ɵfac = function UsersService_Factory(t) { return new (t || UsersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UsersService.ɵprov = i0.ɵɵdefineInjectable({ token: UsersService, factory: UsersService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UsersService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -2676,7 +2676,7 @@
         AdminResourcesService,
         UserBookingsService,
         UserPlacementsService,
-        UsersService,
+        AdminUsersService,
         UserAccountsService,
         UserService,
         HealthCheckService,
@@ -2729,6 +2729,7 @@
     exports.AdminResourcesService = AdminResourcesService;
     exports.AdminUpdateResourceRequest = AdminUpdateResourceRequest;
     exports.AdminUsersBulkCreateRequest = AdminUsersBulkCreateRequest;
+    exports.AdminUsersService = AdminUsersService;
     exports.ApiKey = ApiKey;
     exports.AuditLog = AuditLog;
     exports.BaseEntity = BaseEntity;
@@ -2809,7 +2810,6 @@
     exports.UserTokenRequest = UserTokenRequest;
     exports.UserUpdateBookingRequest = UserUpdateBookingRequest;
     exports.UserUpdatePlacementRequest = UserUpdatePlacementRequest;
-    exports.UsersService = UsersService;
     exports.UsersServiceChangeDefaultAccountRequest = UsersServiceChangeDefaultAccountRequest;
     exports.UsersServiceChangeMobileRequest = UsersServiceChangeMobileRequest;
     exports.UsersServiceChangeNameRequest = UsersServiceChangeNameRequest;

@@ -1,4 +1,5 @@
 export * from './adminResourcesService';
+export * from './adminUsersService';
 export * from './healthCheckService';
 export * from './services.export';
 export * from './sysAccountsService';
@@ -7,4 +8,3 @@ export * from './userAccountsService';
 export * from './userBookingsService';
 export * from './userPlacementsService';
 export * from './userService';
-export * from './usersService';

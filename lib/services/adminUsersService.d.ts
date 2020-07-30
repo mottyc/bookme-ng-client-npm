@@ -8,7 +8,7 @@ import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
  */
-export declare class UsersService {
+export declare class AdminUsersService {
     private config;
     private rest;
     private baseUrl;
@@ -78,6 +78,6 @@ export declare class UsersService {
      * @Return: ActionResponse
      */
     bulkCreate(body?: User[]): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<UsersService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<UsersService>;
+    static ɵfac: i0.ɵɵFactoryDef<AdminUsersService, never>;
+    static ɵprov: i0.ɵɵInjectableDef<AdminUsersService>;
 }
