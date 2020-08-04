@@ -6,6 +6,7 @@ export * from './DayOfWeekCode';
 export * from './EntityTypeCode';
 export * from './FeatureCode';
 export * from './KayakTypeCode';
+export * from './MemberStatusCode';
 export * from './ResourceClassCode';
 export * from './ResourceStatusCode';
 export * from './ResourceTypeMask';

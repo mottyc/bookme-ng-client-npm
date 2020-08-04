@@ -1,5 +1,5 @@
+export * from './adminMembersService';
 export * from './adminResourcesService';
-export * from './adminUsersService';
 export * from './healthCheckService';
 export * from './services.export';
 export * from './sysAccountsService';

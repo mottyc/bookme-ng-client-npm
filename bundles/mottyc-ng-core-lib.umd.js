@@ -53,10 +53,12 @@
      *  Login data (returned by the API after successful login)
     */
     var LoginData = /** @class */ (function () {
-        function LoginData(accessToken, accountRole, userId, userName, userEmail, userType, userStatus, changePassword) {
+        function LoginData(accessToken, userId, accountId, accountRole, memberStatus, userName, userEmail, userType, userStatus, changePassword) {
             this.accessToken = accessToken;
-            this.accountRole = accountRole;
             this.userId = userId;
+            this.accountId = accountId;
+            this.accountRole = accountRole;
+            this.memberStatus = memberStatus;
             this.userName = userName;
             this.userEmail = userEmail;
             this.userType = userType;
@@ -136,15 +138,15 @@
     }());
 
     /*
-     *  User registration data model - used by self registered users
+     *  User registration data model
     */
     var UserRegistration = /** @class */ (function () {
-        function UserRegistration(name, email, mobile, defaultAccount, accountRoles, type, tempPassword, changePassword, verifyByEmail, description) {
+        function UserRegistration(name, email, mobile, accountId, accountRole, type, tempPassword, changePassword, verifyByEmail, description) {
             this.name = name;
             this.email = email;
             this.mobile = mobile;
-            this.defaultAccount = defaultAccount;
-            this.accountRoles = accountRoles;
+            this.accountId = accountId;
+            this.accountRole = accountRole;
             this.type = type;
             this.tempPassword = tempPassword;
             this.changePassword = changePassword;
@@ -546,6 +548,39 @@
     }(BaseEntity));
 
     /*
+     *  User membership in an account
+    */
+    var Member = /** @class */ (function (_super) {
+        __extends(Member, _super);
+        function Member() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return Member;
+    }(BaseEntity));
+
+    /*
+     *  Member in an account with extended user info (for display only)
+    */
+    var MemberUser = /** @class */ (function (_super) {
+        __extends(MemberUser, _super);
+        function MemberUser() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return MemberUser;
+    }(Member));
+
+    /*
+     *  Member in an account with extended account info (for display only)
+    */
+    var Membership = /** @class */ (function (_super) {
+        __extends(Membership, _super);
+        function Membership() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return Membership;
+    }(BaseEntity));
+
+    /*
      *  Placement - after booking approval, it is becoming a placement (derived from Booking)
     */
     var Placement = /** @class */ (function (_super) {
@@ -603,7 +638,7 @@
         AccountRoleCode[AccountRoleCode["MEMBER"] = 3] = "MEMBER";
         // Olympic team [4] 
         AccountRoleCode[AccountRoleCode["TEAM"] = 4] = "TEAM";
-        // Para-olympic team [5] 
+        // Paralympic team [5] 
         AccountRoleCode[AccountRoleCode["PARA"] = 5] = "PARA";
         // Club guest [6] 
         AccountRoleCode[AccountRoleCode["GUEST"] = 6] = "GUEST";
@@ -728,6 +763,20 @@
         // Waves (short) kayak [2048 + 1 + 8192] 
         KayakTypeCode[KayakTypeCode["WAVES"] = 10241] = "WAVES";
     })(exports.KayakTypeCode || (exports.KayakTypeCode = {}));
+
+    /*
+       Member status code
+    */
+    (function (MemberStatusCode) {
+        // Undefined [0] 
+        MemberStatusCode[MemberStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
+        // Member is registered and pending approval [1] 
+        MemberStatusCode[MemberStatusCode["PENDING"] = 1] = "PENDING";
+        // Active member in the account [2] 
+        MemberStatusCode[MemberStatusCode["ACTIVE"] = 2] = "ACTIVE";
+        // Frozen member (not active) [3] 
+        MemberStatusCode[MemberStatusCode["FROZEN"] = 3] = "FROZEN";
+    })(exports.MemberStatusCode || (exports.MemberStatusCode = {}));
 
     /*
        Resource class code (represent resource in the system)
@@ -891,9 +940,9 @@
         UserStatusCode[UserStatusCode["PENDING"] = 1] = "PENDING";
         // Active user in the system [2] 
         UserStatusCode[UserStatusCode["ACTIVE"] = 2] = "ACTIVE";
-        // Blocked user (only account system can unblock the user) [4] 
+        // Blocked user (only account system can unblock the user) [3] 
         UserStatusCode[UserStatusCode["BLOCKED"] = 3] = "BLOCKED";
-        // Suspended user (about to be deleted) [8] 
+        // Suspended user (about to be deleted) [4] 
         UserStatusCode[UserStatusCode["SUSPENDED"] = 4] = "SUSPENDED";
     })(exports.UserStatusCode || (exports.UserStatusCode = {}));
 
@@ -1118,6 +1167,26 @@
 
     /*
     */
+    var EntityResponseOfMember = /** @class */ (function (_super) {
+        __extends(EntityResponseOfMember, _super);
+        function EntityResponseOfMember() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntityResponseOfMember;
+    }(EntityResponse));
+
+    /*
+    */
+    var EntityResponseOfMemberUser = /** @class */ (function (_super) {
+        __extends(EntityResponseOfMemberUser, _super);
+        function EntityResponseOfMemberUser() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntityResponseOfMemberUser;
+    }(EntityResponse));
+
+    /*
+    */
     var EntityResponseOfPlacement = /** @class */ (function (_super) {
         __extends(EntityResponseOfPlacement, _super);
         function EntityResponseOfPlacement() {
@@ -1155,6 +1224,57 @@
         }
         return EntityResponseOfUserAccountInfo;
     }(EntityResponse));
+
+    /*
+    */
+    var MemberIdRequest = /** @class */ (function () {
+        function MemberIdRequest(id) {
+            this.id = id;
+        }
+        return MemberIdRequest;
+    }());
+
+    /*
+    */
+    var MembersFindRequest = /** @class */ (function () {
+        function MembersFindRequest(accountId, search, role, status, sort, page, pageSize) {
+            this.accountId = accountId;
+            this.search = search;
+            this.role = role;
+            this.status = status;
+            this.sort = sort;
+            this.page = page;
+            this.pageSize = pageSize;
+        }
+        return MembersFindRequest;
+    }());
+
+    /*
+    */
+    var MembersServiceInviteRequest = /** @class */ (function () {
+        function MembersServiceInviteRequest(body) {
+            this.body = body;
+        }
+        return MembersServiceInviteRequest;
+    }());
+
+    /*
+    */
+    var MembersServiceUpdateRequest = /** @class */ (function () {
+        function MembersServiceUpdateRequest(body) {
+            this.body = body;
+        }
+        return MembersServiceUpdateRequest;
+    }());
+
+    /*
+    */
+    var MembershipsRequest = /** @class */ (function () {
+        function MembershipsRequest(userId) {
+            this.userId = userId;
+        }
+        return MembershipsRequest;
+    }());
 
     /*
     */
@@ -1200,6 +1320,26 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return QueryResponseOfBooking;
+    }(QueryResponse));
+
+    /*
+    */
+    var QueryResponseOfMemberUser = /** @class */ (function (_super) {
+        __extends(QueryResponseOfMemberUser, _super);
+        function QueryResponseOfMemberUser() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return QueryResponseOfMemberUser;
+    }(QueryResponse));
+
+    /*
+    */
+    var QueryResponseOfMembership = /** @class */ (function (_super) {
+        __extends(QueryResponseOfMembership, _super);
+        function QueryResponseOfMembership() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return QueryResponseOfMembership;
     }(QueryResponse));
 
     /*
@@ -1812,6 +1952,109 @@
     }());
 
     /**
+     * List of all user related actions for account administrator only
+     */
+    var AdminMembersService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function AdminMembersService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/admin/members';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Send invitation to a new member for the current account
+         * @Return: ActionResponse
+         */
+        AdminMembersService.prototype.invite = function (body) {
+            return this.rest.post(this.baseUrl + "/invite", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Resend invitation to an existing member for the current account
+         * @Return: ActionResponse
+         */
+        AdminMembersService.prototype.reInvite = function (id) {
+            return this.rest.post(this.baseUrl + "/re-invite/" + id, null);
+        };
+        /**
+         * Update member
+         * @Return: EntityResponse<Member>
+         */
+        AdminMembersService.prototype.update = function (body) {
+            return this.rest.put(this.baseUrl + "/{id}", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Delete member from the account
+         * The member will be removed from the account, if no other memberships exist for the user, it will be deleted from the system
+         * @Return: ActionResponse
+         */
+        AdminMembersService.prototype.delete = function (id) {
+            return this.rest.delete(this.baseUrl + "/" + id);
+        };
+        /**
+         * Get single member by id (including user data)
+         * @Return: EntityResponse<MemberUser>
+         */
+        AdminMembersService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Get user memberships (in all accounts)
+         * @Return: QueryResponse<Membership>
+         */
+        AdminMembersService.prototype.getUserMemberships = function (userId) {
+            return this.rest.get(this.baseUrl + "/memberships/" + userId);
+        };
+        /**
+         * Find list of users and filter the list
+         * System user will see all users, Account system will see all users of the account, registered user will get an error.
+         * @Return: QueryResponse<MemberUser>
+         */
+        AdminMembersService.prototype.find = function (accountId, search, role, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (accountId != null) {
+                params.push("accountId=" + accountId);
+            }
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (role != null) {
+                params.push("role=" + role);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return AdminMembersService;
+    }());
+    /** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminMembersService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminMembersService, factory: AdminMembersService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(AdminMembersService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
      * Services for managing club resources - for account administrator only
      * @RequestHeader X-API-KEY The key to identify the application (portal)
      * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
@@ -1911,144 +2154,6 @@
     })();
 
     /**
-     * List of all user related actions for account administrator only
-     */
-    var AdminUsersService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function AdminUsersService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/admin/users';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Send invitation to a new user for the current account
-         * @Return: ActionResponse
-         */
-        AdminUsersService.prototype.invite = function (body) {
-            return this.rest.post(this.baseUrl + "/invite", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Resend invitation to an existing user for the current account
-         * @Return: ActionResponse
-         */
-        AdminUsersService.prototype.reInvite = function (id) {
-            return this.rest.post(this.baseUrl + "/re-invite/" + id, null);
-        };
-        /**
-         * Update user
-         * @Return: EntityResponse<User>
-         */
-        AdminUsersService.prototype.update = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user name
-         * @Return: EntityResponse<User>
-         */
-        AdminUsersService.prototype.changeName = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user mobile
-         * @Return: EntityResponse<User>
-         */
-        AdminUsersService.prototype.changeMobile = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user type
-         * @Return: EntityResponse<User>
-         */
-        AdminUsersService.prototype.changeType = function (id, type) {
-            return this.rest.put(this.baseUrl + "/" + id + "/type/" + type, null);
-        };
-        /**
-         * Delete user from the system
-         * The user will be removed from the account, if no accounts associated with the user, it will be deleted
-         * @Return: ActionResponse
-         */
-        AdminUsersService.prototype.delete = function (id) {
-            return this.rest.delete(this.baseUrl + "/" + id);
-        };
-        /**
-         * Get single user by id
-         * @Return: EntityResponse<User>
-         */
-        AdminUsersService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Get single user by email
-         * @Return: EntityResponse<User>
-         */
-        AdminUsersService.prototype.getByEmail = function (email) {
-            return this.rest.get(this.baseUrl + "/byEmail/" + email);
-        };
-        /**
-         * Find list of users and filter the list
-         * System user will see all users, Account system will see all users of the account, registered user will get an error.
-         * @Return: QueryResponse<User>
-         */
-        AdminUsersService.prototype.find = function (accountId, search, type, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (accountId != null) {
-                params.push("accountId=" + accountId);
-            }
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (type != null) {
-                params.push("type=" + type);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        /**
-         * Get access token for user
-         * @Return: ActionResponse
-         */
-        AdminUsersService.prototype.getUserToken = function (id, exp) {
-            return this.rest.get(this.baseUrl + "/" + id + "/token/" + exp);
-        };
-        /**
-         * Import bulk set of users
-         * @Return: ActionResponse
-         */
-        AdminUsersService.prototype.bulkCreate = function (body) {
-            return this.rest.post(this.baseUrl + "/import", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        return AdminUsersService;
-    }());
-    /** @nocollapse */ AdminUsersService.ɵfac = function AdminUsersService_Factory(t) { return new (t || AdminUsersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ AdminUsersService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminUsersService, factory: AdminUsersService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(AdminUsersService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
      * Health check service, no X-API-KEY or X-ACCESS-TOKEN are required
      */
     var HealthCheckService = /** @class */ (function () {
@@ -2075,6 +2180,174 @@
     /** @nocollapse */ HealthCheckService.ɵprov = i0.ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
     /*@__PURE__*/ (function () {
         i0.ɵsetClassMetadata(HealthCheckService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * List of account related actions
+     */
+    var UserAccountsService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function UserAccountsService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/user/accounts';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Find list of accounts and filter
+         * @Return: QueryResponse<Account>
+         */
+        UserAccountsService.prototype.find = function (search, type, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        /**
+         * Get single account by id
+         * @Return: EntityResponse<Account>
+         */
+        UserAccountsService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        return UserAccountsService;
+    }());
+    /** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UserAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(UserAccountsService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * Services for user registration and login
+     */
+    var UserService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function UserService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/user/user';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Login to the system with user email and password
+         * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
+         * @Return: EntityResponse<LoginData>
+         */
+        UserService.prototype.login = function (body) {
+            return this.rest.post(this.baseUrl + "/login", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Refresh token (set new expiration time) and associate with new account if required
+         * @Return: EntityResponse<LoginData>
+         */
+        UserService.prototype.refreshToken = function () {
+            return this.rest.post(this.baseUrl + "/refresh-token", null);
+        };
+        /**
+         * Verify user by temporary login key
+         * @Return: EntityResponse<User>
+         */
+        UserService.prototype.verifyLoginKey = function (key) {
+            var _a;
+            var params = new Array();
+            if (key != null) {
+                params.push("key=" + key);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/login/verify"], params));
+        };
+        /**
+         * Send verification code by email
+         * @Return: ActionResponse
+         */
+        UserService.prototype.sendVerificationCode = function (body) {
+            return this.rest.post(this.baseUrl + "/verify", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Validate verification code and reset password
+         * @Return: ActionResponse
+         */
+        UserService.prototype.resetPassword = function (code) {
+            return this.rest.post(this.baseUrl + "/reset-password", typeof code === 'object' ? JSON.stringify(code) : code);
+        };
+        /**
+         * Change password
+         * @Return: ActionResponse
+         */
+        UserService.prototype.changePassword = function (body) {
+            return this.rest.post(this.baseUrl + "/change-password", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Check if password was used before (according to password policy)
+         * @Return: ActionResponse
+         */
+        UserService.prototype.checkUnusedPassword = function (body) {
+            return this.rest.post(this.baseUrl + "/check-password", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change current user name
+         * @Return: ActionResponse
+         */
+        UserService.prototype.changeName = function (body) {
+            return this.rest.put(this.baseUrl + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change current user mobile
+         * @Return: ActionResponse
+         */
+        UserService.prototype.changeMobile = function (body) {
+            return this.rest.put(this.baseUrl + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Refresh token (set new expiration time) and associate with new account if required
+         * @Return: EntityResponse<UserAccountInfo>
+         */
+        UserService.prototype.switchAccount = function (body) {
+            return this.rest.post(this.baseUrl + "/switch-account", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        return UserService;
+    }());
+    /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UserService.ɵprov = i0.ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(UserService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -2247,174 +2520,6 @@
     /** @nocollapse */ UserPlacementsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
     /*@__PURE__*/ (function () {
         i0.ɵsetClassMetadata(UserPlacementsService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * List of account related actions
-     */
-    var UserAccountsService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function UserAccountsService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/user/accounts';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Find list of accounts and filter
-         * @Return: QueryResponse<Account>
-         */
-        UserAccountsService.prototype.find = function (search, type, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (type != null) {
-                params.push("type=" + type);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        /**
-         * Get single account by id
-         * @Return: EntityResponse<Account>
-         */
-        UserAccountsService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        return UserAccountsService;
-    }());
-    /** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UserAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UserAccountsService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * Services for user registration and login
-     */
-    var UserService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function UserService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/user/user';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Login to the system with user email and password
-         * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
-         * @Return: EntityResponse<LoginData>
-         */
-        UserService.prototype.login = function (body) {
-            return this.rest.post(this.baseUrl + "/login", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Refresh token (set new expiration time) and associate with new account if required
-         * @Return: EntityResponse<LoginData>
-         */
-        UserService.prototype.refreshToken = function () {
-            return this.rest.post(this.baseUrl + "/refresh-token", null);
-        };
-        /**
-         * Verify user by temporary login key
-         * @Return: EntityResponse<User>
-         */
-        UserService.prototype.verifyLoginKey = function (key) {
-            var _a;
-            var params = new Array();
-            if (key != null) {
-                params.push("key=" + key);
-            }
-            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/login/verify"], params));
-        };
-        /**
-         * Send verification code by email
-         * @Return: ActionResponse
-         */
-        UserService.prototype.sendVerificationCode = function (body) {
-            return this.rest.post(this.baseUrl + "/verify", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Validate verification code and reset password
-         * @Return: ActionResponse
-         */
-        UserService.prototype.resetPassword = function (code) {
-            return this.rest.post(this.baseUrl + "/reset-password", typeof code === 'object' ? JSON.stringify(code) : code);
-        };
-        /**
-         * Change password
-         * @Return: ActionResponse
-         */
-        UserService.prototype.changePassword = function (body) {
-            return this.rest.post(this.baseUrl + "/change-password", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Check if password was used before (according to password policy)
-         * @Return: ActionResponse
-         */
-        UserService.prototype.checkUnusedPassword = function (body) {
-            return this.rest.post(this.baseUrl + "/check-password", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change current user name
-         * @Return: ActionResponse
-         */
-        UserService.prototype.changeName = function (body) {
-            return this.rest.put(this.baseUrl + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change current user mobile
-         * @Return: ActionResponse
-         */
-        UserService.prototype.changeMobile = function (body) {
-            return this.rest.put(this.baseUrl + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Refresh token (set new expiration time) and associate with new account if required
-         * @Return: EntityResponse<UserAccountInfo>
-         */
-        UserService.prototype.switchAccount = function (body) {
-            return this.rest.post(this.baseUrl + "/switch-account", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        return UserService;
-    }());
-    /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UserService.ɵprov = i0.ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UserService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -2600,20 +2705,6 @@
             return this.rest.post(this.baseUrl + "/" + id + "/reset-password", null);
         };
         /**
-         * Set user roles in his accounts (override previous roles)
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.setRoles = function (id, roles) {
-            return this.rest.post(this.baseUrl + "/" + id + "/roles/", typeof roles === 'object' ? JSON.stringify(roles) : roles);
-        };
-        /**
-         * Update user roles in his accounts (merge with existing roles)
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.mergeRoles = function (id, roles) {
-            return this.rest.put(this.baseUrl + "/" + id + "/roles/", typeof roles === 'object' ? JSON.stringify(roles) : roles);
-        };
-        /**
          * Delete user from the system
          * @Return: ActionResponse
          */
@@ -2673,12 +2764,12 @@
     })();
 
     var Services = [
+        AdminMembersService,
+        UserAccountsService,
+        UserService,
         AdminResourcesService,
         UserBookingsService,
         UserPlacementsService,
-        AdminUsersService,
-        UserAccountsService,
-        UserService,
         HealthCheckService,
         SysAccountsService,
         SysUsersService,
@@ -2724,12 +2815,12 @@
     exports.AccountSettings = AccountSettings;
     exports.ActionResponse = ActionResponse;
     exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
+    exports.AdminMembersService = AdminMembersService;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
     exports.AdminResourcesService = AdminResourcesService;
     exports.AdminUpdateResourceRequest = AdminUpdateResourceRequest;
     exports.AdminUsersBulkCreateRequest = AdminUsersBulkCreateRequest;
-    exports.AdminUsersService = AdminUsersService;
     exports.ApiKey = ApiKey;
     exports.AuditLog = AuditLog;
     exports.BaseEntity = BaseEntity;
@@ -2749,6 +2840,8 @@
     exports.EntityResponseOfAccount = EntityResponseOfAccount;
     exports.EntityResponseOfBooking = EntityResponseOfBooking;
     exports.EntityResponseOfLoginData = EntityResponseOfLoginData;
+    exports.EntityResponseOfMember = EntityResponseOfMember;
+    exports.EntityResponseOfMemberUser = EntityResponseOfMemberUser;
     exports.EntityResponseOfPlacement = EntityResponseOfPlacement;
     exports.EntityResponseOfResource = EntityResponseOfResource;
     exports.EntityResponseOfUser = EntityResponseOfUser;
@@ -2759,11 +2852,21 @@
     exports.Incident = Incident;
     exports.LoginData = LoginData;
     exports.LoginParams = LoginParams;
+    exports.Member = Member;
+    exports.MemberIdRequest = MemberIdRequest;
+    exports.MemberUser = MemberUser;
+    exports.MembersFindRequest = MembersFindRequest;
+    exports.MembersServiceInviteRequest = MembersServiceInviteRequest;
+    exports.MembersServiceUpdateRequest = MembersServiceUpdateRequest;
+    exports.Membership = Membership;
+    exports.MembershipsRequest = MembershipsRequest;
     exports.Placement = Placement;
     exports.PlacementIdRequest = PlacementIdRequest;
     exports.QueryResponse = QueryResponse;
     exports.QueryResponseOfAccount = QueryResponseOfAccount;
     exports.QueryResponseOfBooking = QueryResponseOfBooking;
+    exports.QueryResponseOfMemberUser = QueryResponseOfMemberUser;
+    exports.QueryResponseOfMembership = QueryResponseOfMembership;
     exports.QueryResponseOfPlacement = QueryResponseOfPlacement;
     exports.QueryResponseOfResource = QueryResponseOfResource;
     exports.QueryResponseOfUser = QueryResponseOfUser;

@@ -1,6 +1,5 @@
 import { UserTypeCode } from '../enums/UserTypeCode';
 import { UserStatusCode } from '../enums/UserStatusCode';
-import { AccountRole } from '../common/AccountRole';
 import { UserGenderCode } from '../enums/UserGenderCode';
 import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
@@ -16,7 +15,6 @@ export declare class User extends BaseEntity {
     signInAttempts: number;
     changePassword: boolean;
     passwordChangedOn: number;
-    accountRoles: AccountRole[];
     defaultAccount: string;
     description: string;
     birthday: number;
@@ -24,13 +22,6 @@ export declare class User extends BaseEntity {
     weight: number;
     height: number;
     shoeSize: number;
-    level: number;
-    memberSince: number;
-    expiration: number;
-    isCox: boolean;
-    isMentor: boolean;
-    trainingTime: number;
-    restrictions: string;
     id: string;
     createdOn: number;
     updatedOn: number;
@@ -47,7 +38,6 @@ export interface IUser extends IBaseEntity {
     signInAttempts?: number;
     changePassword?: boolean;
     passwordChangedOn?: number;
-    accountRoles?: AccountRole[];
     defaultAccount?: string;
     description?: string;
     birthday?: number;
@@ -55,13 +45,6 @@ export interface IUser extends IBaseEntity {
     weight?: number;
     height?: number;
     shoeSize?: number;
-    level?: number;
-    memberSince?: number;
-    expiration?: number;
-    isCox?: boolean;
-    isMentor?: boolean;
-    trainingTime?: number;
-    restrictions?: string;
     id?: string;
     createdOn?: number;
     updatedOn?: number;

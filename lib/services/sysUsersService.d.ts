@@ -1,10 +1,9 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { AccountRoleCode } from '../enums/AccountRoleCode';
-import { UserRegistration } from '../common/UserRegistration';
-import { User } from '../entities/User';
 import { UserTypeCode } from '../enums/UserTypeCode';
 import { UserStatusCode } from '../enums/UserStatusCode';
+import { UserRegistration } from '../common/UserRegistration';
+import { User } from '../entities/User';
 import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
@@ -60,16 +59,6 @@ export declare class SysUsersService {
      * @Return: ActionResponse
      */
     resetPassword(id?: string): import("rxjs").Observable<any>;
-    /**
-     * Set user roles in his accounts (override previous roles)
-     * @Return: EntityResponse<User>
-     */
-    setRoles(id?: string, roles?: AccountRoleCode[]): import("rxjs").Observable<any>;
-    /**
-     * Update user roles in his accounts (merge with existing roles)
-     * @Return: EntityResponse<User>
-     */
-    mergeRoles(id?: string, roles?: AccountRoleCode[]): import("rxjs").Observable<any>;
     /**
      * Delete user from the system
      * @Return: ActionResponse
