@@ -567,7 +567,7 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return MemberUser;
-    }(Member));
+    }(BaseEntity));
 
     /*
      *  Member in an account with extended account info (for display only)
@@ -1029,15 +1029,6 @@
 
     /*
     */
-    var AdminUsersBulkCreateRequest = /** @class */ (function () {
-        function AdminUsersBulkCreateRequest(body) {
-            this.body = body;
-        }
-        return AdminUsersBulkCreateRequest;
-    }());
-
-    /*
-    */
     var BookingIdRequest = /** @class */ (function () {
         function BookingIdRequest(id) {
             this.id = id;
@@ -1232,6 +1223,15 @@
             this.id = id;
         }
         return MemberIdRequest;
+    }());
+
+    /*
+    */
+    var MembersBulkImportRequest = /** @class */ (function () {
+        function MembersBulkImportRequest(body) {
+            this.body = body;
+        }
+        return MembersBulkImportRequest;
     }());
 
     /*
@@ -2039,6 +2039,13 @@
             }
             return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
         };
+        /**
+         * Import bulk set of members
+         * @Return: ActionResponse
+         */
+        AdminMembersService.prototype.bulkImport = function (body) {
+            return this.rest.post(this.baseUrl + "/import", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
         return AdminMembersService;
     }());
     /** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -2820,7 +2827,6 @@
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
     exports.AdminResourcesService = AdminResourcesService;
     exports.AdminUpdateResourceRequest = AdminUpdateResourceRequest;
-    exports.AdminUsersBulkCreateRequest = AdminUsersBulkCreateRequest;
     exports.ApiKey = ApiKey;
     exports.AuditLog = AuditLog;
     exports.BaseEntity = BaseEntity;
@@ -2855,6 +2861,7 @@
     exports.Member = Member;
     exports.MemberIdRequest = MemberIdRequest;
     exports.MemberUser = MemberUser;
+    exports.MembersBulkImportRequest = MembersBulkImportRequest;
     exports.MembersFindRequest = MembersFindRequest;
     exports.MembersServiceInviteRequest = MembersServiceInviteRequest;
     exports.MembersServiceUpdateRequest = MembersServiceUpdateRequest;

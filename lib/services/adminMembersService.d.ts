@@ -1,9 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { UserInvitation } from '../common/UserInvitation';
-import { Member } from '../entities/Member';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
+import { MemberUser } from '../entities/MemberUser';
+import { UserInvitation } from '../common/UserInvitation';
+import { Member } from '../entities/Member';
 import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
@@ -53,6 +54,11 @@ export declare class AdminMembersService {
      * @Return: QueryResponse<MemberUser>
      */
     find(accountId?: string, search?: string, role?: AccountRoleCode[], status?: MemberStatusCode[], sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
+    /**
+     * Import bulk set of members
+     * @Return: ActionResponse
+     */
+    bulkImport(body?: MemberUser[]): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminMembersService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminMembersService>;
 }

@@ -1,10 +1,9 @@
-import { User } from '../entities/User';
-import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
-import { Member } from '../entities/Member';
-import { IMember } from '../entities/Member';
-export declare class MemberUser extends Member {
-    user: User;
+import { User } from '../entities/User';
+import { BaseEntity } from '../entities/BaseEntity';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
+import { IBaseEntity } from '../entities/BaseEntity';
+export declare class MemberUser extends BaseEntity {
     userId: string;
     accountId: string;
     accountRole: AccountRoleCode;
@@ -16,12 +15,12 @@ export declare class MemberUser extends Member {
     isMentor: boolean;
     trainingTime: number;
     restrictions: string;
+    user: User;
     id: string;
     createdOn: number;
     updatedOn: number;
 }
-export interface IMemberUser extends IMember {
-    user?: User;
+export interface IMemberUser extends IBaseEntity {
     userId?: string;
     accountId?: string;
     accountRole?: AccountRoleCode;
@@ -33,6 +32,7 @@ export interface IMemberUser extends IMember {
     isMentor?: boolean;
     trainingTime?: number;
     restrictions?: string;
+    user?: User;
     id?: string;
     createdOn?: number;
     updatedOn?: number;
