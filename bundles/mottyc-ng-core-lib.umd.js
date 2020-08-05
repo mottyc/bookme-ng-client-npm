@@ -2667,7 +2667,7 @@
          * @Return: EntityResponse<User>
          */
         SysUsersService.prototype.update = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id, typeof body === 'object' ? JSON.stringify(body) : body);
+            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
         };
         /**
          * Change user name
