@@ -1,8 +1,8 @@
-import { UserInvitation } from '../common/UserInvitation';
+import { MemberRegistration } from '../common/MemberRegistration';
 export declare class MembersServiceInviteRequest {
-    body: UserInvitation;
-    constructor(body?: UserInvitation);
+    body: MemberRegistration;
+    constructor(body?: MemberRegistration);
 }
 export interface IMembersServiceInviteRequest {
-    body?: UserInvitation;
+    body?: MemberRegistration;
 }

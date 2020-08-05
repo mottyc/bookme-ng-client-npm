@@ -81,6 +81,24 @@
     }());
 
     /*
+     *  Member registration data model
+    */
+    var MemberRegistration = /** @class */ (function () {
+        function MemberRegistration(name, email, mobile, gender, accountId, accountRole, tempPassword, changePassword, verifyByEmail) {
+            this.name = name;
+            this.email = email;
+            this.mobile = mobile;
+            this.gender = gender;
+            this.accountId = accountId;
+            this.accountRole = accountRole;
+            this.tempPassword = tempPassword;
+            this.changePassword = changePassword;
+            this.verifyByEmail = verifyByEmail;
+        }
+        return MemberRegistration;
+    }());
+
+    /*
      *  Schedule recurrent time frame
     */
     var RecurrentTimeFrame = /** @class */ (function () {
@@ -2860,6 +2878,7 @@
     exports.LoginParams = LoginParams;
     exports.Member = Member;
     exports.MemberIdRequest = MemberIdRequest;
+    exports.MemberRegistration = MemberRegistration;
     exports.MemberUser = MemberUser;
     exports.MembersBulkImportRequest = MembersBulkImportRequest;
     exports.MembersFindRequest = MembersFindRequest;
