@@ -1115,6 +1115,16 @@
 
     /*
     */
+    var EntitiesResponseOfMembership = /** @class */ (function (_super) {
+        __extends(EntitiesResponseOfMembership, _super);
+        function EntitiesResponseOfMembership() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntitiesResponseOfMembership;
+    }(EntitiesResponse));
+
+    /*
+    */
     var EntitiesResponseOfPlacement = /** @class */ (function (_super) {
         __extends(EntitiesResponseOfPlacement, _super);
         function EntitiesResponseOfPlacement() {
@@ -1283,6 +1293,15 @@
             this.body = body;
         }
         return MembersServiceUpdateRequest;
+    }());
+
+    /*
+    */
+    var MembershipIdRequest = /** @class */ (function () {
+        function MembershipIdRequest(id) {
+            this.id = id;
+        }
+        return MembershipIdRequest;
     }());
 
     /*
@@ -2269,6 +2288,20 @@
         UserAccountsService.prototype.get = function (id) {
             return this.rest.get(this.baseUrl + "/" + id);
         };
+        /**
+         * Get list of user memberships
+         * @Return: EntitiesResponse<Membership>
+         */
+        UserAccountsService.prototype.getMemberships = function () {
+            return this.rest.get(this.baseUrl + "/memberships");
+        };
+        /**
+         * Delete membership by id
+         * @Return: ActionResponse
+         */
+        UserAccountsService.prototype.deleteMemberships = function (id) {
+            return this.rest.delete(this.baseUrl + "/memberships/" + id);
+        };
         return UserAccountsService;
     }());
     /** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -2865,6 +2898,7 @@
     exports.EntitiesResponse = EntitiesResponse;
     exports.EntitiesResponseOfAccount = EntitiesResponseOfAccount;
     exports.EntitiesResponseOfBooking = EntitiesResponseOfBooking;
+    exports.EntitiesResponseOfMembership = EntitiesResponseOfMembership;
     exports.EntitiesResponseOfPlacement = EntitiesResponseOfPlacement;
     exports.EntitiesResponseOfResource = EntitiesResponseOfResource;
     exports.EntityResponse = EntityResponse;
@@ -2892,6 +2926,7 @@
     exports.MembersServiceInviteRequest = MembersServiceInviteRequest;
     exports.MembersServiceUpdateRequest = MembersServiceUpdateRequest;
     exports.Membership = Membership;
+    exports.MembershipIdRequest = MembershipIdRequest;
     exports.MembershipsRequest = MembershipsRequest;
     exports.Placement = Placement;
     exports.PlacementIdRequest = PlacementIdRequest;
