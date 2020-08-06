@@ -1454,7 +1454,7 @@ class AdminMembersService {
      * @Return: EntityResponse<Member>
      */
     update(body) {
-        return this.rest.put(`${this.baseUrl}/{id}`, typeof body === 'object' ? JSON.stringify(body) : body);
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Delete member from the account
@@ -1650,6 +1650,162 @@ class HealthCheckService {
 /** @nocollapse */ HealthCheckService.ɵfac = function HealthCheckService_Factory(t) { return new (t || HealthCheckService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
 /** @nocollapse */ HealthCheckService.ɵprov = ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
 /*@__PURE__*/ (function () { ɵsetClassMetadata(HealthCheckService, [{
+        type: Injectable
+    }], function () { return [{ type: CoreConfig, decorators: [{
+                type: Inject,
+                args: ['config']
+            }] }, { type: RestUtil }]; }, null); })();
+
+/**
+ * List of account related actions
+ */
+class UserAccountsService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/accounts';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Find list of accounts and filter
+     * @Return: QueryResponse<Account>
+     */
+    find(search, type, status, sort, page, pageSize) {
+        const params = new Array();
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+    /**
+     * Get single account by id
+     * @Return: EntityResponse<Account>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+}
+/** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
+/** @nocollapse */ UserAccountsService.ɵprov = ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(UserAccountsService, [{
+        type: Injectable
+    }], function () { return [{ type: CoreConfig, decorators: [{
+                type: Inject,
+                args: ['config']
+            }] }, { type: RestUtil }]; }, null); })();
+
+/**
+ * Services for user registration and login
+ */
+class UserService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/user';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Login to the system with user email and password
+     * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
+     * @Return: EntityResponse<LoginData>
+     */
+    login(body) {
+        return this.rest.post(`${this.baseUrl}/login`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Refresh token (set new expiration time) and associate with new account if required
+     * @Return: EntityResponse<LoginData>
+     */
+    refreshToken() {
+        return this.rest.post(`${this.baseUrl}/refresh-token`, null);
+    }
+    /**
+     * Verify user by temporary login key
+     * @Return: EntityResponse<User>
+     */
+    verifyLoginKey(key) {
+        const params = new Array();
+        if (key != null) {
+            params.push(`key=${key}`);
+        }
+        return this.rest.get(`${this.baseUrl}/login/verify`, ...params);
+    }
+    /**
+     * Send verification code by email
+     * @Return: ActionResponse
+     */
+    sendVerificationCode(body) {
+        return this.rest.post(`${this.baseUrl}/verify`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Validate verification code and reset password
+     * @Return: ActionResponse
+     */
+    resetPassword(code) {
+        return this.rest.post(`${this.baseUrl}/reset-password`, typeof code === 'object' ? JSON.stringify(code) : code);
+    }
+    /**
+     * Change password
+     * @Return: ActionResponse
+     */
+    changePassword(body) {
+        return this.rest.post(`${this.baseUrl}/change-password`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Check if password was used before (according to password policy)
+     * @Return: ActionResponse
+     */
+    checkUnusedPassword(body) {
+        return this.rest.post(`${this.baseUrl}/check-password`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Change current user name
+     * @Return: ActionResponse
+     */
+    changeName(body) {
+        return this.rest.put(`${this.baseUrl}/name`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Change current user mobile
+     * @Return: ActionResponse
+     */
+    changeMobile(body) {
+        return this.rest.put(`${this.baseUrl}/mobile`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Refresh token (set new expiration time) and associate with new account if required
+     * @Return: EntityResponse<UserAccountInfo>
+     */
+    switchAccount(body) {
+        return this.rest.post(`${this.baseUrl}/switch-account`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+}
+/** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
+/** @nocollapse */ UserService.ɵprov = ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(UserService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2038,172 +2194,16 @@ class SysUsersService {
                 args: ['config']
             }] }, { type: RestUtil }]; }, null); })();
 
-/**
- * List of account related actions
- */
-class UserAccountsService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/accounts';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Find list of accounts and filter
-     * @Return: QueryResponse<Account>
-     */
-    find(search, type, status, sort, page, pageSize) {
-        const params = new Array();
-        if (search != null) {
-            params.push(`search=${search}`);
-        }
-        if (type != null) {
-            params.push(`type=${type}`);
-        }
-        if (status != null) {
-            params.push(`status=${status}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-    /**
-     * Get single account by id
-     * @Return: EntityResponse<Account>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-}
-/** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UserAccountsService.ɵprov = ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UserAccountsService, [{
-        type: Injectable
-    }], function () { return [{ type: CoreConfig, decorators: [{
-                type: Inject,
-                args: ['config']
-            }] }, { type: RestUtil }]; }, null); })();
-
-/**
- * Services for user registration and login
- */
-class UserService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/user';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Login to the system with user email and password
-     * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
-     * @Return: EntityResponse<LoginData>
-     */
-    login(body) {
-        return this.rest.post(`${this.baseUrl}/login`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Refresh token (set new expiration time) and associate with new account if required
-     * @Return: EntityResponse<LoginData>
-     */
-    refreshToken() {
-        return this.rest.post(`${this.baseUrl}/refresh-token`, null);
-    }
-    /**
-     * Verify user by temporary login key
-     * @Return: EntityResponse<User>
-     */
-    verifyLoginKey(key) {
-        const params = new Array();
-        if (key != null) {
-            params.push(`key=${key}`);
-        }
-        return this.rest.get(`${this.baseUrl}/login/verify`, ...params);
-    }
-    /**
-     * Send verification code by email
-     * @Return: ActionResponse
-     */
-    sendVerificationCode(body) {
-        return this.rest.post(`${this.baseUrl}/verify`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Validate verification code and reset password
-     * @Return: ActionResponse
-     */
-    resetPassword(code) {
-        return this.rest.post(`${this.baseUrl}/reset-password`, typeof code === 'object' ? JSON.stringify(code) : code);
-    }
-    /**
-     * Change password
-     * @Return: ActionResponse
-     */
-    changePassword(body) {
-        return this.rest.post(`${this.baseUrl}/change-password`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Check if password was used before (according to password policy)
-     * @Return: ActionResponse
-     */
-    checkUnusedPassword(body) {
-        return this.rest.post(`${this.baseUrl}/check-password`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Change current user name
-     * @Return: ActionResponse
-     */
-    changeName(body) {
-        return this.rest.put(`${this.baseUrl}/name`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Change current user mobile
-     * @Return: ActionResponse
-     */
-    changeMobile(body) {
-        return this.rest.put(`${this.baseUrl}/mobile`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Refresh token (set new expiration time) and associate with new account if required
-     * @Return: EntityResponse<UserAccountInfo>
-     */
-    switchAccount(body) {
-        return this.rest.post(`${this.baseUrl}/switch-account`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-}
-/** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UserService.ɵprov = ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UserService, [{
-        type: Injectable
-    }], function () { return [{ type: CoreConfig, decorators: [{
-                type: Inject,
-                args: ['config']
-            }] }, { type: RestUtil }]; }, null); })();
-
 const Services = [
+    AdminMembersService,
+    UserAccountsService,
+    UserService,
     AdminResourcesService,
     UserBookingsService,
     UserPlacementsService,
     HealthCheckService,
     SysAccountsService,
     SysUsersService,
-    AdminMembersService,
-    UserAccountsService,
-    UserService,
 ];
 
 class CoreLibModule {
