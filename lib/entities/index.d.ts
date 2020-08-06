@@ -3,6 +3,8 @@ export * from './ApiKey';
 export * from './AuditLog';
 export * from './BaseEntity';
 export * from './Booking';
+export * from './BookingGroup';
+export * from './BookingRequest';
 export * from './Feature';
 export * from './FeaturesGroup';
 export * from './Incident';

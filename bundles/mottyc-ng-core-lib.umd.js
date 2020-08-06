@@ -521,7 +521,7 @@
     }(BaseEntity));
 
     /*
-     *  Booking request
+     *  Booking
      *  A booking is a pending request to book a resource for specific time for user(s), once it is approved, it becomes a placement
     */
     var Booking = /** @class */ (function (_super) {
@@ -530,6 +530,30 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return Booking;
+    }(BaseEntity));
+
+    /*
+     *  Booking Group
+     *  Group list of bookings by time
+    */
+    var BookingGroup = /** @class */ (function () {
+        function BookingGroup(timeGroup, booking) {
+            this.timeGroup = timeGroup;
+            this.booking = booking;
+        }
+        return BookingGroup;
+    }());
+
+    /*
+     *  Booking request
+     *  A booking is a pending request to book a resource for specific time for user(s), once it is approved, it becomes a placement
+    */
+    var BookingRequest = /** @class */ (function (_super) {
+        __extends(BookingRequest, _super);
+        function BookingRequest() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return BookingRequest;
     }(BaseEntity));
 
     /*
@@ -2889,7 +2913,9 @@
     exports.AuditLog = AuditLog;
     exports.BaseEntity = BaseEntity;
     exports.Booking = Booking;
+    exports.BookingGroup = BookingGroup;
     exports.BookingIdRequest = BookingIdRequest;
+    exports.BookingRequest = BookingRequest;
     exports.ChangePasswordRequest = ChangePasswordRequest;
     exports.CoreConfig = CoreConfig;
     exports.CoreLibModule = CoreLibModule;
