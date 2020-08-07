@@ -1,10 +1,10 @@
-import { AdminMembersService } from './adminMembersService';
-import { UserAccountsService } from './userAccountsService';
-import { UserService } from './userService';
 import { AdminResourcesService } from './adminResourcesService';
 import { UserBookingsService } from './userBookingsService';
 import { UserPlacementsService } from './userPlacementsService';
 import { HealthCheckService } from './healthCheckService';
 import { SysAccountsService } from './sysAccountsService';
 import { SysUsersService } from './sysUsersService';
-export declare const Services: (typeof AdminMembersService | typeof AdminResourcesService | typeof HealthCheckService | typeof UserAccountsService | typeof UserService | typeof UserBookingsService | typeof UserPlacementsService | typeof SysAccountsService | typeof SysUsersService)[];
+import { AdminMembersService } from './adminMembersService';
+import { UserAccountsService } from './userAccountsService';
+import { UserService } from './userService';
+export declare const Services: (typeof AdminMembersService | typeof AdminResourcesService | typeof HealthCheckService | typeof UserBookingsService | typeof UserPlacementsService | typeof SysAccountsService | typeof SysUsersService | typeof UserAccountsService | typeof UserService)[];
