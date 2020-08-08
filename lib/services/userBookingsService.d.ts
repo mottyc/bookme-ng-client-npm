@@ -1,7 +1,7 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { TimeUnitCode } from '../enums/TimeUnitCode';
 import { Booking } from '../entities/Booking';
+import { TimeUnitCode } from '../enums/TimeUnitCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing kayak resources - for account administrator only
