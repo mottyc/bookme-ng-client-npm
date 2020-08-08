@@ -5,6 +5,7 @@ export * from './BaseEntity';
 export * from './Booking';
 export * from './BookingGroup';
 export * from './BookingRequest';
+export * from './DailyActivity';
 export * from './Feature';
 export * from './FeaturesGroup';
 export * from './Incident';

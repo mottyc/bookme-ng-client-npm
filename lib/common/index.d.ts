@@ -1,6 +1,7 @@
 export * from './AbsoluteTimeFrame';
 export * from './AccountRole';
 export * from './AccountSettings';
+export * from './Activity';
 export * from './LoginData';
 export * from './LoginParams';
 export * from './MemberRegistration';

@@ -1,6 +1,7 @@
 export * from './AccountRoleCode';
 export * from './AccountStatusCode';
 export * from './AccountTypeCode';
+export * from './ActivityStatusCode';
 export * from './BookingStatusCode';
 export * from './DayOfWeekCode';
 export * from './EntityTypeCode';

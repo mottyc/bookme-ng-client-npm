@@ -43,10 +43,22 @@
      *  Account specific settings
     */
     var AccountSettings = /** @class */ (function () {
-        function AccountSettings(retentionDays) {
+        function AccountSettings(defaultTimeFrames, retentionDays) {
+            this.defaultTimeFrames = defaultTimeFrames;
             this.retentionDays = retentionDays;
         }
         return AccountSettings;
+    }());
+
+    /*
+     *  Account activities in a single time frame
+    */
+    var Activity = /** @class */ (function () {
+        function Activity(name, timeFrame) {
+            this.name = name;
+            this.timeFrame = timeFrame;
+        }
+        return Activity;
     }());
 
     /*
@@ -557,6 +569,17 @@
     }(BaseEntity));
 
     /*
+     *  Daily account activities entity
+    */
+    var DailyActivity = /** @class */ (function (_super) {
+        __extends(DailyActivity, _super);
+        function DailyActivity() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return DailyActivity;
+    }(BaseEntity));
+
+    /*
      *  System functionality (feature) description
     */
     var Feature = /** @class */ (function (_super) {
@@ -713,6 +736,18 @@
         // Active account for customer [3] 
         AccountTypeCode[AccountTypeCode["CUSTOMER"] = 3] = "CUSTOMER";
     })(exports.AccountTypeCode || (exports.AccountTypeCode = {}));
+
+    /*
+       Daily activity status code
+    */
+    (function (ActivityStatusCode) {
+        // Undefined [0] 
+        ActivityStatusCode[ActivityStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
+        // Daily activity as usual [1] 
+        ActivityStatusCode[ActivityStatusCode["OPEN"] = 1] = "OPEN";
+        // Activity is closed [2] 
+        ActivityStatusCode[ActivityStatusCode["CLOSED"] = 2] = "CLOSED";
+    })(exports.ActivityStatusCode || (exports.ActivityStatusCode = {}));
 
     /*
        Booking status code
@@ -2948,6 +2983,7 @@
     exports.AccountRole = AccountRole;
     exports.AccountSettings = AccountSettings;
     exports.ActionResponse = ActionResponse;
+    exports.Activity = Activity;
     exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
     exports.AdminMembersService = AdminMembersService;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
@@ -2964,6 +3000,7 @@
     exports.ChangePasswordRequest = ChangePasswordRequest;
     exports.CoreConfig = CoreConfig;
     exports.CoreLibModule = CoreLibModule;
+    exports.DailyActivity = DailyActivity;
     exports.EmptyRequest = EmptyRequest;
     exports.EmptyResponse = EmptyResponse;
     exports.EntitiesResponse = EntitiesResponse;
