@@ -3,6 +3,7 @@ import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Booking extends BaseEntity {
     placementOn: number;
+    duration: number;
     resourceId: string;
     requestId: string;
     requestedBy: string;
@@ -15,6 +16,7 @@ export declare class Booking extends BaseEntity {
 }
 export interface IBooking extends IBaseEntity {
     placementOn?: number;
+    duration?: number;
     resourceId?: string;
     requestId?: string;
     requestedBy?: string;

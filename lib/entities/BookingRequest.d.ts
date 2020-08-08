@@ -2,6 +2,7 @@ import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class BookingRequest extends BaseEntity {
     placementOn: number;
+    duration: number;
     requestedBy: string;
     requestedFor: string[];
     resourceId: string;
@@ -11,6 +12,7 @@ export declare class BookingRequest extends BaseEntity {
 }
 export interface IBookingRequest extends IBaseEntity {
     placementOn?: number;
+    duration?: number;
     requestedBy?: string;
     requestedFor?: string[];
     resourceId?: string;
