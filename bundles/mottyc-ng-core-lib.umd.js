@@ -1727,6 +1727,15 @@
 
     /*
     */
+    var UserServiceUpdateRequest = /** @class */ (function () {
+        function UserServiceUpdateRequest(body) {
+            this.body = body;
+        }
+        return UserServiceUpdateRequest;
+    }());
+
+    /*
+    */
     var UserServiceVerifyLoginRequest = /** @class */ (function () {
         function UserServiceVerifyLoginRequest(key) {
             this.key = key;
@@ -2487,6 +2496,20 @@
         UserService.prototype.switchAccount = function (body) {
             return this.rest.post(this.baseUrl + "/switch-account", typeof body === 'object' ? JSON.stringify(body) : body);
         };
+        /**
+         * Get user profile
+         * @Return: EntityResponse<User>
+         */
+        UserService.prototype.getProfile = function () {
+            return this.rest.get(this.baseUrl + "/profile");
+        };
+        /**
+         * Update user profile
+         * @Return: EntityResponse<User>
+         */
+        UserService.prototype.setProfile = function (body) {
+            return this.rest.get(this.baseUrl + "/profile");
+        };
         return UserService;
     }());
     /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -3087,6 +3110,7 @@
     exports.UserServiceResetPasswordRequest = UserServiceResetPasswordRequest;
     exports.UserServiceSendVerificationRequest = UserServiceSendVerificationRequest;
     exports.UserServiceSwitchAccountRequest = UserServiceSwitchAccountRequest;
+    exports.UserServiceUpdateRequest = UserServiceUpdateRequest;
     exports.UserServiceVerifyLoginRequest = UserServiceVerifyLoginRequest;
     exports.UserTokenRequest = UserTokenRequest;
     exports.UserUpdateBookingRequest = UserUpdateBookingRequest;

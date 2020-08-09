@@ -65,6 +65,7 @@ export * from './UserServiceLoginRequest';
 export * from './UserServiceResetPasswordRequest';
 export * from './UserServiceSendVerificationRequest';
 export * from './UserServiceSwitchAccountRequest';
+export * from './UserServiceUpdateRequest';
 export * from './UserServiceVerifyLoginRequest';
 export * from './UserTokenRequest';
 export * from './UserUpdateBookingRequest';
