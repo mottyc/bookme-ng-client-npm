@@ -1894,6 +1894,13 @@ class UserService {
         return this.rest.put(`${this.baseUrl}/mobile`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
+     * Get all user accessible accounts for the user
+     * @Return: EntitiesResponse<Account>
+     */
+    getAccounts() {
+        return this.rest.get(`${this.baseUrl}/accounts`);
+    }
+    /**
      * Refresh token (set new expiration time) and associate with new account if required
      * @Return: EntityResponse<UserAccountInfo>
      */
