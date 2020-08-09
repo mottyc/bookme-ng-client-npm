@@ -2508,7 +2508,7 @@
          * @Return: EntityResponse<User>
          */
         UserService.prototype.setProfile = function (body) {
-            return this.rest.get(this.baseUrl + "/profile");
+            return this.rest.put(this.baseUrl + "/profile", typeof body === 'object' ? JSON.stringify(body) : body);
         };
         return UserService;
     }());

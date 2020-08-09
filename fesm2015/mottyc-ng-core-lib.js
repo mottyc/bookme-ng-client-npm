@@ -1912,7 +1912,7 @@ class UserService {
      * @Return: EntityResponse<User>
      */
     setProfile(body) {
-        return this.rest.get(`${this.baseUrl}/profile`);
+        return this.rest.put(`${this.baseUrl}/profile`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
 }
 /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
