@@ -1,3 +1,4 @@
+export * from './adminActivitiesService';
 export * from './adminMembersService';
 export * from './adminResourcesService';
 export * from './healthCheckService';
