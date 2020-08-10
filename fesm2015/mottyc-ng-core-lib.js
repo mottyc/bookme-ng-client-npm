@@ -96,10 +96,11 @@ class MemberRegistration {
  *  Schedule recurrent time frame
 */
 class RecurrentTimeFrame {
-    constructor(dayOfWeek, startTime, endTime) {
+    constructor(dayOfWeek, startTime, endTime, name) {
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.name = name;
     }
 }
 

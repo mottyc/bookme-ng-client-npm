@@ -103,10 +103,11 @@
      *  Schedule recurrent time frame
     */
     var RecurrentTimeFrame = /** @class */ (function () {
-        function RecurrentTimeFrame(dayOfWeek, startTime, endTime) {
+        function RecurrentTimeFrame(dayOfWeek, startTime, endTime, name) {
             this.dayOfWeek = dayOfWeek;
             this.startTime = startTime;
             this.endTime = endTime;
+            this.name = name;
         }
         return RecurrentTimeFrame;
     }());

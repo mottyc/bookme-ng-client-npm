@@ -1,5 +1,5 @@
-import { BookingStatusCode } from '../enums/BookingStatusCode';
 import { BaseEntity } from '../entities/BaseEntity';
+import { BookingStatusCode } from '../enums/BookingStatusCode';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Booking extends BaseEntity {
     placementOn: number;
