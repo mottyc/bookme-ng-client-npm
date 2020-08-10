@@ -40,8 +40,8 @@ class AccountRole {
  *  Account specific settings
 */
 class AccountSettings {
-    constructor(defaultTimeFrames, retentionDays) {
-        this.defaultTimeFrames = defaultTimeFrames;
+    constructor(defaultActivities, retentionDays) {
+        this.defaultActivities = defaultActivities;
         this.retentionDays = retentionDays;
     }
 }

@@ -43,8 +43,8 @@
      *  Account specific settings
     */
     var AccountSettings = /** @class */ (function () {
-        function AccountSettings(defaultTimeFrames, retentionDays) {
-            this.defaultTimeFrames = defaultTimeFrames;
+        function AccountSettings(defaultActivities, retentionDays) {
+            this.defaultActivities = defaultActivities;
             this.retentionDays = retentionDays;
         }
         return AccountSettings;
