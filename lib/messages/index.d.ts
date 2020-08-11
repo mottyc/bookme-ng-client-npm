@@ -2,6 +2,7 @@ export * from './AccountIdRequest';
 export * from './ActionResponse';
 export * from './ActivityIdRequest';
 export * from './AdminActivityBulkCreateRequest';
+export * from './AdminActivityDefaultCreateRequest';
 export * from './AdminActivityFindRequest';
 export * from './AdminCreateActivityRequest';
 export * from './AdminCreateResourceRequest';

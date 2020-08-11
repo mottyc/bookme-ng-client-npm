@@ -44,7 +44,12 @@ export declare class AdminActivitiesService {
      * Create bulk set of activities
      * @Return: ActionResponse
      */
-    bulkCreate(body?: Activity[]): import("rxjs").Observable<any>;
+    createBulk(body?: Activity[]): import("rxjs").Observable<any>;
+    /**
+     * Create account default set of activities per month
+     * @Return: ActionResponse
+     */
+    createDefault(year?: number, month?: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminActivitiesService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminActivitiesService>;
 }
