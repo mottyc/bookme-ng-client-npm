@@ -39,7 +39,7 @@ export declare class AdminActivitiesService {
      * Find activities by time range
      * @Return: QueryResponse<Activity>
      */
-    find(from?: number, to?: number): import("rxjs").Observable<any>;
+    find(from?: number, to?: number, year?: number, month?: number, day?: number): import("rxjs").Observable<any>;
     /**
      * Create bulk set of activities
      * @Return: ActionResponse
