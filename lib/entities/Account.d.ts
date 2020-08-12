@@ -6,7 +6,6 @@ import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Account extends BaseEntity {
     name: string;
-    key: string;
     type: AccountTypeCode;
     status: AccountStatusCode;
     suspendedOn: number;
@@ -22,7 +21,6 @@ export declare class Account extends BaseEntity {
 }
 export interface IAccount extends IBaseEntity {
     name?: string;
-    key?: string;
     type?: AccountTypeCode;
     status?: AccountStatusCode;
     suspendedOn?: number;
