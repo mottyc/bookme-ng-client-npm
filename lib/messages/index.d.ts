@@ -6,6 +6,7 @@ export * from './AdminActivityDefaultCreateRequest';
 export * from './AdminActivityFindRequest';
 export * from './AdminCreateActivityRequest';
 export * from './AdminCreateResourceRequest';
+export * from './AdminMembersFindRequest';
 export * from './AdminResourceBulkCreateRequest';
 export * from './AdminResourceFindRequest';
 export * from './AdminUpdateActivityRequest';

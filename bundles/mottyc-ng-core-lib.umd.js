@@ -1112,6 +1112,21 @@
 
     /*
     */
+    var AdminMembersFindRequest = /** @class */ (function () {
+        function AdminMembersFindRequest(accountId, search, role, status, sort, page, pageSize) {
+            this.accountId = accountId;
+            this.search = search;
+            this.role = role;
+            this.status = status;
+            this.sort = sort;
+            this.page = page;
+            this.pageSize = pageSize;
+        }
+        return AdminMembersFindRequest;
+    }());
+
+    /*
+    */
     var AdminResourceBulkCreateRequest = /** @class */ (function () {
         function AdminResourceBulkCreateRequest(body) {
             this.body = body;
@@ -1403,8 +1418,7 @@
     /*
     */
     var MembersFindRequest = /** @class */ (function () {
-        function MembersFindRequest(accountId, search, role, status, sort, page, pageSize) {
-            this.accountId = accountId;
+        function MembersFindRequest(search, role, status, sort, page, pageSize) {
             this.search = search;
             this.role = role;
             this.status = status;
@@ -2874,12 +2888,9 @@
          * System user will see all users, Account system will see all users of the account, registered user will get an error.
          * @Return: QueryResponse<MemberUser>
          */
-        UsrMembersService.prototype.find = function (accountId, search, role, status, sort, page, pageSize) {
+        UsrMembersService.prototype.find = function (search, role, status, sort, page, pageSize) {
             var _a;
             var params = new Array();
-            if (accountId != null) {
-                params.push("accountId=" + accountId);
-            }
             if (search != null) {
                 params.push("search=" + search);
             }
@@ -3337,6 +3348,7 @@
     exports.AdminActivityFindRequest = AdminActivityFindRequest;
     exports.AdminCreateActivityRequest = AdminCreateActivityRequest;
     exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
+    exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersService = AdminMembersService;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
