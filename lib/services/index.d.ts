@@ -9,3 +9,5 @@ export * from './userAccountsService';
 export * from './userBookingsService';
 export * from './userPlacementsService';
 export * from './userService';
+export * from './usrActivitiesService';
+export * from './usrMembersService';

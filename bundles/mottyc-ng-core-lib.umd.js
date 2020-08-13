@@ -2195,7 +2195,7 @@
         };
         /**
          * Get single activity by id
-         * @Return: EntityResponse<Resource>
+         * @Return: EntityResponse<Activity>
          */
         AdminActivitiesService.prototype.get = function (id) {
             return this.rest.get(this.baseUrl + "/" + id);
@@ -2514,6 +2514,68 @@
     })();
 
     /**
+     * Services for managing club activities - for account administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (portal)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var UsrActivitiesService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function UsrActivitiesService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/user/activities';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Get single activity by id
+         * @Return: EntityResponse<Activity>
+         */
+        UsrActivitiesService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find activities by time range
+         * @Return: QueryResponse<Activity>
+         */
+        UsrActivitiesService.prototype.find = function (from, to, year, month, day) {
+            var _a;
+            var params = new Array();
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
+            }
+            if (year != null) {
+                params.push("year=" + year);
+            }
+            if (month != null) {
+                params.push("month=" + month);
+            }
+            if (day != null) {
+                params.push("day=" + day);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return UsrActivitiesService;
+    }());
+    /** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UsrActivitiesService.ɵprov = i0.ɵɵdefineInjectable({ token: UsrActivitiesService, factory: UsrActivitiesService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(UsrActivitiesService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
      * Services for managing kayak resources - for account administrator only
      * @RequestHeader X-API-KEY The key to identify the application (portal)
      * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
@@ -2777,6 +2839,73 @@
     /** @nocollapse */ UserAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
     /*@__PURE__*/ (function () {
         i0.ɵsetClassMetadata(UserAccountsService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * List of all user related actions for account administrator only
+     */
+    var UsrMembersService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function UsrMembersService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/user/members';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Get single member by id (including user data)
+         * @Return: EntityResponse<MemberUser>
+         */
+        UsrMembersService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find list of users and filter the list
+         * System user will see all users, Account system will see all users of the account, registered user will get an error.
+         * @Return: QueryResponse<MemberUser>
+         */
+        UsrMembersService.prototype.find = function (accountId, search, role, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (accountId != null) {
+                params.push("accountId=" + accountId);
+            }
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (role != null) {
+                params.push("role=" + role);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return UsrMembersService;
+    }());
+    /** @nocollapse */ UsrMembersService.ɵfac = function UsrMembersService_Factory(t) { return new (t || UsrMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UsrMembersService.ɵprov = i0.ɵɵdefineInjectable({ token: UsrMembersService, factory: UsrMembersService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(UsrMembersService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3149,10 +3278,12 @@
     var Services = [
         AdminActivitiesService,
         AdminResourcesService,
+        UsrActivitiesService,
         UserBookingsService,
         UserPlacementsService,
         AdminMembersService,
         UserAccountsService,
+        UsrMembersService,
         UserService,
         HealthCheckService,
         SysAccountsService,
@@ -3328,6 +3459,8 @@
     exports.UsersServiceInviteRequest = UsersServiceInviteRequest;
     exports.UsersServiceSetRolesRequest = UsersServiceSetRolesRequest;
     exports.UsersServiceUpdateRequest = UsersServiceUpdateRequest;
+    exports.UsrActivitiesService = UsrActivitiesService;
+    exports.UsrMembersService = UsrMembersService;
     exports.Verification = Verification;
     exports.WebSocketMessageHeader = WebSocketMessageHeader;
     exports.WeightRange = WeightRange;

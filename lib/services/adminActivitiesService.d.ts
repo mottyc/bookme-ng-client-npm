@@ -32,7 +32,7 @@ export declare class AdminActivitiesService {
     delete(id?: string): import("rxjs").Observable<any>;
     /**
      * Get single activity by id
-     * @Return: EntityResponse<Resource>
+     * @Return: EntityResponse<Activity>
      */
     get(id?: string): import("rxjs").Observable<any>;
     /**

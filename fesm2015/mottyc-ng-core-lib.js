@@ -1603,7 +1603,7 @@ class AdminActivitiesService {
     }
     /**
      * Get single activity by id
-     * @Return: EntityResponse<Resource>
+     * @Return: EntityResponse<Activity>
      */
     get(id) {
         return this.rest.get(`${this.baseUrl}/${id}`);
@@ -1898,6 +1898,62 @@ class HealthCheckService {
             }] }, { type: RestUtil }]; }, null); })();
 
 /**
+ * Services for managing club activities - for account administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (portal)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class UsrActivitiesService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/activities';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Get single activity by id
+     * @Return: EntityResponse<Activity>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find activities by time range
+     * @Return: QueryResponse<Activity>
+     */
+    find(from, to, year, month, day) {
+        const params = new Array();
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (year != null) {
+            params.push(`year=${year}`);
+        }
+        if (month != null) {
+            params.push(`month=${month}`);
+        }
+        if (day != null) {
+            params.push(`day=${day}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+/** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
+/** @nocollapse */ UsrActivitiesService.ɵprov = ɵɵdefineInjectable({ token: UsrActivitiesService, factory: UsrActivitiesService.ɵfac });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(UsrActivitiesService, [{
+        type: Injectable
+    }], function () { return [{ type: CoreConfig, decorators: [{
+                type: Inject,
+                args: ['config']
+            }] }, { type: RestUtil }]; }, null); })();
+
+/**
  * Services for managing kayak resources - for account administrator only
  * @RequestHeader X-API-KEY The key to identify the application (portal)
  * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
@@ -2145,6 +2201,67 @@ class UserAccountsService {
 /** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
 /** @nocollapse */ UserAccountsService.ɵprov = ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
 /*@__PURE__*/ (function () { ɵsetClassMetadata(UserAccountsService, [{
+        type: Injectable
+    }], function () { return [{ type: CoreConfig, decorators: [{
+                type: Inject,
+                args: ['config']
+            }] }, { type: RestUtil }]; }, null); })();
+
+/**
+ * List of all user related actions for account administrator only
+ */
+class UsrMembersService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/members';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Get single member by id (including user data)
+     * @Return: EntityResponse<MemberUser>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find list of users and filter the list
+     * System user will see all users, Account system will see all users of the account, registered user will get an error.
+     * @Return: QueryResponse<MemberUser>
+     */
+    find(accountId, search, role, status, sort, page, pageSize) {
+        const params = new Array();
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (role != null) {
+            params.push(`role=${role}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+/** @nocollapse */ UsrMembersService.ɵfac = function UsrMembersService_Factory(t) { return new (t || UsrMembersService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
+/** @nocollapse */ UsrMembersService.ɵprov = ɵɵdefineInjectable({ token: UsrMembersService, factory: UsrMembersService.ɵfac });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(UsrMembersService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2496,10 +2613,12 @@ class SysUsersService {
 const Services = [
     AdminActivitiesService,
     AdminResourcesService,
+    UsrActivitiesService,
     UserBookingsService,
     UserPlacementsService,
     AdminMembersService,
     UserAccountsService,
+    UsrMembersService,
     UserService,
     HealthCheckService,
     SysAccountsService,
@@ -2535,5 +2654,5 @@ class CoreLibModule {
  * Generated bundle index. Do not edit.
  */
 
-export { AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, Activity, ActivityIdRequest, ActivityStatusCode, AdminActivitiesService, AdminActivityBulkCreateRequest, AdminActivityDefaultCreateRequest, AdminActivityFindRequest, AdminCreateActivityRequest, AdminCreateResourceRequest, AdminMembersService, AdminResourceBulkCreateRequest, AdminResourceFindRequest, AdminResourcesService, AdminUpdateActivityRequest, AdminUpdateResourceRequest, ApiKey, AuditLog, BaseEntity, Booking, BookingGroup, BookingIdRequest, BookingRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, DayOfWeekCode, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfActivity, EntitiesResponseOfBooking, EntitiesResponseOfBookingGroup, EntitiesResponseOfMembership, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntityResponse, EntityResponseOfAccount, EntityResponseOfActivity, EntityResponseOfBooking, EntityResponseOfLoginData, EntityResponseOfMember, EntityResponseOfMemberUser, EntityResponseOfPlacement, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Member, MemberIdRequest, MemberRegistration, MemberStatusCode, MemberUser, MembersBulkImportRequest, MembersFindRequest, MembersServiceInviteRequest, MembersServiceUpdateRequest, Membership, MembershipIdRequest, MembershipsRequest, Placement, PlacementIdRequest, QueryResponse, QueryResponseOfAccount, QueryResponseOfActivity, QueryResponseOfBooking, QueryResponseOfMemberUser, QueryResponseOfMembership, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentTimeFrame, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, RestUtil, RowingBoatTypeCode, Services, StreamResponse, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, UseTypeCode, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingGroupRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceUpdateRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdatePlacementRequest, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
+export { AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, Activity, ActivityIdRequest, ActivityStatusCode, AdminActivitiesService, AdminActivityBulkCreateRequest, AdminActivityDefaultCreateRequest, AdminActivityFindRequest, AdminCreateActivityRequest, AdminCreateResourceRequest, AdminMembersService, AdminResourceBulkCreateRequest, AdminResourceFindRequest, AdminResourcesService, AdminUpdateActivityRequest, AdminUpdateResourceRequest, ApiKey, AuditLog, BaseEntity, Booking, BookingGroup, BookingIdRequest, BookingRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, DayOfWeekCode, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfActivity, EntitiesResponseOfBooking, EntitiesResponseOfBookingGroup, EntitiesResponseOfMembership, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntityResponse, EntityResponseOfAccount, EntityResponseOfActivity, EntityResponseOfBooking, EntityResponseOfLoginData, EntityResponseOfMember, EntityResponseOfMemberUser, EntityResponseOfPlacement, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Member, MemberIdRequest, MemberRegistration, MemberStatusCode, MemberUser, MembersBulkImportRequest, MembersFindRequest, MembersServiceInviteRequest, MembersServiceUpdateRequest, Membership, MembershipIdRequest, MembershipsRequest, Placement, PlacementIdRequest, QueryResponse, QueryResponseOfAccount, QueryResponseOfActivity, QueryResponseOfBooking, QueryResponseOfMemberUser, QueryResponseOfMembership, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentTimeFrame, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, RestUtil, RowingBoatTypeCode, Services, StreamResponse, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, UseTypeCode, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingGroupRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceUpdateRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdatePlacementRequest, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, UsrActivitiesService, UsrMembersService, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
 //# sourceMappingURL=mottyc-ng-core-lib.js.map
