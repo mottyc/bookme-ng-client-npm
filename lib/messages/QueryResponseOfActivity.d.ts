@@ -1,5 +1,5 @@
-import { Activity } from '../entities/Activity';
 import { QueryResponse } from '../messages/QueryResponse';
+import { Activity } from '../entities/Activity';
 import { IQueryResponse } from '../messages/QueryResponse';
 export declare class QueryResponseOfActivity extends QueryResponse {
     list: Activity[];
