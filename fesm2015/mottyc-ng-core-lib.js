@@ -2057,6 +2057,13 @@ class UserBookingsService {
         return this.rest.delete(`${this.baseUrl}/${id}`);
     }
     /**
+     * Remove current user from booking
+     * @Return: ActionResponse
+     */
+    removeMe(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}/remove-me`);
+    }
+    /**
      * Get single booking by id
      * @Return: EntityResponse<Booking>
      */
@@ -2108,63 +2115,6 @@ class UserBookingsService {
             params.push(`groupBy=${groupBy}`);
         }
         return this.rest.get(`${this.baseUrl}/groups`, ...params);
-    }
-    /**
-     * Create new booking request
-     * @Return: EntityResponse<BookingRequest>
-     */
-    createRequest(body) {
-        return this.rest.post(`${this.baseUrl}/requests`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Update booking
-     * @Return: EntityResponse<BookingRequest>
-     */
-    updateRequest(body) {
-        return this.rest.put(`${this.baseUrl}/requests`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Delete booking
-     * @Return: ActionResponse
-     */
-    deleteRequest(id) {
-        return this.rest.delete(`${this.baseUrl}/requests/${id}`);
-    }
-    /**
-     * Get single booking by id
-     * @Return: EntityResponse<BookingRequest>
-     */
-    getRequest(id) {
-        return this.rest.get(`${this.baseUrl}/requests/${id}`);
-    }
-    /**
-     * Find bookings by filters
-     * @Return: QueryResponse<BookingRequest>
-     */
-    findRequest(userId, resourceId, from, to, sort, page, pageSize) {
-        const params = new Array();
-        if (userId != null) {
-            params.push(`userId=${userId}`);
-        }
-        if (resourceId != null) {
-            params.push(`resourceId=${resourceId}`);
-        }
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}/requests`, ...params);
     }
 }
 /** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };

@@ -2,7 +2,6 @@ import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
 import { Booking } from '../entities/Booking';
 import { TimeUnitCode } from '../enums/TimeUnitCode';
-import { BookingRequest } from '../entities/BookingRequest';
 import * as i0 from "@angular/core";
 /**
  * Services for managing kayak resources - for account administrator only
@@ -33,6 +32,11 @@ export declare class UserBookingsService {
      */
     delete(id?: string): import("rxjs").Observable<any>;
     /**
+     * Remove current user from booking
+     * @Return: ActionResponse
+     */
+    removeMe(id?: string): import("rxjs").Observable<any>;
+    /**
      * Get single booking by id
      * @Return: EntityResponse<Booking>
      */
@@ -47,31 +51,6 @@ export declare class UserBookingsService {
      * @Return: EntitiesResponse<BookingGroup>
      */
     groups(from?: number, to?: number, groupBy?: TimeUnitCode): import("rxjs").Observable<any>;
-    /**
-     * Create new booking request
-     * @Return: EntityResponse<BookingRequest>
-     */
-    createRequest(body?: BookingRequest): import("rxjs").Observable<any>;
-    /**
-     * Update booking
-     * @Return: EntityResponse<BookingRequest>
-     */
-    updateRequest(body?: BookingRequest): import("rxjs").Observable<any>;
-    /**
-     * Delete booking
-     * @Return: ActionResponse
-     */
-    deleteRequest(id?: string): import("rxjs").Observable<any>;
-    /**
-     * Get single booking by id
-     * @Return: EntityResponse<BookingRequest>
-     */
-    getRequest(id?: string): import("rxjs").Observable<any>;
-    /**
-     * Find bookings by filters
-     * @Return: QueryResponse<BookingRequest>
-     */
-    findRequest(userId?: string, resourceId?: string, from?: number, to?: number, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<UserBookingsService, never>;
     static ɵprov: i0.ɵɵInjectableDef<UserBookingsService>;
 }
