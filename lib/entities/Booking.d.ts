@@ -1,3 +1,4 @@
+import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { BookingStatusCode } from '../enums/BookingStatusCode';
 import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
@@ -5,9 +6,9 @@ export declare class Booking extends BaseEntity {
     placementOn: number;
     duration: number;
     resourceId: string;
-    requestId: string;
     requestedBy: string;
-    requestedFor: string;
+    requestedFor: string[];
+    resourceType: ResourceTypeMask;
     approvedOn: number;
     status: BookingStatusCode;
     id: string;
@@ -18,9 +19,9 @@ export interface IBooking extends IBaseEntity {
     placementOn?: number;
     duration?: number;
     resourceId?: string;
-    requestId?: string;
     requestedBy?: string;
-    requestedFor?: string;
+    requestedFor?: string[];
+    resourceType?: ResourceTypeMask;
     approvedOn?: number;
     status?: BookingStatusCode;
     id?: string;
