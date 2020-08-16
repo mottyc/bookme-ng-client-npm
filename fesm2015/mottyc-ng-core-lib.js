@@ -800,6 +800,14 @@ class BookingIdRequest {
 }
 
 /*
+*/
+class BookingRequestIdRequest {
+    constructor(id) {
+        this.id = id;
+    }
+}
+
+/*
  *  Change Password request message
 */
 class ChangePasswordRequest {
@@ -856,6 +864,11 @@ class EntitiesResponseOfBookingGroup extends EntitiesResponse {
 
 /*
 */
+class EntitiesResponseOfBookingRequest extends EntitiesResponse {
+}
+
+/*
+*/
 class EntitiesResponseOfMembership extends EntitiesResponse {
 }
 
@@ -892,6 +905,11 @@ class EntityResponseOfActivity extends EntityResponse {
 /*
 */
 class EntityResponseOfBooking extends EntityResponse {
+}
+
+/*
+*/
+class EntityResponseOfBookingRequest extends EntityResponse {
 }
 
 /*
@@ -1031,6 +1049,11 @@ class QueryResponseOfBooking extends QueryResponse {
 
 /*
 */
+class QueryResponseOfBookingRequest extends QueryResponse {
+}
+
+/*
+*/
 class QueryResponseOfMemberUser extends QueryResponse {
 }
 
@@ -1159,6 +1182,20 @@ class UserBookingGroupRequest {
 
 /*
 */
+class UserBookingRequestFindRequest {
+    constructor(userId, resourceId, from, to, sort, page, pageSize) {
+        this.userId = userId;
+        this.resourceId = resourceId;
+        this.from = from;
+        this.to = to;
+        this.sort = sort;
+        this.page = page;
+        this.pageSize = pageSize;
+    }
+}
+
+/*
+*/
 class UserByEmailRequest {
     constructor(email) {
         this.email = email;
@@ -1168,6 +1205,14 @@ class UserByEmailRequest {
 /*
 */
 class UserCreateBookingRequest {
+    constructor(body) {
+        this.body = body;
+    }
+}
+
+/*
+*/
+class UserCreateBookingRequestRequest {
     constructor(body) {
         this.body = body;
     }
@@ -1305,6 +1350,14 @@ class UserTokenRequest {
 /*
 */
 class UserUpdateBookingRequest {
+    constructor(body) {
+        this.body = body;
+    }
+}
+
+/*
+*/
+class UserUpdateBookingRequestRequest {
     constructor(body) {
         this.body = body;
     }
@@ -2056,6 +2109,63 @@ class UserBookingsService {
         }
         return this.rest.get(`${this.baseUrl}/groups`, ...params);
     }
+    /**
+     * Create new booking request
+     * @Return: EntityResponse<BookingRequest>
+     */
+    createRequest(body) {
+        return this.rest.post(`${this.baseUrl}/requests`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update booking
+     * @Return: EntityResponse<BookingRequest>
+     */
+    updateRequest(body) {
+        return this.rest.put(`${this.baseUrl}/requests`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete booking
+     * @Return: ActionResponse
+     */
+    deleteRequest(id) {
+        return this.rest.delete(`${this.baseUrl}/requests/${id}`);
+    }
+    /**
+     * Get single booking by id
+     * @Return: EntityResponse<BookingRequest>
+     */
+    getRequest(id) {
+        return this.rest.get(`${this.baseUrl}/requests/${id}`);
+    }
+    /**
+     * Find bookings by filters
+     * @Return: QueryResponse<BookingRequest>
+     */
+    findRequest(userId, resourceId, from, to, sort, page, pageSize) {
+        const params = new Array();
+        if (userId != null) {
+            params.push(`userId=${userId}`);
+        }
+        if (resourceId != null) {
+            params.push(`resourceId=${resourceId}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}/requests`, ...params);
+    }
 }
 /** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
 /** @nocollapse */ UserBookingsService.ɵprov = ɵɵdefineInjectable({ token: UserBookingsService, factory: UserBookingsService.ɵfac });
@@ -2671,5 +2781,5 @@ class CoreLibModule {
  * Generated bundle index. Do not edit.
  */
 
-export { AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, Activity, ActivityIdRequest, ActivityStatusCode, AdminActivitiesService, AdminActivityBulkCreateRequest, AdminActivityDefaultCreateRequest, AdminActivityFindRequest, AdminCreateActivityRequest, AdminCreateResourceRequest, AdminMembersFindRequest, AdminMembersService, AdminResourceBulkCreateRequest, AdminResourceFindRequest, AdminResourcesService, AdminUpdateActivityRequest, AdminUpdateResourceRequest, ApiKey, AuditLog, BaseEntity, Booking, BookingGroup, BookingIdRequest, BookingRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, DayOfWeekCode, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfActivity, EntitiesResponseOfBooking, EntitiesResponseOfBookingGroup, EntitiesResponseOfMembership, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntityResponse, EntityResponseOfAccount, EntityResponseOfActivity, EntityResponseOfBooking, EntityResponseOfLoginData, EntityResponseOfMember, EntityResponseOfMemberUser, EntityResponseOfPlacement, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Member, MemberIdRequest, MemberRegistration, MemberStatusCode, MemberUser, MembersBulkImportRequest, MembersFindRequest, MembersServiceInviteRequest, MembersServiceUpdateRequest, Membership, MembershipIdRequest, MembershipsRequest, Placement, PlacementIdRequest, QueryResponse, QueryResponseOfAccount, QueryResponseOfActivity, QueryResponseOfBooking, QueryResponseOfMemberUser, QueryResponseOfMembership, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentTimeFrame, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, RestUtil, RowingBoatTypeCode, Services, StreamResponse, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, UseTypeCode, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingGroupRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceUpdateRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdatePlacementRequest, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, UsrActivitiesService, UsrMembersService, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
+export { AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, Activity, ActivityIdRequest, ActivityStatusCode, AdminActivitiesService, AdminActivityBulkCreateRequest, AdminActivityDefaultCreateRequest, AdminActivityFindRequest, AdminCreateActivityRequest, AdminCreateResourceRequest, AdminMembersFindRequest, AdminMembersService, AdminResourceBulkCreateRequest, AdminResourceFindRequest, AdminResourcesService, AdminUpdateActivityRequest, AdminUpdateResourceRequest, ApiKey, AuditLog, BaseEntity, Booking, BookingGroup, BookingIdRequest, BookingRequest, BookingRequestIdRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, DayOfWeekCode, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfActivity, EntitiesResponseOfBooking, EntitiesResponseOfBookingGroup, EntitiesResponseOfBookingRequest, EntitiesResponseOfMembership, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntityResponse, EntityResponseOfAccount, EntityResponseOfActivity, EntityResponseOfBooking, EntityResponseOfBookingRequest, EntityResponseOfLoginData, EntityResponseOfMember, EntityResponseOfMemberUser, EntityResponseOfPlacement, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Member, MemberIdRequest, MemberRegistration, MemberStatusCode, MemberUser, MembersBulkImportRequest, MembersFindRequest, MembersServiceInviteRequest, MembersServiceUpdateRequest, Membership, MembershipIdRequest, MembershipsRequest, Placement, PlacementIdRequest, QueryResponse, QueryResponseOfAccount, QueryResponseOfActivity, QueryResponseOfBooking, QueryResponseOfBookingRequest, QueryResponseOfMemberUser, QueryResponseOfMembership, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentTimeFrame, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, RestUtil, RowingBoatTypeCode, Services, StreamResponse, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, UseTypeCode, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingGroupRequest, UserBookingRequestFindRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreateBookingRequestRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceUpdateRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdateBookingRequestRequest, UserUpdatePlacementRequest, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, UsrActivitiesService, UsrMembersService, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
 //# sourceMappingURL=mottyc-ng-core-lib.js.map

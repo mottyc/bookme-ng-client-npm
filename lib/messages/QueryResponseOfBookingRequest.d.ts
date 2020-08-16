@@ -1,8 +1,8 @@
+import { BookingRequest } from '../entities/BookingRequest';
 import { QueryResponse } from '../messages/QueryResponse';
-import { Booking } from '../entities/Booking';
 import { IQueryResponse } from '../messages/QueryResponse';
-export declare class QueryResponseOfBooking extends QueryResponse {
-    list: Booking[];
+export declare class QueryResponseOfBookingRequest extends QueryResponse {
+    list: BookingRequest[];
     code: number;
     error: string;
     page: number;
@@ -12,8 +12,8 @@ export declare class QueryResponseOfBooking extends QueryResponse {
     queryDef: string;
     docType: string;
 }
-export interface IQueryResponseOfBooking extends IQueryResponse {
-    list?: Booking[];
+export interface IQueryResponseOfBookingRequest extends IQueryResponse {
+    list?: BookingRequest[];
     code?: number;
     error?: string;
     page?: number;

@@ -1178,6 +1178,15 @@
     }());
 
     /*
+    */
+    var BookingRequestIdRequest = /** @class */ (function () {
+        function BookingRequestIdRequest(id) {
+            this.id = id;
+        }
+        return BookingRequestIdRequest;
+    }());
+
+    /*
      *  Change Password request message
     */
     var ChangePasswordRequest = /** @class */ (function () {
@@ -1258,6 +1267,16 @@
 
     /*
     */
+    var EntitiesResponseOfBookingRequest = /** @class */ (function (_super) {
+        __extends(EntitiesResponseOfBookingRequest, _super);
+        function EntitiesResponseOfBookingRequest() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntitiesResponseOfBookingRequest;
+    }(EntitiesResponse));
+
+    /*
+    */
     var EntitiesResponseOfMembership = /** @class */ (function (_super) {
         __extends(EntitiesResponseOfMembership, _super);
         function EntitiesResponseOfMembership() {
@@ -1325,6 +1344,16 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return EntityResponseOfBooking;
+    }(EntityResponse));
+
+    /*
+    */
+    var EntityResponseOfBookingRequest = /** @class */ (function (_super) {
+        __extends(EntityResponseOfBookingRequest, _super);
+        function EntityResponseOfBookingRequest() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntityResponseOfBookingRequest;
     }(EntityResponse));
 
     /*
@@ -1523,6 +1552,16 @@
 
     /*
     */
+    var QueryResponseOfBookingRequest = /** @class */ (function (_super) {
+        __extends(QueryResponseOfBookingRequest, _super);
+        function QueryResponseOfBookingRequest() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return QueryResponseOfBookingRequest;
+    }(QueryResponse));
+
+    /*
+    */
     var QueryResponseOfMemberUser = /** @class */ (function (_super) {
         __extends(QueryResponseOfMemberUser, _super);
         function QueryResponseOfMemberUser() {
@@ -1686,6 +1725,21 @@
 
     /*
     */
+    var UserBookingRequestFindRequest = /** @class */ (function () {
+        function UserBookingRequestFindRequest(userId, resourceId, from, to, sort, page, pageSize) {
+            this.userId = userId;
+            this.resourceId = resourceId;
+            this.from = from;
+            this.to = to;
+            this.sort = sort;
+            this.page = page;
+            this.pageSize = pageSize;
+        }
+        return UserBookingRequestFindRequest;
+    }());
+
+    /*
+    */
     var UserByEmailRequest = /** @class */ (function () {
         function UserByEmailRequest(email) {
             this.email = email;
@@ -1700,6 +1754,15 @@
             this.body = body;
         }
         return UserCreateBookingRequest;
+    }());
+
+    /*
+    */
+    var UserCreateBookingRequestRequest = /** @class */ (function () {
+        function UserCreateBookingRequestRequest(body) {
+            this.body = body;
+        }
+        return UserCreateBookingRequestRequest;
     }());
 
     /*
@@ -1853,6 +1916,15 @@
             this.body = body;
         }
         return UserUpdateBookingRequest;
+    }());
+
+    /*
+    */
+    var UserUpdateBookingRequestRequest = /** @class */ (function () {
+        function UserUpdateBookingRequestRequest(body) {
+            this.body = body;
+        }
+        return UserUpdateBookingRequestRequest;
     }());
 
     /*
@@ -2681,6 +2753,64 @@
             }
             return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/groups"], params));
         };
+        /**
+         * Create new booking request
+         * @Return: EntityResponse<BookingRequest>
+         */
+        UserBookingsService.prototype.createRequest = function (body) {
+            return this.rest.post(this.baseUrl + "/requests", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Update booking
+         * @Return: EntityResponse<BookingRequest>
+         */
+        UserBookingsService.prototype.updateRequest = function (body) {
+            return this.rest.put(this.baseUrl + "/requests", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Delete booking
+         * @Return: ActionResponse
+         */
+        UserBookingsService.prototype.deleteRequest = function (id) {
+            return this.rest.delete(this.baseUrl + "/requests/" + id);
+        };
+        /**
+         * Get single booking by id
+         * @Return: EntityResponse<BookingRequest>
+         */
+        UserBookingsService.prototype.getRequest = function (id) {
+            return this.rest.get(this.baseUrl + "/requests/" + id);
+        };
+        /**
+         * Find bookings by filters
+         * @Return: QueryResponse<BookingRequest>
+         */
+        UserBookingsService.prototype.findRequest = function (userId, resourceId, from, to, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (userId != null) {
+                params.push("userId=" + userId);
+            }
+            if (resourceId != null) {
+                params.push("resourceId=" + resourceId);
+            }
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/requests"], params));
+        };
         return UserBookingsService;
     }());
     /** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -3369,6 +3499,7 @@
     exports.BookingGroup = BookingGroup;
     exports.BookingIdRequest = BookingIdRequest;
     exports.BookingRequest = BookingRequest;
+    exports.BookingRequestIdRequest = BookingRequestIdRequest;
     exports.ChangePasswordRequest = ChangePasswordRequest;
     exports.CoreConfig = CoreConfig;
     exports.CoreLibModule = CoreLibModule;
@@ -3379,6 +3510,7 @@
     exports.EntitiesResponseOfActivity = EntitiesResponseOfActivity;
     exports.EntitiesResponseOfBooking = EntitiesResponseOfBooking;
     exports.EntitiesResponseOfBookingGroup = EntitiesResponseOfBookingGroup;
+    exports.EntitiesResponseOfBookingRequest = EntitiesResponseOfBookingRequest;
     exports.EntitiesResponseOfMembership = EntitiesResponseOfMembership;
     exports.EntitiesResponseOfPlacement = EntitiesResponseOfPlacement;
     exports.EntitiesResponseOfResource = EntitiesResponseOfResource;
@@ -3386,6 +3518,7 @@
     exports.EntityResponseOfAccount = EntityResponseOfAccount;
     exports.EntityResponseOfActivity = EntityResponseOfActivity;
     exports.EntityResponseOfBooking = EntityResponseOfBooking;
+    exports.EntityResponseOfBookingRequest = EntityResponseOfBookingRequest;
     exports.EntityResponseOfLoginData = EntityResponseOfLoginData;
     exports.EntityResponseOfMember = EntityResponseOfMember;
     exports.EntityResponseOfMemberUser = EntityResponseOfMemberUser;
@@ -3416,6 +3549,7 @@
     exports.QueryResponseOfAccount = QueryResponseOfAccount;
     exports.QueryResponseOfActivity = QueryResponseOfActivity;
     exports.QueryResponseOfBooking = QueryResponseOfBooking;
+    exports.QueryResponseOfBookingRequest = QueryResponseOfBookingRequest;
     exports.QueryResponseOfMemberUser = QueryResponseOfMemberUser;
     exports.QueryResponseOfMembership = QueryResponseOfMembership;
     exports.QueryResponseOfPlacement = QueryResponseOfPlacement;
@@ -3442,9 +3576,11 @@
     exports.UserAccountsService = UserAccountsService;
     exports.UserBookingFindRequest = UserBookingFindRequest;
     exports.UserBookingGroupRequest = UserBookingGroupRequest;
+    exports.UserBookingRequestFindRequest = UserBookingRequestFindRequest;
     exports.UserBookingsService = UserBookingsService;
     exports.UserByEmailRequest = UserByEmailRequest;
     exports.UserCreateBookingRequest = UserCreateBookingRequest;
+    exports.UserCreateBookingRequestRequest = UserCreateBookingRequestRequest;
     exports.UserCreatePlacementRequest = UserCreatePlacementRequest;
     exports.UserIdRequest = UserIdRequest;
     exports.UserIdsRequest = UserIdsRequest;
@@ -3465,6 +3601,7 @@
     exports.UserServiceVerifyLoginRequest = UserServiceVerifyLoginRequest;
     exports.UserTokenRequest = UserTokenRequest;
     exports.UserUpdateBookingRequest = UserUpdateBookingRequest;
+    exports.UserUpdateBookingRequestRequest = UserUpdateBookingRequestRequest;
     exports.UserUpdatePlacementRequest = UserUpdatePlacementRequest;
     exports.UsersServiceChangeDefaultAccountRequest = UsersServiceChangeDefaultAccountRequest;
     exports.UsersServiceChangeMobileRequest = UsersServiceChangeMobileRequest;
