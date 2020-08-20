@@ -3,6 +3,7 @@ export * from './ActionResponse';
 export * from './ActivityIdRequest';
 export * from './AdminActivityBulkCreateRequest';
 export * from './AdminActivityDefaultCreateRequest';
+export * from './AdminActivityDefaultDeleteRequest';
 export * from './AdminActivityFindRequest';
 export * from './AdminCreateActivityRequest';
 export * from './AdminCreateResourceRequest';
