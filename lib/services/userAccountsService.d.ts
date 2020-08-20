@@ -1,7 +1,7 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { AccountTypeCode } from '../enums/AccountTypeCode';
 import { AccountStatusCode } from '../enums/AccountStatusCode';
+import { AccountTypeCode } from '../enums/AccountTypeCode';
 import * as i0 from "@angular/core";
 /**
  * List of account related actions

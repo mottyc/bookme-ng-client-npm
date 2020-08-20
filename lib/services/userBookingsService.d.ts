@@ -1,7 +1,7 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { TimeUnitCode } from '../enums/TimeUnitCode';
 import { Booking } from '../entities/Booking';
+import { TimeUnitCode } from '../enums/TimeUnitCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing kayak resources - for account administrator only
@@ -47,10 +47,15 @@ export declare class UserBookingsService {
      */
     find(userId?: string, resourceId?: string, from?: number, to?: number, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
     /**
-     * Group my bookings by time
+     * Group my bookings by time period
      * @Return: EntitiesResponse<BookingGroup>
      */
     groups(from?: number, to?: number, groupBy?: TimeUnitCode): import("rxjs").Observable<any>;
+    /**
+     * Find list of activities groups by time period
+     * @Return: EntitiesResponse<BookingGroup>
+     */
+    activities(from?: number, to?: number, groupBy?: TimeUnitCode): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<UserBookingsService, never>;
     static ɵprov: i0.ɵɵInjectableDef<UserBookingsService>;
 }
