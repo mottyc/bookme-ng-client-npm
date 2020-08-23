@@ -1,11 +1,11 @@
 export declare class ChangePasswordRequest {
-    userId: string;
+    userEmail: string;
     oldPassword: string;
     newPassword: string;
-    constructor(userId?: string, oldPassword?: string, newPassword?: string);
+    constructor(userEmail?: string, oldPassword?: string, newPassword?: string);
 }
 export interface IChangePasswordRequest {
-    userId?: string;
+    userEmail?: string;
     oldPassword?: string;
     newPassword?: string;
 }
