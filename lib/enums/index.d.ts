@@ -8,6 +8,7 @@ export * from './EntityTypeCode';
 export * from './FeatureCode';
 export * from './KayakTypeCode';
 export * from './MemberStatusCode';
+export * from './PlacementStatusCode';
 export * from './ResourceClassCode';
 export * from './ResourceStatusCode';
 export * from './ResourceTypeMask';
