@@ -36,6 +36,16 @@ export declare class AdminActivitiesService {
      */
     get(id?: string): import("rxjs").Observable<any>;
     /**
+     * Get previous activity related to this activity id
+     * @Return: EntityResponse<Activity>
+     */
+    prev(id?: string): import("rxjs").Observable<any>;
+    /**
+     * Get next activity related to this activity id
+     * @Return: EntityResponse<Activity>
+     */
+    next(id?: string): import("rxjs").Observable<any>;
+    /**
      * Find activities by time range
      * @Return: QueryResponse<Activity>
      */
