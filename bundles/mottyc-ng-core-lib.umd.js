@@ -509,6 +509,18 @@
     }(BaseEntity));
 
     /*
+     *  Activity Booking Group
+     *  Group list of bookings by activity
+    */
+    var ActivityBookingGroup = /** @class */ (function () {
+        function ActivityBookingGroup(activity, bookings) {
+            this.activity = activity;
+            this.bookings = bookings;
+        }
+        return ActivityBookingGroup;
+    }());
+
+    /*
      *  API Key is used per application (e.g. Portal, Mobile App) or service to identify the consumer.
      *  The access to sets of REST endpoints is restricted according the API key.
      *  API key also dictates the default session TTL per application (e.g. 20 minutes for Portal or Console, 30 days for Mobile app)
@@ -1157,6 +1169,15 @@
 
     /*
     */
+    var AdminDailyPlaningRequest = /** @class */ (function () {
+        function AdminDailyPlaningRequest(day) {
+            this.day = day;
+        }
+        return AdminDailyPlaningRequest;
+    }());
+
+    /*
+    */
     var AdminMembersFindRequest = /** @class */ (function () {
         function AdminMembersFindRequest(accountId, search, role, status, sort, page, pageSize) {
             this.accountId = accountId;
@@ -1288,6 +1309,17 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return EntitiesResponseOfActivity;
+    }(EntitiesResponse));
+
+    /*
+     *  EntitiesResponse<ActivityBookingGroup>
+    */
+    var EntitiesResponseOfActivityBookingGroup = /** @class */ (function (_super) {
+        __extends(EntitiesResponseOfActivityBookingGroup, _super);
+        function EntitiesResponseOfActivityBookingGroup() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntitiesResponseOfActivityBookingGroup;
     }(EntitiesResponse));
 
     /*
@@ -2565,6 +2597,13 @@
             this.baseUrl = this.config.api + this.baseUrl;
         }
         /**
+         * Get daily planing - bookings group by activities
+         * @Return: EntitiesResponse<ActivityBookingGroup>
+         */
+        AdminPlaningService.prototype.getDailyPlaning = function (day) {
+            return this.rest.get(this.baseUrl + "/daily/" + day);
+        };
+        /**
          * Get Activity planing
          * @Return: EntityResponse<Planing>
          */
@@ -3573,6 +3612,7 @@
     exports.AccountSettings = AccountSettings;
     exports.ActionResponse = ActionResponse;
     exports.Activity = Activity;
+    exports.ActivityBookingGroup = ActivityBookingGroup;
     exports.ActivityIdRequest = ActivityIdRequest;
     exports.AdminActivitiesService = AdminActivitiesService;
     exports.AdminActivityBulkCreateRequest = AdminActivityBulkCreateRequest;
@@ -3582,6 +3622,7 @@
     exports.AdminActivityPlaningRequest = AdminActivityPlaningRequest;
     exports.AdminCreateActivityRequest = AdminCreateActivityRequest;
     exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
+    exports.AdminDailyPlaningRequest = AdminDailyPlaningRequest;
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersService = AdminMembersService;
     exports.AdminPlaningService = AdminPlaningService;
@@ -3606,6 +3647,7 @@
     exports.EntitiesResponse = EntitiesResponse;
     exports.EntitiesResponseOfAccount = EntitiesResponseOfAccount;
     exports.EntitiesResponseOfActivity = EntitiesResponseOfActivity;
+    exports.EntitiesResponseOfActivityBookingGroup = EntitiesResponseOfActivityBookingGroup;
     exports.EntitiesResponseOfBooking = EntitiesResponseOfBooking;
     exports.EntitiesResponseOfBookingGroup = EntitiesResponseOfBookingGroup;
     exports.EntitiesResponseOfBookingRequest = EntitiesResponseOfBookingRequest;

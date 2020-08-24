@@ -1,5 +1,6 @@
 export * from './Account';
 export * from './Activity';
+export * from './ActivityBookingGroup';
 export * from './ApiKey';
 export * from './AuditLog';
 export * from './BaseEntity';

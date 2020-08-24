@@ -16,6 +16,11 @@ export declare class AdminPlaningService {
      */
     constructor(config: CoreConfig, rest: RestUtil);
     /**
+     * Get daily planing - bookings group by activities
+     * @Return: EntitiesResponse<ActivityBookingGroup>
+     */
+    getDailyPlaning(day?: number): import("rxjs").Observable<any>;
+    /**
      * Get Activity planing
      * @Return: EntityResponse<Planing>
      */
