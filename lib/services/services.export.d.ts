@@ -1,4 +1,5 @@
 import { AdminActivitiesService } from './adminActivitiesService';
+import { AdminPlaningService } from './adminPlaningService';
 import { AdminResourcesService } from './adminResourcesService';
 import { UsrActivitiesService } from './usrActivitiesService';
 import { UserBookingsService } from './userBookingsService';
@@ -10,4 +11,4 @@ import { UserService } from './userService';
 import { HealthCheckService } from './healthCheckService';
 import { SysAccountsService } from './sysAccountsService';
 import { SysUsersService } from './sysUsersService';
-export declare const Services: (typeof AdminActivitiesService | typeof AdminMembersService | typeof AdminResourcesService | typeof HealthCheckService | typeof UsrActivitiesService | typeof UserBookingsService | typeof UserPlacementsService | typeof UserAccountsService | typeof UsrMembersService | typeof UserService | typeof SysAccountsService | typeof SysUsersService)[];
+export declare const Services: (typeof AdminActivitiesService | typeof AdminMembersService | typeof AdminPlaningService | typeof AdminResourcesService | typeof HealthCheckService | typeof UsrActivitiesService | typeof UserBookingsService | typeof UserPlacementsService | typeof UserAccountsService | typeof UsrMembersService | typeof UserService | typeof SysAccountsService | typeof SysUsersService)[];

@@ -1,5 +1,6 @@
 export * from './adminActivitiesService';
 export * from './adminMembersService';
+export * from './adminPlaningService';
 export * from './adminResourcesService';
 export * from './healthCheckService';
 export * from './services.export';

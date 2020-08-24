@@ -13,6 +13,7 @@ export * from './Member';
 export * from './MemberUser';
 export * from './Membership';
 export * from './Placement';
+export * from './Planing';
 export * from './Resource';
 export * from './User';
 export * from './Verification';

@@ -647,6 +647,17 @@
     }(BaseEntity));
 
     /*
+     *  Planing is a set of booking request and placements
+    */
+    var Planing = /** @class */ (function (_super) {
+        __extends(Planing, _super);
+        function Planing() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return Planing;
+    }(BaseEntity));
+
+    /*
      *  Resource type
     */
     var Resource = /** @class */ (function (_super) {
@@ -1118,6 +1129,16 @@
 
     /*
     */
+    var AdminActivityPlaningRequest = /** @class */ (function () {
+        function AdminActivityPlaningRequest(id, resourceType) {
+            this.id = id;
+            this.resourceType = resourceType;
+        }
+        return AdminActivityPlaningRequest;
+    }());
+
+    /*
+    */
     var AdminCreateActivityRequest = /** @class */ (function () {
         function AdminCreateActivityRequest(body) {
             this.body = body;
@@ -1418,6 +1439,16 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return EntityResponseOfPlacement;
+    }(EntityResponse));
+
+    /*
+    */
+    var EntityResponseOfPlaning = /** @class */ (function (_super) {
+        __extends(EntityResponseOfPlaning, _super);
+        function EntityResponseOfPlaning() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntityResponseOfPlaning;
     }(EntityResponse));
 
     /*
@@ -2518,6 +2549,49 @@
     })();
 
     /**
+     * Services for planing club resource placements - for account administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (portal)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var AdminPlaningService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function AdminPlaningService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/admin/planing';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Get Activity planing
+         * @Return: EntityResponse<Planing>
+         */
+        AdminPlaningService.prototype.getPlaning = function (id, resourceType) {
+            var _a;
+            var params = new Array();
+            if (resourceType != null) {
+                params.push("resourceType=" + resourceType);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/activity/" + id], params));
+        };
+        return AdminPlaningService;
+    }());
+    /** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminPlaningService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminPlaningService, factory: AdminPlaningService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(AdminPlaningService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
      * Services for managing club resources - for account administrator only
      * @RequestHeader X-API-KEY The key to identify the application (portal)
      * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
@@ -3445,6 +3519,7 @@
 
     var Services = [
         AdminActivitiesService,
+        AdminPlaningService,
         AdminResourcesService,
         UsrActivitiesService,
         UserBookingsService,
@@ -3504,10 +3579,12 @@
     exports.AdminActivityDefaultCreateRequest = AdminActivityDefaultCreateRequest;
     exports.AdminActivityDefaultDeleteRequest = AdminActivityDefaultDeleteRequest;
     exports.AdminActivityFindRequest = AdminActivityFindRequest;
+    exports.AdminActivityPlaningRequest = AdminActivityPlaningRequest;
     exports.AdminCreateActivityRequest = AdminCreateActivityRequest;
     exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersService = AdminMembersService;
+    exports.AdminPlaningService = AdminPlaningService;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
     exports.AdminResourcesService = AdminResourcesService;
@@ -3544,6 +3621,7 @@
     exports.EntityResponseOfMember = EntityResponseOfMember;
     exports.EntityResponseOfMemberUser = EntityResponseOfMemberUser;
     exports.EntityResponseOfPlacement = EntityResponseOfPlacement;
+    exports.EntityResponseOfPlaning = EntityResponseOfPlaning;
     exports.EntityResponseOfResource = EntityResponseOfResource;
     exports.EntityResponseOfUser = EntityResponseOfUser;
     exports.EntityResponseOfUserAccountInfo = EntityResponseOfUserAccountInfo;
@@ -3566,6 +3644,7 @@
     exports.MembershipsRequest = MembershipsRequest;
     exports.Placement = Placement;
     exports.PlacementIdRequest = PlacementIdRequest;
+    exports.Planing = Planing;
     exports.QueryResponse = QueryResponse;
     exports.QueryResponseOfAccount = QueryResponseOfAccount;
     exports.QueryResponseOfActivity = QueryResponseOfActivity;
