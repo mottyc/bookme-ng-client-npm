@@ -4,6 +4,8 @@ import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Planing extends BaseEntity {
     activityId: string;
+    from: number;
+    to: number;
     placements: Placement[];
     bookings: Booking[];
     id: string;
@@ -12,6 +14,8 @@ export declare class Planing extends BaseEntity {
 }
 export interface IPlaning extends IBaseEntity {
     activityId?: string;
+    from?: number;
+    to?: number;
     placements?: Placement[];
     bookings?: Booking[];
     id?: string;

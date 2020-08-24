@@ -1,5 +1,5 @@
-import { EntitiesResponse } from '../messages/EntitiesResponse';
 import { BookingRequest } from '../entities/BookingRequest';
+import { EntitiesResponse } from '../messages/EntitiesResponse';
 import { IEntitiesResponse } from '../messages/EntitiesResponse';
 export declare class EntitiesResponseOfBookingRequest extends EntitiesResponse {
     list: BookingRequest[];
