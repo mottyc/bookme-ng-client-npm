@@ -1190,6 +1190,15 @@
 
     /*
     */
+    var AdminFindFreeResourcesRequest = /** @class */ (function () {
+        function AdminFindFreeResourcesRequest(id) {
+            this.id = id;
+        }
+        return AdminFindFreeResourcesRequest;
+    }());
+
+    /*
+    */
     var AdminMembersFindRequest = /** @class */ (function () {
         function AdminMembersFindRequest(accountId, search, role, status, sort, page, pageSize) {
             this.accountId = accountId;
@@ -2634,16 +2643,11 @@
             return this.rest.get(this.baseUrl + "/daily/" + day);
         };
         /**
-         * Get Activity planing
-         * @Return: EntityResponse<Planing>
+         * Find list of free resources for the booking request
+         * @Return: EntitiesResponse<Resource>
          */
-        AdminPlaningService.prototype.getPlaning = function (id, resourceType) {
-            var _a;
-            var params = new Array();
-            if (resourceType != null) {
-                params.push("resourceType=" + resourceType);
-            }
-            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/activity/" + id], params));
+        AdminPlaningService.prototype.findFreeResources = function (id) {
+            return this.rest.get(this.baseUrl + "/bookings/" + id + "/resources");
         };
         return AdminPlaningService;
     }());
@@ -3654,6 +3658,7 @@
     exports.AdminCreateActivityRequest = AdminCreateActivityRequest;
     exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
     exports.AdminDailyPlaningRequest = AdminDailyPlaningRequest;
+    exports.AdminFindFreeResourcesRequest = AdminFindFreeResourcesRequest;
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersService = AdminMembersService;
     exports.AdminPlaningService = AdminPlaningService;

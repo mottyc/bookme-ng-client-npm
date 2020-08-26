@@ -1,6 +1,5 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import * as i0 from "@angular/core";
 /**
  * Services for planing club resource placements - for account administrator only
@@ -21,10 +20,10 @@ export declare class AdminPlaningService {
      */
     getDailyPlaning(day?: number): import("rxjs").Observable<any>;
     /**
-     * Get Activity planing
-     * @Return: EntityResponse<Planing>
+     * Find list of free resources for the booking request
+     * @Return: EntitiesResponse<Resource>
      */
-    getPlaning(id?: string, resourceType?: ResourceTypeMask): import("rxjs").Observable<any>;
+    findFreeResources(id?: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminPlaningService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminPlaningService>;
 }
