@@ -4,6 +4,7 @@ export * from './ActivityIdRequest';
 export * from './AdminActivityBulkCreateRequest';
 export * from './AdminActivityDefaultCreateRequest';
 export * from './AdminActivityDefaultDeleteRequest';
+export * from './AdminActivityFindFreeResourcesRequest';
 export * from './AdminActivityFindRequest';
 export * from './AdminActivityPlaningRequest';
 export * from './AdminCreateActivityRequest';

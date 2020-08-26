@@ -1100,8 +1100,11 @@
     /*
     */
     var AdminActivityBulkCreateRequest = /** @class */ (function () {
-        function AdminActivityBulkCreateRequest(body) {
+        function AdminActivityBulkCreateRequest(body, resType, weight, forUseBy) {
             this.body = body;
+            this.resType = resType;
+            this.weight = weight;
+            this.forUseBy = forUseBy;
         }
         return AdminActivityBulkCreateRequest;
     }());
@@ -1124,6 +1127,15 @@
             this.month = month;
         }
         return AdminActivityDefaultDeleteRequest;
+    }());
+
+    /*
+    */
+    var AdminActivityFindFreeResourcesRequest = /** @class */ (function () {
+        function AdminActivityFindFreeResourcesRequest(id) {
+            this.id = id;
+        }
+        return AdminActivityFindFreeResourcesRequest;
     }());
 
     /*
@@ -2412,11 +2424,29 @@
             return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
         };
         /**
+         * Find list of free resources for activity by filter
+         * @Return: EntitiesResponse<Resource>
+         */
+        AdminActivitiesService.prototype.findFreeResources = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id + "/resources");
+        };
+        /**
          * Create bulk set of activities
          * @Return: ActionResponse
          */
-        AdminActivitiesService.prototype.createBulk = function (body) {
-            return this.rest.post(this.baseUrl + "/bulk", typeof body === 'object' ? JSON.stringify(body) : body);
+        AdminActivitiesService.prototype.createBulk = function (resType, weight, forUseBy, body) {
+            var _a;
+            var params = new Array();
+            if (resType != null) {
+                params.push("resType=" + resType);
+            }
+            if (weight != null) {
+                params.push("weight=" + weight);
+            }
+            if (forUseBy != null) {
+                params.push("forUseBy=" + forUseBy);
+            }
+            return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/bulk", typeof body === 'object' ? JSON.stringify(body) : body], params));
         };
         /**
          * Create account default set of activities per month
@@ -3618,6 +3648,7 @@
     exports.AdminActivityBulkCreateRequest = AdminActivityBulkCreateRequest;
     exports.AdminActivityDefaultCreateRequest = AdminActivityDefaultCreateRequest;
     exports.AdminActivityDefaultDeleteRequest = AdminActivityDefaultDeleteRequest;
+    exports.AdminActivityFindFreeResourcesRequest = AdminActivityFindFreeResourcesRequest;
     exports.AdminActivityFindRequest = AdminActivityFindRequest;
     exports.AdminActivityPlaningRequest = AdminActivityPlaningRequest;
     exports.AdminCreateActivityRequest = AdminCreateActivityRequest;
