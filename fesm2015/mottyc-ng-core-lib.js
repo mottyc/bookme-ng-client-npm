@@ -462,16 +462,10 @@ var KayakTypeCode;
 (function (KayakTypeCode) {
     // Undefined [0] 
     KayakTypeCode[KayakTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-    // Ocean Kayak [2048 + 1] 
-    KayakTypeCode[KayakTypeCode["OCEAN"] = 2049] = "OCEAN";
-    // Double Ocean Kayak [2048 + 2] 
+    // Ocean Kayak [2 + 1024] 
+    KayakTypeCode[KayakTypeCode["OCEAN"] = 1026] = "OCEAN";
+    // Double Ocean Kayak [2 + 2048] 
     KayakTypeCode[KayakTypeCode["OCEAN_X2"] = 2050] = "OCEAN_X2";
-    // SurfSki Kayak [2048 + 4096 + 1] 
-    KayakTypeCode[KayakTypeCode["SURFSKI"] = 6145] = "SURFSKI";
-    // Double SurfSki Kayak [2048 + 4096 + 2] 
-    KayakTypeCode[KayakTypeCode["SURFSKI_X2"] = 6146] = "SURFSKI_X2";
-    // Waves (short) kayak [2048 + 1 + 8192] 
-    KayakTypeCode[KayakTypeCode["WAVES"] = 10241] = "WAVES";
 })(KayakTypeCode || (KayakTypeCode = {}));
 
 /*
@@ -537,34 +531,30 @@ var ResourceTypeMask;
 (function (ResourceTypeMask) {
     // Undefined [0] 
     ResourceTypeMask[ResourceTypeMask["UNDEFINED"] = 0] = "UNDEFINED";
-    // Single [1] 
-    ResourceTypeMask[ResourceTypeMask["P1"] = 1] = "P1";
-    // Double [2] 
-    ResourceTypeMask[ResourceTypeMask["P2"] = 2] = "P2";
-    // Quad [4] 
-    ResourceTypeMask[ResourceTypeMask["P4"] = 4] = "P4";
-    // Eight [8] 
-    ResourceTypeMask[ResourceTypeMask["P8"] = 8] = "P8";
+    // Rowing Boat [1] 
+    ResourceTypeMask[ResourceTypeMask["RBOAT"] = 1] = "RBOAT";
+    // Kayak [2] 
+    ResourceTypeMask[ResourceTypeMask["KAYAK"] = 2] = "KAYAK";
+    // Sculling (2 oars) [4] 
+    ResourceTypeMask[ResourceTypeMask["SCULL"] = 4] = "SCULL";
+    // Need Cox [8] 
+    ResourceTypeMask[ResourceTypeMask["COX"] = 8] = "COX";
     // Wide [16] 
     ResourceTypeMask[ResourceTypeMask["WIDE"] = 16] = "WIDE";
-    // Sculling (2 oars) [32] 
-    ResourceTypeMask[ResourceTypeMask["SCULL"] = 32] = "SCULL";
-    // Need Cox [64] 
-    ResourceTypeMask[ResourceTypeMask["COX"] = 64] = "COX";
+    // For competition [32] 
+    ResourceTypeMask[ResourceTypeMask["COMP"] = 32] = "COMP";
+    // For para-olympic [64] 
+    ResourceTypeMask[ResourceTypeMask["PARA"] = 64] = "PARA";
     // Coastal (use in sea) [128] 
     ResourceTypeMask[ResourceTypeMask["COASTAL"] = 128] = "COASTAL";
-    // For competition [254] 
-    ResourceTypeMask[ResourceTypeMask["COMP"] = 254] = "COMP";
-    // For para-olympic [512] 
-    ResourceTypeMask[ResourceTypeMask["PARA"] = 512] = "PARA";
-    // Rowing Boat [1024] 
-    ResourceTypeMask[ResourceTypeMask["RBOAT"] = 1024] = "RBOAT";
-    // Kayak [2048] 
-    ResourceTypeMask[ResourceTypeMask["KAYAK"] = 2048] = "KAYAK";
-    // Surf Ski [4096] 
-    ResourceTypeMask[ResourceTypeMask["SURFSKI"] = 4096] = "SURFSKI";
-    // Waves Kayak [8192] 
-    ResourceTypeMask[ResourceTypeMask["WAVES"] = 8192] = "WAVES";
+    // Single [1024] 
+    ResourceTypeMask[ResourceTypeMask["P1"] = 1024] = "P1";
+    // Double [2048] 
+    ResourceTypeMask[ResourceTypeMask["P2"] = 2048] = "P2";
+    // Quad [4096] 
+    ResourceTypeMask[ResourceTypeMask["P4"] = 4096] = "P4";
+    // Eight [8192] 
+    ResourceTypeMask[ResourceTypeMask["P8"] = 8192] = "P8";
 })(ResourceTypeMask || (ResourceTypeMask = {}));
 
 /*
@@ -574,42 +564,42 @@ var RowingBoatTypeCode;
 (function (RowingBoatTypeCode) {
     // Undefined [0] 
     RowingBoatTypeCode[RowingBoatTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-    // Sculling 1X [1024 + 1 + 32] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X"] = 1057] = "SCULL_1X";
-    // Sculling 1X Wide [1024 + 1 + 32 + 16] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_WIDE"] = 1073] = "SCULL_1X_WIDE";
-    // Sculling 1X Competition [1024 + 1 + 32 + 254] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_COMP"] = 1311] = "SCULL_1X_COMP";
-    // Sculling 1X Para Olympic [1024 + 1 + 32 + 512] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_PARA"] = 1569] = "SCULL_1X_PARA";
-    // Sculling 2X [1024 + 2 + 32] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X"] = 1058] = "SCULL_2X";
-    // Sculling 2X Wide [1024 + 2 + 32 + 16] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_WIDE"] = 1074] = "SCULL_2X_WIDE";
-    // Sculling 2X Competition [1024 + 2 + 32 + 254] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_COMP"] = 1312] = "SCULL_2X_COMP";
-    // Sculling 2X Para Olympic [1024 + 2 + 32 + 512] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_PARA"] = 1570] = "SCULL_2X_PARA";
-    // Sweeping 2- Coxless Pair [1024 + 2] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_2_COXLESS"] = 1026] = "SWEEP_2_COXLESS";
-    // Coastal 2X [1024 + 2 + 32 + 128] 
-    RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_2X"] = 1186] = "COASTAL_2X";
-    // Sculling 4X Quad [1024 + 4 + 32] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X"] = 1060] = "SCULL_4X";
-    // Sculling 4X Quad with cox [1024 + 4 + 32 + 64] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COX"] = 1124] = "SCULL_4X_COX";
-    // Sweeping 4- Coxless Quad [1024 + 4] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_4_COXLESS"] = 10283] = "SWEEP_4_COXLESS";
-    // Sculling 4X Competition [1024 + 4 + 32 + 254] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COMP"] = 1314] = "SCULL_4X_COMP";
-    // Sculling 4X Para Olympic [1024 + 4 + 32 + 512] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_PARA"] = 1572] = "SCULL_4X_PARA";
-    // Coastal 4X with cox [1024 + 4 + 32 + 64 + 128] 
-    RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_4X_COX"] = 1252] = "COASTAL_4X_COX";
-    // Sweeping 8 - with cox [1024 + 8 + 64] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_8_COX"] = 1096] = "SWEEP_8_COX";
-    // Sculling 8 - with cox [1024 + 8 + 32 + 64] 
-    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_8X_COX"] = 1128] = "SCULL_8X_COX";
+    // Sculling 1X [1 + 4 + 1024] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X"] = 1029] = "SCULL_1X";
+    // Sculling 1X Wide [1 + 4 + 1024 + 16] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_WIDE"] = 1045] = "SCULL_1X_WIDE";
+    // Sculling 1X Competition [1 + 4 + 1024 + 32] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_COMP"] = 1061] = "SCULL_1X_COMP";
+    // Sculling 1X Para Olympic [1 + 4 + 1024 + 64] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_1X_PARA"] = 1093] = "SCULL_1X_PARA";
+    // Sculling 2X [1 + 4 + 2048] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X"] = 2053] = "SCULL_2X";
+    // Sculling 2X Wide [1 + 4 + 2048 + 16] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_WIDE"] = 2069] = "SCULL_2X_WIDE";
+    // Sculling 2X Competition [1 + 4 + 2048 + 16 + 32] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_COMP"] = 2101] = "SCULL_2X_COMP";
+    // Sculling 2X Para Olympic [1 + 4 + 2048 + 16 + 64] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_2X_PARA"] = 2133] = "SCULL_2X_PARA";
+    // Sweeping 2- Coxless Pair [1 + 2048] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_2_COXLESS"] = 2049] = "SWEEP_2_COXLESS";
+    // Coastal 2X [1 + 4 + 8 + 128 + 2048] 
+    RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_2X"] = 2189] = "COASTAL_2X";
+    // Sculling 4X Quad [1 + 4 + 4096] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X"] = 4101] = "SCULL_4X";
+    // Sculling 4X Quad with cox [1 + 4 + 8 + 4096] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COX"] = 4109] = "SCULL_4X_COX";
+    // Sweeping 4- Coxless Quad [1 + 4096] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_4_COXLESS"] = 4097] = "SWEEP_4_COXLESS";
+    // Sculling 4X Competition [1 + 4 + 32 + 4096] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_COMP"] = 4133] = "SCULL_4X_COMP";
+    // Sculling 4X Para Olympic [1 + 4 + 64 + 4096] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_4X_PARA"] = 4165] = "SCULL_4X_PARA";
+    // Coastal 4X with cox [1 + 4 + 8 + 128 + 4096] 
+    RowingBoatTypeCode[RowingBoatTypeCode["COASTAL_4X_COX"] = 4237] = "COASTAL_4X_COX";
+    // Sweeping 8 - with cox [1 + 8192] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SWEEP_8_COX"] = 8193] = "SWEEP_8_COX";
+    // Sculling 8 - with cox [1 + 8 + 8192] 
+    RowingBoatTypeCode[RowingBoatTypeCode["SCULL_8X_COX"] = 8201] = "SCULL_8X_COX";
 })(RowingBoatTypeCode || (RowingBoatTypeCode = {}));
 
 /*
