@@ -1204,6 +1204,25 @@
 
     /*
     */
+    var AdminPlaningAssignResourceRequest = /** @class */ (function () {
+        function AdminPlaningAssignResourceRequest(id, resourceId) {
+            this.id = id;
+            this.resourceId = resourceId;
+        }
+        return AdminPlaningAssignResourceRequest;
+    }());
+
+    /*
+    */
+    var AdminPlaningUnAssignResourceRequest = /** @class */ (function () {
+        function AdminPlaningUnAssignResourceRequest(id) {
+            this.id = id;
+        }
+        return AdminPlaningUnAssignResourceRequest;
+    }());
+
+    /*
+    */
     var AdminResourceBulkCreateRequest = /** @class */ (function () {
         function AdminResourceBulkCreateRequest(body) {
             this.body = body;
@@ -2639,6 +2658,20 @@
         AdminPlaningService.prototype.findFreeResources = function (id) {
             return this.rest.get(this.baseUrl + "/bookings/" + id + "/resources");
         };
+        /**
+         * Assign resource for booking request and approve
+         * @Return: ActionResponse
+         */
+        AdminPlaningService.prototype.assignResource = function (id, resourceId) {
+            return this.rest.post(this.baseUrl + "/bookings/" + id + "/assign/" + resourceId, null);
+        };
+        /**
+         * Un assign resource from booking request
+         * @Return: ActionResponse
+         */
+        AdminPlaningService.prototype.unAssignResource = function (id) {
+            return this.rest.post(this.baseUrl + "/bookings/" + id + "/un-assign", null);
+        };
         return AdminPlaningService;
     }());
     /** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -3651,7 +3684,9 @@
     exports.AdminFindFreeResourcesRequest = AdminFindFreeResourcesRequest;
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersService = AdminMembersService;
+    exports.AdminPlaningAssignResourceRequest = AdminPlaningAssignResourceRequest;
     exports.AdminPlaningService = AdminPlaningService;
+    exports.AdminPlaningUnAssignResourceRequest = AdminPlaningUnAssignResourceRequest;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
     exports.AdminResourcesService = AdminResourcesService;

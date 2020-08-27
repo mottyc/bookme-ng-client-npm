@@ -12,6 +12,8 @@ export * from './AdminCreateResourceRequest';
 export * from './AdminDailyPlaningRequest';
 export * from './AdminFindFreeResourcesRequest';
 export * from './AdminMembersFindRequest';
+export * from './AdminPlaningAssignResourceRequest';
+export * from './AdminPlaningUnAssignResourceRequest';
 export * from './AdminResourceBulkCreateRequest';
 export * from './AdminResourceFindRequest';
 export * from './AdminUpdateActivityRequest';

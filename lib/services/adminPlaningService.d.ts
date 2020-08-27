@@ -24,6 +24,16 @@ export declare class AdminPlaningService {
      * @Return: EntitiesResponse<Resource>
      */
     findFreeResources(id?: string): import("rxjs").Observable<any>;
+    /**
+     * Assign resource for booking request and approve
+     * @Return: ActionResponse
+     */
+    assignResource(id?: string, resourceId?: string): import("rxjs").Observable<any>;
+    /**
+     * Un assign resource from booking request
+     * @Return: ActionResponse
+     */
+    unAssignResource(id?: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminPlaningService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminPlaningService>;
 }
