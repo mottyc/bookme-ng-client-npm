@@ -34,6 +34,16 @@ export declare class AdminPlaningService {
      * @Return: ActionResponse
      */
     unAssignResource(id?: string): import("rxjs").Observable<any>;
+    /**
+     * Merge source and target bookings and recalculate the daily planing
+     * @Return: EntitiesResponse<ActivityBookingGroup>
+     */
+    mergeBookings(day?: number, source?: string, target?: string): import("rxjs").Observable<any>;
+    /**
+     * Split booking and recalculate the daily planing
+     * @Return: EntitiesResponse<ActivityBookingGroup>
+     */
+    splitBookings(day?: number, id?: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminPlaningService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminPlaningService>;
 }

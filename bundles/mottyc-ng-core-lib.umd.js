@@ -1214,6 +1214,27 @@
 
     /*
     */
+    var AdminPlaningMergeBookingsRequest = /** @class */ (function () {
+        function AdminPlaningMergeBookingsRequest(day, source, target) {
+            this.day = day;
+            this.source = source;
+            this.target = target;
+        }
+        return AdminPlaningMergeBookingsRequest;
+    }());
+
+    /*
+    */
+    var AdminPlaningSplitBookingRequest = /** @class */ (function () {
+        function AdminPlaningSplitBookingRequest(day, id) {
+            this.day = day;
+            this.id = id;
+        }
+        return AdminPlaningSplitBookingRequest;
+    }());
+
+    /*
+    */
     var AdminPlaningUnAssignResourceRequest = /** @class */ (function () {
         function AdminPlaningUnAssignResourceRequest(id) {
             this.id = id;
@@ -2672,6 +2693,20 @@
         AdminPlaningService.prototype.unAssignResource = function (id) {
             return this.rest.post(this.baseUrl + "/bookings/" + id + "/un-assign", null);
         };
+        /**
+         * Merge source and target bookings and recalculate the daily planing
+         * @Return: EntitiesResponse<ActivityBookingGroup>
+         */
+        AdminPlaningService.prototype.mergeBookings = function (day, source, target) {
+            return this.rest.post(this.baseUrl + "/daily/" + day + "/bookings/" + source + "/merge/" + target, null);
+        };
+        /**
+         * Split booking and recalculate the daily planing
+         * @Return: EntitiesResponse<ActivityBookingGroup>
+         */
+        AdminPlaningService.prototype.splitBookings = function (day, id) {
+            return this.rest.post(this.baseUrl + "/daily/" + day + "/bookings/" + id + "/split", null);
+        };
         return AdminPlaningService;
     }());
     /** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -3685,7 +3720,9 @@
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersService = AdminMembersService;
     exports.AdminPlaningAssignResourceRequest = AdminPlaningAssignResourceRequest;
+    exports.AdminPlaningMergeBookingsRequest = AdminPlaningMergeBookingsRequest;
     exports.AdminPlaningService = AdminPlaningService;
+    exports.AdminPlaningSplitBookingRequest = AdminPlaningSplitBookingRequest;
     exports.AdminPlaningUnAssignResourceRequest = AdminPlaningUnAssignResourceRequest;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
