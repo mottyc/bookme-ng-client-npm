@@ -2673,6 +2673,13 @@
             return this.rest.get(this.baseUrl + "/daily/" + day);
         };
         /**
+         * Export daily planing - as PDF stream
+         * @Return: StreamContent
+         */
+        AdminPlaningService.prototype.exportDailyPlaning = function (day) {
+            return this.rest.download("admin-planing", this.baseUrl + "/daily/" + day + "/export");
+        };
+        /**
          * Find list of free resources for the booking request
          * @Return: EntitiesResponse<Resource>
          */
