@@ -1214,6 +1214,16 @@
 
     /*
     */
+    var AdminPlaningDeleteBookingRequest = /** @class */ (function () {
+        function AdminPlaningDeleteBookingRequest(day, id) {
+            this.day = day;
+            this.id = id;
+        }
+        return AdminPlaningDeleteBookingRequest;
+    }());
+
+    /*
+    */
     var AdminPlaningMergeBookingsRequest = /** @class */ (function () {
         function AdminPlaningMergeBookingsRequest(day, source, target) {
             this.day = day;
@@ -2714,6 +2724,13 @@
         AdminPlaningService.prototype.splitBookings = function (day, id) {
             return this.rest.post(this.baseUrl + "/daily/" + day + "/bookings/" + id + "/split", null);
         };
+        /**
+         * Delete booking and recalculate the daily planing
+         * @Return: EntitiesResponse<ActivityBookingGroup>
+         */
+        AdminPlaningService.prototype.deleteBooking = function (day, id) {
+            return this.rest.delete(this.baseUrl + "/daily/" + day + "/bookings/" + id);
+        };
         return AdminPlaningService;
     }());
     /** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -3727,6 +3744,7 @@
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersService = AdminMembersService;
     exports.AdminPlaningAssignResourceRequest = AdminPlaningAssignResourceRequest;
+    exports.AdminPlaningDeleteBookingRequest = AdminPlaningDeleteBookingRequest;
     exports.AdminPlaningMergeBookingsRequest = AdminPlaningMergeBookingsRequest;
     exports.AdminPlaningService = AdminPlaningService;
     exports.AdminPlaningSplitBookingRequest = AdminPlaningSplitBookingRequest;

@@ -13,6 +13,7 @@ export * from './AdminDailyPlaningRequest';
 export * from './AdminFindFreeResourcesRequest';
 export * from './AdminMembersFindRequest';
 export * from './AdminPlaningAssignResourceRequest';
+export * from './AdminPlaningDeleteBookingRequest';
 export * from './AdminPlaningMergeBookingsRequest';
 export * from './AdminPlaningSplitBookingRequest';
 export * from './AdminPlaningUnAssignResourceRequest';
