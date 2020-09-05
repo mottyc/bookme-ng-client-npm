@@ -54,6 +54,11 @@ export declare class AdminPlaningService {
      * @Return: EntitiesResponse<ActivityBookingGroup>
      */
     deleteBooking(day?: number, id?: string): import("rxjs").Observable<any>;
+    /**
+     * Delete activity and recalculate the daily planing
+     * @Return: EntitiesResponse<ActivityBookingGroup>
+     */
+    deleteActivity(day?: number, id?: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminPlaningService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminPlaningService>;
 }

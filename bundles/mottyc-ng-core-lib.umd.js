@@ -1214,6 +1214,16 @@
 
     /*
     */
+    var AdminPlaningDeleteActivityRequest = /** @class */ (function () {
+        function AdminPlaningDeleteActivityRequest(day, id) {
+            this.day = day;
+            this.id = id;
+        }
+        return AdminPlaningDeleteActivityRequest;
+    }());
+
+    /*
+    */
     var AdminPlaningDeleteBookingRequest = /** @class */ (function () {
         function AdminPlaningDeleteBookingRequest(day, id) {
             this.day = day;
@@ -2731,6 +2741,13 @@
         AdminPlaningService.prototype.deleteBooking = function (day, id) {
             return this.rest.delete(this.baseUrl + "/daily/" + day + "/bookings/" + id);
         };
+        /**
+         * Delete activity and recalculate the daily planing
+         * @Return: EntitiesResponse<ActivityBookingGroup>
+         */
+        AdminPlaningService.prototype.deleteActivity = function (day, id) {
+            return this.rest.delete(this.baseUrl + "/daily/" + day + "/activities/" + id);
+        };
         return AdminPlaningService;
     }());
     /** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -3744,6 +3761,7 @@
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersService = AdminMembersService;
     exports.AdminPlaningAssignResourceRequest = AdminPlaningAssignResourceRequest;
+    exports.AdminPlaningDeleteActivityRequest = AdminPlaningDeleteActivityRequest;
     exports.AdminPlaningDeleteBookingRequest = AdminPlaningDeleteBookingRequest;
     exports.AdminPlaningMergeBookingsRequest = AdminPlaningMergeBookingsRequest;
     exports.AdminPlaningService = AdminPlaningService;
