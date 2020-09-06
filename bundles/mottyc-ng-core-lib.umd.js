@@ -754,12 +754,12 @@
        Daily activity status code
     */
     (function (ActivityStatusCode) {
-        // Undefined [0] 
+        // Undefined - No booking in this activity [0] 
         ActivityStatusCode[ActivityStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
-        // Daily activity as usual [1] 
-        ActivityStatusCode[ActivityStatusCode["OPEN"] = 1] = "OPEN";
-        // Activity is closed [2] 
-        ActivityStatusCode[ActivityStatusCode["CLOSED"] = 2] = "CLOSED";
+        // Some booking requests approved, not all [1] 
+        ActivityStatusCode[ActivityStatusCode["PARTIAL"] = 1] = "PARTIAL";
+        // All booking requests approved [2] 
+        ActivityStatusCode[ActivityStatusCode["FULL"] = 2] = "FULL";
     })(exports.ActivityStatusCode || (exports.ActivityStatusCode = {}));
 
     /*

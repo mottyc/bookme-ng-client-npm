@@ -1,7 +1,7 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { UseTypeCode } from '../enums/UseTypeCode';
 import { Activity } from '../entities/Activity';
+import { UseTypeCode } from '../enums/UseTypeCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing club activities - for account administrator only
