@@ -1,5 +1,5 @@
-import { EntityResponse } from '../messages/EntityResponse';
 import { BookingRequest } from '../entities/BookingRequest';
+import { EntityResponse } from '../messages/EntityResponse';
 import { IEntityResponse } from '../messages/EntityResponse';
 export declare class EntityResponseOfBookingRequest extends EntityResponse {
     entity: BookingRequest;
