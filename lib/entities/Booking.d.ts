@@ -4,8 +4,11 @@ import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Booking extends BaseEntity {
     activityId: string;
+    activityName: string;
     placementOn: number;
+    placementTo: number;
     duration: number;
+    distance: number;
     resourceId: string;
     requestedBy: string;
     requestedFor: string[];
@@ -19,8 +22,11 @@ export declare class Booking extends BaseEntity {
 }
 export interface IBooking extends IBaseEntity {
     activityId?: string;
+    activityName?: string;
     placementOn?: number;
+    placementTo?: number;
     duration?: number;
+    distance?: number;
     resourceId?: string;
     requestedBy?: string;
     requestedFor?: string[];
