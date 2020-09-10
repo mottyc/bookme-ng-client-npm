@@ -1,8 +1,8 @@
+import { BaseEntity } from '../entities/BaseEntity';
 import { AccountTypeCode } from '../enums/AccountTypeCode';
 import { AccountStatusCode } from '../enums/AccountStatusCode';
 import { AccountSettings } from '../common/AccountSettings';
 import { ResourceClassCode } from '../enums/ResourceClassCode';
-import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Account extends BaseEntity {
     name: string;
@@ -11,7 +11,6 @@ export declare class Account extends BaseEntity {
     suspendedOn: number;
     groups: string[];
     timezone: string;
-    offset: number;
     expiredOn: number;
     description: string;
     settings: AccountSettings;
@@ -27,7 +26,6 @@ export interface IAccount extends IBaseEntity {
     suspendedOn?: number;
     groups?: string[];
     timezone?: string;
-    offset?: number;
     expiredOn?: number;
     description?: string;
     settings?: AccountSettings;

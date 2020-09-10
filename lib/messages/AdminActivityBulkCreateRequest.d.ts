@@ -1,5 +1,5 @@
-import { Activity } from '../entities/Activity';
 import { UseTypeCode } from '../enums/UseTypeCode';
+import { Activity } from '../entities/Activity';
 export declare class AdminActivityBulkCreateRequest {
     body: Activity[];
     resType: number;

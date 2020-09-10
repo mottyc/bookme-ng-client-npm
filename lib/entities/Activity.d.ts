@@ -1,5 +1,5 @@
-import { BaseEntity } from '../entities/BaseEntity';
 import { ActivityStatusCode } from '../enums/ActivityStatusCode';
+import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Activity extends BaseEntity {
     name: string;
