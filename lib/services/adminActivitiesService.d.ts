@@ -1,7 +1,7 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
 import { Activity } from '../entities/Activity';
-import { UseTypeCode } from '../enums/UseTypeCode';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing club activities - for account administrator only
@@ -55,12 +55,12 @@ export declare class AdminActivitiesService {
      * Find list of free resources for activity by filter
      * @Return: EntitiesResponse<Resource>
      */
-    findFreeResources(id?: string): import("rxjs").Observable<any>;
+    findFreeResources(id?: string, resType?: number, weight?: number, forUseBy?: AccountRoleCode): import("rxjs").Observable<any>;
     /**
      * Create bulk set of activities
      * @Return: ActionResponse
      */
-    createBulk(resType?: number, weight?: number, forUseBy?: UseTypeCode, body?: Activity[]): import("rxjs").Observable<any>;
+    createBulk(body?: Activity[]): import("rxjs").Observable<any>;
     /**
      * Create account default set of activities per month
      * @Return: ActionResponse

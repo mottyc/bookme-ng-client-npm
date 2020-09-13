@@ -14,7 +14,6 @@ export * from './ResourceStatusCode';
 export * from './ResourceTypeMask';
 export * from './RowingBoatTypeCode';
 export * from './TimeUnitCode';
-export * from './UseTypeCode';
 export * from './UserGenderCode';
 export * from './UserStatusCode';
 export * from './UserTypeCode';

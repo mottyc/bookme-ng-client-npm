@@ -324,14 +324,14 @@ var AccountRoleCode;
     AccountRoleCode[AccountRoleCode["ADMIN"] = 1] = "ADMIN";
     // Part of a club staff [2] 
     AccountRoleCode[AccountRoleCode["STAFF"] = 2] = "STAFF";
-    // Club Member [3] 
-    AccountRoleCode[AccountRoleCode["MEMBER"] = 3] = "MEMBER";
-    // Olympic team [4] 
-    AccountRoleCode[AccountRoleCode["TEAM"] = 4] = "TEAM";
-    // Paralympic team [5] 
-    AccountRoleCode[AccountRoleCode["PARA"] = 5] = "PARA";
-    // Club guest [6] 
-    AccountRoleCode[AccountRoleCode["GUEST"] = 6] = "GUEST";
+    // Club Member [4] 
+    AccountRoleCode[AccountRoleCode["MEMBER"] = 4] = "MEMBER";
+    // Olympic team [8] 
+    AccountRoleCode[AccountRoleCode["TEAM"] = 8] = "TEAM";
+    // Paralympic team [16] 
+    AccountRoleCode[AccountRoleCode["PARA"] = 16] = "PARA";
+    // Club guest [32] 
+    AccountRoleCode[AccountRoleCode["GUEST"] = 32] = "GUEST";
 })(AccountRoleCode || (AccountRoleCode = {}));
 
 /*
@@ -624,23 +624,6 @@ var TimeUnitCode;
 })(TimeUnitCode || (TimeUnitCode = {}));
 
 /*
-   Resource Used by
-*/
-var UseTypeCode;
-(function (UseTypeCode) {
-    // Undefined [0] 
-    UseTypeCode[UseTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
-    // Used by club members [1] 
-    UseTypeCode[UseTypeCode["MEMBER"] = 1] = "MEMBER";
-    // Used by club staff [2] 
-    UseTypeCode[UseTypeCode["STAFF"] = 2] = "STAFF";
-    // Used by team members [3] 
-    UseTypeCode[UseTypeCode["TEAM"] = 3] = "TEAM";
-    // Used by para-olympic team [4] 
-    UseTypeCode[UseTypeCode["PARA"] = 4] = "PARA";
-})(UseTypeCode || (UseTypeCode = {}));
-
-/*
    User gender code
 */
 var UserGenderCode;
@@ -718,11 +701,8 @@ class ActivityIdRequest {
 /*
 */
 class AdminActivityBulkCreateRequest {
-    constructor(body, resType, weight, forUseBy) {
+    constructor(body) {
         this.body = body;
-        this.resType = resType;
-        this.weight = weight;
-        this.forUseBy = forUseBy;
     }
 }
 
@@ -747,8 +727,11 @@ class AdminActivityDefaultDeleteRequest {
 /*
 */
 class AdminActivityFindFreeResourcesRequest {
-    constructor(id) {
+    constructor(id, resType, weight, forUseBy) {
         this.id = id;
+        this.resType = resType;
+        this.weight = weight;
+        this.forUseBy = forUseBy;
     }
 }
 
@@ -1847,14 +1830,7 @@ class AdminActivitiesService {
      * Find list of free resources for activity by filter
      * @Return: EntitiesResponse<Resource>
      */
-    findFreeResources(id) {
-        return this.rest.get(`${this.baseUrl}/${id}/resources`);
-    }
-    /**
-     * Create bulk set of activities
-     * @Return: ActionResponse
-     */
-    createBulk(resType, weight, forUseBy, body) {
+    findFreeResources(id, resType, weight, forUseBy) {
         const params = new Array();
         if (resType != null) {
             params.push(`resType=${resType}`);
@@ -1865,7 +1841,14 @@ class AdminActivitiesService {
         if (forUseBy != null) {
             params.push(`forUseBy=${forUseBy}`);
         }
-        return this.rest.post(`${this.baseUrl}/bulk`, typeof body === 'object' ? JSON.stringify(body) : body, ...params);
+        return this.rest.get(`${this.baseUrl}/${id}/resources`, ...params);
+    }
+    /**
+     * Create bulk set of activities
+     * @Return: ActionResponse
+     */
+    createBulk(body) {
+        return this.rest.post(`${this.baseUrl}/bulk`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
      * Create account default set of activities per month
@@ -2223,6 +2206,298 @@ class HealthCheckService {
 /** @nocollapse */ HealthCheckService.ɵfac = function HealthCheckService_Factory(t) { return new (t || HealthCheckService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
 /** @nocollapse */ HealthCheckService.ɵprov = ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
 /*@__PURE__*/ (function () { ɵsetClassMetadata(HealthCheckService, [{
+        type: Injectable
+    }], function () { return [{ type: CoreConfig, decorators: [{
+                type: Inject,
+                args: ['config']
+            }] }, { type: RestUtil }]; }, null); })();
+
+/**
+ * Services for managing club activities - for account administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (portal)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class UsrActivitiesService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/activities';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Get single activity by id
+     * @Return: EntityResponse<Activity>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find activities by time range
+     * @Return: QueryResponse<Activity>
+     */
+    find(from, to, year, month, day) {
+        const params = new Array();
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (year != null) {
+            params.push(`year=${year}`);
+        }
+        if (month != null) {
+            params.push(`month=${month}`);
+        }
+        if (day != null) {
+            params.push(`day=${day}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+/** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
+/** @nocollapse */ UsrActivitiesService.ɵprov = ɵɵdefineInjectable({ token: UsrActivitiesService, factory: UsrActivitiesService.ɵfac });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(UsrActivitiesService, [{
+        type: Injectable
+    }], function () { return [{ type: CoreConfig, decorators: [{
+                type: Inject,
+                args: ['config']
+            }] }, { type: RestUtil }]; }, null); })();
+
+/**
+ * Services for managing kayak resources - for account administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (portal)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class UserBookingsService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/bookings';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create new booking
+     * @Return: EntityResponse<Booking>
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update booking
+     * @Return: EntityResponse<Booking>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete booking
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Remove current user from booking
+     * @Return: ActionResponse
+     */
+    removeMe(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}/remove-me`);
+    }
+    /**
+     * Get single booking by id
+     * @Return: EntityResponse<Booking>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find bookings by filters
+     * @Return: QueryResponse<Booking>
+     */
+    find(userId, resourceId, from, to, sort, page, pageSize) {
+        const params = new Array();
+        if (userId != null) {
+            params.push(`userId=${userId}`);
+        }
+        if (resourceId != null) {
+            params.push(`resourceId=${resourceId}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+    /**
+     * Find bookings history by filters
+     * @Return: QueryResponse<Booking>
+     */
+    history(userId, resourceId, from, to, sort, page, pageSize) {
+        const params = new Array();
+        if (userId != null) {
+            params.push(`userId=${userId}`);
+        }
+        if (resourceId != null) {
+            params.push(`resourceId=${resourceId}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}/history`, ...params);
+    }
+    /**
+     * Group my bookings by time period
+     * @Return: EntitiesResponse<BookingGroup>
+     */
+    groups(from, to, groupBy) {
+        const params = new Array();
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (groupBy != null) {
+            params.push(`groupBy=${groupBy}`);
+        }
+        return this.rest.get(`${this.baseUrl}/groups`, ...params);
+    }
+    /**
+     * Find list of activities groups by time period
+     * @Return: EntitiesResponse<BookingGroup>
+     */
+    activities(from, to, groupBy) {
+        const params = new Array();
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (groupBy != null) {
+            params.push(`groupBy=${groupBy}`);
+        }
+        return this.rest.get(`${this.baseUrl}/activities`, ...params);
+    }
+}
+/** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
+/** @nocollapse */ UserBookingsService.ɵprov = ɵɵdefineInjectable({ token: UserBookingsService, factory: UserBookingsService.ɵfac });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(UserBookingsService, [{
+        type: Injectable
+    }], function () { return [{ type: CoreConfig, decorators: [{
+                type: Inject,
+                args: ['config']
+            }] }, { type: RestUtil }]; }, null); })();
+
+/**
+ * Services for managing user placements (approved bookings)
+ * @RequestHeader X-API-KEY The key to identify the application (portal)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class UserPlacementsService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/placements';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create new placement
+     * @Return: EntityResponse<Placement>
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update placement
+     * @Return: EntityResponse<Placement>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete placement
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Get single placement by id
+     * @Return: EntityResponse<Placement>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find placements by filters
+     * @Return: QueryResponse<Placement>
+     */
+    find(userId, resourceId, bookingId, status, sort, page, pageSize) {
+        const params = new Array();
+        if (userId != null) {
+            params.push(`userId=${userId}`);
+        }
+        if (resourceId != null) {
+            params.push(`resourceId=${resourceId}`);
+        }
+        if (bookingId != null) {
+            params.push(`bookingId=${bookingId}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+/** @nocollapse */ UserPlacementsService.ɵfac = function UserPlacementsService_Factory(t) { return new (t || UserPlacementsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
+/** @nocollapse */ UserPlacementsService.ɵprov = ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
+/*@__PURE__*/ (function () { ɵsetClassMetadata(UserPlacementsService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2707,299 +2982,13 @@ class SysUsersService {
                 args: ['config']
             }] }, { type: RestUtil }]; }, null); })();
 
-/**
- * Services for managing club activities - for account administrator only
- * @RequestHeader X-API-KEY The key to identify the application (portal)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class UsrActivitiesService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/activities';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Get single activity by id
-     * @Return: EntityResponse<Activity>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Find activities by time range
-     * @Return: QueryResponse<Activity>
-     */
-    find(from, to, year, month, day) {
-        const params = new Array();
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (year != null) {
-            params.push(`year=${year}`);
-        }
-        if (month != null) {
-            params.push(`month=${month}`);
-        }
-        if (day != null) {
-            params.push(`day=${day}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-}
-/** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UsrActivitiesService.ɵprov = ɵɵdefineInjectable({ token: UsrActivitiesService, factory: UsrActivitiesService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UsrActivitiesService, [{
-        type: Injectable
-    }], function () { return [{ type: CoreConfig, decorators: [{
-                type: Inject,
-                args: ['config']
-            }] }, { type: RestUtil }]; }, null); })();
-
-/**
- * Services for managing kayak resources - for account administrator only
- * @RequestHeader X-API-KEY The key to identify the application (portal)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class UserBookingsService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/bookings';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Create new booking
-     * @Return: EntityResponse<Booking>
-     */
-    create(body) {
-        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Update booking
-     * @Return: EntityResponse<Booking>
-     */
-    update(body) {
-        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Delete booking
-     * @Return: ActionResponse
-     */
-    delete(id) {
-        return this.rest.delete(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Remove current user from booking
-     * @Return: ActionResponse
-     */
-    removeMe(id) {
-        return this.rest.delete(`${this.baseUrl}/${id}/remove-me`);
-    }
-    /**
-     * Get single booking by id
-     * @Return: EntityResponse<Booking>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Find bookings by filters
-     * @Return: QueryResponse<Booking>
-     */
-    find(userId, resourceId, from, to, sort, page, pageSize) {
-        const params = new Array();
-        if (userId != null) {
-            params.push(`userId=${userId}`);
-        }
-        if (resourceId != null) {
-            params.push(`resourceId=${resourceId}`);
-        }
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-    /**
-     * Find bookings history by filters
-     * @Return: QueryResponse<Booking>
-     */
-    history(userId, resourceId, from, to, sort, page, pageSize) {
-        const params = new Array();
-        if (userId != null) {
-            params.push(`userId=${userId}`);
-        }
-        if (resourceId != null) {
-            params.push(`resourceId=${resourceId}`);
-        }
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}/history`, ...params);
-    }
-    /**
-     * Group my bookings by time period
-     * @Return: EntitiesResponse<BookingGroup>
-     */
-    groups(from, to, groupBy) {
-        const params = new Array();
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (groupBy != null) {
-            params.push(`groupBy=${groupBy}`);
-        }
-        return this.rest.get(`${this.baseUrl}/groups`, ...params);
-    }
-    /**
-     * Find list of activities groups by time period
-     * @Return: EntitiesResponse<BookingGroup>
-     */
-    activities(from, to, groupBy) {
-        const params = new Array();
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (groupBy != null) {
-            params.push(`groupBy=${groupBy}`);
-        }
-        return this.rest.get(`${this.baseUrl}/activities`, ...params);
-    }
-}
-/** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UserBookingsService.ɵprov = ɵɵdefineInjectable({ token: UserBookingsService, factory: UserBookingsService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UserBookingsService, [{
-        type: Injectable
-    }], function () { return [{ type: CoreConfig, decorators: [{
-                type: Inject,
-                args: ['config']
-            }] }, { type: RestUtil }]; }, null); })();
-
-/**
- * Services for managing user placements (approved bookings)
- * @RequestHeader X-API-KEY The key to identify the application (portal)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class UserPlacementsService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/placements';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Create new placement
-     * @Return: EntityResponse<Placement>
-     */
-    create(body) {
-        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Update placement
-     * @Return: EntityResponse<Placement>
-     */
-    update(body) {
-        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Delete placement
-     * @Return: ActionResponse
-     */
-    delete(id) {
-        return this.rest.delete(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Get single placement by id
-     * @Return: EntityResponse<Placement>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Find placements by filters
-     * @Return: QueryResponse<Placement>
-     */
-    find(userId, resourceId, bookingId, status, sort, page, pageSize) {
-        const params = new Array();
-        if (userId != null) {
-            params.push(`userId=${userId}`);
-        }
-        if (resourceId != null) {
-            params.push(`resourceId=${resourceId}`);
-        }
-        if (bookingId != null) {
-            params.push(`bookingId=${bookingId}`);
-        }
-        if (status != null) {
-            params.push(`status=${status}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-}
-/** @nocollapse */ UserPlacementsService.ɵfac = function UserPlacementsService_Factory(t) { return new (t || UserPlacementsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UserPlacementsService.ɵprov = ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UserPlacementsService, [{
-        type: Injectable
-    }], function () { return [{ type: CoreConfig, decorators: [{
-                type: Inject,
-                args: ['config']
-            }] }, { type: RestUtil }]; }, null); })();
-
 const Services = [
+    AdminActivitiesService,
+    AdminPlaningService,
+    AdminResourcesService,
+    UsrActivitiesService,
+    UserBookingsService,
+    UserPlacementsService,
     AdminMembersService,
     UserAccountsService,
     UsrMembersService,
@@ -3007,12 +2996,6 @@ const Services = [
     HealthCheckService,
     SysAccountsService,
     SysUsersService,
-    AdminActivitiesService,
-    AdminPlaningService,
-    AdminResourcesService,
-    UsrActivitiesService,
-    UserBookingsService,
-    UserPlacementsService,
 ];
 
 class CoreLibModule {
@@ -3044,5 +3027,5 @@ class CoreLibModule {
  * Generated bundle index. Do not edit.
  */
 
-export { AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, Activity, ActivityBookingGroup, ActivityIdRequest, ActivityStatusCode, AdminActivitiesService, AdminActivityBulkCreateRequest, AdminActivityDefaultCreateRequest, AdminActivityDefaultDeleteRequest, AdminActivityFindFreeResourcesRequest, AdminActivityFindRequest, AdminActivityPlaningRequest, AdminCreateActivityRequest, AdminCreateResourceRequest, AdminDailyPlaningRequest, AdminFindFreeResourcesRequest, AdminMembersFindRequest, AdminMembersService, AdminPlaningAssignResourceRequest, AdminPlaningDeleteActivityRequest, AdminPlaningDeleteBookingRequest, AdminPlaningMergeBookingsRequest, AdminPlaningService, AdminPlaningSplitBookingRequest, AdminPlaningUnAssignResourceRequest, AdminResourceBulkCreateRequest, AdminResourceFindRequest, AdminResourcesService, AdminUpdateActivityRequest, AdminUpdateResourceRequest, ApiKey, AuditLog, BaseEntity, Booking, BookingGroup, BookingIdRequest, BookingRequest, BookingRequestIdRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, DayOfWeekCode, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfActivity, EntitiesResponseOfActivityBookingGroup, EntitiesResponseOfBooking, EntitiesResponseOfBookingGroup, EntitiesResponseOfBookingRequest, EntitiesResponseOfMembership, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntityResponse, EntityResponseOfAccount, EntityResponseOfActivity, EntityResponseOfBooking, EntityResponseOfBookingRequest, EntityResponseOfLoginData, EntityResponseOfMember, EntityResponseOfMemberUser, EntityResponseOfPlacement, EntityResponseOfPlaning, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Member, MemberIdRequest, MemberRegistration, MemberStatusCode, MemberUser, MembersBulkImportRequest, MembersFindRequest, MembersServiceInviteRequest, MembersServiceUpdateRequest, Membership, MembershipIdRequest, MembershipsRequest, Placement, PlacementIdRequest, PlacementStatusCode, Planing, QueryResponse, QueryResponseOfAccount, QueryResponseOfActivity, QueryResponseOfBooking, QueryResponseOfBookingRequest, QueryResponseOfMemberUser, QueryResponseOfMembership, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentTimeFrame, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, RestUtil, RowingBoatTypeCode, Services, StreamResponse, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, UseTypeCode, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingGroupRequest, UserBookingRequestFindRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreateBookingRequestRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceUpdateRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdateBookingRequestRequest, UserUpdatePlacementRequest, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, UsrActivitiesService, UsrMembersService, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
+export { AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, Activity, ActivityBookingGroup, ActivityIdRequest, ActivityStatusCode, AdminActivitiesService, AdminActivityBulkCreateRequest, AdminActivityDefaultCreateRequest, AdminActivityDefaultDeleteRequest, AdminActivityFindFreeResourcesRequest, AdminActivityFindRequest, AdminActivityPlaningRequest, AdminCreateActivityRequest, AdminCreateResourceRequest, AdminDailyPlaningRequest, AdminFindFreeResourcesRequest, AdminMembersFindRequest, AdminMembersService, AdminPlaningAssignResourceRequest, AdminPlaningDeleteActivityRequest, AdminPlaningDeleteBookingRequest, AdminPlaningMergeBookingsRequest, AdminPlaningService, AdminPlaningSplitBookingRequest, AdminPlaningUnAssignResourceRequest, AdminResourceBulkCreateRequest, AdminResourceFindRequest, AdminResourcesService, AdminUpdateActivityRequest, AdminUpdateResourceRequest, ApiKey, AuditLog, BaseEntity, Booking, BookingGroup, BookingIdRequest, BookingRequest, BookingRequestIdRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, DayOfWeekCode, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAccount, EntitiesResponseOfActivity, EntitiesResponseOfActivityBookingGroup, EntitiesResponseOfBooking, EntitiesResponseOfBookingGroup, EntitiesResponseOfBookingRequest, EntitiesResponseOfMembership, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntityResponse, EntityResponseOfAccount, EntityResponseOfActivity, EntityResponseOfBooking, EntityResponseOfBookingRequest, EntityResponseOfLoginData, EntityResponseOfMember, EntityResponseOfMemberUser, EntityResponseOfPlacement, EntityResponseOfPlaning, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Member, MemberIdRequest, MemberRegistration, MemberStatusCode, MemberUser, MembersBulkImportRequest, MembersFindRequest, MembersServiceInviteRequest, MembersServiceUpdateRequest, Membership, MembershipIdRequest, MembershipsRequest, Placement, PlacementIdRequest, PlacementStatusCode, Planing, QueryResponse, QueryResponseOfAccount, QueryResponseOfActivity, QueryResponseOfBooking, QueryResponseOfBookingRequest, QueryResponseOfMemberUser, QueryResponseOfMembership, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentTimeFrame, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, RestUtil, RowingBoatTypeCode, Services, StreamResponse, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingGroupRequest, UserBookingRequestFindRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreateBookingRequestRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceUpdateRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdateBookingRequestRequest, UserUpdatePlacementRequest, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, UsrActivitiesService, UsrMembersService, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
 //# sourceMappingURL=mottyc-ng-core-lib.js.map

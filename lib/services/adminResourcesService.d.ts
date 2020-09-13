@@ -4,7 +4,7 @@ import { Resource } from '../entities/Resource';
 import { ResourceClassCode } from '../enums/ResourceClassCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { ResourceStatusCode } from '../enums/ResourceStatusCode';
-import { UseTypeCode } from '../enums/UseTypeCode';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing club resources - for account administrator only
@@ -43,7 +43,7 @@ export declare class AdminResourcesService {
      * Find resources by filters
      * @Return: QueryResponse<Resource>
      */
-    find(search?: string, resourceClass?: ResourceClassCode, resourceType?: ResourceTypeMask, status?: ResourceStatusCode, forUseBy?: UseTypeCode, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
+    find(search?: string, resourceClass?: ResourceClassCode, resourceType?: ResourceTypeMask, status?: ResourceStatusCode, forUseBy?: AccountRoleCode, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
     /**
      * Import bulk set of resources
      * @Return: ActionResponse

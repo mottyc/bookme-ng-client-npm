@@ -1,7 +1,7 @@
 import { ResourceClassCode } from '../enums/ResourceClassCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { ResourceStatusCode } from '../enums/ResourceStatusCode';
-import { UseTypeCode } from '../enums/UseTypeCode';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { WeightRange } from '../common/WeightRange';
 import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
@@ -10,7 +10,7 @@ export declare class Resource extends BaseEntity {
     resourceClass: ResourceClassCode;
     resourceType: ResourceTypeMask;
     status: ResourceStatusCode;
-    forUseBy: UseTypeCode;
+    forUseBy: AccountRoleCode;
     brand: string;
     weightRange: WeightRange;
     description: string;
@@ -23,7 +23,7 @@ export interface IResource extends IBaseEntity {
     resourceClass?: ResourceClassCode;
     resourceType?: ResourceTypeMask;
     status?: ResourceStatusCode;
-    forUseBy?: UseTypeCode;
+    forUseBy?: AccountRoleCode;
     brand?: string;
     weightRange?: WeightRange;
     description?: string;
