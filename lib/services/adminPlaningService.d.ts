@@ -23,7 +23,7 @@ export declare class AdminPlaningService {
      * Export daily planing - as PDF stream
      * @Return: StreamContent
      */
-    exportDailyPlaning(day?: number): import("rxjs").Subscription;
+    exportDailyPlaning(day?: number, lang?: string): import("rxjs").Subscription;
     /**
      * Find list of free resources for the booking request
      * @Return: EntitiesResponse<Resource>

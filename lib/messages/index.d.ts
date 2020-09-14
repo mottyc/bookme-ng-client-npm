@@ -9,6 +9,7 @@ export * from './AdminActivityFindRequest';
 export * from './AdminActivityPlaningRequest';
 export * from './AdminCreateActivityRequest';
 export * from './AdminCreateResourceRequest';
+export * from './AdminDailyPlaningExportRequest';
 export * from './AdminDailyPlaningRequest';
 export * from './AdminFindFreeResourcesRequest';
 export * from './AdminMembersFindRequest';

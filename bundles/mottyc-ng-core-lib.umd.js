@@ -1155,6 +1155,16 @@
 
     /*
     */
+    var AdminDailyPlaningExportRequest = /** @class */ (function () {
+        function AdminDailyPlaningExportRequest(day, lang) {
+            this.day = day;
+            this.lang = lang;
+        }
+        return AdminDailyPlaningExportRequest;
+    }());
+
+    /*
+    */
     var AdminDailyPlaningRequest = /** @class */ (function () {
         function AdminDailyPlaningRequest(day) {
             this.day = day;
@@ -2680,8 +2690,13 @@
          * Export daily planing - as PDF stream
          * @Return: StreamContent
          */
-        AdminPlaningService.prototype.exportDailyPlaning = function (day) {
-            return this.rest.download("admin-planing", this.baseUrl + "/daily/" + day + "/export");
+        AdminPlaningService.prototype.exportDailyPlaning = function (day, lang) {
+            var _a;
+            var params = new Array();
+            if (lang != null) {
+                params.push("lang=" + lang);
+            }
+            return (_a = this.rest).download.apply(_a, __spread(["admin-planing", this.baseUrl + "/daily/" + day + "/export"], params));
         };
         /**
          * Find list of free resources for the booking request
@@ -3770,6 +3785,7 @@
     exports.AdminActivityPlaningRequest = AdminActivityPlaningRequest;
     exports.AdminCreateActivityRequest = AdminCreateActivityRequest;
     exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
+    exports.AdminDailyPlaningExportRequest = AdminDailyPlaningExportRequest;
     exports.AdminDailyPlaningRequest = AdminDailyPlaningRequest;
     exports.AdminFindFreeResourcesRequest = AdminFindFreeResourcesRequest;
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
