@@ -1,3 +1,4 @@
+export * from './adminAccountService';
 export * from './adminActivitiesService';
 export * from './adminMembersService';
 export * from './adminPlaningService';

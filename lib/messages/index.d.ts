@@ -1,6 +1,7 @@
 export * from './AccountIdRequest';
 export * from './ActionResponse';
 export * from './ActivityIdRequest';
+export * from './AdminAccountSettingsUpdateRequest';
 export * from './AdminActivityBulkCreateRequest';
 export * from './AdminActivityDefaultCreateRequest';
 export * from './AdminActivityDefaultDeleteRequest';
@@ -40,6 +41,7 @@ export * from './EntitiesResponseOfPlacement';
 export * from './EntitiesResponseOfResource';
 export * from './EntityResponse';
 export * from './EntityResponseOfAccount';
+export * from './EntityResponseOfAccountSettings';
 export * from './EntityResponseOfActivity';
 export * from './EntityResponseOfBooking';
 export * from './EntityResponseOfBookingRequest';
