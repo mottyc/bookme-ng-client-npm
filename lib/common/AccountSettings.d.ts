@@ -1,10 +1,10 @@
-import { RecurrentTimeFrame } from '../common/RecurrentTimeFrame';
+import { RecurrentActivity } from '../common/RecurrentActivity';
 export declare class AccountSettings {
-    defaultActivities: RecurrentTimeFrame[];
+    defaultActivities: RecurrentActivity[];
     retentionDays: number;
-    constructor(defaultActivities?: RecurrentTimeFrame[], retentionDays?: number);
+    constructor(defaultActivities?: RecurrentActivity[], retentionDays?: number);
 }
 export interface IAccountSettings {
-    defaultActivities?: RecurrentTimeFrame[];
+    defaultActivities?: RecurrentActivity[];
     retentionDays?: number;
 }

@@ -100,6 +100,21 @@
     }());
 
     /*
+     *  Recurrent activity
+    */
+    var RecurrentActivity = /** @class */ (function () {
+        function RecurrentActivity(dayOfWeek, startTime, endTime, name, resourceFilter, roleFilter) {
+            this.dayOfWeek = dayOfWeek;
+            this.startTime = startTime;
+            this.endTime = endTime;
+            this.name = name;
+            this.resourceFilter = resourceFilter;
+            this.roleFilter = roleFilter;
+        }
+        return RecurrentActivity;
+    }());
+
+    /*
      *  Schedule recurrent time frame
     */
     var RecurrentTimeFrame = /** @class */ (function () {
@@ -3868,6 +3883,7 @@
     exports.QueryResponseOfPlacement = QueryResponseOfPlacement;
     exports.QueryResponseOfResource = QueryResponseOfResource;
     exports.QueryResponseOfUser = QueryResponseOfUser;
+    exports.RecurrentActivity = RecurrentActivity;
     exports.RecurrentTimeFrame = RecurrentTimeFrame;
     exports.Resource = Resource;
     exports.ResourceIdRequest = ResourceIdRequest;

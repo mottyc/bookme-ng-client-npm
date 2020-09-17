@@ -4,6 +4,7 @@ export * from './AccountSettings';
 export * from './LoginData';
 export * from './LoginParams';
 export * from './MemberRegistration';
+export * from './RecurrentActivity';
 export * from './RecurrentTimeFrame';
 export * from './StringKeyValue';
 export * from './TimeFrame';
