@@ -70,7 +70,7 @@ export declare class AdminActivitiesService {
      * Clear all month activities
      * @Return: ActionResponse
      */
-    clearDefault(year?: number, month?: number): import("rxjs").Observable<any>;
+    clearDefault(year?: number, month?: number, day?: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminActivitiesService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminActivitiesService>;
 }

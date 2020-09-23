@@ -741,9 +741,10 @@ class AdminActivityDefaultCreateRequest {
 /*
 */
 class AdminActivityDefaultDeleteRequest {
-    constructor(year, month) {
+    constructor(year, month, day) {
         this.year = year;
         this.month = month;
+        this.day = day;
     }
 }
 
@@ -1948,13 +1949,16 @@ class AdminActivitiesService {
      * Clear all month activities
      * @Return: ActionResponse
      */
-    clearDefault(year, month) {
+    clearDefault(year, month, day) {
         const params = new Array();
         if (year != null) {
             params.push(`year=${year}`);
         }
         if (month != null) {
             params.push(`month=${month}`);
+        }
+        if (day != null) {
+            params.push(`day=${day}`);
         }
         return this.rest.delete(`${this.baseUrl}/default`, ...params);
     }
