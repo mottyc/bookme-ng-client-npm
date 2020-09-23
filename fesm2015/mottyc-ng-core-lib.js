@@ -731,9 +731,10 @@ class AdminActivityBulkCreateRequest {
 /*
 */
 class AdminActivityDefaultCreateRequest {
-    constructor(year, month) {
+    constructor(year, month, day) {
         this.year = year;
         this.month = month;
+        this.day = day;
     }
 }
 
@@ -1930,13 +1931,16 @@ class AdminActivitiesService {
      * Create account default set of activities per month
      * @Return: ActionResponse
      */
-    createDefault(year, month) {
+    createDefault(year, month, day) {
         const params = new Array();
         if (year != null) {
             params.push(`year=${year}`);
         }
         if (month != null) {
             params.push(`month=${month}`);
+        }
+        if (day != null) {
+            params.push(`day=${day}`);
         }
         return this.rest.post(`${this.baseUrl}/default`, null, ...params);
     }

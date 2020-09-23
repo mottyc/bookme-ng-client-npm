@@ -65,7 +65,7 @@ export declare class AdminActivitiesService {
      * Create account default set of activities per month
      * @Return: ActionResponse
      */
-    createDefault(year?: number, month?: number): import("rxjs").Observable<any>;
+    createDefault(year?: number, month?: number, day?: number): import("rxjs").Observable<any>;
     /**
      * Clear all month activities
      * @Return: ActionResponse

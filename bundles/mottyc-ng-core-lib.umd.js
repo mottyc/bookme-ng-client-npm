@@ -1107,9 +1107,10 @@
     /*
     */
     var AdminActivityDefaultCreateRequest = /** @class */ (function () {
-        function AdminActivityDefaultCreateRequest(year, month) {
+        function AdminActivityDefaultCreateRequest(year, month, day) {
             this.year = year;
             this.month = month;
+            this.day = day;
         }
         return AdminActivityDefaultCreateRequest;
     }());
@@ -2584,7 +2585,7 @@
          * Create account default set of activities per month
          * @Return: ActionResponse
          */
-        AdminActivitiesService.prototype.createDefault = function (year, month) {
+        AdminActivitiesService.prototype.createDefault = function (year, month, day) {
             var _a;
             var params = new Array();
             if (year != null) {
@@ -2592,6 +2593,9 @@
             }
             if (month != null) {
                 params.push("month=" + month);
+            }
+            if (day != null) {
+                params.push("day=" + day);
             }
             return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/default", null], params));
         };
