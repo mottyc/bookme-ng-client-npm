@@ -2630,6 +2630,13 @@ class UserBookingsService {
         return this.rest.get(`${this.baseUrl}/${id}`);
     }
     /**
+     * Get extended booking info by id including names
+     * @Return: EntityResponse<Booking>
+     */
+    getExt(id) {
+        return this.rest.get(`${this.baseUrl}/${id}/ext`);
+    }
+    /**
      * Find bookings by filters
      * @Return: QueryResponse<Booking>
      */
