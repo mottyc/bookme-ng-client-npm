@@ -1,5 +1,5 @@
-import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { BaseEntity } from '../entities/BaseEntity';
+import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class BookingRequest extends BaseEntity {
     placementOn: number;

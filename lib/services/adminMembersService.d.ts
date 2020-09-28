@@ -1,10 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
+import { MemberUser } from '../entities/MemberUser';
+import { MemberRegistration } from '../common/MemberRegistration';
 import { Member } from '../entities/Member';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
-import { MemberUser } from '../entities/MemberUser';
-import { MemberRegistration } from '../common/MemberRegistration';
 import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
@@ -38,6 +38,12 @@ export declare class AdminMembersService {
      * @Return: ActionResponse
      */
     delete(id?: string): import("rxjs").Observable<any>;
+    /**
+     * Reset password for member
+     * The result is a temporary password
+     * @Return: ActionResponse
+     */
+    resetPassword(id?: string): import("rxjs").Observable<any>;
     /**
      * Get single member by id (including user data)
      * @Return: EntityResponse<MemberUser>

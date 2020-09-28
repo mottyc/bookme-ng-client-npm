@@ -2016,6 +2016,14 @@ class AdminMembersService {
         return this.rest.delete(`${this.baseUrl}/${id}`);
     }
     /**
+     * Reset password for member
+     * The result is a temporary password
+     * @Return: ActionResponse
+     */
+    resetPassword(id) {
+        return this.rest.post(`${this.baseUrl}/${id}/reset-password`, null);
+    }
+    /**
      * Get single member by id (including user data)
      * @Return: EntityResponse<MemberUser>
      */
