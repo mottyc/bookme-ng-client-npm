@@ -3075,6 +3075,13 @@ class UserService {
     setProfile(body) {
         return this.rest.put(`${this.baseUrl}/profile`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
+    /**
+     * Get app version
+     * @Return: ActionResponse
+     */
+    getVersion() {
+        return this.rest.get(`${this.baseUrl}/version`);
+    }
 }
 /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
 /** @nocollapse */ UserService.ɵprov = ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });

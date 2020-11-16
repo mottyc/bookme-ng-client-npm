@@ -3805,6 +3805,13 @@
         UserService.prototype.setProfile = function (body) {
             return this.rest.put(this.baseUrl + "/profile", typeof body === 'object' ? JSON.stringify(body) : body);
         };
+        /**
+         * Get app version
+         * @Return: ActionResponse
+         */
+        UserService.prototype.getVersion = function () {
+            return this.rest.get(this.baseUrl + "/version");
+        };
         return UserService;
     }());
     /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
