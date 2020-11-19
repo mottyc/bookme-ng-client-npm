@@ -15,6 +15,7 @@ export * from './MemberUser';
 export * from './Membership';
 export * from './Placement';
 export * from './Planing';
+export * from './Registration';
 export * from './Resource';
 export * from './User';
 export * from './Verification';

@@ -15,6 +15,7 @@ export declare class Booking extends BaseEntity {
     requestedByName: string;
     requestedFor: string[];
     requestedForNames: string[];
+    participants: string[];
     resourceType: ResourceTypeMask;
     approvedOn: number;
     status: BookingStatusCode;
@@ -36,6 +37,7 @@ export interface IBooking extends IBaseEntity {
     requestedByName?: string;
     requestedFor?: string[];
     requestedForNames?: string[];
+    participants?: string[];
     resourceType?: ResourceTypeMask;
     approvedOn?: number;
     status?: BookingStatusCode;
