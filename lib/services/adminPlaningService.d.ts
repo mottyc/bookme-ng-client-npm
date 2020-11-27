@@ -1,5 +1,6 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
+import { Actual } from '../entities/Actual';
 import * as i0 from "@angular/core";
 /**
  * Services for planing club resource placements - for account administrator only
@@ -59,6 +60,16 @@ export declare class AdminPlaningService {
      * @Return: EntitiesResponse<ActivityBookingGroup>
      */
     deleteActivity(day?: number, id?: string): import("rxjs").Observable<any>;
+    /**
+     * Get daily registration list - who is present
+     * @Return: EntitiesResponse<Actual>
+     */
+    getDailyRegistration(day?: number): import("rxjs").Observable<any>;
+    /**
+     * Update user registration
+     * @Return: ActionResponse
+     */
+    updateRegistration(body?: Actual): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminPlaningService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminPlaningService>;
 }
