@@ -775,12 +775,13 @@ class AdminActivityFindFreeResourcesRequest {
 /*
 */
 class AdminActivityFindRequest {
-    constructor(from, to, year, month, day) {
+    constructor(from, to, year, month, day, total) {
         this.from = from;
         this.to = to;
         this.year = year;
         this.month = month;
         this.day = day;
+        this.total = total;
     }
 }
 
@@ -1920,7 +1921,7 @@ class AdminActivitiesService {
      * Find activities by time range
      * @Return: QueryResponse<Activity>
      */
-    find(from, to, year, month, day) {
+    find(from, to, year, month, day, total) {
         const params = new Array();
         if (from != null) {
             params.push(`from=${from}`);
@@ -1936,6 +1937,9 @@ class AdminActivitiesService {
         }
         if (day != null) {
             params.push(`day=${day}`);
+        }
+        if (total != null) {
+            params.push(`total=${total}`);
         }
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
@@ -2606,7 +2610,7 @@ class UsrActivitiesService {
      * Find activities by time range
      * @Return: QueryResponse<Activity>
      */
-    find(from, to, year, month, day) {
+    find(from, to, year, month, day, total) {
         const params = new Array();
         if (from != null) {
             params.push(`from=${from}`);
@@ -2622,6 +2626,9 @@ class UsrActivitiesService {
         }
         if (day != null) {
             params.push(`day=${day}`);
+        }
+        if (total != null) {
+            params.push(`total=${total}`);
         }
         return this.rest.get(`${this.baseUrl}`, ...params);
     }

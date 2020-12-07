@@ -1178,12 +1178,13 @@
     /*
     */
     var AdminActivityFindRequest = /** @class */ (function () {
-        function AdminActivityFindRequest(from, to, year, month, day) {
+        function AdminActivityFindRequest(from, to, year, month, day, total) {
             this.from = from;
             this.to = to;
             this.year = year;
             this.month = month;
             this.day = day;
+            this.total = total;
         }
         return AdminActivityFindRequest;
     }());
@@ -2603,7 +2604,7 @@
          * Find activities by time range
          * @Return: QueryResponse<Activity>
          */
-        AdminActivitiesService.prototype.find = function (from, to, year, month, day) {
+        AdminActivitiesService.prototype.find = function (from, to, year, month, day, total) {
             var _a;
             var params = new Array();
             if (from != null) {
@@ -2620,6 +2621,9 @@
             }
             if (day != null) {
                 params.push("day=" + day);
+            }
+            if (total != null) {
+                params.push("total=" + total);
             }
             return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
         };
@@ -3333,7 +3337,7 @@
          * Find activities by time range
          * @Return: QueryResponse<Activity>
          */
-        UsrActivitiesService.prototype.find = function (from, to, year, month, day) {
+        UsrActivitiesService.prototype.find = function (from, to, year, month, day, total) {
             var _a;
             var params = new Array();
             if (from != null) {
@@ -3350,6 +3354,9 @@
             }
             if (day != null) {
                 params.push("day=" + day);
+            }
+            if (total != null) {
+                params.push("total=" + total);
             }
             return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
         };

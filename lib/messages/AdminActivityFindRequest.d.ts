@@ -4,7 +4,8 @@ export declare class AdminActivityFindRequest {
     year: number;
     month: number;
     day: number;
-    constructor(from?: number, to?: number, year?: number, month?: number, day?: number);
+    total: boolean;
+    constructor(from?: number, to?: number, year?: number, month?: number, day?: number, total?: boolean);
 }
 export interface IAdminActivityFindRequest {
     from?: number;
@@ -12,4 +13,5 @@ export interface IAdminActivityFindRequest {
     year?: number;
     month?: number;
     day?: number;
+    total?: boolean;
 }

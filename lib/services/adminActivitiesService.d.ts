@@ -1,7 +1,7 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { Activity } from '../entities/Activity';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing club activities - for account administrator only
@@ -50,7 +50,7 @@ export declare class AdminActivitiesService {
      * Find activities by time range
      * @Return: QueryResponse<Activity>
      */
-    find(from?: number, to?: number, year?: number, month?: number, day?: number): import("rxjs").Observable<any>;
+    find(from?: number, to?: number, year?: number, month?: number, day?: number, total?: boolean): import("rxjs").Observable<any>;
     /**
      * Find list of free resources for activity by filter
      * @Return: EntitiesResponse<Resource>

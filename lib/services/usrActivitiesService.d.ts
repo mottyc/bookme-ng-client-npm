@@ -23,7 +23,7 @@ export declare class UsrActivitiesService {
      * Find activities by time range
      * @Return: QueryResponse<Activity>
      */
-    find(from?: number, to?: number, year?: number, month?: number, day?: number): import("rxjs").Observable<any>;
+    find(from?: number, to?: number, year?: number, month?: number, day?: number, total?: boolean): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<UsrActivitiesService, never>;
     static ɵprov: i0.ɵɵInjectableDef<UsrActivitiesService>;
 }
