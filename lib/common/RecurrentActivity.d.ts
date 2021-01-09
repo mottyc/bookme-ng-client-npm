@@ -8,7 +8,8 @@ export declare class RecurrentActivity {
     name: string;
     resourceFilter: ResourceTypeMask[];
     roleFilter: AccountRoleCode[];
-    constructor(dayOfWeek?: DayOfWeekCode, startTime?: number, endTime?: number, name?: string, resourceFilter?: ResourceTypeMask[], roleFilter?: AccountRoleCode[]);
+    limit: number;
+    constructor(dayOfWeek?: DayOfWeekCode, startTime?: number, endTime?: number, name?: string, resourceFilter?: ResourceTypeMask[], roleFilter?: AccountRoleCode[], limit?: number);
 }
 export interface IRecurrentActivity {
     dayOfWeek?: DayOfWeekCode;
@@ -17,4 +18,5 @@ export interface IRecurrentActivity {
     name?: string;
     resourceFilter?: ResourceTypeMask[];
     roleFilter?: AccountRoleCode[];
+    limit?: number;
 }
