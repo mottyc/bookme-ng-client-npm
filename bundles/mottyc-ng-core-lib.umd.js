@@ -3428,6 +3428,13 @@
             return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
         };
         /**
+         * Update actual activity log (duration and distance)
+         * @Return: EntityResponse<Booking>
+         */
+        UserBookingsService.prototype.updateLog = function (body) {
+            return this.rest.put(this.baseUrl + "/log", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
          * Delete booking
          * @Return: ActionResponse
          */

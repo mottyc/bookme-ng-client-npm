@@ -2686,6 +2686,13 @@ class UserBookingsService {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
+     * Update actual activity log (duration and distance)
+     * @Return: EntityResponse<Booking>
+     */
+    updateLog(body) {
+        return this.rest.put(`${this.baseUrl}/log`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
      * Delete booking
      * @Return: ActionResponse
      */

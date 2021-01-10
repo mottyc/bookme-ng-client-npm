@@ -27,6 +27,11 @@ export declare class UserBookingsService {
      */
     update(body?: Booking): import("rxjs").Observable<any>;
     /**
+     * Update actual activity log (duration and distance)
+     * @Return: EntityResponse<Booking>
+     */
+    updateLog(body?: Booking): import("rxjs").Observable<any>;
+    /**
      * Delete booking
      * @Return: ActionResponse
      */
