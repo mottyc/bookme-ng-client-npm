@@ -1989,6 +1989,19 @@
 
     /*
     */
+    var UserBookingHistoryRequest = /** @class */ (function () {
+        function UserBookingHistoryRequest(resourceId, year, month, day, sort) {
+            this.resourceId = resourceId;
+            this.year = year;
+            this.month = month;
+            this.day = day;
+            this.sort = sort;
+        }
+        return UserBookingHistoryRequest;
+    }());
+
+    /*
+    */
     var UserBookingRequestFindRequest = /** @class */ (function () {
         function UserBookingRequestFindRequest(userId, resourceId, from, to, sort, page, pageSize) {
             this.userId = userId;
@@ -3473,32 +3486,26 @@
             return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
         };
         /**
-         * Find bookings history by filters
+         * Find bookings daily / monthly / yearly history by filters
          * @Return: QueryResponse<Booking>
          */
-        UserBookingsService.prototype.history = function (userId, resourceId, from, to, sort, page, pageSize) {
+        UserBookingsService.prototype.history = function (resourceId, year, month, day, sort) {
             var _a;
             var params = new Array();
-            if (userId != null) {
-                params.push("userId=" + userId);
-            }
             if (resourceId != null) {
                 params.push("resourceId=" + resourceId);
             }
-            if (from != null) {
-                params.push("from=" + from);
+            if (year != null) {
+                params.push("year=" + year);
             }
-            if (to != null) {
-                params.push("to=" + to);
+            if (month != null) {
+                params.push("month=" + month);
+            }
+            if (day != null) {
+                params.push("day=" + day);
             }
             if (sort != null) {
                 params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
             }
             return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/history"], params));
         };
@@ -4104,6 +4111,7 @@
     exports.UserAccountsService = UserAccountsService;
     exports.UserBookingFindRequest = UserBookingFindRequest;
     exports.UserBookingGroupRequest = UserBookingGroupRequest;
+    exports.UserBookingHistoryRequest = UserBookingHistoryRequest;
     exports.UserBookingRequestFindRequest = UserBookingRequestFindRequest;
     exports.UserBookingsService = UserBookingsService;
     exports.UserByEmailRequest = UserByEmailRequest;

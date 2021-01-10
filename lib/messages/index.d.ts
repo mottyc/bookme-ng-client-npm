@@ -84,6 +84,7 @@ export * from './TokenRequest';
 export * from './UserAccountsFindRequest';
 export * from './UserBookingFindRequest';
 export * from './UserBookingGroupRequest';
+export * from './UserBookingHistoryRequest';
 export * from './UserBookingRequestFindRequest';
 export * from './UserByEmailRequest';
 export * from './UserCreateBookingRequest';

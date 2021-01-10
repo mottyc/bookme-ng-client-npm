@@ -52,10 +52,10 @@ export declare class UserBookingsService {
      */
     find(userId?: string, resourceId?: string, from?: number, to?: number, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
     /**
-     * Find bookings history by filters
+     * Find bookings daily / monthly / yearly history by filters
      * @Return: QueryResponse<Booking>
      */
-    history(userId?: string, resourceId?: string, from?: number, to?: number, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
+    history(resourceId?: string, year?: number, month?: number, day?: number, sort?: string): import("rxjs").Observable<any>;
     /**
      * Group my bookings by time period
      * @Return: EntitiesResponse<BookingGroup>
