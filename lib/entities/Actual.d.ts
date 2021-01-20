@@ -5,6 +5,8 @@ export declare class Actual extends BaseEntity {
     bookingId: string;
     userId: string;
     userName: string;
+    resourceId: string;
+    resourceName: string;
     duration: number;
     distance: number;
     isMissing: boolean;
@@ -18,6 +20,8 @@ export interface IActual extends IBaseEntity {
     bookingId?: string;
     userId?: string;
     userName?: string;
+    resourceId?: string;
+    resourceName?: string;
     duration?: number;
     distance?: number;
     isMissing?: boolean;

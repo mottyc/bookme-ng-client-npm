@@ -1,7 +1,3 @@
-import { AdminMembersService } from './adminMembersService';
-import { UserAccountsService } from './userAccountsService';
-import { UsrMembersService } from './usrMembersService';
-import { UserService } from './userService';
 import { AdminAccountService } from './adminAccountService';
 import { HealthCheckService } from './healthCheckService';
 import { SysAccountsService } from './sysAccountsService';
@@ -12,4 +8,8 @@ import { AdminResourcesService } from './adminResourcesService';
 import { UsrActivitiesService } from './usrActivitiesService';
 import { UserBookingsService } from './userBookingsService';
 import { UserPlacementsService } from './userPlacementsService';
-export declare const Services: (typeof AdminAccountService | typeof AdminActivitiesService | typeof AdminMembersService | typeof AdminPlaningService | typeof AdminResourcesService | typeof HealthCheckService | typeof UserAccountsService | typeof UsrMembersService | typeof UserService | typeof SysAccountsService | typeof SysUsersService | typeof UsrActivitiesService | typeof UserBookingsService | typeof UserPlacementsService)[];
+import { AdminMembersService } from './adminMembersService';
+import { UserAccountsService } from './userAccountsService';
+import { UsrMembersService } from './usrMembersService';
+import { UserService } from './userService';
+export declare const Services: (typeof AdminAccountService | typeof AdminActivitiesService | typeof AdminMembersService | typeof AdminPlaningService | typeof AdminResourcesService | typeof HealthCheckService | typeof SysAccountsService | typeof SysUsersService | typeof UsrActivitiesService | typeof UserBookingsService | typeof UserPlacementsService | typeof UserAccountsService | typeof UsrMembersService | typeof UserService)[];
