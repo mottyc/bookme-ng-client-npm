@@ -831,9 +831,10 @@ class AdminDailyPlaningRequest {
 /*
 */
 class AdminDailyRegistrationRequest {
-    constructor(day, filter) {
+    constructor(day, filter, missingOnly) {
         this.day = day;
         this.filter = filter;
+        this.missingOnly = missingOnly;
     }
 }
 
@@ -2231,10 +2232,13 @@ class AdminPlaningService {
      * Get daily registration list - who is present
      * @Return: EntitiesResponse<Actual>
      */
-    getDailyRegistration(day, filter) {
+    getDailyRegistration(day, filter, missingOnly) {
         const params = new Array();
         if (filter != null) {
             params.push(`filter=${filter}`);
+        }
+        if (missingOnly != null) {
+            params.push(`missingOnly=${missingOnly}`);
         }
         return this.rest.get(`${this.baseUrl}/bookings/registration/${day}`, ...params);
     }

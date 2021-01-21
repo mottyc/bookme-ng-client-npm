@@ -64,7 +64,7 @@ export declare class AdminPlaningService {
      * Get daily registration list - who is present
      * @Return: EntitiesResponse<Actual>
      */
-    getDailyRegistration(day?: number, filter?: string): import("rxjs").Observable<any>;
+    getDailyRegistration(day?: number, filter?: string, missingOnly?: boolean): import("rxjs").Observable<any>;
     /**
      * Update user registration
      * @Return: ActionResponse
