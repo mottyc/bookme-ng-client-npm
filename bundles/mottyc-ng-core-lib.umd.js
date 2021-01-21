@@ -1248,8 +1248,9 @@
     /*
     */
     var AdminDailyRegistrationRequest = /** @class */ (function () {
-        function AdminDailyRegistrationRequest(day) {
+        function AdminDailyRegistrationRequest(day, filter) {
             this.day = day;
+            this.filter = filter;
         }
         return AdminDailyRegistrationRequest;
     }());
@@ -2938,8 +2939,13 @@
          * Get daily registration list - who is present
          * @Return: EntitiesResponse<Actual>
          */
-        AdminPlaningService.prototype.getDailyRegistration = function (day) {
-            return this.rest.get(this.baseUrl + "/bookings/registration/" + day);
+        AdminPlaningService.prototype.getDailyRegistration = function (day, filter) {
+            var _a;
+            var params = new Array();
+            if (filter != null) {
+                params.push("filter=" + filter);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/bookings/registration/" + day], params));
         };
         /**
          * Update user registration

@@ -831,8 +831,9 @@ class AdminDailyPlaningRequest {
 /*
 */
 class AdminDailyRegistrationRequest {
-    constructor(day) {
+    constructor(day, filter) {
         this.day = day;
+        this.filter = filter;
     }
 }
 
@@ -2230,8 +2231,12 @@ class AdminPlaningService {
      * Get daily registration list - who is present
      * @Return: EntitiesResponse<Actual>
      */
-    getDailyRegistration(day) {
-        return this.rest.get(`${this.baseUrl}/bookings/registration/${day}`);
+    getDailyRegistration(day, filter) {
+        const params = new Array();
+        if (filter != null) {
+            params.push(`filter=${filter}`);
+        }
+        return this.rest.get(`${this.baseUrl}/bookings/registration/${day}`, ...params);
     }
     /**
      * Update user registration
