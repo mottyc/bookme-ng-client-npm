@@ -3392,6 +3392,31 @@
             }
             return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
         };
+        /**
+         * Find list of free resources for activity by filter
+         * @Return: EntitiesResponse<Resource>
+         */
+        UsrActivitiesService.prototype.findFreeResources = function (id, resType, weight, forUseBy) {
+            var _a;
+            var params = new Array();
+            if (resType != null) {
+                params.push("resType=" + resType);
+            }
+            if (weight != null) {
+                params.push("weight=" + weight);
+            }
+            if (forUseBy != null) {
+                params.push("forUseBy=" + forUseBy);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/" + id + "/resources"], params));
+        };
+        /**
+         * Find list of all resources for activity and mark the assigned activities
+         * @Return: EntitiesResponse<Resource>
+         */
+        UsrActivitiesService.prototype.findAllResources = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id + "/all-resources");
+        };
         return UsrActivitiesService;
     }());
     /** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };

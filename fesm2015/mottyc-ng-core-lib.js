@@ -2654,6 +2654,30 @@ class UsrActivitiesService {
         }
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
+    /**
+     * Find list of free resources for activity by filter
+     * @Return: EntitiesResponse<Resource>
+     */
+    findFreeResources(id, resType, weight, forUseBy) {
+        const params = new Array();
+        if (resType != null) {
+            params.push(`resType=${resType}`);
+        }
+        if (weight != null) {
+            params.push(`weight=${weight}`);
+        }
+        if (forUseBy != null) {
+            params.push(`forUseBy=${forUseBy}`);
+        }
+        return this.rest.get(`${this.baseUrl}/${id}/resources`, ...params);
+    }
+    /**
+     * Find list of all resources for activity and mark the assigned activities
+     * @Return: EntitiesResponse<Resource>
+     */
+    findAllResources(id) {
+        return this.rest.get(`${this.baseUrl}/${id}/all-resources`);
+    }
 }
 /** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
 /** @nocollapse */ UsrActivitiesService.ɵprov = ɵɵdefineInjectable({ token: UsrActivitiesService, factory: UsrActivitiesService.ɵfac });
