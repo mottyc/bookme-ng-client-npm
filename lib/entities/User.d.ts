@@ -1,7 +1,7 @@
+import { UserTypeCode } from '../enums/UserTypeCode';
 import { UserStatusCode } from '../enums/UserStatusCode';
 import { UserGenderCode } from '../enums/UserGenderCode';
 import { BaseEntity } from '../entities/BaseEntity';
-import { UserTypeCode } from '../enums/UserTypeCode';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class User extends BaseEntity {
     name: string;
@@ -12,7 +12,7 @@ export declare class User extends BaseEntity {
     type: UserTypeCode;
     status: UserStatusCode;
     suspendedOn: number;
-    signInAttempts: number;
+    lastSignIn: number;
     changePassword: boolean;
     passwordChangedOn: number;
     defaultAccount: string;
@@ -35,7 +35,7 @@ export interface IUser extends IBaseEntity {
     type?: UserTypeCode;
     status?: UserStatusCode;
     suspendedOn?: number;
-    signInAttempts?: number;
+    lastSignIn?: number;
     changePassword?: boolean;
     passwordChangedOn?: number;
     defaultAccount?: string;
