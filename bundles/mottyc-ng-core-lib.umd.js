@@ -1342,6 +1342,16 @@
 
     /*
     */
+    var AdminReportAbsenceRequest = /** @class */ (function () {
+        function AdminReportAbsenceRequest(id, userId) {
+            this.id = id;
+            this.userId = userId;
+        }
+        return AdminReportAbsenceRequest;
+    }());
+
+    /*
+    */
     var AdminResourceBulkCreateRequest = /** @class */ (function () {
         function AdminResourceBulkCreateRequest(body) {
             this.body = body;
@@ -2958,6 +2968,18 @@
         AdminPlaningService.prototype.updateRegistration = function (body) {
             return this.rest.post(this.baseUrl + "/bookings/registration", typeof body === 'object' ? JSON.stringify(body) : body);
         };
+        /**
+         * Report user absence from approved booking
+         * @Return: ActionResponse
+         */
+        AdminPlaningService.prototype.reportAbsence = function (id, userId) {
+            var _a;
+            var params = new Array();
+            if (userId != null) {
+                params.push("userId=" + userId);
+            }
+            return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/bookings/" + id + "/absence", null], params));
+        };
         return AdminPlaningService;
     }());
     /** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -4056,6 +4078,7 @@
     exports.AdminPlaningService = AdminPlaningService;
     exports.AdminPlaningSplitBookingRequest = AdminPlaningSplitBookingRequest;
     exports.AdminPlaningUnAssignResourceRequest = AdminPlaningUnAssignResourceRequest;
+    exports.AdminReportAbsenceRequest = AdminReportAbsenceRequest;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
     exports.AdminResourcesService = AdminResourcesService;

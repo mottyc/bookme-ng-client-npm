@@ -70,6 +70,11 @@ export declare class AdminPlaningService {
      * @Return: ActionResponse
      */
     updateRegistration(body?: Actual): import("rxjs").Observable<any>;
+    /**
+     * Report user absence from approved booking
+     * @Return: ActionResponse
+     */
+    reportAbsence(id?: string, userId?: string[]): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminPlaningService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminPlaningService>;
 }
