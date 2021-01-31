@@ -70,6 +70,11 @@ export declare class AdminMembersService {
      * @Return: ActionResponse
      */
     bulkImport(body?: MemberUser[]): import("rxjs").Observable<any>;
+    /**
+     * Find list of all bookings that the user is registered to
+     * @Return: QueryResponse<Booking>
+     */
+    findMemberHistory(resourceId?: string, year?: number, month?: number, day?: number, sort?: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminMembersService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminMembersService>;
 }

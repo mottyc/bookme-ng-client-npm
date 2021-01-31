@@ -2849,6 +2849,30 @@
         AdminMembersService.prototype.bulkImport = function (body) {
             return this.rest.post(this.baseUrl + "/import", typeof body === 'object' ? JSON.stringify(body) : body);
         };
+        /**
+         * Find list of all bookings that the user is registered to
+         * @Return: QueryResponse<Booking>
+         */
+        AdminMembersService.prototype.findMemberHistory = function (resourceId, year, month, day, sort) {
+            var _a;
+            var params = new Array();
+            if (resourceId != null) {
+                params.push("resourceId=" + resourceId);
+            }
+            if (year != null) {
+                params.push("year=" + year);
+            }
+            if (month != null) {
+                params.push("month=" + month);
+            }
+            if (day != null) {
+                params.push("day=" + day);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/{id}/history"], params));
+        };
         return AdminMembersService;
     }());
     /** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };

@@ -2146,6 +2146,29 @@ class AdminMembersService {
     bulkImport(body) {
         return this.rest.post(`${this.baseUrl}/import`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
+    /**
+     * Find list of all bookings that the user is registered to
+     * @Return: QueryResponse<Booking>
+     */
+    findMemberHistory(resourceId, year, month, day, sort) {
+        const params = new Array();
+        if (resourceId != null) {
+            params.push(`resourceId=${resourceId}`);
+        }
+        if (year != null) {
+            params.push(`year=${year}`);
+        }
+        if (month != null) {
+            params.push(`month=${month}`);
+        }
+        if (day != null) {
+            params.push(`day=${day}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        return this.rest.get(`${this.baseUrl}/{id}/history`, ...params);
+    }
 }
 /** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
 /** @nocollapse */ AdminMembersService.ɵprov = ɵɵdefineInjectable({ token: AdminMembersService, factory: AdminMembersService.ɵfac });
