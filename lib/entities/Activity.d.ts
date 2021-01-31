@@ -10,6 +10,7 @@ export declare class Activity extends BaseEntity {
     status: ActivityStatusCode;
     resourceFilter: ResourceTypeMask[];
     roleFilter: AccountRoleCode[];
+    message: string;
     limit: number;
     id: string;
     createdOn: number;
@@ -22,6 +23,7 @@ export interface IActivity extends IBaseEntity {
     status?: ActivityStatusCode;
     resourceFilter?: ResourceTypeMask[];
     roleFilter?: AccountRoleCode[];
+    message?: string;
     limit?: number;
     id?: string;
     createdOn?: number;

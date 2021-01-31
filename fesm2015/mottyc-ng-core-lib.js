@@ -418,6 +418,8 @@ var BookingStatusCode;
     BookingStatusCode[BookingStatusCode["APPROVED"] = 2] = "APPROVED";
     // Cancelled booking [3] 
     BookingStatusCode[BookingStatusCode["CANCELLED"] = 3] = "CANCELLED";
+    // User absence from booking [4] 
+    BookingStatusCode[BookingStatusCode["ABSENCE"] = 4] = "ABSENCE";
 })(BookingStatusCode || (BookingStatusCode = {}));
 
 /*
