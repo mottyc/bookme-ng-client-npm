@@ -1212,6 +1212,20 @@
 
     /*
     */
+    var AdminBookingHistoryRequest = /** @class */ (function () {
+        function AdminBookingHistoryRequest(id, resourceId, year, month, day, sort) {
+            this.id = id;
+            this.resourceId = resourceId;
+            this.year = year;
+            this.month = month;
+            this.day = day;
+            this.sort = sort;
+        }
+        return AdminBookingHistoryRequest;
+    }());
+
+    /*
+    */
     var AdminCreateActivityRequest = /** @class */ (function () {
         function AdminCreateActivityRequest(body) {
             this.body = body;
@@ -2853,7 +2867,7 @@
          * Find list of all bookings that the user is registered to
          * @Return: QueryResponse<Booking>
          */
-        AdminMembersService.prototype.findMemberHistory = function (resourceId, year, month, day, sort) {
+        AdminMembersService.prototype.findMemberHistory = function (id, resourceId, year, month, day, sort) {
             var _a;
             var params = new Array();
             if (resourceId != null) {
@@ -2871,7 +2885,7 @@
             if (sort != null) {
                 params.push("sort=" + sort);
             }
-            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/{id}/history"], params));
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/" + id + "/history"], params));
         };
         return AdminMembersService;
     }());
@@ -3147,6 +3161,287 @@
     /** @nocollapse */ HealthCheckService.ɵprov = i0.ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
     /*@__PURE__*/ (function () {
         i0.ɵsetClassMetadata(HealthCheckService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * List of account related actions
+     */
+    var UserAccountsService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function UserAccountsService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/user/accounts';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Find list of accounts and filter
+         * @Return: QueryResponse<Account>
+         */
+        UserAccountsService.prototype.find = function (search, type, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        /**
+         * Get single account by id
+         * @Return: EntityResponse<Account>
+         */
+        UserAccountsService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Get list of user memberships
+         * @Return: EntitiesResponse<Membership>
+         */
+        UserAccountsService.prototype.getMemberships = function () {
+            return this.rest.get(this.baseUrl + "/memberships");
+        };
+        /**
+         * Delete membership by id
+         * @Return: ActionResponse
+         */
+        UserAccountsService.prototype.deleteMemberships = function (id) {
+            return this.rest.delete(this.baseUrl + "/memberships/" + id);
+        };
+        return UserAccountsService;
+    }());
+    /** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UserAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(UserAccountsService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * List of all user related actions for account administrator only
+     */
+    var UsrMembersService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function UsrMembersService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/user/members';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Get single member by id (including user data)
+         * @Return: EntityResponse<MemberUser>
+         */
+        UsrMembersService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Get my (logged-in user) member info (including user data)
+         * @Return: EntityResponse<MemberUser>
+         */
+        UsrMembersService.prototype.getMy = function () {
+            return this.rest.get(this.baseUrl + "/my");
+        };
+        /**
+         * Find list of users and filter the list
+         * System user will see all users, Account system will see all users of the account, registered user will get an error.
+         * @Return: QueryResponse<MemberUser>
+         */
+        UsrMembersService.prototype.find = function (search, role, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (role != null) {
+                params.push("role=" + role);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return UsrMembersService;
+    }());
+    /** @nocollapse */ UsrMembersService.ɵfac = function UsrMembersService_Factory(t) { return new (t || UsrMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UsrMembersService.ɵprov = i0.ɵɵdefineInjectable({ token: UsrMembersService, factory: UsrMembersService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(UsrMembersService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * Services for user registration and login
+     */
+    var UserService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function UserService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/user/user';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Login to the system with user email and password
+         * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
+         * @Return: EntityResponse<LoginData>
+         */
+        UserService.prototype.login = function (body) {
+            return this.rest.post(this.baseUrl + "/login", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Refresh token (set new expiration time) and associate with new account if required
+         * @Return: EntityResponse<LoginData>
+         */
+        UserService.prototype.refreshToken = function () {
+            return this.rest.post(this.baseUrl + "/refresh-token", null);
+        };
+        /**
+         * Verify user by temporary login key
+         * @Return: EntityResponse<User>
+         */
+        UserService.prototype.verifyLoginKey = function (key) {
+            var _a;
+            var params = new Array();
+            if (key != null) {
+                params.push("key=" + key);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/login/verify"], params));
+        };
+        /**
+         * Send verification code by email
+         * @Return: ActionResponse
+         */
+        UserService.prototype.sendVerificationCode = function (body) {
+            return this.rest.post(this.baseUrl + "/verify", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Validate verification code and reset password
+         * @Return: ActionResponse
+         */
+        UserService.prototype.resetPassword = function (code) {
+            return this.rest.post(this.baseUrl + "/reset-password", typeof code === 'object' ? JSON.stringify(code) : code);
+        };
+        /**
+         * Change password
+         * @Return: ActionResponse
+         */
+        UserService.prototype.changePassword = function (body) {
+            return this.rest.post(this.baseUrl + "/change-password", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Check if password was used before (according to password policy)
+         * @Return: ActionResponse
+         */
+        UserService.prototype.checkUnusedPassword = function (body) {
+            return this.rest.post(this.baseUrl + "/check-password", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change current user name
+         * @Return: ActionResponse
+         */
+        UserService.prototype.changeName = function (body) {
+            return this.rest.put(this.baseUrl + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change current user mobile
+         * @Return: ActionResponse
+         */
+        UserService.prototype.changeMobile = function (body) {
+            return this.rest.put(this.baseUrl + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Get all user accessible accounts for the user
+         * @Return: EntitiesResponse<Account>
+         */
+        UserService.prototype.getAccounts = function () {
+            return this.rest.get(this.baseUrl + "/accounts");
+        };
+        /**
+         * Refresh token (set new expiration time) and associate with new account if required
+         * @Return: EntityResponse<UserAccountInfo>
+         */
+        UserService.prototype.switchAccount = function (body) {
+            return this.rest.post(this.baseUrl + "/switch-account", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Get user profile
+         * @Return: EntityResponse<User>
+         */
+        UserService.prototype.getProfile = function () {
+            return this.rest.get(this.baseUrl + "/profile");
+        };
+        /**
+         * Update user profile
+         * @Return: EntityResponse<User>
+         */
+        UserService.prototype.setProfile = function (body) {
+            return this.rest.put(this.baseUrl + "/profile", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Get app version
+         * @Return: ActionResponse
+         */
+        UserService.prototype.getVersion = function () {
+            return this.rest.get(this.baseUrl + "/version");
+        };
+        return UserService;
+    }());
+    /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UserService.ɵprov = i0.ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(UserService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3739,288 +4034,11 @@
         }, null);
     })();
 
-    /**
-     * List of account related actions
-     */
-    var UserAccountsService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function UserAccountsService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/user/accounts';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Find list of accounts and filter
-         * @Return: QueryResponse<Account>
-         */
-        UserAccountsService.prototype.find = function (search, type, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (type != null) {
-                params.push("type=" + type);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        /**
-         * Get single account by id
-         * @Return: EntityResponse<Account>
-         */
-        UserAccountsService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Get list of user memberships
-         * @Return: EntitiesResponse<Membership>
-         */
-        UserAccountsService.prototype.getMemberships = function () {
-            return this.rest.get(this.baseUrl + "/memberships");
-        };
-        /**
-         * Delete membership by id
-         * @Return: ActionResponse
-         */
-        UserAccountsService.prototype.deleteMemberships = function (id) {
-            return this.rest.delete(this.baseUrl + "/memberships/" + id);
-        };
-        return UserAccountsService;
-    }());
-    /** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UserAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UserAccountsService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * List of all user related actions for account administrator only
-     */
-    var UsrMembersService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function UsrMembersService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/user/members';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Get single member by id (including user data)
-         * @Return: EntityResponse<MemberUser>
-         */
-        UsrMembersService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Get my (logged-in user) member info (including user data)
-         * @Return: EntityResponse<MemberUser>
-         */
-        UsrMembersService.prototype.getMy = function () {
-            return this.rest.get(this.baseUrl + "/my");
-        };
-        /**
-         * Find list of users and filter the list
-         * System user will see all users, Account system will see all users of the account, registered user will get an error.
-         * @Return: QueryResponse<MemberUser>
-         */
-        UsrMembersService.prototype.find = function (search, role, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (role != null) {
-                params.push("role=" + role);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return UsrMembersService;
-    }());
-    /** @nocollapse */ UsrMembersService.ɵfac = function UsrMembersService_Factory(t) { return new (t || UsrMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UsrMembersService.ɵprov = i0.ɵɵdefineInjectable({ token: UsrMembersService, factory: UsrMembersService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UsrMembersService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * Services for user registration and login
-     */
-    var UserService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function UserService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/user/user';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Login to the system with user email and password
-         * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
-         * @Return: EntityResponse<LoginData>
-         */
-        UserService.prototype.login = function (body) {
-            return this.rest.post(this.baseUrl + "/login", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Refresh token (set new expiration time) and associate with new account if required
-         * @Return: EntityResponse<LoginData>
-         */
-        UserService.prototype.refreshToken = function () {
-            return this.rest.post(this.baseUrl + "/refresh-token", null);
-        };
-        /**
-         * Verify user by temporary login key
-         * @Return: EntityResponse<User>
-         */
-        UserService.prototype.verifyLoginKey = function (key) {
-            var _a;
-            var params = new Array();
-            if (key != null) {
-                params.push("key=" + key);
-            }
-            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/login/verify"], params));
-        };
-        /**
-         * Send verification code by email
-         * @Return: ActionResponse
-         */
-        UserService.prototype.sendVerificationCode = function (body) {
-            return this.rest.post(this.baseUrl + "/verify", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Validate verification code and reset password
-         * @Return: ActionResponse
-         */
-        UserService.prototype.resetPassword = function (code) {
-            return this.rest.post(this.baseUrl + "/reset-password", typeof code === 'object' ? JSON.stringify(code) : code);
-        };
-        /**
-         * Change password
-         * @Return: ActionResponse
-         */
-        UserService.prototype.changePassword = function (body) {
-            return this.rest.post(this.baseUrl + "/change-password", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Check if password was used before (according to password policy)
-         * @Return: ActionResponse
-         */
-        UserService.prototype.checkUnusedPassword = function (body) {
-            return this.rest.post(this.baseUrl + "/check-password", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change current user name
-         * @Return: ActionResponse
-         */
-        UserService.prototype.changeName = function (body) {
-            return this.rest.put(this.baseUrl + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change current user mobile
-         * @Return: ActionResponse
-         */
-        UserService.prototype.changeMobile = function (body) {
-            return this.rest.put(this.baseUrl + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Get all user accessible accounts for the user
-         * @Return: EntitiesResponse<Account>
-         */
-        UserService.prototype.getAccounts = function () {
-            return this.rest.get(this.baseUrl + "/accounts");
-        };
-        /**
-         * Refresh token (set new expiration time) and associate with new account if required
-         * @Return: EntityResponse<UserAccountInfo>
-         */
-        UserService.prototype.switchAccount = function (body) {
-            return this.rest.post(this.baseUrl + "/switch-account", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Get user profile
-         * @Return: EntityResponse<User>
-         */
-        UserService.prototype.getProfile = function () {
-            return this.rest.get(this.baseUrl + "/profile");
-        };
-        /**
-         * Update user profile
-         * @Return: EntityResponse<User>
-         */
-        UserService.prototype.setProfile = function (body) {
-            return this.rest.put(this.baseUrl + "/profile", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Get app version
-         * @Return: ActionResponse
-         */
-        UserService.prototype.getVersion = function () {
-            return this.rest.get(this.baseUrl + "/version");
-        };
-        return UserService;
-    }());
-    /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UserService.ɵprov = i0.ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UserService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
     var Services = [
+        AdminMembersService,
+        UserAccountsService,
+        UsrMembersService,
+        UserService,
         AdminAccountService,
         HealthCheckService,
         SysAccountsService,
@@ -4031,10 +4049,6 @@
         UsrActivitiesService,
         UserBookingsService,
         UserPlacementsService,
-        AdminMembersService,
-        UserAccountsService,
-        UsrMembersService,
-        UserService,
     ];
 
     var CoreLibModule = /** @class */ (function () {
@@ -4089,6 +4103,7 @@
     exports.AdminActivityFindFreeResourcesRequest = AdminActivityFindFreeResourcesRequest;
     exports.AdminActivityFindRequest = AdminActivityFindRequest;
     exports.AdminActivityPlaningRequest = AdminActivityPlaningRequest;
+    exports.AdminBookingHistoryRequest = AdminBookingHistoryRequest;
     exports.AdminCreateActivityRequest = AdminCreateActivityRequest;
     exports.AdminCreateResourceRequest = AdminCreateResourceRequest;
     exports.AdminDailyPlaningExportRequest = AdminDailyPlaningExportRequest;

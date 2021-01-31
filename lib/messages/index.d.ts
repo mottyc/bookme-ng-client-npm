@@ -8,6 +8,7 @@ export * from './AdminActivityDefaultDeleteRequest';
 export * from './AdminActivityFindFreeResourcesRequest';
 export * from './AdminActivityFindRequest';
 export * from './AdminActivityPlaningRequest';
+export * from './AdminBookingHistoryRequest';
 export * from './AdminCreateActivityRequest';
 export * from './AdminCreateResourceRequest';
 export * from './AdminDailyPlaningExportRequest';

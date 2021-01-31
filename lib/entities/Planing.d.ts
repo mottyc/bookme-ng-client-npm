@@ -1,6 +1,6 @@
+import { BaseEntity } from '../entities/BaseEntity';
 import { Placement } from '../entities/Placement';
 import { Booking } from '../entities/Booking';
-import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Planing extends BaseEntity {
     activityId: string;
