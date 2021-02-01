@@ -2674,6 +2674,13 @@ class UserService {
         return this.rest.post(`${this.baseUrl}/switch-account`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
     /**
+     * Switch to the next account
+     * @Return: EntityResponse<UserAccountInfo>
+     */
+    switchNext() {
+        return this.rest.post(`${this.baseUrl}/switch-next`, null);
+    }
+    /**
      * Get user profile
      * @Return: EntityResponse<User>
      */
