@@ -54,7 +54,7 @@
      *  Login data (returned by the API after successful login)
     */
     var LoginData = /** @class */ (function () {
-        function LoginData(accessToken, userId, accountId, accountRole, memberStatus, userName, userEmail, userType, userStatus, changePassword, message) {
+        function LoginData(accessToken, userId, accountId, accountRole, memberStatus, userName, userEmail, userType, userStatus, changePassword, messages) {
             this.accessToken = accessToken;
             this.userId = userId;
             this.accountId = accountId;
@@ -65,7 +65,7 @@
             this.userType = userType;
             this.userStatus = userStatus;
             this.changePassword = changePassword;
-            this.message = message;
+            this.messages = messages;
         }
         return LoginData;
     }());

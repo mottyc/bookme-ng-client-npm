@@ -50,7 +50,7 @@ class AccountSettings {
  *  Login data (returned by the API after successful login)
 */
 class LoginData {
-    constructor(accessToken, userId, accountId, accountRole, memberStatus, userName, userEmail, userType, userStatus, changePassword, message) {
+    constructor(accessToken, userId, accountId, accountRole, memberStatus, userName, userEmail, userType, userStatus, changePassword, messages) {
         this.accessToken = accessToken;
         this.userId = userId;
         this.accountId = accountId;
@@ -61,7 +61,7 @@ class LoginData {
         this.userType = userType;
         this.userStatus = userStatus;
         this.changePassword = changePassword;
-        this.message = message;
+        this.messages = messages;
     }
 }
 
