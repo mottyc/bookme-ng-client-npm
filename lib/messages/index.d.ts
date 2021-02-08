@@ -101,6 +101,7 @@ export * from './UserServiceChangeNameRequest';
 export * from './UserServiceChangePasswordRequest';
 export * from './UserServiceCheckPasswordRequest';
 export * from './UserServiceLoginRequest';
+export * from './UserServiceReadNotificationRequest';
 export * from './UserServiceResetPasswordRequest';
 export * from './UserServiceSendVerificationRequest';
 export * from './UserServiceSwitchAccountRequest';
