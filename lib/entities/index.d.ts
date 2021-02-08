@@ -14,6 +14,7 @@ export * from './Incident';
 export * from './Member';
 export * from './MemberUser';
 export * from './Membership';
+export * from './Notification';
 export * from './Placement';
 export * from './Planing';
 export * from './Registration';

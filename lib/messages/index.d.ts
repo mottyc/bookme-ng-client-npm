@@ -23,6 +23,7 @@ export * from './AdminPlaningMergeBookingsRequest';
 export * from './AdminPlaningSplitBookingRequest';
 export * from './AdminPlaningUnAssignResourceRequest';
 export * from './AdminReportAbsenceRequest';
+export * from './AdminReportIncidentRequest';
 export * from './AdminResourceBulkCreateRequest';
 export * from './AdminResourceFindRequest';
 export * from './AdminUpdateActivityRequest';

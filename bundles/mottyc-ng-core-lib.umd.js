@@ -54,7 +54,7 @@
      *  Login data (returned by the API after successful login)
     */
     var LoginData = /** @class */ (function () {
-        function LoginData(accessToken, userId, accountId, accountRole, memberStatus, userName, userEmail, userType, userStatus, changePassword) {
+        function LoginData(accessToken, userId, accountId, accountRole, memberStatus, userName, userEmail, userType, userStatus, changePassword, message) {
             this.accessToken = accessToken;
             this.userId = userId;
             this.accountId = accountId;
@@ -65,6 +65,7 @@
             this.userType = userType;
             this.userStatus = userStatus;
             this.changePassword = changePassword;
+            this.message = message;
         }
         return LoginData;
     }());
@@ -697,6 +698,17 @@
     }(BaseEntity));
 
     /*
+     *  Notification
+    */
+    var Notification = /** @class */ (function (_super) {
+        __extends(Notification, _super);
+        function Notification() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return Notification;
+    }(BaseEntity));
+
+    /*
      *  Placement is a structure to ap booking requests to a resource
     */
     var Placement = /** @class */ (function (_super) {
@@ -837,6 +849,8 @@
         BookingStatusCode[BookingStatusCode["COMPLETED"] = 3] = "COMPLETED";
         // User absence from booking [4] 
         BookingStatusCode[BookingStatusCode["ABSENCE"] = 4] = "ABSENCE";
+        // User was involved in an accident [5] 
+        BookingStatusCode[BookingStatusCode["ACCIDENT"] = 5] = "ACCIDENT";
     })(exports.BookingStatusCode || (exports.BookingStatusCode = {}));
 
     /*
@@ -1364,6 +1378,17 @@
             this.userId = userId;
         }
         return AdminReportAbsenceRequest;
+    }());
+
+    /*
+    */
+    var AdminReportIncidentRequest = /** @class */ (function () {
+        function AdminReportIncidentRequest(id, userId, body) {
+            this.id = id;
+            this.userId = userId;
+            this.body = body;
+        }
+        return AdminReportIncidentRequest;
     }());
 
     /*
@@ -3020,6 +3045,18 @@
             }
             return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/bookings/" + id + "/absence", null], params));
         };
+        /**
+         * Report incident from registration
+         * @Return: ActionResponse
+         */
+        AdminPlaningService.prototype.reportIncident = function (id, userId, body) {
+            var _a;
+            var params = new Array();
+            if (userId != null) {
+                params.push("userId=" + userId);
+            }
+            return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/bookings/" + id + "/incident", typeof body === 'object' ? JSON.stringify(body) : body], params));
+        };
         return AdminPlaningService;
     }());
     /** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -4127,6 +4164,7 @@
     exports.AdminPlaningSplitBookingRequest = AdminPlaningSplitBookingRequest;
     exports.AdminPlaningUnAssignResourceRequest = AdminPlaningUnAssignResourceRequest;
     exports.AdminReportAbsenceRequest = AdminReportAbsenceRequest;
+    exports.AdminReportIncidentRequest = AdminReportIncidentRequest;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
     exports.AdminResourcesService = AdminResourcesService;
@@ -4188,6 +4226,7 @@
     exports.Membership = Membership;
     exports.MembershipIdRequest = MembershipIdRequest;
     exports.MembershipsRequest = MembershipsRequest;
+    exports.Notification = Notification;
     exports.Placement = Placement;
     exports.PlacementIdRequest = PlacementIdRequest;
     exports.Planing = Planing;

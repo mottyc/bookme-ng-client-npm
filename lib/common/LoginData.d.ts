@@ -13,7 +13,8 @@ export declare class LoginData {
     userType: UserTypeCode;
     userStatus: UserStatusCode;
     changePassword: boolean;
-    constructor(accessToken?: string, userId?: string, accountId?: string, accountRole?: AccountRoleCode, memberStatus?: MemberStatusCode, userName?: string, userEmail?: string, userType?: UserTypeCode, userStatus?: UserStatusCode, changePassword?: boolean);
+    message: string;
+    constructor(accessToken?: string, userId?: string, accountId?: string, accountRole?: AccountRoleCode, memberStatus?: MemberStatusCode, userName?: string, userEmail?: string, userType?: UserTypeCode, userStatus?: UserStatusCode, changePassword?: boolean, message?: string);
 }
 export interface ILoginData {
     accessToken?: string;
@@ -26,4 +27,5 @@ export interface ILoginData {
     userType?: UserTypeCode;
     userStatus?: UserStatusCode;
     changePassword?: boolean;
+    message?: string;
 }
