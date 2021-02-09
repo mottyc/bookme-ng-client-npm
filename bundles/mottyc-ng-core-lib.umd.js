@@ -940,6 +940,20 @@
     })(exports.MemberStatusCode || (exports.MemberStatusCode = {}));
 
     /*
+       Account type code
+    */
+    (function (NotificationTypeCode) {
+        // Undefined [0] 
+        NotificationTypeCode[NotificationTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
+        // Message (icon: email) [1] 
+        NotificationTypeCode[NotificationTypeCode["MESSAGE"] = 1] = "MESSAGE";
+        // Warning (icon: warning) [2] 
+        NotificationTypeCode[NotificationTypeCode["WARNING"] = 2] = "WARNING";
+        // Congrats (icon: local_florist) [3] 
+        NotificationTypeCode[NotificationTypeCode["CONGRATS"] = 3] = "CONGRATS";
+    })(exports.NotificationTypeCode || (exports.NotificationTypeCode = {}));
+
+    /*
        Placement status code
     */
     (function (PlacementStatusCode) {
@@ -1475,6 +1489,17 @@
 
     /*
     */
+    var CreateNotificationRequest = /** @class */ (function () {
+        function CreateNotificationRequest(userId, type, body) {
+            this.userId = userId;
+            this.type = type;
+            this.body = body;
+        }
+        return CreateNotificationRequest;
+    }());
+
+    /*
+    */
     var EmptyRequest = /** @class */ (function () {
         function EmptyRequest() {
         }
@@ -1580,6 +1605,16 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return EntitiesResponseOfMembership;
+    }(EntitiesResponse));
+
+    /*
+    */
+    var EntitiesResponseOfNotification = /** @class */ (function (_super) {
+        __extends(EntitiesResponseOfNotification, _super);
+        function EntitiesResponseOfNotification() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntitiesResponseOfNotification;
     }(EntitiesResponse));
 
     /*
@@ -1745,6 +1780,19 @@
 
     /*
     */
+    var FindNotificationsRequest = /** @class */ (function () {
+        function FindNotificationsRequest(search, type, sort, page, pageSize) {
+            this.search = search;
+            this.type = type;
+            this.sort = sort;
+            this.page = page;
+            this.pageSize = pageSize;
+        }
+        return FindNotificationsRequest;
+    }());
+
+    /*
+    */
     var MemberIdRequest = /** @class */ (function () {
         function MemberIdRequest(id) {
             this.id = id;
@@ -1809,6 +1857,59 @@
             this.userId = userId;
         }
         return MembershipsRequest;
+    }());
+
+    /*
+    */
+    var NotificationIdRequest = /** @class */ (function () {
+        function NotificationIdRequest(id) {
+            this.id = id;
+        }
+        return NotificationIdRequest;
+    }());
+
+    /*
+    */
+    var NotifyActivityUsersRequest = /** @class */ (function () {
+        function NotifyActivityUsersRequest(activityId, type, body) {
+            this.activityId = activityId;
+            this.type = type;
+            this.body = body;
+        }
+        return NotifyActivityUsersRequest;
+    }());
+
+    /*
+    */
+    var NotifyAllMembersRequest = /** @class */ (function () {
+        function NotifyAllMembersRequest(dayId, type, body) {
+            this.dayId = dayId;
+            this.type = type;
+            this.body = body;
+        }
+        return NotifyAllMembersRequest;
+    }());
+
+    /*
+    */
+    var NotifyBookingUsersRequest = /** @class */ (function () {
+        function NotifyBookingUsersRequest(bookingId, type, body) {
+            this.bookingId = bookingId;
+            this.type = type;
+            this.body = body;
+        }
+        return NotifyBookingUsersRequest;
+    }());
+
+    /*
+    */
+    var NotifyDailyUsersRequest = /** @class */ (function () {
+        function NotifyDailyUsersRequest(dayId, type, body) {
+            this.dayId = dayId;
+            this.type = type;
+            this.body = body;
+        }
+        return NotifyDailyUsersRequest;
     }());
 
     /*
@@ -1895,6 +1996,16 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return QueryResponseOfMembership;
+    }(QueryResponse));
+
+    /*
+    */
+    var QueryResponseOfNotification = /** @class */ (function (_super) {
+        __extends(QueryResponseOfNotification, _super);
+        function QueryResponseOfNotification() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return QueryResponseOfNotification;
     }(QueryResponse));
 
     /*
@@ -2937,6 +3048,110 @@
     })();
 
     /**
+     * List of all notifications actions for account administrator only
+     */
+    var AdminNotificationsService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function AdminNotificationsService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/admin/notifications';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Send Create new notification
+         * @Return: ActionResponse
+         */
+        AdminNotificationsService.prototype.create = function (userId, type, body) {
+            var _a;
+            var params = new Array();
+            if (userId != null) {
+                params.push("userId=" + userId);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            return (_a = this.rest).post.apply(_a, __spread(["" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body], params));
+        };
+        /**
+         * Create notifications for all users in booking
+         * @Return: ActionResponse
+         */
+        AdminNotificationsService.prototype.notifyBookingUsers = function (bookingId, type, body) {
+            var _a;
+            var params = new Array();
+            if (bookingId != null) {
+                params.push("bookingId=" + bookingId);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/booking", typeof body === 'object' ? JSON.stringify(body) : body], params));
+        };
+        /**
+         * Create notifications for all users in activity bookings
+         * @Return: ActionResponse
+         */
+        AdminNotificationsService.prototype.notifyActivityUsers = function (activityId, type, body) {
+            var _a;
+            var params = new Array();
+            if (activityId != null) {
+                params.push("activityId=" + activityId);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/activity", typeof body === 'object' ? JSON.stringify(body) : body], params));
+        };
+        /**
+         * Create notifications for all users in activity bookings
+         * @Return: ActionResponse
+         */
+        AdminNotificationsService.prototype.notifyDailyUsers = function (dayId, type, body) {
+            var _a;
+            var params = new Array();
+            if (dayId != null) {
+                params.push("dayId=" + dayId);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/daily", typeof body === 'object' ? JSON.stringify(body) : body], params));
+        };
+        /**
+         * Create notification for all club members
+         * @Return: ActionResponse
+         */
+        AdminNotificationsService.prototype.notifyAllMembers = function (dayId, type, body) {
+            var _a;
+            var params = new Array();
+            if (dayId != null) {
+                params.push("dayId=" + dayId);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/members", typeof body === 'object' ? JSON.stringify(body) : body], params));
+        };
+        return AdminNotificationsService;
+    }());
+    /** @nocollapse */ AdminNotificationsService.ɵfac = function AdminNotificationsService_Factory(t) { return new (t || AdminNotificationsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminNotificationsService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminNotificationsService, factory: AdminNotificationsService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(AdminNotificationsService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
      * Services for planing club resource placements - for account administrator only
      * @RequestHeader X-API-KEY The key to identify the application (portal)
      * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
@@ -3207,6 +3422,240 @@
     /** @nocollapse */ HealthCheckService.ɵprov = i0.ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
     /*@__PURE__*/ (function () {
         i0.ɵsetClassMetadata(HealthCheckService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * List of account related actions for system administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (console)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var SysAccountsService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function SysAccountsService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/sys/accounts';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Create new account
+         * @Return: EntityResponse<Account>
+         */
+        SysAccountsService.prototype.create = function (body) {
+            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Update existing account in the system
+         * @Return: EntityResponse<Account>
+         */
+        SysAccountsService.prototype.update = function (body) {
+            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Delete account from the system
+         * The account is moved to DELETED mode and will be deleted after 90 days
+         * Only account marked as SUSPENDED can be deleted
+         * @Return: ActionResponse
+         */
+        SysAccountsService.prototype.delete = function (id) {
+            return this.rest.delete(this.baseUrl + "/" + id);
+        };
+        /**
+         * Delete account immediately without account status restrictions
+         * @Return: ActionResponse
+         */
+        SysAccountsService.prototype.purge = function (id) {
+            return this.rest.delete(this.baseUrl + "/purge/" + id);
+        };
+        /**
+         * Reset account - remove all operational data older than the retention time in days (events, status, log ...) but leave configuration data
+         * @Return: ActionResponse
+         */
+        SysAccountsService.prototype.reset = function (id, days) {
+            return this.rest.delete(this.baseUrl + "/reset/" + id + "/days/" + days);
+        };
+        /**
+         * Get single account by id
+         * @Return: EntityResponse<Account>
+         */
+        SysAccountsService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find list of accounts and filter
+         * @Return: QueryResponse<Account>
+         */
+        SysAccountsService.prototype.find = function (search, type, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return SysAccountsService;
+    }());
+    /** @nocollapse */ SysAccountsService.ɵfac = function SysAccountsService_Factory(t) { return new (t || SysAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ SysAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: SysAccountsService, factory: SysAccountsService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(SysAccountsService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * List of all user related actions for account administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (console)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var SysUsersService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function SysUsersService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/sys/users';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Create a new user for the current account
+         * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
+         * @Return: ActionResponse
+         */
+        SysUsersService.prototype.create = function (body) {
+            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Update user
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.update = function (id, body) {
+            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user name
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeName = function (id, body) {
+            return this.rest.put(this.baseUrl + "/" + id + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user mobile
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeMobile = function (id, body) {
+            return this.rest.put(this.baseUrl + "/" + id + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user type
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeType = function (id, type) {
+            return this.rest.put(this.baseUrl + "/" + id + "/type/" + type, null);
+        };
+        /**
+         * Change user status
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeStatus = function (id, status) {
+            return this.rest.put(this.baseUrl + "/" + id + "/status/" + status, null);
+        };
+        /**
+         * Change user default account
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeDefaultAccount = function (id, accountId) {
+            return this.rest.put(this.baseUrl + "/" + id + "/defaultAccount/" + accountId, null);
+        };
+        /**
+         * Reset password for user, generate one-time temporary password
+         * @Return: ActionResponse
+         */
+        SysUsersService.prototype.resetPassword = function (id) {
+            return this.rest.post(this.baseUrl + "/" + id + "/reset-password", null);
+        };
+        /**
+         * Delete user from the system
+         * @Return: ActionResponse
+         */
+        SysUsersService.prototype.delete = function (id) {
+            return this.rest.delete(this.baseUrl + "/" + id);
+        };
+        /**
+         * Get single user by Id
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find list of users by filter
+         * @Return: QueryResponse<User>
+         */
+        SysUsersService.prototype.find = function (accountId, search, type, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (accountId != null) {
+                params.push("accountId=" + accountId);
+            }
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return SysUsersService;
+    }());
+    /** @nocollapse */ SysUsersService.ɵfac = function SysUsersService_Factory(t) { return new (t || SysUsersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ SysUsersService.ɵprov = i0.ɵɵdefineInjectable({ token: SysUsersService, factory: SysUsersService.ɵfac });
+    /*@__PURE__*/ (function () {
+        i0.ɵsetClassMetadata(SysUsersService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3839,11 +4288,42 @@
             return this.rest.get(this.baseUrl + "/version");
         };
         /**
+         * Find list of notifications by filter
+         * @Return: ActionResponse
+         */
+        UserService.prototype.findNotifications = function (search, type, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/notifications"], params));
+        };
+        /**
          * Mark user notification as read
          * @Return: ActionResponse
          */
         UserService.prototype.readNotification = function (id) {
             return this.rest.put(this.baseUrl + "/notifications/" + id, null);
+        };
+        /**
+         * Delete notification
+         * @Return: ActionResponse
+         */
+        UserService.prototype.deleteNotification = function (id) {
+            return this.rest.delete(this.baseUrl + "/notifications/" + id);
         };
         return UserService;
     }());
@@ -3860,241 +4340,11 @@
         }, null);
     })();
 
-    /**
-     * List of account related actions for system administrator only
-     * @RequestHeader X-API-KEY The key to identify the application (console)
-     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
-     */
-    var SysAccountsService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function SysAccountsService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/sys/accounts';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Create new account
-         * @Return: EntityResponse<Account>
-         */
-        SysAccountsService.prototype.create = function (body) {
-            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Update existing account in the system
-         * @Return: EntityResponse<Account>
-         */
-        SysAccountsService.prototype.update = function (body) {
-            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Delete account from the system
-         * The account is moved to DELETED mode and will be deleted after 90 days
-         * Only account marked as SUSPENDED can be deleted
-         * @Return: ActionResponse
-         */
-        SysAccountsService.prototype.delete = function (id) {
-            return this.rest.delete(this.baseUrl + "/" + id);
-        };
-        /**
-         * Delete account immediately without account status restrictions
-         * @Return: ActionResponse
-         */
-        SysAccountsService.prototype.purge = function (id) {
-            return this.rest.delete(this.baseUrl + "/purge/" + id);
-        };
-        /**
-         * Reset account - remove all operational data older than the retention time in days (events, status, log ...) but leave configuration data
-         * @Return: ActionResponse
-         */
-        SysAccountsService.prototype.reset = function (id, days) {
-            return this.rest.delete(this.baseUrl + "/reset/" + id + "/days/" + days);
-        };
-        /**
-         * Get single account by id
-         * @Return: EntityResponse<Account>
-         */
-        SysAccountsService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Find list of accounts and filter
-         * @Return: QueryResponse<Account>
-         */
-        SysAccountsService.prototype.find = function (search, type, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (type != null) {
-                params.push("type=" + type);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return SysAccountsService;
-    }());
-    /** @nocollapse */ SysAccountsService.ɵfac = function SysAccountsService_Factory(t) { return new (t || SysAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ SysAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: SysAccountsService, factory: SysAccountsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(SysAccountsService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * List of all user related actions for account administrator only
-     * @RequestHeader X-API-KEY The key to identify the application (console)
-     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
-     */
-    var SysUsersService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function SysUsersService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/sys/users';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Create a new user for the current account
-         * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
-         * @Return: ActionResponse
-         */
-        SysUsersService.prototype.create = function (body) {
-            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Update user
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.update = function (id, body) {
-            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user name
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeName = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user mobile
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeMobile = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user type
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeType = function (id, type) {
-            return this.rest.put(this.baseUrl + "/" + id + "/type/" + type, null);
-        };
-        /**
-         * Change user status
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeStatus = function (id, status) {
-            return this.rest.put(this.baseUrl + "/" + id + "/status/" + status, null);
-        };
-        /**
-         * Change user default account
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeDefaultAccount = function (id, accountId) {
-            return this.rest.put(this.baseUrl + "/" + id + "/defaultAccount/" + accountId, null);
-        };
-        /**
-         * Reset password for user, generate one-time temporary password
-         * @Return: ActionResponse
-         */
-        SysUsersService.prototype.resetPassword = function (id) {
-            return this.rest.post(this.baseUrl + "/" + id + "/reset-password", null);
-        };
-        /**
-         * Delete user from the system
-         * @Return: ActionResponse
-         */
-        SysUsersService.prototype.delete = function (id) {
-            return this.rest.delete(this.baseUrl + "/" + id);
-        };
-        /**
-         * Get single user by Id
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Find list of users by filter
-         * @Return: QueryResponse<User>
-         */
-        SysUsersService.prototype.find = function (accountId, search, type, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (accountId != null) {
-                params.push("accountId=" + accountId);
-            }
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (type != null) {
-                params.push("type=" + type);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return SysUsersService;
-    }());
-    /** @nocollapse */ SysUsersService.ɵfac = function SysUsersService_Factory(t) { return new (t || SysUsersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ SysUsersService.ɵprov = i0.ɵɵdefineInjectable({ token: SysUsersService, factory: SysUsersService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(SysUsersService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
     var Services = [
+        AdminAccountService,
+        HealthCheckService,
+        SysAccountsService,
+        SysUsersService,
         AdminActivitiesService,
         AdminPlaningService,
         AdminResourcesService,
@@ -4102,13 +4352,10 @@
         UserBookingsService,
         UserPlacementsService,
         AdminMembersService,
+        AdminNotificationsService,
         UserAccountsService,
         UsrMembersService,
         UserService,
-        AdminAccountService,
-        HealthCheckService,
-        SysAccountsService,
-        SysUsersService,
     ];
 
     var CoreLibModule = /** @class */ (function () {
@@ -4172,6 +4419,7 @@
     exports.AdminFindFreeResourcesRequest = AdminFindFreeResourcesRequest;
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersService = AdminMembersService;
+    exports.AdminNotificationsService = AdminNotificationsService;
     exports.AdminPlaningAssignResourceRequest = AdminPlaningAssignResourceRequest;
     exports.AdminPlaningDeleteActivityRequest = AdminPlaningDeleteActivityRequest;
     exports.AdminPlaningDeleteBookingRequest = AdminPlaningDeleteBookingRequest;
@@ -4198,6 +4446,7 @@
     exports.ChangePasswordRequest = ChangePasswordRequest;
     exports.CoreConfig = CoreConfig;
     exports.CoreLibModule = CoreLibModule;
+    exports.CreateNotificationRequest = CreateNotificationRequest;
     exports.EmptyRequest = EmptyRequest;
     exports.EmptyResponse = EmptyResponse;
     exports.EntitiesResponse = EntitiesResponse;
@@ -4209,6 +4458,7 @@
     exports.EntitiesResponseOfBookingGroup = EntitiesResponseOfBookingGroup;
     exports.EntitiesResponseOfBookingRequest = EntitiesResponseOfBookingRequest;
     exports.EntitiesResponseOfMembership = EntitiesResponseOfMembership;
+    exports.EntitiesResponseOfNotification = EntitiesResponseOfNotification;
     exports.EntitiesResponseOfPlacement = EntitiesResponseOfPlacement;
     exports.EntitiesResponseOfResource = EntitiesResponseOfResource;
     exports.EntityResponse = EntityResponse;
@@ -4227,6 +4477,7 @@
     exports.EntityResponseOfUserAccountInfo = EntityResponseOfUserAccountInfo;
     exports.Feature = Feature;
     exports.FeaturesGroup = FeaturesGroup;
+    exports.FindNotificationsRequest = FindNotificationsRequest;
     exports.HealthCheckService = HealthCheckService;
     exports.Incident = Incident;
     exports.LoginData = LoginData;
@@ -4243,6 +4494,11 @@
     exports.MembershipIdRequest = MembershipIdRequest;
     exports.MembershipsRequest = MembershipsRequest;
     exports.Notification = Notification;
+    exports.NotificationIdRequest = NotificationIdRequest;
+    exports.NotifyActivityUsersRequest = NotifyActivityUsersRequest;
+    exports.NotifyAllMembersRequest = NotifyAllMembersRequest;
+    exports.NotifyBookingUsersRequest = NotifyBookingUsersRequest;
+    exports.NotifyDailyUsersRequest = NotifyDailyUsersRequest;
     exports.Placement = Placement;
     exports.PlacementIdRequest = PlacementIdRequest;
     exports.Planing = Planing;
@@ -4253,6 +4509,7 @@
     exports.QueryResponseOfBookingRequest = QueryResponseOfBookingRequest;
     exports.QueryResponseOfMemberUser = QueryResponseOfMemberUser;
     exports.QueryResponseOfMembership = QueryResponseOfMembership;
+    exports.QueryResponseOfNotification = QueryResponseOfNotification;
     exports.QueryResponseOfPlacement = QueryResponseOfPlacement;
     exports.QueryResponseOfResource = QueryResponseOfResource;
     exports.QueryResponseOfUser = QueryResponseOfUser;
