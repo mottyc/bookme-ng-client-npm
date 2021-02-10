@@ -37,7 +37,7 @@ export declare class AdminNotificationsService {
      * Create notification for all club members
      * @Return: ActionResponse
      */
-    notifyAllMembers(dayId?: number, type?: NotificationTypeCode, from?: number, to?: number, body?: string): import("rxjs").Observable<any>;
+    notifyAllMembers(type?: NotificationTypeCode, from?: number, to?: number, body?: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminNotificationsService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminNotificationsService>;
 }
