@@ -1,14 +1,14 @@
 import { NotificationTypeCode } from '../enums/NotificationTypeCode';
-export declare class NotifyAllMembersRequest {
-    dayId: number;
+export declare class NotifyUserRequest {
+    userId: string[];
     type: NotificationTypeCode;
     from: number;
     to: number;
     body: string;
-    constructor(dayId?: number, type?: NotificationTypeCode, from?: number, to?: number, body?: string);
+    constructor(userId?: string[], type?: NotificationTypeCode, from?: number, to?: number, body?: string);
 }
-export interface INotifyAllMembersRequest {
-    dayId?: number;
+export interface INotifyUserRequest {
+    userId?: string[];
     type?: NotificationTypeCode;
     from?: number;
     to?: number;

@@ -1489,17 +1489,6 @@
 
     /*
     */
-    var CreateNotificationRequest = /** @class */ (function () {
-        function CreateNotificationRequest(userId, type, body) {
-            this.userId = userId;
-            this.type = type;
-            this.body = body;
-        }
-        return CreateNotificationRequest;
-    }());
-
-    /*
-    */
     var EmptyRequest = /** @class */ (function () {
         function EmptyRequest() {
         }
@@ -1871,9 +1860,11 @@
     /*
     */
     var NotifyActivityUsersRequest = /** @class */ (function () {
-        function NotifyActivityUsersRequest(activityId, type, body) {
+        function NotifyActivityUsersRequest(activityId, type, from, to, body) {
             this.activityId = activityId;
             this.type = type;
+            this.from = from;
+            this.to = to;
             this.body = body;
         }
         return NotifyActivityUsersRequest;
@@ -1882,9 +1873,11 @@
     /*
     */
     var NotifyAllMembersRequest = /** @class */ (function () {
-        function NotifyAllMembersRequest(dayId, type, body) {
+        function NotifyAllMembersRequest(dayId, type, from, to, body) {
             this.dayId = dayId;
             this.type = type;
+            this.from = from;
+            this.to = to;
             this.body = body;
         }
         return NotifyAllMembersRequest;
@@ -1893,9 +1886,11 @@
     /*
     */
     var NotifyBookingUsersRequest = /** @class */ (function () {
-        function NotifyBookingUsersRequest(bookingId, type, body) {
+        function NotifyBookingUsersRequest(bookingId, type, from, to, body) {
             this.bookingId = bookingId;
             this.type = type;
+            this.from = from;
+            this.to = to;
             this.body = body;
         }
         return NotifyBookingUsersRequest;
@@ -1904,12 +1899,27 @@
     /*
     */
     var NotifyDailyUsersRequest = /** @class */ (function () {
-        function NotifyDailyUsersRequest(dayId, type, body) {
+        function NotifyDailyUsersRequest(dayId, type, from, to, body) {
             this.dayId = dayId;
             this.type = type;
+            this.from = from;
+            this.to = to;
             this.body = body;
         }
         return NotifyDailyUsersRequest;
+    }());
+
+    /*
+    */
+    var NotifyUserRequest = /** @class */ (function () {
+        function NotifyUserRequest(userId, type, from, to, body) {
+            this.userId = userId;
+            this.type = type;
+            this.from = from;
+            this.to = to;
+            this.body = body;
+        }
+        return NotifyUserRequest;
     }());
 
     /*
@@ -3062,10 +3072,10 @@
             this.baseUrl = this.config.api + this.baseUrl;
         }
         /**
-         * Send Create new notification
+         * Send Create new notification for user
          * @Return: ActionResponse
          */
-        AdminNotificationsService.prototype.create = function (userId, type, body) {
+        AdminNotificationsService.prototype.notifyUser = function (userId, type, from, to, body) {
             var _a;
             var params = new Array();
             if (userId != null) {
@@ -3074,13 +3084,19 @@
             if (type != null) {
                 params.push("type=" + type);
             }
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
+            }
             return (_a = this.rest).post.apply(_a, __spread(["" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body], params));
         };
         /**
          * Create notifications for all users in booking
          * @Return: ActionResponse
          */
-        AdminNotificationsService.prototype.notifyBookingUsers = function (bookingId, type, body) {
+        AdminNotificationsService.prototype.notifyBookingUsers = function (bookingId, type, from, to, body) {
             var _a;
             var params = new Array();
             if (bookingId != null) {
@@ -3089,13 +3105,19 @@
             if (type != null) {
                 params.push("type=" + type);
             }
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
+            }
             return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/booking", typeof body === 'object' ? JSON.stringify(body) : body], params));
         };
         /**
          * Create notifications for all users in activity bookings
          * @Return: ActionResponse
          */
-        AdminNotificationsService.prototype.notifyActivityUsers = function (activityId, type, body) {
+        AdminNotificationsService.prototype.notifyActivityUsers = function (activityId, type, from, to, body) {
             var _a;
             var params = new Array();
             if (activityId != null) {
@@ -3104,13 +3126,19 @@
             if (type != null) {
                 params.push("type=" + type);
             }
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
+            }
             return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/activity", typeof body === 'object' ? JSON.stringify(body) : body], params));
         };
         /**
          * Create notifications for all users in activity bookings
          * @Return: ActionResponse
          */
-        AdminNotificationsService.prototype.notifyDailyUsers = function (dayId, type, body) {
+        AdminNotificationsService.prototype.notifyDailyUsers = function (dayId, type, from, to, body) {
             var _a;
             var params = new Array();
             if (dayId != null) {
@@ -3118,6 +3146,12 @@
             }
             if (type != null) {
                 params.push("type=" + type);
+            }
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
             }
             return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/daily", typeof body === 'object' ? JSON.stringify(body) : body], params));
         };
@@ -3125,7 +3159,7 @@
          * Create notification for all club members
          * @Return: ActionResponse
          */
-        AdminNotificationsService.prototype.notifyAllMembers = function (dayId, type, body) {
+        AdminNotificationsService.prototype.notifyAllMembers = function (dayId, type, from, to, body) {
             var _a;
             var params = new Array();
             if (dayId != null) {
@@ -3133,6 +3167,12 @@
             }
             if (type != null) {
                 params.push("type=" + type);
+            }
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
             }
             return (_a = this.rest).post.apply(_a, __spread([this.baseUrl + "/members", typeof body === 'object' ? JSON.stringify(body) : body], params));
         };
@@ -4446,7 +4486,6 @@
     exports.ChangePasswordRequest = ChangePasswordRequest;
     exports.CoreConfig = CoreConfig;
     exports.CoreLibModule = CoreLibModule;
-    exports.CreateNotificationRequest = CreateNotificationRequest;
     exports.EmptyRequest = EmptyRequest;
     exports.EmptyResponse = EmptyResponse;
     exports.EntitiesResponse = EntitiesResponse;
@@ -4499,6 +4538,7 @@
     exports.NotifyAllMembersRequest = NotifyAllMembersRequest;
     exports.NotifyBookingUsersRequest = NotifyBookingUsersRequest;
     exports.NotifyDailyUsersRequest = NotifyDailyUsersRequest;
+    exports.NotifyUserRequest = NotifyUserRequest;
     exports.Placement = Placement;
     exports.PlacementIdRequest = PlacementIdRequest;
     exports.Planing = Planing;
