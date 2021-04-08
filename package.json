@@ -2,8 +2,8 @@
   "name": "@mottyc/ng-core-lib",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "~11.0.3",
-    "@angular/core": "~11.0.3"
+    "@angular/common": "^11.0.3",
+    "@angular/core": "^11.0.3"
   },
   "main": "bundles/mottyc-ng-core-lib.umd.js",
   "module": "fesm2015/mottyc-ng-core-lib.js",

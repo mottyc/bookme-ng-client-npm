@@ -4,6 +4,29 @@
     (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory((global.mottyc = global.mottyc || {}, global.mottyc['ng-core-lib'] = {}), global.ng.core, global.ng.common.http, global.rxjs.operators, global.ng.common));
 }(this, (function (exports, i0, i1, operators, common) { 'use strict';
 
+    function _interopNamespace(e) {
+        if (e && e.__esModule) return e;
+        var n = Object.create(null);
+        if (e) {
+            Object.keys(e).forEach(function (k) {
+                if (k !== 'default') {
+                    var d = Object.getOwnPropertyDescriptor(e, k);
+                    Object.defineProperty(n, k, d.get ? d : {
+                        enumerable: true,
+                        get: function () {
+                            return e[k];
+                        }
+                    });
+                }
+            });
+        }
+        n['default'] = e;
+        return Object.freeze(n);
+    }
+
+    var i0__namespace = /*#__PURE__*/_interopNamespace(i0);
+    var i1__namespace = /*#__PURE__*/_interopNamespace(i1);
+
     /*
      *  Schedule time frame
      *  Times are described in ISO 8601 format (See: https://www.w3.org/TR/NOTE-datetime).
@@ -499,18 +522,21 @@
     function __importDefault(mod) {
         return (mod && mod.__esModule) ? mod : { default: mod };
     }
-    function __classPrivateFieldGet(receiver, privateMap) {
-        if (!privateMap.has(receiver)) {
-            throw new TypeError("attempted to get private field on non-instance");
-        }
-        return privateMap.get(receiver);
+    function __classPrivateFieldGet(receiver, state, kind, f) {
+        if (kind === "a" && !f)
+            throw new TypeError("Private accessor was defined without a getter");
+        if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver))
+            throw new TypeError("Cannot read private member from an object whose class did not declare it");
+        return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
     }
-    function __classPrivateFieldSet(receiver, privateMap, value) {
-        if (!privateMap.has(receiver)) {
-            throw new TypeError("attempted to set private field on non-instance");
-        }
-        privateMap.set(receiver, value);
-        return value;
+    function __classPrivateFieldSet(receiver, state, value, kind, f) {
+        if (kind === "m")
+            throw new TypeError("Private method is not writable");
+        if (kind === "a" && !f)
+            throw new TypeError("Private accessor was defined without a setter");
+        if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver))
+            throw new TypeError("Cannot write private member to an object whose class did not declare it");
+        return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
     }
 
     /*
@@ -778,6 +804,7 @@
     /*
        Account role code (represent role of user in the account)
     */
+    exports.AccountRoleCode = void 0;
     (function (AccountRoleCode) {
         // Undefined [0] 
         AccountRoleCode[AccountRoleCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -798,6 +825,7 @@
     /*
        Account status code
     */
+    exports.AccountStatusCode = void 0;
     (function (AccountStatusCode) {
         // Undefined [0] 
         AccountStatusCode[AccountStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -812,6 +840,7 @@
     /*
        Account type code
     */
+    exports.AccountTypeCode = void 0;
     (function (AccountTypeCode) {
         // Undefined [0] 
         AccountTypeCode[AccountTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -826,6 +855,7 @@
     /*
        Daily activity status code
     */
+    exports.ActivityStatusCode = void 0;
     (function (ActivityStatusCode) {
         // Undefined - No booking in this activity [0] 
         ActivityStatusCode[ActivityStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -838,6 +868,7 @@
     /*
        Booking status code
     */
+    exports.BookingStatusCode = void 0;
     (function (BookingStatusCode) {
         // Undefined [0] 
         BookingStatusCode[BookingStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -856,6 +887,7 @@
     /*
        Day of week code
     */
+    exports.DayOfWeekCode = void 0;
     (function (DayOfWeekCode) {
         // Sunday [0] 
         DayOfWeekCode[DayOfWeekCode["SUN"] = 0] = "SUN";
@@ -876,6 +908,7 @@
     /*
        Entity type code (represent entity type in the system)
     */
+    exports.EntityTypeCode = void 0;
     (function (EntityTypeCode) {
         // Undefined [0] 
         EntityTypeCode[EntityTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -904,6 +937,7 @@
     /*
        Feature codes
     */
+    exports.FeatureCode = void 0;
     (function (FeatureCode) {
         // Undefined [0] 
         FeatureCode[FeatureCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -916,6 +950,7 @@
     /*
        Kayak type code
     */
+    exports.KayakTypeCode = void 0;
     (function (KayakTypeCode) {
         // Undefined [0] 
         KayakTypeCode[KayakTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -928,6 +963,7 @@
     /*
        Member status code
     */
+    exports.MemberStatusCode = void 0;
     (function (MemberStatusCode) {
         // Undefined [0] 
         MemberStatusCode[MemberStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -942,6 +978,7 @@
     /*
        Account type code
     */
+    exports.NotificationTypeCode = void 0;
     (function (NotificationTypeCode) {
         // Undefined [0] 
         NotificationTypeCode[NotificationTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -956,6 +993,7 @@
     /*
        Placement status code
     */
+    exports.PlacementStatusCode = void 0;
     (function (PlacementStatusCode) {
         // Undefined [0] 
         PlacementStatusCode[PlacementStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -970,6 +1008,7 @@
     /*
        Resource class code (represent resource in the system)
     */
+    exports.ResourceClassCode = void 0;
     (function (ResourceClassCode) {
         // Undefined [0] 
         ResourceClassCode[ResourceClassCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -982,6 +1021,7 @@
     /*
        Resource status code
     */
+    exports.ResourceStatusCode = void 0;
     (function (ResourceStatusCode) {
         // Undefined [0] 
         ResourceStatusCode[ResourceStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -994,6 +1034,7 @@
     /*
        General Resource Type (Attributes bit mask)
     */
+    exports.ResourceTypeMask = void 0;
     (function (ResourceTypeMask) {
         // Undefined [0] 
         ResourceTypeMask[ResourceTypeMask["UNDEFINED"] = 0] = "UNDEFINED";
@@ -1026,6 +1067,7 @@
     /*
        Rowing boat type code
     */
+    exports.RowingBoatTypeCode = void 0;
     (function (RowingBoatTypeCode) {
         // Undefined [0] 
         RowingBoatTypeCode[RowingBoatTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -1070,6 +1112,7 @@
     /*
        Time unit interval
     */
+    exports.TimeUnitCode = void 0;
     (function (TimeUnitCode) {
         // Undefined [0] 
         TimeUnitCode[TimeUnitCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -1090,6 +1133,7 @@
     /*
        User gender code
     */
+    exports.UserGenderCode = void 0;
     (function (UserGenderCode) {
         // Undefined [0] 
         UserGenderCode[UserGenderCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -1102,6 +1146,7 @@
     /*
        User status code
     */
+    exports.UserStatusCode = void 0;
     (function (UserStatusCode) {
         // Undefined [0] 
         UserStatusCode[UserStatusCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -1118,6 +1163,7 @@
     /*
        User type code
     */
+    exports.UserTypeCode = void 0;
     (function (UserTypeCode) {
         // Undefined [0] 
         UserTypeCode[UserTypeCode["UNDEFINED"] = 0] = "UNDEFINED";
@@ -2687,12 +2733,12 @@
         };
         return RestUtil;
     }());
-    /** @nocollapse */ RestUtil.ɵfac = function RestUtil_Factory(t) { return new (t || RestUtil)(i0.ɵɵinject(i1.HttpClient)); };
-    /** @nocollapse */ RestUtil.ɵprov = i0.ɵɵdefineInjectable({ token: RestUtil, factory: RestUtil.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(RestUtil, [{
+    /** @nocollapse */ RestUtil.ɵfac = function RestUtil_Factory(t) { return new (t || RestUtil)(i0__namespace.ɵɵinject(i1__namespace.HttpClient)); };
+    /** @nocollapse */ RestUtil.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: RestUtil, factory: RestUtil.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(RestUtil, [{
                 type: i0.Injectable
-            }], function () { return [{ type: i1.HttpClient }]; }, null);
+            }], function () { return [{ type: i1__namespace.HttpClient }]; }, null);
     })();
 
     var CoreConfig = /** @class */ (function () {
@@ -2733,10 +2779,10 @@
         };
         return AdminAccountService;
     }());
-    /** @nocollapse */ AdminAccountService.ɵfac = function AdminAccountService_Factory(t) { return new (t || AdminAccountService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ AdminAccountService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminAccountService, factory: AdminAccountService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(AdminAccountService, [{
+    /** @nocollapse */ AdminAccountService.ɵfac = function AdminAccountService_Factory(t) { return new (t || AdminAccountService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminAccountService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: AdminAccountService, factory: AdminAccountService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(AdminAccountService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -2894,10 +2940,10 @@
         };
         return AdminActivitiesService;
     }());
-    /** @nocollapse */ AdminActivitiesService.ɵfac = function AdminActivitiesService_Factory(t) { return new (t || AdminActivitiesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ AdminActivitiesService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminActivitiesService, factory: AdminActivitiesService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(AdminActivitiesService, [{
+    /** @nocollapse */ AdminActivitiesService.ɵfac = function AdminActivitiesService_Factory(t) { return new (t || AdminActivitiesService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminActivitiesService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: AdminActivitiesService, factory: AdminActivitiesService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(AdminActivitiesService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3043,10 +3089,10 @@
         };
         return AdminMembersService;
     }());
-    /** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ AdminMembersService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminMembersService, factory: AdminMembersService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(AdminMembersService, [{
+    /** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminMembersService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: AdminMembersService, factory: AdminMembersService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(AdminMembersService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3174,10 +3220,10 @@
         };
         return AdminNotificationsService;
     }());
-    /** @nocollapse */ AdminNotificationsService.ɵfac = function AdminNotificationsService_Factory(t) { return new (t || AdminNotificationsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ AdminNotificationsService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminNotificationsService, factory: AdminNotificationsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(AdminNotificationsService, [{
+    /** @nocollapse */ AdminNotificationsService.ɵfac = function AdminNotificationsService_Factory(t) { return new (t || AdminNotificationsService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminNotificationsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: AdminNotificationsService, factory: AdminNotificationsService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(AdminNotificationsService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3319,10 +3365,10 @@
         };
         return AdminPlaningService;
     }());
-    /** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ AdminPlaningService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminPlaningService, factory: AdminPlaningService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(AdminPlaningService, [{
+    /** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminPlaningService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: AdminPlaningService, factory: AdminPlaningService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(AdminPlaningService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3418,10 +3464,10 @@
         };
         return AdminResourcesService;
     }());
-    /** @nocollapse */ AdminResourcesService.ɵfac = function AdminResourcesService_Factory(t) { return new (t || AdminResourcesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ AdminResourcesService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminResourcesService, factory: AdminResourcesService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(AdminResourcesService, [{
+    /** @nocollapse */ AdminResourcesService.ɵfac = function AdminResourcesService_Factory(t) { return new (t || AdminResourcesService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminResourcesService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: AdminResourcesService, factory: AdminResourcesService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(AdminResourcesService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3454,10 +3500,244 @@
         };
         return HealthCheckService;
     }());
-    /** @nocollapse */ HealthCheckService.ɵfac = function HealthCheckService_Factory(t) { return new (t || HealthCheckService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ HealthCheckService.ɵprov = i0.ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(HealthCheckService, [{
+    /** @nocollapse */ HealthCheckService.ɵfac = function HealthCheckService_Factory(t) { return new (t || HealthCheckService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ HealthCheckService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(HealthCheckService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * List of account related actions for system administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (console)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var SysAccountsService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function SysAccountsService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/sys/accounts';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Create new account
+         * @Return: EntityResponse<Account>
+         */
+        SysAccountsService.prototype.create = function (body) {
+            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Update existing account in the system
+         * @Return: EntityResponse<Account>
+         */
+        SysAccountsService.prototype.update = function (body) {
+            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Delete account from the system
+         * The account is moved to DELETED mode and will be deleted after 90 days
+         * Only account marked as SUSPENDED can be deleted
+         * @Return: ActionResponse
+         */
+        SysAccountsService.prototype.delete = function (id) {
+            return this.rest.delete(this.baseUrl + "/" + id);
+        };
+        /**
+         * Delete account immediately without account status restrictions
+         * @Return: ActionResponse
+         */
+        SysAccountsService.prototype.purge = function (id) {
+            return this.rest.delete(this.baseUrl + "/purge/" + id);
+        };
+        /**
+         * Reset account - remove all operational data older than the retention time in days (events, status, log ...) but leave configuration data
+         * @Return: ActionResponse
+         */
+        SysAccountsService.prototype.reset = function (id, days) {
+            return this.rest.delete(this.baseUrl + "/reset/" + id + "/days/" + days);
+        };
+        /**
+         * Get single account by id
+         * @Return: EntityResponse<Account>
+         */
+        SysAccountsService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find list of accounts and filter
+         * @Return: QueryResponse<Account>
+         */
+        SysAccountsService.prototype.find = function (search, type, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return SysAccountsService;
+    }());
+    /** @nocollapse */ SysAccountsService.ɵfac = function SysAccountsService_Factory(t) { return new (t || SysAccountsService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ SysAccountsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: SysAccountsService, factory: SysAccountsService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(SysAccountsService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * List of all user related actions for account administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (console)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var SysUsersService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function SysUsersService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/sys/users';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Create a new user for the current account
+         * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
+         * @Return: ActionResponse
+         */
+        SysUsersService.prototype.create = function (body) {
+            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Update user
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.update = function (id, body) {
+            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user name
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeName = function (id, body) {
+            return this.rest.put(this.baseUrl + "/" + id + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user mobile
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeMobile = function (id, body) {
+            return this.rest.put(this.baseUrl + "/" + id + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user type
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeType = function (id, type) {
+            return this.rest.put(this.baseUrl + "/" + id + "/type/" + type, null);
+        };
+        /**
+         * Change user status
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeStatus = function (id, status) {
+            return this.rest.put(this.baseUrl + "/" + id + "/status/" + status, null);
+        };
+        /**
+         * Change user default account
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeDefaultAccount = function (id, accountId) {
+            return this.rest.put(this.baseUrl + "/" + id + "/defaultAccount/" + accountId, null);
+        };
+        /**
+         * Reset password for user, generate one-time temporary password
+         * @Return: ActionResponse
+         */
+        SysUsersService.prototype.resetPassword = function (id) {
+            return this.rest.post(this.baseUrl + "/" + id + "/reset-password", null);
+        };
+        /**
+         * Delete user from the system
+         * @Return: ActionResponse
+         */
+        SysUsersService.prototype.delete = function (id) {
+            return this.rest.delete(this.baseUrl + "/" + id);
+        };
+        /**
+         * Get single user by Id
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find list of users by filter
+         * @Return: QueryResponse<User>
+         */
+        SysUsersService.prototype.find = function (accountId, search, type, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (accountId != null) {
+                params.push("accountId=" + accountId);
+            }
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return SysUsersService;
+    }());
+    /** @nocollapse */ SysUsersService.ɵfac = function SysUsersService_Factory(t) { return new (t || SysUsersService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ SysUsersService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: SysUsersService, factory: SysUsersService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(SysUsersService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3544,10 +3824,10 @@
         };
         return UsrActivitiesService;
     }());
-    /** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UsrActivitiesService.ɵprov = i0.ɵɵdefineInjectable({ token: UsrActivitiesService, factory: UsrActivitiesService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UsrActivitiesService, [{
+    /** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UsrActivitiesService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: UsrActivitiesService, factory: UsrActivitiesService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(UsrActivitiesService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3714,10 +3994,10 @@
         };
         return UserBookingsService;
     }());
-    /** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UserBookingsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserBookingsService, factory: UserBookingsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UserBookingsService, [{
+    /** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UserBookingsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: UserBookingsService, factory: UserBookingsService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(UserBookingsService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3803,10 +4083,10 @@
         };
         return UserPlacementsService;
     }());
-    /** @nocollapse */ UserPlacementsService.ɵfac = function UserPlacementsService_Factory(t) { return new (t || UserPlacementsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UserPlacementsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UserPlacementsService, [{
+    /** @nocollapse */ UserPlacementsService.ɵfac = function UserPlacementsService_Factory(t) { return new (t || UserPlacementsService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UserPlacementsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(UserPlacementsService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3880,10 +4160,10 @@
         };
         return UserAccountsService;
     }());
-    /** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UserAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UserAccountsService, [{
+    /** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UserAccountsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(UserAccountsService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -3951,10 +4231,10 @@
         };
         return UsrMembersService;
     }());
-    /** @nocollapse */ UsrMembersService.ɵfac = function UsrMembersService_Factory(t) { return new (t || UsrMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UsrMembersService.ɵprov = i0.ɵɵdefineInjectable({ token: UsrMembersService, factory: UsrMembersService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UsrMembersService, [{
+    /** @nocollapse */ UsrMembersService.ɵfac = function UsrMembersService_Factory(t) { return new (t || UsrMembersService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UsrMembersService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: UsrMembersService, factory: UsrMembersService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(UsrMembersService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -4129,244 +4409,10 @@
         };
         return UserService;
     }());
-    /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ UserService.ɵprov = i0.ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(UserService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * List of account related actions for system administrator only
-     * @RequestHeader X-API-KEY The key to identify the application (console)
-     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
-     */
-    var SysAccountsService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function SysAccountsService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/sys/accounts';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Create new account
-         * @Return: EntityResponse<Account>
-         */
-        SysAccountsService.prototype.create = function (body) {
-            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Update existing account in the system
-         * @Return: EntityResponse<Account>
-         */
-        SysAccountsService.prototype.update = function (body) {
-            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Delete account from the system
-         * The account is moved to DELETED mode and will be deleted after 90 days
-         * Only account marked as SUSPENDED can be deleted
-         * @Return: ActionResponse
-         */
-        SysAccountsService.prototype.delete = function (id) {
-            return this.rest.delete(this.baseUrl + "/" + id);
-        };
-        /**
-         * Delete account immediately without account status restrictions
-         * @Return: ActionResponse
-         */
-        SysAccountsService.prototype.purge = function (id) {
-            return this.rest.delete(this.baseUrl + "/purge/" + id);
-        };
-        /**
-         * Reset account - remove all operational data older than the retention time in days (events, status, log ...) but leave configuration data
-         * @Return: ActionResponse
-         */
-        SysAccountsService.prototype.reset = function (id, days) {
-            return this.rest.delete(this.baseUrl + "/reset/" + id + "/days/" + days);
-        };
-        /**
-         * Get single account by id
-         * @Return: EntityResponse<Account>
-         */
-        SysAccountsService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Find list of accounts and filter
-         * @Return: QueryResponse<Account>
-         */
-        SysAccountsService.prototype.find = function (search, type, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (type != null) {
-                params.push("type=" + type);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return SysAccountsService;
-    }());
-    /** @nocollapse */ SysAccountsService.ɵfac = function SysAccountsService_Factory(t) { return new (t || SysAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ SysAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: SysAccountsService, factory: SysAccountsService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(SysAccountsService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * List of all user related actions for account administrator only
-     * @RequestHeader X-API-KEY The key to identify the application (console)
-     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
-     */
-    var SysUsersService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function SysUsersService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/sys/users';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Create a new user for the current account
-         * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
-         * @Return: ActionResponse
-         */
-        SysUsersService.prototype.create = function (body) {
-            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Update user
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.update = function (id, body) {
-            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user name
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeName = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user mobile
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeMobile = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user type
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeType = function (id, type) {
-            return this.rest.put(this.baseUrl + "/" + id + "/type/" + type, null);
-        };
-        /**
-         * Change user status
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeStatus = function (id, status) {
-            return this.rest.put(this.baseUrl + "/" + id + "/status/" + status, null);
-        };
-        /**
-         * Change user default account
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeDefaultAccount = function (id, accountId) {
-            return this.rest.put(this.baseUrl + "/" + id + "/defaultAccount/" + accountId, null);
-        };
-        /**
-         * Reset password for user, generate one-time temporary password
-         * @Return: ActionResponse
-         */
-        SysUsersService.prototype.resetPassword = function (id) {
-            return this.rest.post(this.baseUrl + "/" + id + "/reset-password", null);
-        };
-        /**
-         * Delete user from the system
-         * @Return: ActionResponse
-         */
-        SysUsersService.prototype.delete = function (id) {
-            return this.rest.delete(this.baseUrl + "/" + id);
-        };
-        /**
-         * Get single user by Id
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Find list of users by filter
-         * @Return: QueryResponse<User>
-         */
-        SysUsersService.prototype.find = function (accountId, search, type, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (accountId != null) {
-                params.push("accountId=" + accountId);
-            }
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (type != null) {
-                params.push("type=" + type);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return SysUsersService;
-    }());
-    /** @nocollapse */ SysUsersService.ɵfac = function SysUsersService_Factory(t) { return new (t || SysUsersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ SysUsersService.ɵprov = i0.ɵɵdefineInjectable({ token: SysUsersService, factory: SysUsersService.ɵfac });
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(SysUsersService, [{
+    /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ UserService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(UserService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -4377,6 +4423,10 @@
     })();
 
     var Services = [
+        AdminAccountService,
+        HealthCheckService,
+        SysAccountsService,
+        SysUsersService,
         AdminActivitiesService,
         AdminPlaningService,
         AdminResourcesService,
@@ -4388,10 +4438,6 @@
         UserAccountsService,
         UsrMembersService,
         UserService,
-        AdminAccountService,
-        HealthCheckService,
-        SysAccountsService,
-        SysUsersService,
     ];
 
     var CoreLibModule = /** @class */ (function () {
@@ -4409,11 +4455,12 @@
         };
         return CoreLibModule;
     }());
-    /** @nocollapse */ CoreLibModule.ɵmod = i0.ɵɵdefineNgModule({ type: CoreLibModule });
-    /** @nocollapse */ CoreLibModule.ɵinj = i0.ɵɵdefineInjector({ factory: function CoreLibModule_Factory(t) { return new (t || CoreLibModule)(); }, imports: [[common.CommonModule, i1.HttpClientModule]] });
-    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(CoreLibModule, { imports: [common.CommonModule, i1.HttpClientModule] }); })();
-    /*@__PURE__*/ (function () {
-        i0.ɵsetClassMetadata(CoreLibModule, [{
+    /** @nocollapse */ CoreLibModule.ɵfac = function CoreLibModule_Factory(t) { return new (t || CoreLibModule)(); };
+    /** @nocollapse */ CoreLibModule.ɵmod = i0__namespace.ɵɵdefineNgModule({ type: CoreLibModule });
+    /** @nocollapse */ CoreLibModule.ɵinj = i0__namespace.ɵɵdefineInjector({ imports: [[common.CommonModule, i1.HttpClientModule]] });
+    (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0__namespace.ɵɵsetNgModuleScope(CoreLibModule, { imports: [common.CommonModule, i1.HttpClientModule] }); })();
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(CoreLibModule, [{
                 type: i0.NgModule,
                 args: [{
                         imports: [common.CommonModule, i1.HttpClientModule]

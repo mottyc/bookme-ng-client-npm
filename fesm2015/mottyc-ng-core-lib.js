@@ -1,5 +1,7 @@
-import { ɵɵinject, ɵɵdefineInjectable, ɵsetClassMetadata, Injectable, Inject, ɵɵdefineNgModule, ɵɵdefineInjector, ɵɵsetNgModuleScope, NgModule } from '@angular/core';
-import { HttpHeaders, HttpClient, HttpClientModule } from '@angular/common/http';
+import * as i0 from '@angular/core';
+import { Injectable, Inject, NgModule } from '@angular/core';
+import * as i1 from '@angular/common/http';
+import { HttpHeaders, HttpClientModule } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
@@ -1980,11 +1982,11 @@ class RestUtil {
         return Promise.reject(error.message || error);
     }
 }
-/** @nocollapse */ RestUtil.ɵfac = function RestUtil_Factory(t) { return new (t || RestUtil)(ɵɵinject(HttpClient)); };
-/** @nocollapse */ RestUtil.ɵprov = ɵɵdefineInjectable({ token: RestUtil, factory: RestUtil.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(RestUtil, [{
+/** @nocollapse */ RestUtil.ɵfac = function RestUtil_Factory(t) { return new (t || RestUtil)(i0.ɵɵinject(i1.HttpClient)); };
+/** @nocollapse */ RestUtil.ɵprov = i0.ɵɵdefineInjectable({ token: RestUtil, factory: RestUtil.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(RestUtil, [{
         type: Injectable
-    }], function () { return [{ type: HttpClient }]; }, null); })();
+    }], function () { return [{ type: i1.HttpClient }]; }, null); })();
 
 class CoreConfig {
 }
@@ -2020,9 +2022,9 @@ class AdminAccountService {
         return this.rest.put(`${this.baseUrl}/settings`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
 }
-/** @nocollapse */ AdminAccountService.ɵfac = function AdminAccountService_Factory(t) { return new (t || AdminAccountService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ AdminAccountService.ɵprov = ɵɵdefineInjectable({ token: AdminAccountService, factory: AdminAccountService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(AdminAccountService, [{
+/** @nocollapse */ AdminAccountService.ɵfac = function AdminAccountService_Factory(t) { return new (t || AdminAccountService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ AdminAccountService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminAccountService, factory: AdminAccountService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminAccountService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2172,9 +2174,9 @@ class AdminActivitiesService {
         return this.rest.delete(`${this.baseUrl}/default`, ...params);
     }
 }
-/** @nocollapse */ AdminActivitiesService.ɵfac = function AdminActivitiesService_Factory(t) { return new (t || AdminActivitiesService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ AdminActivitiesService.ɵprov = ɵɵdefineInjectable({ token: AdminActivitiesService, factory: AdminActivitiesService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(AdminActivitiesService, [{
+/** @nocollapse */ AdminActivitiesService.ɵfac = function AdminActivitiesService_Factory(t) { return new (t || AdminActivitiesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ AdminActivitiesService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminActivitiesService, factory: AdminActivitiesService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminActivitiesService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2314,9 +2316,9 @@ class AdminMembersService {
         return this.rest.get(`${this.baseUrl}/${id}/history`, ...params);
     }
 }
-/** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ AdminMembersService.ɵprov = ɵɵdefineInjectable({ token: AdminMembersService, factory: AdminMembersService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(AdminMembersService, [{
+/** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ AdminMembersService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminMembersService, factory: AdminMembersService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminMembersService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2435,9 +2437,9 @@ class AdminNotificationsService {
         return this.rest.post(`${this.baseUrl}/members`, typeof body === 'object' ? JSON.stringify(body) : body, ...params);
     }
 }
-/** @nocollapse */ AdminNotificationsService.ɵfac = function AdminNotificationsService_Factory(t) { return new (t || AdminNotificationsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ AdminNotificationsService.ɵprov = ɵɵdefineInjectable({ token: AdminNotificationsService, factory: AdminNotificationsService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(AdminNotificationsService, [{
+/** @nocollapse */ AdminNotificationsService.ɵfac = function AdminNotificationsService_Factory(t) { return new (t || AdminNotificationsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ AdminNotificationsService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminNotificationsService, factory: AdminNotificationsService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminNotificationsService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2571,9 +2573,9 @@ class AdminPlaningService {
         return this.rest.post(`${this.baseUrl}/bookings/${id}/incident`, typeof body === 'object' ? JSON.stringify(body) : body, ...params);
     }
 }
-/** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ AdminPlaningService.ɵprov = ɵɵdefineInjectable({ token: AdminPlaningService, factory: AdminPlaningService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(AdminPlaningService, [{
+/** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ AdminPlaningService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminPlaningService, factory: AdminPlaningService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminPlaningService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2664,9 +2666,9 @@ class AdminResourcesService {
         return this.rest.post(`${this.baseUrl}/import`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
 }
-/** @nocollapse */ AdminResourcesService.ɵfac = function AdminResourcesService_Factory(t) { return new (t || AdminResourcesService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ AdminResourcesService.ɵprov = ɵɵdefineInjectable({ token: AdminResourcesService, factory: AdminResourcesService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(AdminResourcesService, [{
+/** @nocollapse */ AdminResourcesService.ɵfac = function AdminResourcesService_Factory(t) { return new (t || AdminResourcesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ AdminResourcesService.ɵprov = i0.ɵɵdefineInjectable({ token: AdminResourcesService, factory: AdminResourcesService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminResourcesService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2695,9 +2697,231 @@ class HealthCheckService {
         return this.rest.get(`${this.baseUrl}`);
     }
 }
-/** @nocollapse */ HealthCheckService.ɵfac = function HealthCheckService_Factory(t) { return new (t || HealthCheckService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ HealthCheckService.ɵprov = ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(HealthCheckService, [{
+/** @nocollapse */ HealthCheckService.ɵfac = function HealthCheckService_Factory(t) { return new (t || HealthCheckService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ HealthCheckService.ɵprov = i0.ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(HealthCheckService, [{
+        type: Injectable
+    }], function () { return [{ type: CoreConfig, decorators: [{
+                type: Inject,
+                args: ['config']
+            }] }, { type: RestUtil }]; }, null); })();
+
+/**
+ * List of account related actions for system administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (console)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class SysAccountsService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/sys/accounts';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create new account
+     * @Return: EntityResponse<Account>
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update existing account in the system
+     * @Return: EntityResponse<Account>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete account from the system
+     * The account is moved to DELETED mode and will be deleted after 90 days
+     * Only account marked as SUSPENDED can be deleted
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Delete account immediately without account status restrictions
+     * @Return: ActionResponse
+     */
+    purge(id) {
+        return this.rest.delete(`${this.baseUrl}/purge/${id}`);
+    }
+    /**
+     * Reset account - remove all operational data older than the retention time in days (events, status, log ...) but leave configuration data
+     * @Return: ActionResponse
+     */
+    reset(id, days) {
+        return this.rest.delete(`${this.baseUrl}/reset/${id}/days/${days}`);
+    }
+    /**
+     * Get single account by id
+     * @Return: EntityResponse<Account>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find list of accounts and filter
+     * @Return: QueryResponse<Account>
+     */
+    find(search, type, status, sort, page, pageSize) {
+        const params = new Array();
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+/** @nocollapse */ SysAccountsService.ɵfac = function SysAccountsService_Factory(t) { return new (t || SysAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ SysAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: SysAccountsService, factory: SysAccountsService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SysAccountsService, [{
+        type: Injectable
+    }], function () { return [{ type: CoreConfig, decorators: [{
+                type: Inject,
+                args: ['config']
+            }] }, { type: RestUtil }]; }, null); })();
+
+/**
+ * List of all user related actions for account administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (console)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class SysUsersService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/sys/users';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create a new user for the current account
+     * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
+     * @Return: ActionResponse
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update user
+     * @Return: EntityResponse<User>
+     */
+    update(id, body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Change user name
+     * @Return: EntityResponse<User>
+     */
+    changeName(id, body) {
+        return this.rest.put(`${this.baseUrl}/${id}/name`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Change user mobile
+     * @Return: EntityResponse<User>
+     */
+    changeMobile(id, body) {
+        return this.rest.put(`${this.baseUrl}/${id}/mobile`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Change user type
+     * @Return: EntityResponse<User>
+     */
+    changeType(id, type) {
+        return this.rest.put(`${this.baseUrl}/${id}/type/${type}`, null);
+    }
+    /**
+     * Change user status
+     * @Return: EntityResponse<User>
+     */
+    changeStatus(id, status) {
+        return this.rest.put(`${this.baseUrl}/${id}/status/${status}`, null);
+    }
+    /**
+     * Change user default account
+     * @Return: EntityResponse<User>
+     */
+    changeDefaultAccount(id, accountId) {
+        return this.rest.put(`${this.baseUrl}/${id}/defaultAccount/${accountId}`, null);
+    }
+    /**
+     * Reset password for user, generate one-time temporary password
+     * @Return: ActionResponse
+     */
+    resetPassword(id) {
+        return this.rest.post(`${this.baseUrl}/${id}/reset-password`, null);
+    }
+    /**
+     * Delete user from the system
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Get single user by Id
+     * @Return: EntityResponse<User>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find list of users by filter
+     * @Return: QueryResponse<User>
+     */
+    find(accountId, search, type, status, sort, page, pageSize) {
+        const params = new Array();
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+/** @nocollapse */ SysUsersService.ɵfac = function SysUsersService_Factory(t) { return new (t || SysUsersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ SysUsersService.ɵprov = i0.ɵɵdefineInjectable({ token: SysUsersService, factory: SysUsersService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SysUsersService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2778,9 +3002,9 @@ class UsrActivitiesService {
         return this.rest.get(`${this.baseUrl}/${id}/all-resources`);
     }
 }
-/** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UsrActivitiesService.ɵprov = ɵɵdefineInjectable({ token: UsrActivitiesService, factory: UsrActivitiesService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UsrActivitiesService, [{
+/** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ UsrActivitiesService.ɵprov = i0.ɵɵdefineInjectable({ token: UsrActivitiesService, factory: UsrActivitiesService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UsrActivitiesService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -2939,9 +3163,9 @@ class UserBookingsService {
         return this.rest.get(`${this.baseUrl}/activities`, ...params);
     }
 }
-/** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UserBookingsService.ɵprov = ɵɵdefineInjectable({ token: UserBookingsService, factory: UserBookingsService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UserBookingsService, [{
+/** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ UserBookingsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserBookingsService, factory: UserBookingsService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UserBookingsService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -3022,9 +3246,9 @@ class UserPlacementsService {
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
 }
-/** @nocollapse */ UserPlacementsService.ɵfac = function UserPlacementsService_Factory(t) { return new (t || UserPlacementsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UserPlacementsService.ɵprov = ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UserPlacementsService, [{
+/** @nocollapse */ UserPlacementsService.ɵfac = function UserPlacementsService_Factory(t) { return new (t || UserPlacementsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ UserPlacementsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UserPlacementsService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -3093,9 +3317,9 @@ class UserAccountsService {
         return this.rest.delete(`${this.baseUrl}/memberships/${id}`);
     }
 }
-/** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UserAccountsService.ɵprov = ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UserAccountsService, [{
+/** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ UserAccountsService.ɵprov = i0.ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UserAccountsService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -3158,9 +3382,9 @@ class UsrMembersService {
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
 }
-/** @nocollapse */ UsrMembersService.ɵfac = function UsrMembersService_Factory(t) { return new (t || UsrMembersService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UsrMembersService.ɵprov = ɵɵdefineInjectable({ token: UsrMembersService, factory: UsrMembersService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UsrMembersService, [{
+/** @nocollapse */ UsrMembersService.ɵfac = function UsrMembersService_Factory(t) { return new (t || UsrMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ UsrMembersService.ɵprov = i0.ɵɵdefineInjectable({ token: UsrMembersService, factory: UsrMembersService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UsrMembersService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -3329,231 +3553,9 @@ class UserService {
         return this.rest.delete(`${this.baseUrl}/notifications/${id}`);
     }
 }
-/** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ UserService.ɵprov = ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(UserService, [{
-        type: Injectable
-    }], function () { return [{ type: CoreConfig, decorators: [{
-                type: Inject,
-                args: ['config']
-            }] }, { type: RestUtil }]; }, null); })();
-
-/**
- * List of account related actions for system administrator only
- * @RequestHeader X-API-KEY The key to identify the application (console)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class SysAccountsService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/sys/accounts';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Create new account
-     * @Return: EntityResponse<Account>
-     */
-    create(body) {
-        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Update existing account in the system
-     * @Return: EntityResponse<Account>
-     */
-    update(body) {
-        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Delete account from the system
-     * The account is moved to DELETED mode and will be deleted after 90 days
-     * Only account marked as SUSPENDED can be deleted
-     * @Return: ActionResponse
-     */
-    delete(id) {
-        return this.rest.delete(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Delete account immediately without account status restrictions
-     * @Return: ActionResponse
-     */
-    purge(id) {
-        return this.rest.delete(`${this.baseUrl}/purge/${id}`);
-    }
-    /**
-     * Reset account - remove all operational data older than the retention time in days (events, status, log ...) but leave configuration data
-     * @Return: ActionResponse
-     */
-    reset(id, days) {
-        return this.rest.delete(`${this.baseUrl}/reset/${id}/days/${days}`);
-    }
-    /**
-     * Get single account by id
-     * @Return: EntityResponse<Account>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Find list of accounts and filter
-     * @Return: QueryResponse<Account>
-     */
-    find(search, type, status, sort, page, pageSize) {
-        const params = new Array();
-        if (search != null) {
-            params.push(`search=${search}`);
-        }
-        if (type != null) {
-            params.push(`type=${type}`);
-        }
-        if (status != null) {
-            params.push(`status=${status}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-}
-/** @nocollapse */ SysAccountsService.ɵfac = function SysAccountsService_Factory(t) { return new (t || SysAccountsService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ SysAccountsService.ɵprov = ɵɵdefineInjectable({ token: SysAccountsService, factory: SysAccountsService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(SysAccountsService, [{
-        type: Injectable
-    }], function () { return [{ type: CoreConfig, decorators: [{
-                type: Inject,
-                args: ['config']
-            }] }, { type: RestUtil }]; }, null); })();
-
-/**
- * List of all user related actions for account administrator only
- * @RequestHeader X-API-KEY The key to identify the application (console)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class SysUsersService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/sys/users';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Create a new user for the current account
-     * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
-     * @Return: ActionResponse
-     */
-    create(body) {
-        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Update user
-     * @Return: EntityResponse<User>
-     */
-    update(id, body) {
-        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Change user name
-     * @Return: EntityResponse<User>
-     */
-    changeName(id, body) {
-        return this.rest.put(`${this.baseUrl}/${id}/name`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Change user mobile
-     * @Return: EntityResponse<User>
-     */
-    changeMobile(id, body) {
-        return this.rest.put(`${this.baseUrl}/${id}/mobile`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Change user type
-     * @Return: EntityResponse<User>
-     */
-    changeType(id, type) {
-        return this.rest.put(`${this.baseUrl}/${id}/type/${type}`, null);
-    }
-    /**
-     * Change user status
-     * @Return: EntityResponse<User>
-     */
-    changeStatus(id, status) {
-        return this.rest.put(`${this.baseUrl}/${id}/status/${status}`, null);
-    }
-    /**
-     * Change user default account
-     * @Return: EntityResponse<User>
-     */
-    changeDefaultAccount(id, accountId) {
-        return this.rest.put(`${this.baseUrl}/${id}/defaultAccount/${accountId}`, null);
-    }
-    /**
-     * Reset password for user, generate one-time temporary password
-     * @Return: ActionResponse
-     */
-    resetPassword(id) {
-        return this.rest.post(`${this.baseUrl}/${id}/reset-password`, null);
-    }
-    /**
-     * Delete user from the system
-     * @Return: ActionResponse
-     */
-    delete(id) {
-        return this.rest.delete(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Get single user by Id
-     * @Return: EntityResponse<User>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Find list of users by filter
-     * @Return: QueryResponse<User>
-     */
-    find(accountId, search, type, status, sort, page, pageSize) {
-        const params = new Array();
-        if (accountId != null) {
-            params.push(`accountId=${accountId}`);
-        }
-        if (search != null) {
-            params.push(`search=${search}`);
-        }
-        if (type != null) {
-            params.push(`type=${type}`);
-        }
-        if (status != null) {
-            params.push(`status=${status}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-}
-/** @nocollapse */ SysUsersService.ɵfac = function SysUsersService_Factory(t) { return new (t || SysUsersService)(ɵɵinject('config'), ɵɵinject(RestUtil)); };
-/** @nocollapse */ SysUsersService.ɵprov = ɵɵdefineInjectable({ token: SysUsersService, factory: SysUsersService.ɵfac });
-/*@__PURE__*/ (function () { ɵsetClassMetadata(SysUsersService, [{
+/** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
+/** @nocollapse */ UserService.ɵprov = i0.ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UserService, [{
         type: Injectable
     }], function () { return [{ type: CoreConfig, decorators: [{
                 type: Inject,
@@ -3561,6 +3563,10 @@ class SysUsersService {
             }] }, { type: RestUtil }]; }, null); })();
 
 const Services = [
+    AdminAccountService,
+    HealthCheckService,
+    SysAccountsService,
+    SysUsersService,
     AdminActivitiesService,
     AdminPlaningService,
     AdminResourcesService,
@@ -3572,10 +3578,6 @@ const Services = [
     UserAccountsService,
     UsrMembersService,
     UserService,
-    AdminAccountService,
-    HealthCheckService,
-    SysAccountsService,
-    SysUsersService,
 ];
 
 class CoreLibModule {
@@ -3591,10 +3593,11 @@ class CoreLibModule {
         };
     }
 }
-/** @nocollapse */ CoreLibModule.ɵmod = ɵɵdefineNgModule({ type: CoreLibModule });
-/** @nocollapse */ CoreLibModule.ɵinj = ɵɵdefineInjector({ factory: function CoreLibModule_Factory(t) { return new (t || CoreLibModule)(); }, imports: [[CommonModule, HttpClientModule]] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && ɵɵsetNgModuleScope(CoreLibModule, { imports: [CommonModule, HttpClientModule] }); })();
-/*@__PURE__*/ (function () { ɵsetClassMetadata(CoreLibModule, [{
+/** @nocollapse */ CoreLibModule.ɵfac = function CoreLibModule_Factory(t) { return new (t || CoreLibModule)(); };
+/** @nocollapse */ CoreLibModule.ɵmod = i0.ɵɵdefineNgModule({ type: CoreLibModule });
+/** @nocollapse */ CoreLibModule.ɵinj = i0.ɵɵdefineInjector({ imports: [[CommonModule, HttpClientModule]] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(CoreLibModule, { imports: [CommonModule, HttpClientModule] }); })();
+(function () { (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CoreLibModule, [{
         type: NgModule,
         args: [{
                 imports: [CommonModule, HttpClientModule]
