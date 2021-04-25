@@ -3,6 +3,7 @@ export * from './adminActivitiesService';
 export * from './adminMembersService';
 export * from './adminNotificationsService';
 export * from './adminPlaningService';
+export * from './adminReportsService';
 export * from './adminResourcesService';
 export * from './healthCheckService';
 export * from './services.export';

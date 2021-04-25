@@ -74,6 +74,18 @@
     }());
 
     /*
+     *  Count data point
+    */
+    var CountDataPoint = /** @class */ (function () {
+        function CountDataPoint(timestamp, label, value) {
+            this.timestamp = timestamp;
+            this.label = label;
+            this.value = value;
+        }
+        return CountDataPoint;
+    }());
+
+    /*
      *  Login data (returned by the API after successful login)
     */
     var LoginData = /** @class */ (function () {
@@ -150,6 +162,17 @@
             this.name = name;
         }
         return RecurrentTimeFrame;
+    }());
+
+    /*
+     *  Key Value string-int tuple
+    */
+    var StringIntValue = /** @class */ (function () {
+        function StringIntValue(key, value) {
+            this.key = key;
+            this.value = value;
+        }
+        return StringIntValue;
     }());
 
     /*
@@ -1535,6 +1558,16 @@
 
     /*
     */
+    var DowDistributionRequest = /** @class */ (function () {
+        function DowDistributionRequest(from, to) {
+            this.from = from;
+            this.to = to;
+        }
+        return DowDistributionRequest;
+    }());
+
+    /*
+    */
     var EmptyRequest = /** @class */ (function () {
         function EmptyRequest() {
         }
@@ -1633,6 +1666,27 @@
     }(EntitiesResponse));
 
     /*
+     *  Entity response message returned for read operation on a single entity
+    */
+    var EntityResponse = /** @class */ (function () {
+        function EntityResponse(code, error) {
+            this.code = code;
+            this.error = error;
+        }
+        return EntityResponse;
+    }());
+
+    /*
+    */
+    var EntitiesResponseOfCountDataPoint = /** @class */ (function (_super) {
+        __extends(EntitiesResponseOfCountDataPoint, _super);
+        function EntitiesResponseOfCountDataPoint() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntitiesResponseOfCountDataPoint;
+    }(EntityResponse));
+
+    /*
     */
     var EntitiesResponseOfMembership = /** @class */ (function (_super) {
         __extends(EntitiesResponseOfMembership, _super);
@@ -1673,15 +1727,14 @@
     }(EntitiesResponse));
 
     /*
-     *  Entity response message returned for read operation on a single entity
     */
-    var EntityResponse = /** @class */ (function () {
-        function EntityResponse(code, error) {
-            this.code = code;
-            this.error = error;
+    var EntitiesResponseOfStringIntValue = /** @class */ (function (_super) {
+        __extends(EntitiesResponseOfStringIntValue, _super);
+        function EntitiesResponseOfStringIntValue() {
+            return _super !== null && _super.apply(this, arguments) || this;
         }
-        return EntityResponse;
-    }());
+        return EntitiesResponseOfStringIntValue;
+    }(EntitiesResponse));
 
     /*
     */
@@ -2103,6 +2156,16 @@
     }());
 
     /*
+    */
+    var ResourcesCountRequest = /** @class */ (function () {
+        function ResourcesCountRequest(from, to) {
+            this.from = from;
+            this.to = to;
+        }
+        return ResourcesCountRequest;
+    }());
+
+    /*
      *  Response of byte array
     */
     var StreamResponse = /** @class */ (function () {
@@ -2164,6 +2227,16 @@
             this.accountId = accountId;
         }
         return TokenRequest;
+    }());
+
+    /*
+    */
+    var UsageCountRequest = /** @class */ (function () {
+        function UsageCountRequest(from, to) {
+            this.from = from;
+            this.to = to;
+        }
+        return UsageCountRequest;
     }());
 
     /*
@@ -3379,6 +3452,82 @@
     })();
 
     /**
+     * Services for analytics reports - for account administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (portal)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var AdminReportsService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function AdminReportsService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/admin/reports';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Get count of users overtime
+         * @Return: EntitiesResponse<CountDataPoint>
+         */
+        AdminReportsService.prototype.getUsersCountOvertime = function (from, to) {
+            var _a;
+            var params = new Array();
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/usage-overtime"], params));
+        };
+        /**
+         * Get count of resources overtime
+         * @Return: EntitiesResponse<CountDataPoint>
+         */
+        AdminReportsService.prototype.getResourcesCountOvertime = function (from, to) {
+            var _a;
+            var params = new Array();
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/resources-overtime"], params));
+        };
+        /**
+         * Get count of resources overtime
+         * @Return: EntitiesResponse<CountDataPoint>
+         */
+        AdminReportsService.prototype.getDayOfWeekDistribution = function (from, to) {
+            var _a;
+            var params = new Array();
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/count-by-dow"], params));
+        };
+        return AdminReportsService;
+    }());
+    /** @nocollapse */ AdminReportsService.ɵfac = function AdminReportsService_Factory(t) { return new (t || AdminReportsService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ AdminReportsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: AdminReportsService, factory: AdminReportsService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(AdminReportsService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
      * Services for managing club resources - for account administrator only
      * @RequestHeader X-API-KEY The key to identify the application (portal)
      * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
@@ -4429,6 +4578,7 @@
         SysUsersService,
         AdminActivitiesService,
         AdminPlaningService,
+        AdminReportsService,
         AdminResourcesService,
         UsrActivitiesService,
         UserBookingsService,
@@ -4512,6 +4662,7 @@
     exports.AdminPlaningUnAssignResourceRequest = AdminPlaningUnAssignResourceRequest;
     exports.AdminReportAbsenceRequest = AdminReportAbsenceRequest;
     exports.AdminReportIncidentRequest = AdminReportIncidentRequest;
+    exports.AdminReportsService = AdminReportsService;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
     exports.AdminResourcesService = AdminResourcesService;
@@ -4529,6 +4680,8 @@
     exports.ChangePasswordRequest = ChangePasswordRequest;
     exports.CoreConfig = CoreConfig;
     exports.CoreLibModule = CoreLibModule;
+    exports.CountDataPoint = CountDataPoint;
+    exports.DowDistributionRequest = DowDistributionRequest;
     exports.EmptyRequest = EmptyRequest;
     exports.EmptyResponse = EmptyResponse;
     exports.EntitiesResponse = EntitiesResponse;
@@ -4539,10 +4692,12 @@
     exports.EntitiesResponseOfBooking = EntitiesResponseOfBooking;
     exports.EntitiesResponseOfBookingGroup = EntitiesResponseOfBookingGroup;
     exports.EntitiesResponseOfBookingRequest = EntitiesResponseOfBookingRequest;
+    exports.EntitiesResponseOfCountDataPoint = EntitiesResponseOfCountDataPoint;
     exports.EntitiesResponseOfMembership = EntitiesResponseOfMembership;
     exports.EntitiesResponseOfNotification = EntitiesResponseOfNotification;
     exports.EntitiesResponseOfPlacement = EntitiesResponseOfPlacement;
     exports.EntitiesResponseOfResource = EntitiesResponseOfResource;
+    exports.EntitiesResponseOfStringIntValue = EntitiesResponseOfStringIntValue;
     exports.EntityResponse = EntityResponse;
     exports.EntityResponseOfAccount = EntityResponseOfAccount;
     exports.EntityResponseOfAccountSettings = EntityResponseOfAccountSettings;
@@ -4601,9 +4756,11 @@
     exports.Registration = Registration;
     exports.Resource = Resource;
     exports.ResourceIdRequest = ResourceIdRequest;
+    exports.ResourcesCountRequest = ResourcesCountRequest;
     exports.RestUtil = RestUtil;
     exports.Services = Services;
     exports.StreamResponse = StreamResponse;
+    exports.StringIntValue = StringIntValue;
     exports.StringKeyValue = StringKeyValue;
     exports.SysAccountsService = SysAccountsService;
     exports.SysAdminAccountCreateRequest = SysAdminAccountCreateRequest;
@@ -4613,6 +4770,7 @@
     exports.SysUsersService = SysUsersService;
     exports.TimeFrame = TimeFrame;
     exports.TokenRequest = TokenRequest;
+    exports.UsageCountRequest = UsageCountRequest;
     exports.User = User;
     exports.UserAccountInfo = UserAccountInfo;
     exports.UserAccountsFindRequest = UserAccountsFindRequest;
