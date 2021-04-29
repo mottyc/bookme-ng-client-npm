@@ -26,6 +26,7 @@ export * from './AdminReportAbsenceRequest';
 export * from './AdminReportIncidentRequest';
 export * from './AdminResourceBulkCreateRequest';
 export * from './AdminResourceFindRequest';
+export * from './AdminResourceHistoryRequest';
 export * from './AdminUpdateActivityRequest';
 export * from './AdminUpdateRegistrationRequest';
 export * from './AdminUpdateResourceRequest';

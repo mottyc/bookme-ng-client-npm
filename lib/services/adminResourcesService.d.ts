@@ -49,6 +49,11 @@ export declare class AdminResourcesService {
      * @Return: ActionResponse
      */
     bulkCreate(body?: Resource[]): import("rxjs").Observable<any>;
+    /**
+     * Find list of all bookings for a resource by filter
+     * @Return: QueryResponse<Booking>
+     */
+    findResourceHistory(id?: string, year?: number, month?: number, day?: number, sort?: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminResourcesService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminResourcesService>;
 }

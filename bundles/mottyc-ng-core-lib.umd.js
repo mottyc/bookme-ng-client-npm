@@ -1501,6 +1501,19 @@
 
     /*
     */
+    var AdminResourceHistoryRequest = /** @class */ (function () {
+        function AdminResourceHistoryRequest(id, year, month, day, sort) {
+            this.id = id;
+            this.year = year;
+            this.month = month;
+            this.day = day;
+            this.sort = sort;
+        }
+        return AdminResourceHistoryRequest;
+    }());
+
+    /*
+    */
     var AdminUpdateActivityRequest = /** @class */ (function () {
         function AdminUpdateActivityRequest(body) {
             this.body = body;
@@ -3611,6 +3624,27 @@
         AdminResourcesService.prototype.bulkCreate = function (body) {
             return this.rest.post(this.baseUrl + "/import", typeof body === 'object' ? JSON.stringify(body) : body);
         };
+        /**
+         * Find list of all bookings for a resource by filter
+         * @Return: QueryResponse<Booking>
+         */
+        AdminResourcesService.prototype.findResourceHistory = function (id, year, month, day, sort) {
+            var _a;
+            var params = new Array();
+            if (year != null) {
+                params.push("year=" + year);
+            }
+            if (month != null) {
+                params.push("month=" + month);
+            }
+            if (day != null) {
+                params.push("day=" + day);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/" + id + "/history"], params));
+        };
         return AdminResourcesService;
     }());
     /** @nocollapse */ AdminResourcesService.ɵfac = function AdminResourcesService_Factory(t) { return new (t || AdminResourcesService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
@@ -4665,6 +4699,7 @@
     exports.AdminReportsService = AdminReportsService;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
+    exports.AdminResourceHistoryRequest = AdminResourceHistoryRequest;
     exports.AdminResourcesService = AdminResourcesService;
     exports.AdminUpdateActivityRequest = AdminUpdateActivityRequest;
     exports.AdminUpdateRegistrationRequest = AdminUpdateRegistrationRequest;
