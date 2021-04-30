@@ -4639,9 +4639,8 @@
         };
         return CoreLibModule;
     }());
-    /** @nocollapse */ CoreLibModule.ɵfac = function CoreLibModule_Factory(t) { return new (t || CoreLibModule)(); };
     /** @nocollapse */ CoreLibModule.ɵmod = i0__namespace.ɵɵdefineNgModule({ type: CoreLibModule });
-    /** @nocollapse */ CoreLibModule.ɵinj = i0__namespace.ɵɵdefineInjector({ imports: [[common.CommonModule, i1.HttpClientModule]] });
+    /** @nocollapse */ CoreLibModule.ɵinj = i0__namespace.ɵɵdefineInjector({ factory: function CoreLibModule_Factory(t) { return new (t || CoreLibModule)(); }, imports: [[common.CommonModule, i1.HttpClientModule]] });
     (function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0__namespace.ɵɵsetNgModuleScope(CoreLibModule, { imports: [common.CommonModule, i1.HttpClientModule] }); })();
     (function () {
         (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(CoreLibModule, [{
