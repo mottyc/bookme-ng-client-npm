@@ -1,5 +1,5 @@
-import { BookingRequest } from '../entities/BookingRequest';
 import { QueryResponse } from '../messages/QueryResponse';
+import { BookingRequest } from '../entities/BookingRequest';
 import { IQueryResponse } from '../messages/QueryResponse';
 export declare class QueryResponseOfBookingRequest extends QueryResponse {
     list: BookingRequest[];
