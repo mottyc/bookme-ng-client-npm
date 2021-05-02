@@ -1,9 +1,9 @@
-export declare class UsageCountRequest {
+export declare class ResourcesCountOvertimeRequest {
     from: number;
     to: number;
     constructor(from?: number, to?: number);
 }
-export interface IUsageCountRequest {
+export interface IResourcesCountOvertimeRequest {
     from?: number;
     to?: number;
 }

@@ -1912,6 +1912,16 @@
 
     /*
     */
+    var MembersCountOvertimeRequest = /** @class */ (function () {
+        function MembersCountOvertimeRequest(from, to) {
+            this.from = from;
+            this.to = to;
+        }
+        return MembersCountOvertimeRequest;
+    }());
+
+    /*
+    */
     var MembersFindRequest = /** @class */ (function () {
         function MembersFindRequest(search, role, status, sort, page, pageSize) {
             this.search = search;
@@ -1958,6 +1968,26 @@
             this.userId = userId;
         }
         return MembershipsRequest;
+    }());
+
+    /*
+    */
+    var MonthlyMembersCountRequest = /** @class */ (function () {
+        function MonthlyMembersCountRequest(year, month) {
+            this.year = year;
+            this.month = month;
+        }
+        return MonthlyMembersCountRequest;
+    }());
+
+    /*
+    */
+    var MonthlyResourcesCountRequest = /** @class */ (function () {
+        function MonthlyResourcesCountRequest(year, month) {
+            this.year = year;
+            this.month = month;
+        }
+        return MonthlyResourcesCountRequest;
     }());
 
     /*
@@ -2170,12 +2200,12 @@
 
     /*
     */
-    var ResourcesCountRequest = /** @class */ (function () {
-        function ResourcesCountRequest(from, to) {
+    var ResourcesCountOvertimeRequest = /** @class */ (function () {
+        function ResourcesCountOvertimeRequest(from, to) {
             this.from = from;
             this.to = to;
         }
-        return ResourcesCountRequest;
+        return ResourcesCountOvertimeRequest;
     }());
 
     /*
@@ -2240,16 +2270,6 @@
             this.accountId = accountId;
         }
         return TokenRequest;
-    }());
-
-    /*
-    */
-    var UsageCountRequest = /** @class */ (function () {
-        function UsageCountRequest(from, to) {
-            this.from = from;
-            this.to = to;
-        }
-        return UsageCountRequest;
     }());
 
     /*
@@ -3481,10 +3501,40 @@
             this.baseUrl = this.config.api + this.baseUrl;
         }
         /**
-         * Get count of users overtime
+         * Get count of members over month
          * @Return: EntitiesResponse<CountDataPoint>
          */
-        AdminReportsService.prototype.getUsersCountOvertime = function (from, to) {
+        AdminReportsService.prototype.getMonthlyMembersCount = function (year, month) {
+            var _a;
+            var params = new Array();
+            if (year != null) {
+                params.push("year=" + year);
+            }
+            if (month != null) {
+                params.push("month=" + month);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/monthly-members-count"], params));
+        };
+        /**
+         * Get count of resources over month
+         * @Return: EntitiesResponse<CountDataPoint>
+         */
+        AdminReportsService.prototype.getMonthlyResourcesCount = function (year, month) {
+            var _a;
+            var params = new Array();
+            if (year != null) {
+                params.push("year=" + year);
+            }
+            if (month != null) {
+                params.push("month=" + month);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/monthly-resources-count"], params));
+        };
+        /**
+         * Get count of members over time period
+         * @Return: EntitiesResponse<CountDataPoint>
+         */
+        AdminReportsService.prototype.getMembersCountOvertime = function (from, to) {
             var _a;
             var params = new Array();
             if (from != null) {
@@ -3493,7 +3543,7 @@
             if (to != null) {
                 params.push("to=" + to);
             }
-            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/usage-overtime"], params));
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/period-members-count"], params));
         };
         /**
          * Get count of resources overtime
@@ -3508,7 +3558,7 @@
             if (to != null) {
                 params.push("to=" + to);
             }
-            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/resources-overtime"], params));
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/period-resources-count"], params));
         };
         /**
          * Get count of resources overtime
@@ -4758,12 +4808,15 @@
     exports.MemberRegistration = MemberRegistration;
     exports.MemberUser = MemberUser;
     exports.MembersBulkImportRequest = MembersBulkImportRequest;
+    exports.MembersCountOvertimeRequest = MembersCountOvertimeRequest;
     exports.MembersFindRequest = MembersFindRequest;
     exports.MembersServiceInviteRequest = MembersServiceInviteRequest;
     exports.MembersServiceUpdateRequest = MembersServiceUpdateRequest;
     exports.Membership = Membership;
     exports.MembershipIdRequest = MembershipIdRequest;
     exports.MembershipsRequest = MembershipsRequest;
+    exports.MonthlyMembersCountRequest = MonthlyMembersCountRequest;
+    exports.MonthlyResourcesCountRequest = MonthlyResourcesCountRequest;
     exports.Notification = Notification;
     exports.NotificationIdRequest = NotificationIdRequest;
     exports.NotifyActivityUsersRequest = NotifyActivityUsersRequest;
@@ -4790,7 +4843,7 @@
     exports.Registration = Registration;
     exports.Resource = Resource;
     exports.ResourceIdRequest = ResourceIdRequest;
-    exports.ResourcesCountRequest = ResourcesCountRequest;
+    exports.ResourcesCountOvertimeRequest = ResourcesCountOvertimeRequest;
     exports.RestUtil = RestUtil;
     exports.Services = Services;
     exports.StreamResponse = StreamResponse;
@@ -4804,7 +4857,6 @@
     exports.SysUsersService = SysUsersService;
     exports.TimeFrame = TimeFrame;
     exports.TokenRequest = TokenRequest;
-    exports.UsageCountRequest = UsageCountRequest;
     exports.User = User;
     exports.UserAccountInfo = UserAccountInfo;
     exports.UserAccountsFindRequest = UserAccountsFindRequest;

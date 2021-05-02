@@ -15,10 +15,20 @@ export declare class AdminReportsService {
      */
     constructor(config: CoreConfig, rest: RestUtil);
     /**
-     * Get count of users overtime
+     * Get count of members over month
      * @Return: EntitiesResponse<CountDataPoint>
      */
-    getUsersCountOvertime(from?: number, to?: number): import("rxjs").Observable<any>;
+    getMonthlyMembersCount(year?: number, month?: number): import("rxjs").Observable<any>;
+    /**
+     * Get count of resources over month
+     * @Return: EntitiesResponse<CountDataPoint>
+     */
+    getMonthlyResourcesCount(year?: number, month?: number): import("rxjs").Observable<any>;
+    /**
+     * Get count of members over time period
+     * @Return: EntitiesResponse<CountDataPoint>
+     */
+    getMembersCountOvertime(from?: number, to?: number): import("rxjs").Observable<any>;
     /**
      * Get count of resources overtime
      * @Return: EntitiesResponse<CountDataPoint>
