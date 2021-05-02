@@ -14,6 +14,7 @@ export declare class Member extends BaseEntity {
     isMentor: boolean;
     trainingTime: number;
     restrictions: string;
+    preferred: string[];
     id: string;
     createdOn: number;
     updatedOn: number;
@@ -30,6 +31,7 @@ export interface IMember extends IBaseEntity {
     isMentor?: boolean;
     trainingTime?: number;
     restrictions?: string;
+    preferred?: string[];
     id?: string;
     createdOn?: number;
     updatedOn?: number;
