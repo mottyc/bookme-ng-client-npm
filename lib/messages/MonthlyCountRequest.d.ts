@@ -1,9 +1,9 @@
-export declare class MonthlyMembersCountRequest {
+export declare class MonthlyCountRequest {
     year: number;
     month: number;
     constructor(year?: number, month?: number);
 }
-export interface IMonthlyMembersCountRequest {
+export interface IMonthlyCountRequest {
     year?: number;
     month?: number;
 }

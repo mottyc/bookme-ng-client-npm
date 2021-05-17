@@ -1,9 +1,9 @@
-export declare class DowDistributionRequest {
+export declare class PeriodCountRequest {
     from: number;
     to: number;
     constructor(from?: number, to?: number);
 }
-export interface IDowDistributionRequest {
+export interface IPeriodCountRequest {
     from?: number;
     to?: number;
 }

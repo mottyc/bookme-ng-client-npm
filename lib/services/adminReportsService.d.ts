@@ -16,29 +16,24 @@ export declare class AdminReportsService {
     constructor(config: CoreConfig, rest: RestUtil);
     /**
      * Get count of members over month
-     * @Return: EntitiesResponse<CountDataPoint>
+     * @Return: EntitiesResponse<Usage>
      */
-    getMonthlyMembersCount(year?: number, month?: number): import("rxjs").Observable<any>;
-    /**
-     * Get count of resources over month
-     * @Return: EntitiesResponse<CountDataPoint>
-     */
-    getMonthlyResourcesCount(year?: number, month?: number): import("rxjs").Observable<any>;
+    getMonthlyCount(year?: number, month?: number): import("rxjs").Observable<any>;
     /**
      * Get count of members over time period
-     * @Return: EntitiesResponse<CountDataPoint>
+     * @Return: EntitiesResponse<Usage>
      */
-    getMembersCountOvertime(from?: number, to?: number): import("rxjs").Observable<any>;
+    getPeriodCount(from?: number, to?: number): import("rxjs").Observable<any>;
     /**
-     * Get count of resources overtime
-     * @Return: EntitiesResponse<CountDataPoint>
-     */
-    getResourcesCountOvertime(from?: number, to?: number): import("rxjs").Observable<any>;
-    /**
-     * Get count of resources overtime
-     * @Return: EntitiesResponse<CountDataPoint>
+     * Get distribution by week days over time
+     * @Return: EntitiesResponse<StringIntValue>
      */
     getDayOfWeekDistribution(from?: number, to?: number): import("rxjs").Observable<any>;
+    /**
+     * Get distribution by resource type over time
+     * @Return: EntitiesResponse<StringIntValue>
+     */
+    getResourceTypeDistribution(from?: number, to?: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminReportsService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminReportsService>;
 }

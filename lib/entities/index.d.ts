@@ -19,5 +19,6 @@ export * from './Placement';
 export * from './Planing';
 export * from './Registration';
 export * from './Resource';
+export * from './Usage';
 export * from './User';
 export * from './Verification';
