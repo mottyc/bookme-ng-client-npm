@@ -1,5 +1,5 @@
-import { DayOfWeekCode } from '../enums/DayOfWeekCode';
 import { BaseEntity } from '../entities/BaseEntity';
+import { DayOfWeekCode } from '../enums/DayOfWeekCode';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Usage extends BaseEntity {
     weekday: DayOfWeekCode;
@@ -8,6 +8,7 @@ export declare class Usage extends BaseEntity {
     double: number;
     quad: number;
     eight: number;
+    singlePrivate: number;
     id: string;
     createdOn: number;
     updatedOn: number;
@@ -19,6 +20,7 @@ export interface IUsage extends IBaseEntity {
     double?: number;
     quad?: number;
     eight?: number;
+    singlePrivate?: number;
     id?: string;
     createdOn?: number;
     updatedOn?: number;
