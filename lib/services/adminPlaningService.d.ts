@@ -19,7 +19,7 @@ export declare class AdminPlaningService {
      * Get daily planing - bookings group by activities
      * @Return: EntitiesResponse<ActivityBookingGroup>
      */
-    getDailyPlaning(day?: number): import("rxjs").Observable<any>;
+    getDailyPlaning(day?: number, filter?: string): import("rxjs").Observable<any>;
     /**
      * Export daily planing - as PDF stream
      * @Return: StreamContent

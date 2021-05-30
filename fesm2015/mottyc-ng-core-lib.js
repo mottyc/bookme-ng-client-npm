@@ -892,8 +892,9 @@ class AdminDailyPlaningExportRequest {
 /*
 */
 class AdminDailyPlaningRequest {
-    constructor(day) {
+    constructor(day, filter) {
         this.day = day;
+        this.filter = filter;
     }
 }
 
@@ -2566,8 +2567,12 @@ class AdminPlaningService {
      * Get daily planing - bookings group by activities
      * @Return: EntitiesResponse<ActivityBookingGroup>
      */
-    getDailyPlaning(day) {
-        return this.rest.get(`${this.baseUrl}/daily/${day}`);
+    getDailyPlaning(day, filter) {
+        const params = new Array();
+        if (filter != null) {
+            params.push(`filter=${filter}`);
+        }
+        return this.rest.get(`${this.baseUrl}/daily/${day}`, ...params);
     }
     /**
      * Export daily planing - as PDF stream
