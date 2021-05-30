@@ -21,6 +21,11 @@ export declare class AdminPlaningService {
      */
     getDailyPlaning(day?: number, filter?: string): import("rxjs").Observable<any>;
     /**
+     * Get list of resources in a specific day
+     * @Return: EntitiesResponse<StringKeyValue>
+     */
+    getDailyResources(day?: number): import("rxjs").Observable<any>;
+    /**
      * Export daily planing - as PDF stream
      * @Return: StreamContent
      */

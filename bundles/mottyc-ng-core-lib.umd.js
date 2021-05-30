@@ -1384,6 +1384,15 @@
 
     /*
     */
+    var AdminDailyResourcesRequest = /** @class */ (function () {
+        function AdminDailyResourcesRequest(day) {
+            this.day = day;
+        }
+        return AdminDailyResourcesRequest;
+    }());
+
+    /*
+    */
     var AdminFindFreeResourcesRequest = /** @class */ (function () {
         function AdminFindFreeResourcesRequest(id) {
             this.id = id;
@@ -1760,6 +1769,17 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return EntitiesResponseOfStringIntValue;
+    }(EntitiesResponse));
+
+    /*
+     *  EntitiesResponse<StringKeyValue>
+    */
+    var EntitiesResponseOfStringKeyValue = /** @class */ (function (_super) {
+        __extends(EntitiesResponseOfStringKeyValue, _super);
+        function EntitiesResponseOfStringKeyValue() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntitiesResponseOfStringKeyValue;
     }(EntitiesResponse));
 
     /*
@@ -3391,6 +3411,13 @@
             return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/daily/" + day], params));
         };
         /**
+         * Get list of resources in a specific day
+         * @Return: EntitiesResponse<StringKeyValue>
+         */
+        AdminPlaningService.prototype.getDailyResources = function (day) {
+            return this.rest.get(this.baseUrl + "/daily-resources/" + day);
+        };
+        /**
          * Export daily planing - as PDF stream
          * @Return: StreamContent
          */
@@ -4745,6 +4772,7 @@
     exports.AdminDailyPlaningExportRequest = AdminDailyPlaningExportRequest;
     exports.AdminDailyPlaningRequest = AdminDailyPlaningRequest;
     exports.AdminDailyRegistrationRequest = AdminDailyRegistrationRequest;
+    exports.AdminDailyResourcesRequest = AdminDailyResourcesRequest;
     exports.AdminFindFreeResourcesRequest = AdminFindFreeResourcesRequest;
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersService = AdminMembersService;
@@ -4795,6 +4823,7 @@
     exports.EntitiesResponseOfPlacement = EntitiesResponseOfPlacement;
     exports.EntitiesResponseOfResource = EntitiesResponseOfResource;
     exports.EntitiesResponseOfStringIntValue = EntitiesResponseOfStringIntValue;
+    exports.EntitiesResponseOfStringKeyValue = EntitiesResponseOfStringKeyValue;
     exports.EntitiesResponseOfUsage = EntitiesResponseOfUsage;
     exports.EntityResponse = EntityResponse;
     exports.EntityResponseOfAccount = EntityResponseOfAccount;
