@@ -892,9 +892,10 @@ class AdminDailyPlaningExportRequest {
 /*
 */
 class AdminDailyPlaningRequest {
-    constructor(day, filter) {
+    constructor(day, resFilter, userFilter) {
         this.day = day;
-        this.filter = filter;
+        this.resFilter = resFilter;
+        this.userFilter = userFilter;
     }
 }
 
@@ -2581,10 +2582,13 @@ class AdminPlaningService {
      * Get daily planing - bookings group by activities
      * @Return: EntitiesResponse<ActivityBookingGroup>
      */
-    getDailyPlaning(day, filter) {
+    getDailyPlaning(day, resFilter, userFilter) {
         const params = new Array();
-        if (filter != null) {
-            params.push(`filter=${filter}`);
+        if (resFilter != null) {
+            params.push(`resFilter=${resFilter}`);
+        }
+        if (userFilter != null) {
+            params.push(`userFilter=${userFilter}`);
         }
         return this.rest.get(`${this.baseUrl}/daily/${day}`, ...params);
     }

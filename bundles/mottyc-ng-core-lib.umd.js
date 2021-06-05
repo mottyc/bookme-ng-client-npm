@@ -1364,9 +1364,10 @@
     /*
     */
     var AdminDailyPlaningRequest = /** @class */ (function () {
-        function AdminDailyPlaningRequest(day, filter) {
+        function AdminDailyPlaningRequest(day, resFilter, userFilter) {
             this.day = day;
-            this.filter = filter;
+            this.resFilter = resFilter;
+            this.userFilter = userFilter;
         }
         return AdminDailyPlaningRequest;
     }());
@@ -3402,11 +3403,14 @@
          * Get daily planing - bookings group by activities
          * @Return: EntitiesResponse<ActivityBookingGroup>
          */
-        AdminPlaningService.prototype.getDailyPlaning = function (day, filter) {
+        AdminPlaningService.prototype.getDailyPlaning = function (day, resFilter, userFilter) {
             var _a;
             var params = new Array();
-            if (filter != null) {
-                params.push("filter=" + filter);
+            if (resFilter != null) {
+                params.push("resFilter=" + resFilter);
+            }
+            if (userFilter != null) {
+                params.push("userFilter=" + userFilter);
             }
             return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/daily/" + day], params));
         };
