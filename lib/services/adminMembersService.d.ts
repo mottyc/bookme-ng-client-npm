@@ -71,10 +71,15 @@ export declare class AdminMembersService {
      */
     bulkImport(body?: MemberUser[]): import("rxjs").Observable<any>;
     /**
-     * Find list of all bookings that the user is registered to
+     * Find list of all bookings that the user is registered to per month
      * @Return: QueryResponse<Booking>
      */
-    findMemberHistory(id?: string, resourceId?: string, year?: number, month?: number, day?: number, sort?: string): import("rxjs").Observable<any>;
+    findMemberMonthHistory(id?: string, resourceId?: string, year?: number, month?: number, day?: number, sort?: string): import("rxjs").Observable<any>;
+    /**
+     * Find list of all bookings that the user is registered to in a time period
+     * @Return: QueryResponse<Booking>
+     */
+    findMemberHistory(id?: string, resourceId?: string, from?: number, to?: number, sort?: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminMembersService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminMembersService>;
 }

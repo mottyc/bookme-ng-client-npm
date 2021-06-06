@@ -1,10 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
+import { ResourceStatusCode } from '../enums/ResourceStatusCode';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { Resource } from '../entities/Resource';
 import { ResourceClassCode } from '../enums/ResourceClassCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
-import { ResourceStatusCode } from '../enums/ResourceStatusCode';
-import { AccountRoleCode } from '../enums/AccountRoleCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing club resources - for account administrator only
@@ -50,10 +50,15 @@ export declare class AdminResourcesService {
      */
     bulkCreate(body?: Resource[]): import("rxjs").Observable<any>;
     /**
-     * Find list of all bookings for a resource by filter
+     * Find list of all bookings for a resource by filter per month
      * @Return: QueryResponse<Booking>
      */
-    findResourceHistory(id?: string, year?: number, month?: number, day?: number, sort?: string): import("rxjs").Observable<any>;
+    findResourceMonthHistory(id?: string, year?: number, month?: number, day?: number, sort?: string): import("rxjs").Observable<any>;
+    /**
+     * Find list of all bookings for a resource by filter per time period
+     * @Return: QueryResponse<Booking>
+     */
+    findResourceHistory(id?: string, from?: number, to?: number, sort?: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminResourcesService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminResourcesService>;
 }
