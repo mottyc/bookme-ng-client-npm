@@ -1,10 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { ResourceStatusCode } from '../enums/ResourceStatusCode';
-import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { Resource } from '../entities/Resource';
 import { ResourceClassCode } from '../enums/ResourceClassCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
+import { ResourceStatusCode } from '../enums/ResourceStatusCode';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing club resources - for account administrator only

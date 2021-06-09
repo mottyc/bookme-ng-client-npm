@@ -5,6 +5,7 @@ export * from './CountDataPoint';
 export * from './LoginData';
 export * from './LoginParams';
 export * from './MemberRegistration';
+export * from './MemberUsage';
 export * from './RecurrentActivity';
 export * from './RecurrentTimeFrame';
 export * from './StringIntValue';

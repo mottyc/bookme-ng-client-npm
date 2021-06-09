@@ -136,6 +136,27 @@
     }());
 
     /*
+     *  MemberUsage is a time period statistics about the number of bookings
+    */
+    var MemberUsage = /** @class */ (function () {
+        function MemberUsage(id, name, total, sun, mon, tue, wed, thu, fri, sat, absences, accidents) {
+            this.id = id;
+            this.name = name;
+            this.total = total;
+            this.sun = sun;
+            this.mon = mon;
+            this.tue = tue;
+            this.wed = wed;
+            this.thu = thu;
+            this.fri = fri;
+            this.sat = sat;
+            this.absences = absences;
+            this.accidents = accidents;
+        }
+        return MemberUsage;
+    }());
+
+    /*
      *  Recurrent activity
     */
     var RecurrentActivity = /** @class */ (function () {
@@ -1745,6 +1766,16 @@
             return _super !== null && _super.apply(this, arguments) || this;
         }
         return EntitiesResponseOfCountDataPoint;
+    }(EntityResponse));
+
+    /*
+    */
+    var EntitiesResponseOfMemberUsage = /** @class */ (function (_super) {
+        __extends(EntitiesResponseOfMemberUsage, _super);
+        function EntitiesResponseOfMemberUsage() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        return EntitiesResponseOfMemberUsage;
     }(EntityResponse));
 
     /*
@@ -3665,6 +3696,36 @@
             }
             return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/count-by-type"], params));
         };
+        /**
+         * Get count of activities per member over time period
+         * @Return: EntitiesResponse<MemberUsage>
+         */
+        AdminReportsService.prototype.getPeriodCountByMember = function (from, to) {
+            var _a;
+            var params = new Array();
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/period-count-by-member"], params));
+        };
+        /**
+         * Get count of activities per resource over time period
+         * @Return: EntitiesResponse<MemberUsage>
+         */
+        AdminReportsService.prototype.getPeriodCountByResource = function (from, to) {
+            var _a;
+            var params = new Array();
+            if (from != null) {
+                params.push("from=" + from);
+            }
+            if (to != null) {
+                params.push("to=" + to);
+            }
+            return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/period-count-by-resource"], params));
+        };
         return AdminReportsService;
     }());
     /** @nocollapse */ AdminReportsService.ɵfac = function AdminReportsService_Factory(t) { return new (t || AdminReportsService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
@@ -3845,6 +3906,240 @@
     /** @nocollapse */ HealthCheckService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
     (function () {
         (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(HealthCheckService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * List of account related actions for system administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (console)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var SysAccountsService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function SysAccountsService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/sys/accounts';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Create new account
+         * @Return: EntityResponse<Account>
+         */
+        SysAccountsService.prototype.create = function (body) {
+            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Update existing account in the system
+         * @Return: EntityResponse<Account>
+         */
+        SysAccountsService.prototype.update = function (body) {
+            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Delete account from the system
+         * The account is moved to DELETED mode and will be deleted after 90 days
+         * Only account marked as SUSPENDED can be deleted
+         * @Return: ActionResponse
+         */
+        SysAccountsService.prototype.delete = function (id) {
+            return this.rest.delete(this.baseUrl + "/" + id);
+        };
+        /**
+         * Delete account immediately without account status restrictions
+         * @Return: ActionResponse
+         */
+        SysAccountsService.prototype.purge = function (id) {
+            return this.rest.delete(this.baseUrl + "/purge/" + id);
+        };
+        /**
+         * Reset account - remove all operational data older than the retention time in days (events, status, log ...) but leave configuration data
+         * @Return: ActionResponse
+         */
+        SysAccountsService.prototype.reset = function (id, days) {
+            return this.rest.delete(this.baseUrl + "/reset/" + id + "/days/" + days);
+        };
+        /**
+         * Get single account by id
+         * @Return: EntityResponse<Account>
+         */
+        SysAccountsService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find list of accounts and filter
+         * @Return: QueryResponse<Account>
+         */
+        SysAccountsService.prototype.find = function (search, type, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return SysAccountsService;
+    }());
+    /** @nocollapse */ SysAccountsService.ɵfac = function SysAccountsService_Factory(t) { return new (t || SysAccountsService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ SysAccountsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: SysAccountsService, factory: SysAccountsService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(SysAccountsService, [{
+                type: i0.Injectable
+            }], function () {
+            return [{ type: CoreConfig, decorators: [{
+                            type: i0.Inject,
+                            args: ['config']
+                        }] }, { type: RestUtil }];
+        }, null);
+    })();
+
+    /**
+     * List of all user related actions for account administrator only
+     * @RequestHeader X-API-KEY The key to identify the application (console)
+     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+     */
+    var SysUsersService = /** @class */ (function () {
+        /**
+         * Class constructor
+         */
+        function SysUsersService(config, rest) {
+            this.config = config;
+            this.rest = rest;
+            // URL to web api
+            this.baseUrl = '/sys/users';
+            this.baseUrl = this.config.api + this.baseUrl;
+        }
+        /**
+         * Create a new user for the current account
+         * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
+         * @Return: ActionResponse
+         */
+        SysUsersService.prototype.create = function (body) {
+            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Update user
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.update = function (id, body) {
+            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user name
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeName = function (id, body) {
+            return this.rest.put(this.baseUrl + "/" + id + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user mobile
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeMobile = function (id, body) {
+            return this.rest.put(this.baseUrl + "/" + id + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
+        };
+        /**
+         * Change user type
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeType = function (id, type) {
+            return this.rest.put(this.baseUrl + "/" + id + "/type/" + type, null);
+        };
+        /**
+         * Change user status
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeStatus = function (id, status) {
+            return this.rest.put(this.baseUrl + "/" + id + "/status/" + status, null);
+        };
+        /**
+         * Change user default account
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.changeDefaultAccount = function (id, accountId) {
+            return this.rest.put(this.baseUrl + "/" + id + "/defaultAccount/" + accountId, null);
+        };
+        /**
+         * Reset password for user, generate one-time temporary password
+         * @Return: ActionResponse
+         */
+        SysUsersService.prototype.resetPassword = function (id) {
+            return this.rest.post(this.baseUrl + "/" + id + "/reset-password", null);
+        };
+        /**
+         * Delete user from the system
+         * @Return: ActionResponse
+         */
+        SysUsersService.prototype.delete = function (id) {
+            return this.rest.delete(this.baseUrl + "/" + id);
+        };
+        /**
+         * Get single user by Id
+         * @Return: EntityResponse<User>
+         */
+        SysUsersService.prototype.get = function (id) {
+            return this.rest.get(this.baseUrl + "/" + id);
+        };
+        /**
+         * Find list of users by filter
+         * @Return: QueryResponse<User>
+         */
+        SysUsersService.prototype.find = function (accountId, search, type, status, sort, page, pageSize) {
+            var _a;
+            var params = new Array();
+            if (accountId != null) {
+                params.push("accountId=" + accountId);
+            }
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (type != null) {
+                params.push("type=" + type);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            if (page != null) {
+                params.push("page=" + page);
+            }
+            if (pageSize != null) {
+                params.push("pageSize=" + pageSize);
+            }
+            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
+        };
+        return SysUsersService;
+    }());
+    /** @nocollapse */ SysUsersService.ɵfac = function SysUsersService_Factory(t) { return new (t || SysUsersService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
+    /** @nocollapse */ SysUsersService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: SysUsersService, factory: SysUsersService.ɵfac });
+    (function () {
+        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(SysUsersService, [{
                 type: i0.Injectable
             }], function () {
             return [{ type: CoreConfig, decorators: [{
@@ -4529,241 +4824,11 @@
         }, null);
     })();
 
-    /**
-     * List of account related actions for system administrator only
-     * @RequestHeader X-API-KEY The key to identify the application (console)
-     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
-     */
-    var SysAccountsService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function SysAccountsService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/sys/accounts';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Create new account
-         * @Return: EntityResponse<Account>
-         */
-        SysAccountsService.prototype.create = function (body) {
-            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Update existing account in the system
-         * @Return: EntityResponse<Account>
-         */
-        SysAccountsService.prototype.update = function (body) {
-            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Delete account from the system
-         * The account is moved to DELETED mode and will be deleted after 90 days
-         * Only account marked as SUSPENDED can be deleted
-         * @Return: ActionResponse
-         */
-        SysAccountsService.prototype.delete = function (id) {
-            return this.rest.delete(this.baseUrl + "/" + id);
-        };
-        /**
-         * Delete account immediately without account status restrictions
-         * @Return: ActionResponse
-         */
-        SysAccountsService.prototype.purge = function (id) {
-            return this.rest.delete(this.baseUrl + "/purge/" + id);
-        };
-        /**
-         * Reset account - remove all operational data older than the retention time in days (events, status, log ...) but leave configuration data
-         * @Return: ActionResponse
-         */
-        SysAccountsService.prototype.reset = function (id, days) {
-            return this.rest.delete(this.baseUrl + "/reset/" + id + "/days/" + days);
-        };
-        /**
-         * Get single account by id
-         * @Return: EntityResponse<Account>
-         */
-        SysAccountsService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Find list of accounts and filter
-         * @Return: QueryResponse<Account>
-         */
-        SysAccountsService.prototype.find = function (search, type, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (type != null) {
-                params.push("type=" + type);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return SysAccountsService;
-    }());
-    /** @nocollapse */ SysAccountsService.ɵfac = function SysAccountsService_Factory(t) { return new (t || SysAccountsService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ SysAccountsService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: SysAccountsService, factory: SysAccountsService.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(SysAccountsService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
-    /**
-     * List of all user related actions for account administrator only
-     * @RequestHeader X-API-KEY The key to identify the application (console)
-     * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
-     */
-    var SysUsersService = /** @class */ (function () {
-        /**
-         * Class constructor
-         */
-        function SysUsersService(config, rest) {
-            this.config = config;
-            this.rest = rest;
-            // URL to web api
-            this.baseUrl = '/sys/users';
-            this.baseUrl = this.config.api + this.baseUrl;
-        }
-        /**
-         * Create a new user for the current account
-         * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
-         * @Return: ActionResponse
-         */
-        SysUsersService.prototype.create = function (body) {
-            return this.rest.post("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Update user
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.update = function (id, body) {
-            return this.rest.put("" + this.baseUrl, typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user name
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeName = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id + "/name", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user mobile
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeMobile = function (id, body) {
-            return this.rest.put(this.baseUrl + "/" + id + "/mobile", typeof body === 'object' ? JSON.stringify(body) : body);
-        };
-        /**
-         * Change user type
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeType = function (id, type) {
-            return this.rest.put(this.baseUrl + "/" + id + "/type/" + type, null);
-        };
-        /**
-         * Change user status
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeStatus = function (id, status) {
-            return this.rest.put(this.baseUrl + "/" + id + "/status/" + status, null);
-        };
-        /**
-         * Change user default account
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.changeDefaultAccount = function (id, accountId) {
-            return this.rest.put(this.baseUrl + "/" + id + "/defaultAccount/" + accountId, null);
-        };
-        /**
-         * Reset password for user, generate one-time temporary password
-         * @Return: ActionResponse
-         */
-        SysUsersService.prototype.resetPassword = function (id) {
-            return this.rest.post(this.baseUrl + "/" + id + "/reset-password", null);
-        };
-        /**
-         * Delete user from the system
-         * @Return: ActionResponse
-         */
-        SysUsersService.prototype.delete = function (id) {
-            return this.rest.delete(this.baseUrl + "/" + id);
-        };
-        /**
-         * Get single user by Id
-         * @Return: EntityResponse<User>
-         */
-        SysUsersService.prototype.get = function (id) {
-            return this.rest.get(this.baseUrl + "/" + id);
-        };
-        /**
-         * Find list of users by filter
-         * @Return: QueryResponse<User>
-         */
-        SysUsersService.prototype.find = function (accountId, search, type, status, sort, page, pageSize) {
-            var _a;
-            var params = new Array();
-            if (accountId != null) {
-                params.push("accountId=" + accountId);
-            }
-            if (search != null) {
-                params.push("search=" + search);
-            }
-            if (type != null) {
-                params.push("type=" + type);
-            }
-            if (status != null) {
-                params.push("status=" + status);
-            }
-            if (sort != null) {
-                params.push("sort=" + sort);
-            }
-            if (page != null) {
-                params.push("page=" + page);
-            }
-            if (pageSize != null) {
-                params.push("pageSize=" + pageSize);
-            }
-            return (_a = this.rest).get.apply(_a, __spread(["" + this.baseUrl], params));
-        };
-        return SysUsersService;
-    }());
-    /** @nocollapse */ SysUsersService.ɵfac = function SysUsersService_Factory(t) { return new (t || SysUsersService)(i0__namespace.ɵɵinject('config'), i0__namespace.ɵɵinject(RestUtil)); };
-    /** @nocollapse */ SysUsersService.ɵprov = i0__namespace.ɵɵdefineInjectable({ token: SysUsersService, factory: SysUsersService.ɵfac });
-    (function () {
-        (typeof ngDevMode === "undefined" || ngDevMode) && i0__namespace.ɵsetClassMetadata(SysUsersService, [{
-                type: i0.Injectable
-            }], function () {
-            return [{ type: CoreConfig, decorators: [{
-                            type: i0.Inject,
-                            args: ['config']
-                        }] }, { type: RestUtil }];
-        }, null);
-    })();
-
     var Services = [
+        AdminAccountService,
+        HealthCheckService,
+        SysAccountsService,
+        SysUsersService,
         AdminActivitiesService,
         AdminPlaningService,
         AdminReportsService,
@@ -4776,10 +4841,6 @@
         UserAccountsService,
         UsrMembersService,
         UserService,
-        AdminAccountService,
-        HealthCheckService,
-        SysAccountsService,
-        SysUsersService,
     ];
 
     var CoreLibModule = /** @class */ (function () {
@@ -4888,6 +4949,7 @@
     exports.EntitiesResponseOfBookingGroup = EntitiesResponseOfBookingGroup;
     exports.EntitiesResponseOfBookingRequest = EntitiesResponseOfBookingRequest;
     exports.EntitiesResponseOfCountDataPoint = EntitiesResponseOfCountDataPoint;
+    exports.EntitiesResponseOfMemberUsage = EntitiesResponseOfMemberUsage;
     exports.EntitiesResponseOfMembership = EntitiesResponseOfMembership;
     exports.EntitiesResponseOfNotification = EntitiesResponseOfNotification;
     exports.EntitiesResponseOfPlacement = EntitiesResponseOfPlacement;
@@ -4919,6 +4981,7 @@
     exports.Member = Member;
     exports.MemberIdRequest = MemberIdRequest;
     exports.MemberRegistration = MemberRegistration;
+    exports.MemberUsage = MemberUsage;
     exports.MemberUser = MemberUser;
     exports.MembersBulkImportRequest = MembersBulkImportRequest;
     exports.MembersCountOvertimeRequest = MembersCountOvertimeRequest;

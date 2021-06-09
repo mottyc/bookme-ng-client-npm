@@ -34,6 +34,16 @@ export declare class AdminReportsService {
      * @Return: EntitiesResponse<StringIntValue>
      */
     getResourceTypeDistribution(from?: number, to?: number): import("rxjs").Observable<any>;
+    /**
+     * Get count of activities per member over time period
+     * @Return: EntitiesResponse<MemberUsage>
+     */
+    getPeriodCountByMember(from?: number, to?: number): import("rxjs").Observable<any>;
+    /**
+     * Get count of activities per resource over time period
+     * @Return: EntitiesResponse<MemberUsage>
+     */
+    getPeriodCountByResource(from?: number, to?: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDef<AdminReportsService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminReportsService>;
 }

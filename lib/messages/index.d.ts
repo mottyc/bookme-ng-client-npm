@@ -48,6 +48,7 @@ export * from './EntitiesResponseOfBooking';
 export * from './EntitiesResponseOfBookingGroup';
 export * from './EntitiesResponseOfBookingRequest';
 export * from './EntitiesResponseOfCountDataPoint';
+export * from './EntitiesResponseOfMemberUsage';
 export * from './EntitiesResponseOfMembership';
 export * from './EntitiesResponseOfNotification';
 export * from './EntitiesResponseOfPlacement';
