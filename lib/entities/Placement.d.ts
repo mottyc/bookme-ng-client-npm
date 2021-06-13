@@ -1,7 +1,7 @@
+import { PlacementStatusCode } from '../enums/PlacementStatusCode';
 import { BaseEntity } from '../entities/BaseEntity';
 import { Resource } from '../entities/Resource';
 import { Booking } from '../entities/Booking';
-import { PlacementStatusCode } from '../enums/PlacementStatusCode';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Placement extends BaseEntity {
     resource: Resource;

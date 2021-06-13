@@ -2867,6 +2867,20 @@ class AdminReportsService {
         return this.rest.get(`${this.baseUrl}/period-count-by-member`, ...params);
     }
     /**
+     * Export count of activities per member over time period to CSV
+     * @Return: StreamContent
+     */
+    exportPeriodCountByMember(from, to) {
+        const params = new Array();
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        return this.rest.download(`admin-reports`, `${this.baseUrl}/period-count-by-member/export`, ...params);
+    }
+    /**
      * Get count of activities per resource over time period
      * @Return: EntitiesResponse<MemberUsage>
      */
@@ -2879,6 +2893,20 @@ class AdminReportsService {
             params.push(`to=${to}`);
         }
         return this.rest.get(`${this.baseUrl}/period-count-by-resource`, ...params);
+    }
+    /**
+     * Export count of activities per resource over time period to CSV
+     * @Return: StreamContent
+     */
+    exportPeriodCountByResource(from, to) {
+        const params = new Array();
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        return this.rest.download(`admin-reports`, `${this.baseUrl}/period-count-by-resource/export`, ...params);
     }
 }
 /** @nocollapse */ AdminReportsService.ɵfac = function AdminReportsService_Factory(t) { return new (t || AdminReportsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };

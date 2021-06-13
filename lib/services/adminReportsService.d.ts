@@ -40,10 +40,20 @@ export declare class AdminReportsService {
      */
     getPeriodCountByMember(from?: number, to?: number): import("rxjs").Observable<any>;
     /**
+     * Export count of activities per member over time period to CSV
+     * @Return: StreamContent
+     */
+    exportPeriodCountByMember(from?: number, to?: number): import("rxjs").Subscription;
+    /**
      * Get count of activities per resource over time period
      * @Return: EntitiesResponse<MemberUsage>
      */
     getPeriodCountByResource(from?: number, to?: number): import("rxjs").Observable<any>;
+    /**
+     * Export count of activities per resource over time period to CSV
+     * @Return: StreamContent
+     */
+    exportPeriodCountByResource(from?: number, to?: number): import("rxjs").Subscription;
     static ɵfac: i0.ɵɵFactoryDef<AdminReportsService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminReportsService>;
 }
