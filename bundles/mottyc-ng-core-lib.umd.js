@@ -1443,6 +1443,18 @@
 
     /*
     */
+    var AdminMembersExportCsvRequest = /** @class */ (function () {
+        function AdminMembersExportCsvRequest(search, role, status, sort) {
+            this.search = search;
+            this.role = role;
+            this.status = status;
+            this.sort = sort;
+        }
+        return AdminMembersExportCsvRequest;
+    }());
+
+    /*
+    */
     var AdminMembersFindRequest = /** @class */ (function () {
         function AdminMembersFindRequest(accountId, search, role, status, sort, page, pageSize) {
             this.accountId = accountId;
@@ -1553,6 +1565,20 @@
             this.body = body;
         }
         return AdminResourceBulkCreateRequest;
+    }());
+
+    /*
+    */
+    var AdminResourceExportCsvRequest = /** @class */ (function () {
+        function AdminResourceExportCsvRequest(search, resourceClass, resourceType, status, forUseBy, sort) {
+            this.search = search;
+            this.resourceClass = resourceClass;
+            this.resourceType = resourceType;
+            this.status = status;
+            this.forUseBy = forUseBy;
+            this.sort = sort;
+        }
+        return AdminResourceExportCsvRequest;
     }());
 
     /*
@@ -3349,8 +3375,22 @@
          * Export members to CSV file
          * @return StreamContent
          */
-        AdminMembersService.prototype.exportCsv = function () {
-            return this.rest.download("admin-members", this.baseUrl + "/export");
+        AdminMembersService.prototype.exportCsv = function (search, role, status, sort) {
+            var _a;
+            var params = new Array();
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (role != null) {
+                params.push("role=" + role);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            return (_a = this.rest).download.apply(_a, __spread(["admin-members", this.baseUrl + "/export"], params));
         };
         return AdminMembersService;
     }());
@@ -3944,8 +3984,28 @@
          * Export resources to CSV file
          * @return StreamContent
          */
-        AdminResourcesService.prototype.exportCsv = function () {
-            return this.rest.download("admin-resources", this.baseUrl + "/export");
+        AdminResourcesService.prototype.exportCsv = function (search, resourceClass, resourceType, status, forUseBy, sort) {
+            var _a;
+            var params = new Array();
+            if (search != null) {
+                params.push("search=" + search);
+            }
+            if (resourceClass != null) {
+                params.push("resourceClass=" + resourceClass);
+            }
+            if (resourceType != null) {
+                params.push("resourceType=" + resourceType);
+            }
+            if (status != null) {
+                params.push("status=" + status);
+            }
+            if (forUseBy != null) {
+                params.push("forUseBy=" + forUseBy);
+            }
+            if (sort != null) {
+                params.push("sort=" + sort);
+            }
+            return (_a = this.rest).download.apply(_a, __spread(["admin-resources", this.baseUrl + "/export"], params));
         };
         return AdminResourcesService;
     }());
@@ -4987,6 +5047,7 @@
     exports.AdminDailyRegistrationRequest = AdminDailyRegistrationRequest;
     exports.AdminDailyResourcesRequest = AdminDailyResourcesRequest;
     exports.AdminFindFreeResourcesRequest = AdminFindFreeResourcesRequest;
+    exports.AdminMembersExportCsvRequest = AdminMembersExportCsvRequest;
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
     exports.AdminMembersImportCsvRequest = AdminMembersImportCsvRequest;
     exports.AdminMembersService = AdminMembersService;
@@ -5002,6 +5063,7 @@
     exports.AdminReportIncidentRequest = AdminReportIncidentRequest;
     exports.AdminReportsService = AdminReportsService;
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
+    exports.AdminResourceExportCsvRequest = AdminResourceExportCsvRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
     exports.AdminResourceHistoryRequest = AdminResourceHistoryRequest;
     exports.AdminResourceImportCsvRequest = AdminResourceImportCsvRequest;

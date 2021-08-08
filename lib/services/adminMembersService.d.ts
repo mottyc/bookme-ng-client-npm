@@ -89,7 +89,7 @@ export declare class AdminMembersService {
      * Export members to CSV file
      * @return StreamContent
      */
-    exportCsv(): import("rxjs").Subscription;
+    exportCsv(search?: string, role?: AccountRoleCode[], status?: MemberStatusCode[], sort?: string): import("rxjs").Subscription;
     static ɵfac: i0.ɵɵFactoryDef<AdminMembersService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminMembersService>;
 }

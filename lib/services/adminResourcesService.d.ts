@@ -69,7 +69,7 @@ export declare class AdminResourcesService {
      * Export resources to CSV file
      * @return StreamContent
      */
-    exportCsv(): import("rxjs").Subscription;
+    exportCsv(search?: string, resourceClass?: ResourceClassCode, resourceType?: ResourceTypeMask, status?: ResourceStatusCode, forUseBy?: AccountRoleCode, sort?: string): import("rxjs").Subscription;
     static ɵfac: i0.ɵɵFactoryDef<AdminResourcesService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminResourcesService>;
 }
