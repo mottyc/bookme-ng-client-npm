@@ -1458,6 +1458,15 @@
 
     /*
     */
+    var AdminMembersImportCsvRequest = /** @class */ (function () {
+        function AdminMembersImportCsvRequest(csvFile) {
+            this.csvFile = csvFile;
+        }
+        return AdminMembersImportCsvRequest;
+    }());
+
+    /*
+    */
     var AdminPlaningAssignResourceRequest = /** @class */ (function () {
         function AdminPlaningAssignResourceRequest(id, resourceId) {
             this.id = id;
@@ -1572,6 +1581,15 @@
             this.sort = sort;
         }
         return AdminResourceHistoryRequest;
+    }());
+
+    /*
+    */
+    var AdminResourceImportCsvRequest = /** @class */ (function () {
+        function AdminResourceImportCsvRequest(csvFile) {
+            this.csvFile = csvFile;
+        }
+        return AdminResourceImportCsvRequest;
     }());
 
     /*
@@ -3273,7 +3291,7 @@
          * @Return: ActionResponse
          */
         AdminMembersService.prototype.bulkImport = function (body) {
-            return this.rest.post(this.baseUrl + "/import", typeof body === 'object' ? JSON.stringify(body) : body);
+            return this.rest.post(this.baseUrl + "/bulk-import", typeof body === 'object' ? JSON.stringify(body) : body);
         };
         /**
          * Find list of all bookings that the user is registered to per month
@@ -3319,6 +3337,20 @@
                 params.push("sort=" + sort);
             }
             return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/" + id + "/history"], params));
+        };
+        /**
+         * Import members from CSV file
+         * @return ActionResponse
+         */
+        AdminMembersService.prototype.importCsv = function () {
+            return this.rest.post(this.baseUrl + "/import", null);
+        };
+        /**
+         * Export members to CSV file
+         * @return StreamContent
+         */
+        AdminMembersService.prototype.exportCsv = function () {
+            return this.rest.download("admin-members", this.baseUrl + "/export");
         };
         return AdminMembersService;
     }());
@@ -3858,8 +3890,8 @@
          * Import bulk set of resources
          * @Return: ActionResponse
          */
-        AdminResourcesService.prototype.bulkCreate = function (body) {
-            return this.rest.post(this.baseUrl + "/import", typeof body === 'object' ? JSON.stringify(body) : body);
+        AdminResourcesService.prototype.bulkImport = function (body) {
+            return this.rest.post(this.baseUrl + "/bulk-import", typeof body === 'object' ? JSON.stringify(body) : body);
         };
         /**
          * Find list of all bookings for a resource by filter per month
@@ -3899,6 +3931,21 @@
                 params.push("sort=" + sort);
             }
             return (_a = this.rest).get.apply(_a, __spread([this.baseUrl + "/" + id + "/history"], params));
+        };
+        /**
+         * Import resources from CSV file
+         * The file must include header with the columns: Name, Type, Min, Max, Brand, Description
+         * @return ActionResponse
+         */
+        AdminResourcesService.prototype.importCsv = function () {
+            return this.rest.post(this.baseUrl + "/import", null);
+        };
+        /**
+         * Export resources to CSV file
+         * @return StreamContent
+         */
+        AdminResourcesService.prototype.exportCsv = function () {
+            return this.rest.download("admin-resources", this.baseUrl + "/export");
         };
         return AdminResourcesService;
     }());
@@ -4941,6 +4988,7 @@
     exports.AdminDailyResourcesRequest = AdminDailyResourcesRequest;
     exports.AdminFindFreeResourcesRequest = AdminFindFreeResourcesRequest;
     exports.AdminMembersFindRequest = AdminMembersFindRequest;
+    exports.AdminMembersImportCsvRequest = AdminMembersImportCsvRequest;
     exports.AdminMembersService = AdminMembersService;
     exports.AdminNotificationsService = AdminNotificationsService;
     exports.AdminPlaningAssignResourceRequest = AdminPlaningAssignResourceRequest;
@@ -4956,6 +5004,7 @@
     exports.AdminResourceBulkCreateRequest = AdminResourceBulkCreateRequest;
     exports.AdminResourceFindRequest = AdminResourceFindRequest;
     exports.AdminResourceHistoryRequest = AdminResourceHistoryRequest;
+    exports.AdminResourceImportCsvRequest = AdminResourceImportCsvRequest;
     exports.AdminResourceMonthHistoryRequest = AdminResourceMonthHistoryRequest;
     exports.AdminResourcesService = AdminResourcesService;
     exports.AdminUpdateActivityRequest = AdminUpdateActivityRequest;

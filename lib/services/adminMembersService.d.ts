@@ -1,10 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
+import { MemberRegistration } from '../common/MemberRegistration';
+import { Member } from '../entities/Member';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
 import { MemberUser } from '../entities/MemberUser';
-import { MemberRegistration } from '../common/MemberRegistration';
-import { Member } from '../entities/Member';
 import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
@@ -80,6 +80,16 @@ export declare class AdminMembersService {
      * @Return: QueryResponse<Booking>
      */
     findMemberHistory(id?: string, resourceId?: string, from?: number, to?: number, sort?: string): import("rxjs").Observable<any>;
+    /**
+     * Import members from CSV file
+     * @return ActionResponse
+     */
+    importCsv(): import("rxjs").Observable<any>;
+    /**
+     * Export members to CSV file
+     * @return StreamContent
+     */
+    exportCsv(): import("rxjs").Subscription;
     static ɵfac: i0.ɵɵFactoryDef<AdminMembersService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminMembersService>;
 }
