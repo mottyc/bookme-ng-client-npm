@@ -2544,7 +2544,7 @@ class AdminMembersService {
      * @return ActionResponse
      */
     importCsv() {
-        return this.rest.post(`${this.baseUrl}/import`, null);
+        return this.rest.post(`${this.baseUrl}/import/csv`, null);
     }
     /**
      * Export members to CSV file
@@ -2564,7 +2564,7 @@ class AdminMembersService {
         if (sort != null) {
             params.push(`sort=${sort}`);
         }
-        return this.rest.download(`admin-members`, `${this.baseUrl}/export`, ...params);
+        return this.rest.download(`admin-members`, `${this.baseUrl}/export/csv`, ...params);
     }
 }
 /** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
@@ -3111,7 +3111,7 @@ class AdminResourcesService {
      * @return ActionResponse
      */
     importCsv() {
-        return this.rest.post(`${this.baseUrl}/import`, null);
+        return this.rest.post(`${this.baseUrl}/import/csv`, null);
     }
     /**
      * Export resources to CSV file
@@ -3137,7 +3137,7 @@ class AdminResourcesService {
         if (sort != null) {
             params.push(`sort=${sort}`);
         }
-        return this.rest.download(`admin-resources`, `${this.baseUrl}/export`, ...params);
+        return this.rest.download(`admin-resources`, `${this.baseUrl}/export/csv`, ...params);
     }
 }
 /** @nocollapse */ AdminResourcesService.ɵfac = function AdminResourcesService_Factory(t) { return new (t || AdminResourcesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };

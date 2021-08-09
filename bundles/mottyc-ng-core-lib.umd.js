@@ -3369,7 +3369,7 @@
          * @return ActionResponse
          */
         AdminMembersService.prototype.importCsv = function () {
-            return this.rest.post(this.baseUrl + "/import", null);
+            return this.rest.post(this.baseUrl + "/import/csv", null);
         };
         /**
          * Export members to CSV file
@@ -3390,7 +3390,7 @@
             if (sort != null) {
                 params.push("sort=" + sort);
             }
-            return (_a = this.rest).download.apply(_a, __spread(["admin-members", this.baseUrl + "/export"], params));
+            return (_a = this.rest).download.apply(_a, __spread(["admin-members", this.baseUrl + "/export/csv"], params));
         };
         return AdminMembersService;
     }());
@@ -3978,7 +3978,7 @@
          * @return ActionResponse
          */
         AdminResourcesService.prototype.importCsv = function () {
-            return this.rest.post(this.baseUrl + "/import", null);
+            return this.rest.post(this.baseUrl + "/import/csv", null);
         };
         /**
          * Export resources to CSV file
@@ -4005,7 +4005,7 @@
             if (sort != null) {
                 params.push("sort=" + sort);
             }
-            return (_a = this.rest).download.apply(_a, __spread(["admin-resources", this.baseUrl + "/export"], params));
+            return (_a = this.rest).download.apply(_a, __spread(["admin-resources", this.baseUrl + "/export/csv"], params));
         };
         return AdminResourcesService;
     }());
