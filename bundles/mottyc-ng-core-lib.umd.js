@@ -2865,9 +2865,63 @@
             this.headers = new i1.HttpHeaders().set('Content-Type', 'application/json');
         }
         /**
+         * Upload is HTTP POST action but the body is File object
+         */
+        RestUtil.prototype.upload = function (file, url) {
+            var params = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                params[_i - 2] = arguments[_i];
+            }
+            var resourceUrl = this.buildUrl.apply(this, __spread([url], params));
+            var formData = new FormData();
+            formData.append('fileKey', file, file.name);
+            var req = new i1.HttpRequest('POST', resourceUrl, formData, {
+                reportProgress: false,
+                responseType: 'json',
+            });
+            return this.http.request(req);
+        };
+        /**
          * Download is HTTP GET action but the content is blob
          */
         RestUtil.prototype.download = function (fileName, url) {
+            var params = [];
+            for (var _i = 2; _i < arguments.length; _i++) {
+                params[_i - 2] = arguments[_i];
+            }
+            var resourceUrl = this.buildUrl.apply(this, __spread([url], params));
+            var downloadLink = fileName;
+            // extract file name
+            params.forEach(function (p) {
+                var arr = p.split('=');
+                if (arr.length > 1) {
+                    if (arr[0].toLowerCase() === 'filename') {
+                        downloadLink = arr[1];
+                    }
+                }
+            });
+            // Set content type for: json / csv / xml / pdf
+            var contentType = 'application/json';
+            if (downloadLink.toLowerCase().endsWith('csv')) {
+                contentType = 'text/csv';
+            }
+            else if (downloadLink.toLowerCase().endsWith('xml')) {
+                contentType = 'text/xml';
+            }
+            else if (downloadLink.toLowerCase().endsWith('pdf')) {
+                contentType = 'application/pdf';
+            }
+            return this.http.get(resourceUrl, {
+                responseType: 'blob',
+                reportProgress: true,
+                observe: 'events',
+                headers: new i1.HttpHeaders({ 'Content-Type': contentType })
+            });
+        };
+        /**
+         * Download is HTTP GET action but the content is blob
+         */
+        RestUtil.prototype.download_old = function (fileName, url) {
             var params = [];
             for (var _i = 2; _i < arguments.length; _i++) {
                 params[_i - 2] = arguments[_i];

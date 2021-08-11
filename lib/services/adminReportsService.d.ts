@@ -43,7 +43,7 @@ export declare class AdminReportsService {
      * Export count of activities per member over time period to CSV
      * @Return: StreamContent
      */
-    exportPeriodCountByMember(from?: number, to?: number): import("rxjs").Subscription;
+    exportPeriodCountByMember(from?: number, to?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     /**
      * Get count of activities per resource over time period
      * @Return: EntitiesResponse<MemberUsage>
@@ -53,7 +53,7 @@ export declare class AdminReportsService {
      * Export count of activities per resource over time period to CSV
      * @Return: StreamContent
      */
-    exportPeriodCountByResource(from?: number, to?: number): import("rxjs").Subscription;
+    exportPeriodCountByResource(from?: number, to?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     static ɵfac: i0.ɵɵFactoryDef<AdminReportsService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminReportsService>;
 }

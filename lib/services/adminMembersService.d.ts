@@ -1,10 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
+import { MemberRegistration } from '../common/MemberRegistration';
 import { Member } from '../entities/Member';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
 import { MemberUser } from '../entities/MemberUser';
-import { MemberRegistration } from '../common/MemberRegistration';
 import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
@@ -89,7 +89,7 @@ export declare class AdminMembersService {
      * Export members to CSV file
      * @return StreamContent
      */
-    exportCsv(search?: string, role?: AccountRoleCode[], status?: MemberStatusCode[], sort?: string): import("rxjs").Subscription;
+    exportCsv(search?: string, role?: AccountRoleCode[], status?: MemberStatusCode[], sort?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     static ɵfac: i0.ɵɵFactoryDef<AdminMembersService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminMembersService>;
 }

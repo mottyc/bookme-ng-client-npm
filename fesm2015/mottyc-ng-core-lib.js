@@ -1,7 +1,7 @@
 import * as i0 from '@angular/core';
 import { Injectable, Inject, NgModule } from '@angular/core';
 import * as i1 from '@angular/common/http';
-import { HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { HttpHeaders, HttpRequest, HttpClientModule } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
 
@@ -2091,9 +2091,55 @@ class RestUtil {
         this.headers = new HttpHeaders().set('Content-Type', 'application/json');
     }
     /**
+     * Upload is HTTP POST action but the body is File object
+     */
+    upload(file, url, ...params) {
+        const resourceUrl = this.buildUrl(url, ...params);
+        const formData = new FormData();
+        formData.append('fileKey', file, file.name);
+        const req = new HttpRequest('POST', resourceUrl, formData, {
+            reportProgress: false,
+            responseType: 'json',
+        });
+        return this.http.request(req);
+    }
+    /**
      * Download is HTTP GET action but the content is blob
      */
     download(fileName, url, ...params) {
+        const resourceUrl = this.buildUrl(url, ...params);
+        let downloadLink = fileName;
+        // extract file name
+        params.forEach(p => {
+            let arr = p.split('=');
+            if (arr.length > 1) {
+                if (arr[0].toLowerCase() === 'filename') {
+                    downloadLink = arr[1];
+                }
+            }
+        });
+        // Set content type for: json / csv / xml / pdf
+        let contentType = 'application/json';
+        if (downloadLink.toLowerCase().endsWith('csv')) {
+            contentType = 'text/csv';
+        }
+        else if (downloadLink.toLowerCase().endsWith('xml')) {
+            contentType = 'text/xml';
+        }
+        else if (downloadLink.toLowerCase().endsWith('pdf')) {
+            contentType = 'application/pdf';
+        }
+        return this.http.get(resourceUrl, {
+            responseType: 'blob',
+            reportProgress: true,
+            observe: 'events',
+            headers: new HttpHeaders({ 'Content-Type': contentType })
+        });
+    }
+    /**
+     * Download is HTTP GET action but the content is blob
+     */
+    download_old(fileName, url, ...params) {
         const resourceUrl = this.buildUrl(url, ...params);
         let ext = 'json';
         params.forEach(p => {

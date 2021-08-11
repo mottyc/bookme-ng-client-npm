@@ -29,7 +29,7 @@ export declare class AdminPlaningService {
      * Export daily planing - as PDF stream
      * @Return: StreamContent
      */
-    exportDailyPlaning(day?: number, lang?: string): import("rxjs").Subscription;
+    exportDailyPlaning(day?: number, lang?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     /**
      * Find list of free resources for the booking request
      * @Return: EntitiesResponse<Resource>
