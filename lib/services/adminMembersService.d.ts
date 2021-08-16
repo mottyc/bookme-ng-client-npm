@@ -81,15 +81,15 @@ export declare class AdminMembersService {
      */
     findMemberHistory(id?: string, resourceId?: string, from?: number, to?: number, sort?: string): import("rxjs").Observable<any>;
     /**
-     * Import members from CSV file
+     * Import members from a file
      * @return ActionResponse
      */
-    importCsv(): import("rxjs").Observable<any>;
+    importFile(): import("rxjs").Observable<any>;
     /**
-     * Export members to CSV file
+     * Export members to a file
      * @return StreamContent
      */
-    exportCsv(search?: string, role?: AccountRoleCode[], status?: MemberStatusCode[], sort?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
+    exportFile(format?: string, search?: string, role?: AccountRoleCode[], status?: MemberStatusCode[], sort?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     static ɵfac: i0.ɵɵFactoryDef<AdminMembersService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminMembersService>;
 }

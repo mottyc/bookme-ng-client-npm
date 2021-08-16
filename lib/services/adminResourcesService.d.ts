@@ -60,16 +60,16 @@ export declare class AdminResourcesService {
      */
     findResourceHistory(id?: string, from?: number, to?: number, sort?: string): import("rxjs").Observable<any>;
     /**
-     * Import resources from CSV file
+     * Import resources from a file
      * The file must include header with the columns: Name, Type, Min, Max, Brand, Description
      * @return ActionResponse
      */
-    importCsv(): import("rxjs").Observable<any>;
+    importFile(): import("rxjs").Observable<any>;
     /**
-     * Export resources to CSV file
+     * Export resources to a file
      * @return StreamContent
      */
-    exportCsv(search?: string, resourceClass?: ResourceClassCode, resourceType?: ResourceTypeMask, status?: ResourceStatusCode, forUseBy?: AccountRoleCode, sort?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
+    exportFile(format?: string, search?: string, resourceClass?: ResourceClassCode, resourceType?: ResourceTypeMask, status?: ResourceStatusCode, forUseBy?: AccountRoleCode, sort?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     static ɵfac: i0.ɵɵFactoryDef<AdminResourcesService, never>;
     static ɵprov: i0.ɵɵInjectableDef<AdminResourcesService>;
 }
