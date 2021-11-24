@@ -71,6 +71,6 @@ export declare class AdminActivitiesService {
      * @Return: ActionResponse
      */
     clearDefault(year?: number, month?: number, day?: number): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<AdminActivitiesService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<AdminActivitiesService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AdminActivitiesService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<AdminActivitiesService>;
 }

@@ -30,6 +30,6 @@ export declare class UsrMembersService {
      * @Return: QueryResponse<MemberUser>
      */
     find(search?: string, role?: AccountRoleCode[], status?: MemberStatusCode[], sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<UsrMembersService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<UsrMembersService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<UsrMembersService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<UsrMembersService>;
 }

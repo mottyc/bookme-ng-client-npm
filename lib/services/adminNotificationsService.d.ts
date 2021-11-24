@@ -38,6 +38,6 @@ export declare class AdminNotificationsService {
      * @Return: ActionResponse
      */
     notifyAllMembers(type?: NotificationTypeCode, from?: number, to?: number, body?: string): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<AdminNotificationsService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<AdminNotificationsService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AdminNotificationsService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<AdminNotificationsService>;
 }

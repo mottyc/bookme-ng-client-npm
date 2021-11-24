@@ -1,5 +1,5 @@
-import { EntityResponse } from '../messages/EntityResponse';
 import { Notification } from '../entities/Notification';
+import { EntityResponse } from '../messages/EntityResponse';
 import { IEntityResponse } from '../messages/EntityResponse';
 export declare class EntityResponseOfMember extends EntityResponse {
     entity: Notification;

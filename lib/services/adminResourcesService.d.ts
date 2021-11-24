@@ -70,6 +70,6 @@ export declare class AdminResourcesService {
      * @return StreamContent
      */
     exportFile(format?: string, search?: string, resourceClass?: ResourceClassCode, resourceType?: ResourceTypeMask, status?: ResourceStatusCode, forUseBy?: AccountRoleCode, sort?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
-    static ɵfac: i0.ɵɵFactoryDef<AdminResourcesService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<AdminResourcesService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AdminResourcesService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<AdminResourcesService>;
 }
