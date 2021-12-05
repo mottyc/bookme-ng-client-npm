@@ -54,6 +54,26 @@ export declare class AdminReportsService {
      * @Return: StreamContent
      */
     exportPeriodCountByResource(from?: number, to?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
+    /**
+     * Get members absence report over time period
+     * @Return: EntitiesResponse<Absence>
+     */
+    getPeriodAbsences(from?: number, to?: number): import("rxjs").Observable<any>;
+    /**
+     * Export members absence report over time period
+     * @Return: StreamContent
+     */
+    exportPeriodAbsences(from?: number, to?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
+    /**
+     * Get members incidents report over time period
+     * @Return: EntitiesResponse<Incident>
+     */
+    getPeriodIncidents(from?: number, to?: number): import("rxjs").Observable<any>;
+    /**
+     * Export members incidents report over time period
+     * @Return: StreamContent
+     */
+    exportPeriodIncidents(from?: number, to?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<AdminReportsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AdminReportsService>;
 }

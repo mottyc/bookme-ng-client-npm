@@ -1,5 +1,5 @@
-import { Activity } from '../entities/Activity';
 import { Booking } from '../entities/Booking';
+import { Activity } from '../entities/Activity';
 export declare class ActivityBookingGroup {
     activity: Activity;
     bookings: Booking[];
