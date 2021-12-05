@@ -41,6 +41,6 @@ export declare class UserPlacementsService {
      * @Return: QueryResponse<Placement>
      */
     find(userId?: string, resourceId?: string, bookingId?: string, status?: BookingStatusCode, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<UserPlacementsService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<UserPlacementsService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<UserPlacementsService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<UserPlacementsService>;
 }

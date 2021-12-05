@@ -1,9 +1,9 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { UserTypeCode } from '../enums/UserTypeCode';
-import { UserStatusCode } from '../enums/UserStatusCode';
 import { UserRegistration } from '../common/UserRegistration';
 import { User } from '../entities/User';
+import { UserTypeCode } from '../enums/UserTypeCode';
+import { UserStatusCode } from '../enums/UserStatusCode';
 import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
@@ -74,6 +74,6 @@ export declare class SysUsersService {
      * @Return: QueryResponse<User>
      */
     find(accountId?: string, search?: string, type?: UserTypeCode[], status?: UserStatusCode[], sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<SysUsersService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<SysUsersService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SysUsersService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SysUsersService>;
 }

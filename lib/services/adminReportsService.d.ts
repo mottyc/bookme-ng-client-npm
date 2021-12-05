@@ -54,6 +54,6 @@ export declare class AdminReportsService {
      * @Return: StreamContent
      */
     exportPeriodCountByResource(from?: number, to?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
-    static ɵfac: i0.ɵɵFactoryDef<AdminReportsService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<AdminReportsService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AdminReportsService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<AdminReportsService>;
 }

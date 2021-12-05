@@ -1,10 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { User } from '../entities/User';
 import { NotificationTypeCode } from '../enums/NotificationTypeCode';
 import { LoginParams } from '../common/LoginParams';
 import { ChangePasswordRequest } from '../messages/ChangePasswordRequest';
 import { TokenRequest } from '../messages/TokenRequest';
+import { User } from '../entities/User';
 import * as i0 from "@angular/core";
 /**
  * Services for user registration and login
@@ -108,6 +108,6 @@ export declare class UserService {
      * @Return: ActionResponse
      */
     deleteNotification(id?: string): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<UserService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<UserService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<UserService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<UserService>;
 }

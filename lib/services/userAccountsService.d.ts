@@ -34,6 +34,6 @@ export declare class UserAccountsService {
      * @Return: ActionResponse
      */
     deleteMemberships(id?: string): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<UserAccountsService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<UserAccountsService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<UserAccountsService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<UserAccountsService>;
 }

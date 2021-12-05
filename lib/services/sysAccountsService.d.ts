@@ -54,6 +54,6 @@ export declare class SysAccountsService {
      * @Return: QueryResponse<Account>
      */
     find(search?: string, type?: AccountTypeCode[], status?: AccountStatusCode[], sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<SysAccountsService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<SysAccountsService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<SysAccountsService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<SysAccountsService>;
 }

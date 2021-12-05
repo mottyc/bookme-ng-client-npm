@@ -35,6 +35,6 @@ export declare class UsrActivitiesService {
      * @Return: EntitiesResponse<Resource>
      */
     findAllResources(id?: string): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<UsrActivitiesService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<UsrActivitiesService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<UsrActivitiesService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<UsrActivitiesService>;
 }

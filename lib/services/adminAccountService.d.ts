@@ -25,6 +25,6 @@ export declare class AdminAccountService {
      * @Return: EntityResponse<AccountSettings>
      */
     updateSettings(body?: AccountSettings): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<AdminAccountService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<AdminAccountService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AdminAccountService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<AdminAccountService>;
 }

@@ -85,6 +85,6 @@ export declare class AdminPlaningService {
      * @Return: ActionResponse
      */
     reportIncident(id?: string, userId?: string[], body?: string): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<AdminPlaningService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<AdminPlaningService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AdminPlaningService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<AdminPlaningService>;
 }

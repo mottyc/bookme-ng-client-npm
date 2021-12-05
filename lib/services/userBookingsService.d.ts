@@ -71,6 +71,6 @@ export declare class UserBookingsService {
      * @Return: EntitiesResponse<BookingGroup>
      */
     activities(from?: number, to?: number, groupBy?: TimeUnitCode): import("rxjs").Observable<any>;
-    static ɵfac: i0.ɵɵFactoryDef<UserBookingsService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<UserBookingsService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<UserBookingsService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<UserBookingsService>;
 }

@@ -90,6 +90,6 @@ export declare class AdminMembersService {
      * @return StreamContent
      */
     exportFile(format?: string, search?: string, role?: AccountRoleCode[], status?: MemberStatusCode[], sort?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
-    static ɵfac: i0.ɵɵFactoryDef<AdminMembersService, never>;
-    static ɵprov: i0.ɵɵInjectableDef<AdminMembersService>;
+    static ɵfac: i0.ɵɵFactoryDeclaration<AdminMembersService, never>;
+    static ɵprov: i0.ɵɵInjectableDeclaration<AdminMembersService>;
 }
