@@ -131,7 +131,8 @@ class MemberUsage {
  *  Recurrent activity
 */
 class RecurrentActivity {
-    constructor(dayOfWeek, startTime, endTime, name, resourceFilter, roleFilter, limit) {
+    constructor(key, dayOfWeek, startTime, endTime, name, resourceFilter, roleFilter, limit, icon, iconColor) {
+        this.key = key;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -139,6 +140,8 @@ class RecurrentActivity {
         this.resourceFilter = resourceFilter;
         this.roleFilter = roleFilter;
         this.limit = limit;
+        this.icon = icon;
+        this.iconColor = iconColor;
     }
 }
 

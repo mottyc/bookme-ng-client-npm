@@ -1,8 +1,8 @@
-import { AccountStatusCode } from '../enums/AccountStatusCode';
-import { AccountSettings } from '../common/AccountSettings';
 import { ResourceClassCode } from '../enums/ResourceClassCode';
 import { BaseEntity } from '../entities/BaseEntity';
 import { AccountTypeCode } from '../enums/AccountTypeCode';
+import { AccountStatusCode } from '../enums/AccountStatusCode';
+import { AccountSettings } from '../common/AccountSettings';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Account extends BaseEntity {
     name: string;
@@ -16,6 +16,8 @@ export declare class Account extends BaseEntity {
     autoApprove: boolean;
     settings: AccountSettings;
     resourceClass: ResourceClassCode;
+    icon: string;
+    iconColor: string;
     id: string;
     createdOn: number;
     updatedOn: number;
@@ -32,6 +34,8 @@ export interface IAccount extends IBaseEntity {
     autoApprove?: boolean;
     settings?: AccountSettings;
     resourceClass?: ResourceClassCode;
+    icon?: string;
+    iconColor?: string;
     id?: string;
     createdOn?: number;
     updatedOn?: number;

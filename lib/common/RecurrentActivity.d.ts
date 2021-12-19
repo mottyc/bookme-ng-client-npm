@@ -2,6 +2,7 @@ import { DayOfWeekCode } from '../enums/DayOfWeekCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 export declare class RecurrentActivity {
+    key: number;
     dayOfWeek: DayOfWeekCode;
     startTime: string;
     endTime: string;
@@ -9,9 +10,12 @@ export declare class RecurrentActivity {
     resourceFilter: ResourceTypeMask[];
     roleFilter: AccountRoleCode[];
     limit: number;
-    constructor(dayOfWeek?: DayOfWeekCode, startTime?: string, endTime?: string, name?: string, resourceFilter?: ResourceTypeMask[], roleFilter?: AccountRoleCode[], limit?: number);
+    icon: string;
+    iconColor: string;
+    constructor(key?: number, dayOfWeek?: DayOfWeekCode, startTime?: string, endTime?: string, name?: string, resourceFilter?: ResourceTypeMask[], roleFilter?: AccountRoleCode[], limit?: number, icon?: string, iconColor?: string);
 }
 export interface IRecurrentActivity {
+    key?: number;
     dayOfWeek?: DayOfWeekCode;
     startTime?: string;
     endTime?: string;
@@ -19,4 +23,6 @@ export interface IRecurrentActivity {
     resourceFilter?: ResourceTypeMask[];
     roleFilter?: AccountRoleCode[];
     limit?: number;
+    icon?: string;
+    iconColor?: string;
 }

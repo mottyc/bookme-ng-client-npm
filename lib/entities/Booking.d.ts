@@ -1,8 +1,9 @@
-import { BaseEntity } from '../entities/BaseEntity';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { BookingStatusCode } from '../enums/BookingStatusCode';
+import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Booking extends BaseEntity {
+    accountId: string;
     activityId: string;
     activityName: string;
     placementOn: number;
@@ -26,6 +27,7 @@ export declare class Booking extends BaseEntity {
     updatedOn: number;
 }
 export interface IBooking extends IBaseEntity {
+    accountId?: string;
     activityId?: string;
     activityName?: string;
     placementOn?: number;
