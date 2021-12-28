@@ -1,7 +1,7 @@
-import { BaseEntity } from '../entities/BaseEntity';
 import { ActivityStatusCode } from '../enums/ActivityStatusCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
+import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Activity extends BaseEntity {
     accountId: string;

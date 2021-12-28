@@ -1,6 +1,6 @@
-import { BaseEntity } from '../entities/BaseEntity';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
+import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Membership extends BaseEntity {
     userId: string;
@@ -14,6 +14,9 @@ export declare class Membership extends BaseEntity {
     isMentor: boolean;
     trainingTime: number;
     restrictions: string;
+    preferred1: string[];
+    preferred2: string[];
+    isHidden: boolean;
     accountName: string;
     id: string;
     createdOn: number;
@@ -31,6 +34,9 @@ export interface IMembership extends IBaseEntity {
     isMentor?: boolean;
     trainingTime?: number;
     restrictions?: string;
+    preferred1?: string[];
+    preferred2?: string[];
+    isHidden?: boolean;
     accountName?: string;
     id?: string;
     createdOn?: number;
