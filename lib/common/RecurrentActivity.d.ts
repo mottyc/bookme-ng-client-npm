@@ -7,12 +7,14 @@ export declare class RecurrentActivity {
     startTime: string;
     endTime: string;
     name: string;
+    description: string;
+    autoApprove: boolean;
     resourceFilter: ResourceTypeMask[];
     roleFilter: AccountRoleCode[];
     limit: number;
     icon: string;
     iconColor: string;
-    constructor(key?: number, dayOfWeek?: DayOfWeekCode, startTime?: string, endTime?: string, name?: string, resourceFilter?: ResourceTypeMask[], roleFilter?: AccountRoleCode[], limit?: number, icon?: string, iconColor?: string);
+    constructor(key?: number, dayOfWeek?: DayOfWeekCode, startTime?: string, endTime?: string, name?: string, description?: string, autoApprove?: boolean, resourceFilter?: ResourceTypeMask[], roleFilter?: AccountRoleCode[], limit?: number, icon?: string, iconColor?: string);
 }
 export interface IRecurrentActivity {
     key?: number;
@@ -20,6 +22,8 @@ export interface IRecurrentActivity {
     startTime?: string;
     endTime?: string;
     name?: string;
+    description?: string;
+    autoApprove?: boolean;
     resourceFilter?: ResourceTypeMask[];
     roleFilter?: AccountRoleCode[];
     limit?: number;
