@@ -1,6 +1,6 @@
+import { DayOfWeekCode } from '../enums/DayOfWeekCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
-import { DayOfWeekCode } from '../enums/DayOfWeekCode';
 export declare class RecurrentActivity {
     key: number;
     dayOfWeek: DayOfWeekCode;

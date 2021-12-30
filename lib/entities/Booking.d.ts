@@ -22,6 +22,8 @@ export declare class Booking extends BaseEntity {
     duration: number;
     distance: number;
     notes: string;
+    icon: string;
+    iconColor: string;
     id: string;
     createdOn: number;
     updatedOn: number;
@@ -46,6 +48,8 @@ export interface IBooking extends IBaseEntity {
     duration?: number;
     distance?: number;
     notes?: string;
+    icon?: string;
+    iconColor?: string;
     id?: string;
     createdOn?: number;
     updatedOn?: number;

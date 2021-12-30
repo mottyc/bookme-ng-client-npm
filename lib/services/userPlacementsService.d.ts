@@ -1,7 +1,7 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { BookingStatusCode } from '../enums/BookingStatusCode';
 import { Placement } from '../entities/Placement';
+import { BookingStatusCode } from '../enums/BookingStatusCode';
 import * as i0 from "@angular/core";
 /**
  * Services for managing user placements (approved bookings)
