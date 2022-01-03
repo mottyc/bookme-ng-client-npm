@@ -81,6 +81,7 @@ export * from './MemberIdRequest';
 export * from './MembersBulkImportRequest';
 export * from './MembersCountOvertimeRequest';
 export * from './MembersFindRequest';
+export * from './MembersFindResourcesRequest';
 export * from './MembersServiceInviteRequest';
 export * from './MembersServiceUpdateRequest';
 export * from './MembershipIdRequest';
