@@ -4014,6 +4014,13 @@ class UsrMembersService {
         }
         return this.rest.get(`${this.baseUrl}/resources`, ...params);
     }
+    /**
+     * Update member
+     * @Return: EntityResponse<Member>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
 }
 /** @nocollapse */ /** @nocollapse */ UsrMembersService.ɵfac = function UsrMembersService_Factory(t) { return new (t || UsrMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
 /** @nocollapse */ /** @nocollapse */ UsrMembersService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: UsrMembersService, factory: UsrMembersService.ɵfac });

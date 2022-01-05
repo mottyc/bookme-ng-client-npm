@@ -3,6 +3,7 @@ import { CoreConfig } from '../../config';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
+import { Member } from '../entities/Member';
 import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
@@ -36,6 +37,11 @@ export declare class UsrMembersService {
      * @Return: EntitiesResponse<Resource>
      */
     findResources(search?: string, include?: ResourceTypeMask, exclude?: ResourceTypeMask): import("rxjs").Observable<any>;
+    /**
+     * Update member
+     * @Return: EntityResponse<Member>
+     */
+    update(body?: Member): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<UsrMembersService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UsrMembersService>;
 }
