@@ -1,5 +1,5 @@
-import { CountDataPoint } from '../common/CountDataPoint';
 import { EntityResponse } from '../messages/EntityResponse';
+import { CountDataPoint } from '../common/CountDataPoint';
 import { IEntityResponse } from '../messages/EntityResponse';
 export declare class EntitiesResponseOfCountDataPoint extends EntityResponse {
     list: CountDataPoint[];

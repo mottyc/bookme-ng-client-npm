@@ -1449,7 +1449,8 @@ class MembersFindRequest {
 /*
 */
 class MembersFindResourcesRequest {
-    constructor(search, include, exclude) {
+    constructor(accountId, search, include, exclude) {
+        this.accountId = accountId;
         this.search = search;
         this.include = include;
         this.exclude = exclude;
@@ -4059,8 +4060,11 @@ class UsrMembersService {
      * Find list of resources by filter
      * @Return: EntitiesResponse<Resource>
      */
-    findResources(search, include, exclude) {
+    findResources(accountId, search, include, exclude) {
         const params = new Array();
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
+        }
         if (search != null) {
             params.push(`search=${search}`);
         }
