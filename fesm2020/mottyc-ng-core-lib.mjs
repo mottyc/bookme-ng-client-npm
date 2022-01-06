@@ -2650,6 +2650,26 @@ class AdminMembersService {
         }
         return this.rest.download(`admin-members`, `${this.baseUrl}/export`, ...params);
     }
+    /**
+     * Find list of resources by filter
+     * @Return: EntitiesResponse<Resource>
+     */
+    findResources(accountId, search, include, exclude) {
+        const params = new Array();
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (include != null) {
+            params.push(`include=${include}`);
+        }
+        if (exclude != null) {
+            params.push(`exclude=${exclude}`);
+        }
+        return this.rest.get(`${this.baseUrl}/resources`, ...params);
+    }
 }
 /** @nocollapse */ /** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
 /** @nocollapse */ /** @nocollapse */ AdminMembersService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: AdminMembersService, factory: AdminMembersService.ɵfac });

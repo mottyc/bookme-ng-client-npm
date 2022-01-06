@@ -1,10 +1,11 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { MemberRegistration } from '../common/MemberRegistration';
 import { Member } from '../entities/Member';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
 import { MemberUser } from '../entities/MemberUser';
+import { ResourceTypeMask } from '../enums/ResourceTypeMask';
+import { MemberRegistration } from '../common/MemberRegistration';
 import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
@@ -90,6 +91,11 @@ export declare class AdminMembersService {
      * @return StreamContent
      */
     exportFile(format?: string, search?: string, role?: AccountRoleCode[], status?: MemberStatusCode[], sort?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
+    /**
+     * Find list of resources by filter
+     * @Return: EntitiesResponse<Resource>
+     */
+    findResources(accountId?: string, search?: string, include?: ResourceTypeMask, exclude?: ResourceTypeMask): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<AdminMembersService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AdminMembersService>;
 }

@@ -1,5 +1,5 @@
-import { Placement } from '../entities/Placement';
 import { QueryResponse } from '../messages/QueryResponse';
+import { Placement } from '../entities/Placement';
 import { IQueryResponse } from '../messages/QueryResponse';
 export declare class QueryResponseOfPlacement extends QueryResponse {
     list: Placement[];
