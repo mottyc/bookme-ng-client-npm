@@ -1,7 +1,8 @@
-import { BaseEntity } from '../entities/BaseEntity';
 import { ActivityStatusCode } from '../enums/ActivityStatusCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
+import { BookingOptionsMask } from '../enums/BookingOptionsMask';
+import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Activity extends BaseEntity {
     accountId: string;
@@ -13,6 +14,7 @@ export declare class Activity extends BaseEntity {
     status: ActivityStatusCode;
     resourceFilter: ResourceTypeMask[];
     roleFilter: AccountRoleCode[];
+    options: BookingOptionsMask;
     message: string;
     limit: number;
     icon: string;
@@ -31,6 +33,7 @@ export interface IActivity extends IBaseEntity {
     status?: ActivityStatusCode;
     resourceFilter?: ResourceTypeMask[];
     roleFilter?: AccountRoleCode[];
+    options?: BookingOptionsMask;
     message?: string;
     limit?: number;
     icon?: string;
