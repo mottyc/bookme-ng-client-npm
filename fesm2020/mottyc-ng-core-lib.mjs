@@ -484,6 +484,8 @@ var BookingOptionsMask;
     BookingOptionsMask[BookingOptionsMask["UNDEFINED"] = 0] = "UNDEFINED";
     // Selection is optional [1] 
     BookingOptionsMask[BookingOptionsMask["OPTIONAL"] = 1] = "OPTIONAL";
+    // No approval for resource allocation is required [2] 
+    BookingOptionsMask[BookingOptionsMask["APPROVE"] = 2] = "APPROVE";
     // Show Sweep (single oar) [4] 
     BookingOptionsMask[BookingOptionsMask["SWEEP"] = 4] = "SWEEP";
     // Show Wide [16] 

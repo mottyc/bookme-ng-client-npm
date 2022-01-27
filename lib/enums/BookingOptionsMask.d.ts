@@ -1,6 +1,7 @@
 export declare enum BookingOptionsMask {
     UNDEFINED = 0,
     OPTIONAL = 1,
+    APPROVE = 2,
     SWEEP = 4,
     WIDE = 16,
     CONCEPT = 32,
