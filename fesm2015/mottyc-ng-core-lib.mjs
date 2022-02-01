@@ -2900,6 +2900,20 @@ class AdminPlaningService {
         return this.rest.download(`admin-planing`, `${this.baseUrl}/daily/${day}/export`, ...params);
     }
     /**
+     * Auto planing - assign resources and auto approve booking
+     * @Return: EntitiesResponse<ActivityBookingGroup>
+     */
+    autoDailyPlaning(day) {
+        return this.rest.post(`${this.baseUrl}/daily/${day}/auto`, null);
+    }
+    /**
+     * Reset auto planing - un-assign resources and clear auto approve booking
+     * @Return: EntitiesResponse<ActivityBookingGroup>
+     */
+    resetAutoDailyPlaning(day) {
+        return this.rest.delete(`${this.baseUrl}/daily/${day}/auto`);
+    }
+    /**
      * Find list of free resources for the booking request
      * @Return: EntitiesResponse<Resource>
      */

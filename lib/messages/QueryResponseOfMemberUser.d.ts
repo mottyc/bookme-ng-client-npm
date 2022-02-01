@@ -1,5 +1,5 @@
-import { MemberUser } from '../entities/MemberUser';
 import { QueryResponse } from '../messages/QueryResponse';
+import { MemberUser } from '../entities/MemberUser';
 import { IQueryResponse } from '../messages/QueryResponse';
 export declare class QueryResponseOfMemberUser extends QueryResponse {
     list: MemberUser[];

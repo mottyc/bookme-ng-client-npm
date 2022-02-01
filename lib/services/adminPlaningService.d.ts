@@ -31,6 +31,16 @@ export declare class AdminPlaningService {
      */
     exportDailyPlaning(day?: number, lang?: string): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     /**
+     * Auto planing - assign resources and auto approve booking
+     * @Return: EntitiesResponse<ActivityBookingGroup>
+     */
+    autoDailyPlaning(day?: number): import("rxjs").Observable<any>;
+    /**
+     * Reset auto planing - un-assign resources and clear auto approve booking
+     * @Return: EntitiesResponse<ActivityBookingGroup>
+     */
+    resetAutoDailyPlaning(day?: number): import("rxjs").Observable<any>;
+    /**
      * Find list of free resources for the booking request
      * @Return: EntitiesResponse<Resource>
      */
