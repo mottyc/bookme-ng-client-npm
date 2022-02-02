@@ -17,6 +17,7 @@ export declare class Membership extends BaseEntity {
     preferred1: string[];
     preferred2: string[];
     isHidden: boolean;
+    score: number;
     accountName: string;
     id: string;
     createdOn: number;
@@ -37,6 +38,7 @@ export interface IMembership extends IBaseEntity {
     preferred1?: string[];
     preferred2?: string[];
     isHidden?: boolean;
+    score?: number;
     accountName?: string;
     id?: string;
     createdOn?: number;
