@@ -1,11 +1,11 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
+import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { MemberRegistration } from '../common/MemberRegistration';
 import { Member } from '../entities/Member';
-import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberUser } from '../entities/MemberUser';
-import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
@@ -33,6 +33,11 @@ export declare class AdminMembersService {
      * @Return: EntityResponse<Member>
      */
     update(body?: Member): import("rxjs").Observable<any>;
+    /**
+     * Update member
+     * @Return: EntityResponse<Member>
+     */
+    changeStatus(id?: string, status?: MemberStatusCode): import("rxjs").Observable<any>;
     /**
      * Delete member from the account
      * The member will be removed from the account, if no other memberships exist for the user, it will be deleted from the system

@@ -84,6 +84,7 @@ export * from './MembersFindRequest';
 export * from './MembersFindResourcesRequest';
 export * from './MembersServiceInviteRequest';
 export * from './MembersServiceUpdateRequest';
+export * from './MembersServiceUpdateStatusRequest';
 export * from './MembershipIdRequest';
 export * from './MembershipsRequest';
 export * from './MonthlyCountRequest';
