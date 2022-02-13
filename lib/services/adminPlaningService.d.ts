@@ -56,6 +56,11 @@ export declare class AdminPlaningService {
      */
     unAssignResource(id?: string): import("rxjs").Observable<any>;
     /**
+     * Find all bookings by filter
+     * @Return: EntitiesResponse<Booking>
+     */
+    findBookings(from?: number, to?: number, year?: number, month?: number, day?: number): import("rxjs").Observable<any>;
+    /**
      * Merge source and target bookings and recalculate the daily planing
      * @Return: EntitiesResponse<ActivityBookingGroup>
      */

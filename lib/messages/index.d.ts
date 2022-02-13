@@ -23,6 +23,7 @@ export * from './AdminMembersImportCsvRequest';
 export * from './AdminPlaningAssignResourceRequest';
 export * from './AdminPlaningDeleteActivityRequest';
 export * from './AdminPlaningDeleteBookingRequest';
+export * from './AdminPlaningFindBookingsRequest';
 export * from './AdminPlaningMergeBookingsRequest';
 export * from './AdminPlaningSplitBookingRequest';
 export * from './AdminPlaningUnAssignResourceRequest';
