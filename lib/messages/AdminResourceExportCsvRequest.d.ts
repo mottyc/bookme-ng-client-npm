@@ -1,7 +1,7 @@
-import { ResourceStatusCode } from '../enums/ResourceStatusCode';
-import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { ResourceClassCode } from '../enums/ResourceClassCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
+import { ResourceStatusCode } from '../enums/ResourceStatusCode';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
 export declare class AdminResourceExportCsvRequest {
     format: string;
     search: string;
