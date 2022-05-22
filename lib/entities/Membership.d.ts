@@ -1,6 +1,6 @@
-import { BaseEntity } from '../entities/BaseEntity';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
+import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Membership extends BaseEntity {
     userId: string;
@@ -16,6 +16,8 @@ export declare class Membership extends BaseEntity {
     restrictions: string;
     preferred1: string[];
     preferred2: string[];
+    preferred4: string[];
+    preferred8: string[];
     isHidden: boolean;
     score: number;
     accountName: string;
@@ -37,6 +39,8 @@ export interface IMembership extends IBaseEntity {
     restrictions?: string;
     preferred1?: string[];
     preferred2?: string[];
+    preferred4?: string[];
+    preferred8?: string[];
     isHidden?: boolean;
     score?: number;
     accountName?: string;

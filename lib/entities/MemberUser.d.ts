@@ -1,7 +1,7 @@
+import { BaseEntity } from '../entities/BaseEntity';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
 import { User } from '../entities/User';
-import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class MemberUser extends BaseEntity {
     userId: string;
