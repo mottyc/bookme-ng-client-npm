@@ -20,27 +20,27 @@ export declare class UserPlacementsService {
      * Create new placement
      * @Return: EntityResponse<Placement>
      */
-    create(body?: Placement): import("rxjs").Observable<any>;
+    create(body: Placement): import("rxjs").Observable<any>;
     /**
      * Update placement
      * @Return: EntityResponse<Placement>
      */
-    update(body?: Placement): import("rxjs").Observable<any>;
+    update(body: Placement): import("rxjs").Observable<any>;
     /**
      * Delete placement
      * @Return: ActionResponse
      */
-    delete(id?: string): import("rxjs").Observable<any>;
+    delete(id: string): import("rxjs").Observable<any>;
     /**
      * Get single placement by id
      * @Return: EntityResponse<Placement>
      */
-    get(id?: string): import("rxjs").Observable<any>;
+    get(id: string): import("rxjs").Observable<any>;
     /**
      * Find placements by filters
      * @Return: QueryResponse<Placement>
      */
-    find(userId?: string, resourceId?: string, bookingId?: string, status?: BookingStatusCode, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
+    find(userId: string, resourceId: string, bookingId: string, status: BookingStatusCode, sort: string, page: number, pageSize: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<UserPlacementsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UserPlacementsService>;
 }

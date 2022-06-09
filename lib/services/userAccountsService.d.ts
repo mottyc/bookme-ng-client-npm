@@ -18,12 +18,12 @@ export declare class UserAccountsService {
      * Find list of accounts and filter
      * @Return: QueryResponse<Account>
      */
-    find(search?: string, type?: AccountTypeCode[], status?: AccountStatusCode[], sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
+    find(search: string, type: AccountTypeCode[], status: AccountStatusCode[], sort: string, page: number, pageSize: number): import("rxjs").Observable<any>;
     /**
      * Get single account by id
      * @Return: EntityResponse<Account>
      */
-    get(id?: string): import("rxjs").Observable<any>;
+    get(id: string): import("rxjs").Observable<any>;
     /**
      * Get list of user memberships
      * @Return: EntitiesResponse<Membership>
@@ -33,7 +33,7 @@ export declare class UserAccountsService {
      * Delete membership by id
      * @Return: ActionResponse
      */
-    deleteMemberships(id?: string): import("rxjs").Observable<any>;
+    deleteMemberships(id: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<UserAccountsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UserAccountsService>;
 }

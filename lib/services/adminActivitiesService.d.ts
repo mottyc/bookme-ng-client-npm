@@ -20,57 +20,57 @@ export declare class AdminActivitiesService {
      * Create new activity
      * @Return: EntityResponse<Activity>
      */
-    create(body?: Activity): import("rxjs").Observable<any>;
+    create(body: Activity): import("rxjs").Observable<any>;
     /**
      * Update activity
      * @Return: EntityResponse<Activity>
      */
-    update(body?: Activity): import("rxjs").Observable<any>;
+    update(body: Activity): import("rxjs").Observable<any>;
     /**
      * Delete activity
      * @Return: ActionResponse
      */
-    delete(id?: string): import("rxjs").Observable<any>;
+    delete(id: string): import("rxjs").Observable<any>;
     /**
      * Get single activity by id
      * @Return: EntityResponse<Activity>
      */
-    get(id?: string): import("rxjs").Observable<any>;
+    get(id: string): import("rxjs").Observable<any>;
     /**
      * Get previous activity related to this activity id
      * @Return: EntityResponse<Activity>
      */
-    prev(id?: string): import("rxjs").Observable<any>;
+    prev(id: string): import("rxjs").Observable<any>;
     /**
      * Get next activity related to this activity id
      * @Return: EntityResponse<Activity>
      */
-    next(id?: string): import("rxjs").Observable<any>;
+    next(id: string): import("rxjs").Observable<any>;
     /**
      * Find activities by time range
      * @Return: QueryResponse<Activity>
      */
-    find(from?: number, to?: number, year?: number, month?: number, day?: number, total?: boolean): import("rxjs").Observable<any>;
+    find(from: number, to: number, year: number, month: number, day: number, total: boolean): import("rxjs").Observable<any>;
     /**
      * Find list of free resources for activity by filter
      * @Return: EntitiesResponse<Resource>
      */
-    findFreeResources(id?: string, resType?: number, weight?: number, forUseBy?: AccountRoleCode): import("rxjs").Observable<any>;
+    findFreeResources(id: string, resType: number, weight: number, forUseBy: AccountRoleCode): import("rxjs").Observable<any>;
     /**
      * Create bulk set of activities
      * @Return: ActionResponse
      */
-    createBulk(body?: Activity[]): import("rxjs").Observable<any>;
+    createBulk(body: Activity[]): import("rxjs").Observable<any>;
     /**
      * Create account default set of activities per month
      * @Return: ActionResponse
      */
-    createDefault(year?: number, month?: number, day?: number): import("rxjs").Observable<any>;
+    createDefault(year: number, month: number, day: number): import("rxjs").Observable<any>;
     /**
      * Clear all month activities
      * @Return: ActionResponse
      */
-    clearDefault(year?: number, month?: number, day?: number): import("rxjs").Observable<any>;
+    clearDefault(year: number, month: number, day: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<AdminActivitiesService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AdminActivitiesService>;
 }

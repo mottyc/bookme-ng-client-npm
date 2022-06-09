@@ -18,62 +18,62 @@ export declare class AdminReportsService {
      * Get count of members over month
      * @Return: EntitiesResponse<Usage>
      */
-    getMonthlyCount(year?: number, month?: number): import("rxjs").Observable<any>;
+    getMonthlyCount(year: number, month: number): import("rxjs").Observable<any>;
     /**
      * Get count of members over time period
      * @Return: EntitiesResponse<Usage>
      */
-    getPeriodCount(from?: number, to?: number): import("rxjs").Observable<any>;
+    getPeriodCount(from: number, to: number): import("rxjs").Observable<any>;
     /**
      * Get distribution by week days over time
      * @Return: EntitiesResponse<StringIntValue>
      */
-    getDayOfWeekDistribution(from?: number, to?: number): import("rxjs").Observable<any>;
+    getDayOfWeekDistribution(from: number, to: number): import("rxjs").Observable<any>;
     /**
      * Get distribution by resource type over time
      * @Return: EntitiesResponse<StringIntValue>
      */
-    getResourceTypeDistribution(from?: number, to?: number): import("rxjs").Observable<any>;
+    getResourceTypeDistribution(from: number, to: number): import("rxjs").Observable<any>;
     /**
      * Get count of activities per member over time period
      * @Return: EntitiesResponse<MemberUsage>
      */
-    getPeriodCountByMember(from?: number, to?: number): import("rxjs").Observable<any>;
+    getPeriodCountByMember(from: number, to: number): import("rxjs").Observable<any>;
     /**
      * Export count of activities per member over time period to CSV
      * @Return: StreamContent
      */
-    exportPeriodCountByMember(from?: number, to?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
+    exportPeriodCountByMember(from: number, to: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     /**
      * Get count of activities per resource over time period
      * @Return: EntitiesResponse<MemberUsage>
      */
-    getPeriodCountByResource(from?: number, to?: number): import("rxjs").Observable<any>;
+    getPeriodCountByResource(from: number, to: number): import("rxjs").Observable<any>;
     /**
      * Export count of activities per resource over time period to CSV
      * @Return: StreamContent
      */
-    exportPeriodCountByResource(from?: number, to?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
+    exportPeriodCountByResource(from: number, to: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     /**
      * Get members absence report over time period
      * @Return: EntitiesResponse<Absence>
      */
-    getPeriodAbsences(from?: number, to?: number): import("rxjs").Observable<any>;
+    getPeriodAbsences(from: number, to: number): import("rxjs").Observable<any>;
     /**
      * Export members absence report over time period
      * @Return: StreamContent
      */
-    exportPeriodAbsences(from?: number, to?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
+    exportPeriodAbsences(from: number, to: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     /**
      * Get members incidents report over time period
      * @Return: EntitiesResponse<Incident>
      */
-    getPeriodIncidents(from?: number, to?: number): import("rxjs").Observable<any>;
+    getPeriodIncidents(from: number, to: number): import("rxjs").Observable<any>;
     /**
      * Export members incidents report over time period
      * @Return: StreamContent
      */
-    exportPeriodIncidents(from?: number, to?: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
+    exportPeriodIncidents(from: number, to: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     static ɵfac: i0.ɵɵFactoryDeclaration<AdminReportsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AdminReportsService>;
 }

@@ -1,30 +1,24 @@
-# NgCoreLib
+# MyLib
 
-Angular version 9.1.11
+This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.0.
 
-### Simple Example
+## Code scaffolding
 
-```TypeScript
-// app.module.ts
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { AppComponent } from './app.component';
+Run `ng generate component component-name --project bookme-lib` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project bookme-lib`.
+> Note: Don't forget to add `--project bookme-lib` or else it will be added to the default project in your `angular.json` file.
 
-import { CoreLibModule } from '@agentvi/ng-core-lib'; // <-- import the module
+## Build
 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    CoreLibModule.forRoot({ // <-- include it in your app module
-      api: 'http://localhost:8080/v1' // <-- configure CoreAPI url
-    })
-  ],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
+Run `ng build bookme-lib` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-### CoreConfig
+## Publishing
 
-* **`api`** [`string`] configure Book.me url.
+After building your library with `ng build bookme-lib`, go to the dist folder `cd dist/bookme-lib` and run `npm publish`.
+
+## Running unit tests
+
+Run `ng test bookme-lib` to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.

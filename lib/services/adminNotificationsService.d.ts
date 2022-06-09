@@ -17,27 +17,27 @@ export declare class AdminNotificationsService {
      * Send Create new notification for user
      * @Return: ActionResponse
      */
-    notifyUser(userId?: string[], type?: NotificationTypeCode, from?: number, to?: number, body?: string): import("rxjs").Observable<any>;
+    notifyUser(userId: string[], type: NotificationTypeCode, from: number, to: number, body: string): import("rxjs").Observable<any>;
     /**
      * Create notifications for all users in booking
      * @Return: ActionResponse
      */
-    notifyBookingUsers(bookingId?: string, type?: NotificationTypeCode, from?: number, to?: number, body?: string): import("rxjs").Observable<any>;
+    notifyBookingUsers(bookingId: string, type: NotificationTypeCode, from: number, to: number, body: string): import("rxjs").Observable<any>;
     /**
      * Create notifications for all users in activity bookings
      * @Return: ActionResponse
      */
-    notifyActivityUsers(activityId?: string, type?: NotificationTypeCode, from?: number, to?: number, body?: string): import("rxjs").Observable<any>;
+    notifyActivityUsers(activityId: string, type: NotificationTypeCode, from: number, to: number, body: string): import("rxjs").Observable<any>;
     /**
      * Create notifications for all users in activity bookings
      * @Return: ActionResponse
      */
-    notifyDailyUsers(dayId?: number, type?: NotificationTypeCode, from?: number, to?: number, body?: string): import("rxjs").Observable<any>;
+    notifyDailyUsers(dayId: number, type: NotificationTypeCode, from: number, to: number, body: string): import("rxjs").Observable<any>;
     /**
      * Create notification for all club members
      * @Return: ActionResponse
      */
-    notifyAllMembers(type?: NotificationTypeCode, from?: number, to?: number, body?: string): import("rxjs").Observable<any>;
+    notifyAllMembers(type: NotificationTypeCode, from: number, to: number, body: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<AdminNotificationsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AdminNotificationsService>;
 }

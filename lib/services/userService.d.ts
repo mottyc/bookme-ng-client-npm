@@ -1,10 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
+import { LoginParams } from '../common/LoginParams';
 import { ChangePasswordRequest } from '../messages/ChangePasswordRequest';
 import { TokenRequest } from '../messages/TokenRequest';
 import { User } from '../entities/User';
 import { NotificationTypeCode } from '../enums/NotificationTypeCode';
-import { LoginParams } from '../common/LoginParams';
 import * as i0 from "@angular/core";
 /**
  * Services for user registration and login
@@ -22,7 +22,7 @@ export declare class UserService {
      * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
      * @Return: EntityResponse<LoginData>
      */
-    login(body?: LoginParams): import("rxjs").Observable<any>;
+    login(body: LoginParams): import("rxjs").Observable<any>;
     /**
      * Refresh token (set new expiration time) and associate with new account if required
      * @Return: EntityResponse<LoginData>
@@ -32,37 +32,37 @@ export declare class UserService {
      * Verify user by temporary login key
      * @Return: EntityResponse<User>
      */
-    verifyLoginKey(key?: string): import("rxjs").Observable<any>;
+    verifyLoginKey(key: string): import("rxjs").Observable<any>;
     /**
      * Send verification code by email
      * @Return: ActionResponse
      */
-    sendVerificationCode(body?: string): import("rxjs").Observable<any>;
+    sendVerificationCode(body: string): import("rxjs").Observable<any>;
     /**
      * Validate verification code and reset password
      * @Return: ActionResponse
      */
-    resetPassword(code?: string): import("rxjs").Observable<any>;
+    resetPassword(code: string): import("rxjs").Observable<any>;
     /**
      * Change password
      * @Return: ActionResponse
      */
-    changePassword(body?: ChangePasswordRequest): import("rxjs").Observable<any>;
+    changePassword(body: ChangePasswordRequest): import("rxjs").Observable<any>;
     /**
      * Check if password was used before (according to password policy)
      * @Return: ActionResponse
      */
-    checkUnusedPassword(body?: string): import("rxjs").Observable<any>;
+    checkUnusedPassword(body: string): import("rxjs").Observable<any>;
     /**
      * Change current user name
      * @Return: ActionResponse
      */
-    changeName(body?: string): import("rxjs").Observable<any>;
+    changeName(body: string): import("rxjs").Observable<any>;
     /**
      * Change current user mobile
      * @Return: ActionResponse
      */
-    changeMobile(body?: string): import("rxjs").Observable<any>;
+    changeMobile(body: string): import("rxjs").Observable<any>;
     /**
      * Get all user accessible accounts for the user
      * @Return: EntitiesResponse<Account>
@@ -72,7 +72,7 @@ export declare class UserService {
      * Refresh token (set new expiration time) and associate with new account if required
      * @Return: EntityResponse<UserAccountInfo>
      */
-    switchAccount(body?: TokenRequest): import("rxjs").Observable<any>;
+    switchAccount(body: TokenRequest): import("rxjs").Observable<any>;
     /**
      * Switch to the next account
      * @Return: EntityResponse<UserAccountInfo>
@@ -87,7 +87,7 @@ export declare class UserService {
      * Update user profile
      * @Return: EntityResponse<User>
      */
-    setProfile(body?: User): import("rxjs").Observable<any>;
+    setProfile(body: User): import("rxjs").Observable<any>;
     /**
      * Get app version
      * @Return: ActionResponse
@@ -97,17 +97,17 @@ export declare class UserService {
      * Find list of notifications by filter
      * @Return: ActionResponse
      */
-    findNotifications(search?: string, type?: NotificationTypeCode, sort?: string, page?: number, pageSize?: number): import("rxjs").Observable<any>;
+    findNotifications(search: string, type: NotificationTypeCode, sort: string, page: number, pageSize: number): import("rxjs").Observable<any>;
     /**
      * Mark user notification as read
      * @Return: ActionResponse
      */
-    readNotification(id?: string): import("rxjs").Observable<any>;
+    readNotification(id: string): import("rxjs").Observable<any>;
     /**
      * Delete notification
      * @Return: ActionResponse
      */
-    deleteNotification(id?: string): import("rxjs").Observable<any>;
+    deleteNotification(id: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<UserService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<UserService>;
 }

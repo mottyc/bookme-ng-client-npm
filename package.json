@@ -1,34 +1,31 @@
 {
-  "name": "@mottyc/ng-core-lib",
+  "name": "@mottyc/bookme-lib",
   "version": "0.0.1",
   "peerDependencies": {
-    "@angular/common": "^13.0.2",
-    "@angular/core": "^13.0.2"
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0"
   },
-  "module": "fesm2015/mottyc-ng-core-lib.mjs",
-  "es2020": "fesm2020/mottyc-ng-core-lib.mjs",
-  "esm2020": "esm2020/mottyc-ng-core-lib.mjs",
-  "fesm2020": "fesm2020/mottyc-ng-core-lib.mjs",
-  "fesm2015": "fesm2015/mottyc-ng-core-lib.mjs",
-  "typings": "mottyc-ng-core-lib.d.ts",
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "module": "fesm2015/mottyc-bookme-lib.mjs",
+  "es2020": "fesm2020/mottyc-bookme-lib.mjs",
+  "esm2020": "esm2020/mottyc-bookme-lib.mjs",
+  "fesm2020": "fesm2020/mottyc-bookme-lib.mjs",
+  "fesm2015": "fesm2015/mottyc-bookme-lib.mjs",
+  "typings": "index.d.ts",
   "exports": {
     "./package.json": {
       "default": "./package.json"
     },
     ".": {
-      "types": "./mottyc-ng-core-lib.d.ts",
-      "esm2020": "./esm2020/mottyc-ng-core-lib.mjs",
-      "es2020": "./fesm2020/mottyc-ng-core-lib.mjs",
-      "es2015": "./fesm2015/mottyc-ng-core-lib.mjs",
-      "node": "./fesm2015/mottyc-ng-core-lib.mjs",
-      "default": "./fesm2020/mottyc-ng-core-lib.mjs"
+      "types": "./index.d.ts",
+      "esm2020": "./esm2020/mottyc-bookme-lib.mjs",
+      "es2020": "./fesm2020/mottyc-bookme-lib.mjs",
+      "es2015": "./fesm2015/mottyc-bookme-lib.mjs",
+      "node": "./fesm2015/mottyc-bookme-lib.mjs",
+      "default": "./fesm2020/mottyc-bookme-lib.mjs"
     }
   },
-  "sideEffects": false,
-  "dependencies": {
-    "tslib": "^2.3.0"
-  },
-  "scripts": {
-    "prepublishOnly": "node --eval \"console.error('ERROR: Trying to publish a package that has been compiled by Ivy in full compilation mode. This is not allowed.\\nPlease delete and rebuild the package with Ivy partial compilation mode, before attempting to publish.\\n')\" && exit 1"
-  }
+  "sideEffects": false
 }

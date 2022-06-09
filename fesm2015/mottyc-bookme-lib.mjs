@@ -42,9 +42,10 @@ class AccountRole {
  *  Account specific settings
 */
 class AccountSettings {
-    constructor(defaultActivities, retentionDays) {
+    constructor(defaultActivities, retentionDays, autoPlacement) {
         this.defaultActivities = defaultActivities;
         this.retentionDays = retentionDays;
+        this.autoPlacement = autoPlacement;
     }
 }
 
@@ -2322,13 +2323,11 @@ class RestUtil {
         return Promise.reject(error.message || error);
     }
 }
-/** @nocollapse */ /** @nocollapse */ RestUtil.ɵfac = function RestUtil_Factory(t) { return new (t || RestUtil)(i0.ɵɵinject(i1.HttpClient)); };
-/** @nocollapse */ /** @nocollapse */ RestUtil.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: RestUtil, factory: RestUtil.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(RestUtil, [{
+RestUtil.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: RestUtil, deps: [{ token: i1.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });
+RestUtil.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: RestUtil });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: RestUtil, decorators: [{
             type: Injectable
-        }], function () { return [{ type: i1.HttpClient }]; }, null);
-})();
+        }], ctorParameters: function () { return [{ type: i1.HttpClient }]; } });
 
 class CoreConfig {
 }
@@ -2364,18 +2363,16 @@ class AdminAccountService {
         return this.rest.put(`${this.baseUrl}/settings`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
 }
-/** @nocollapse */ /** @nocollapse */ AdminAccountService.ɵfac = function AdminAccountService_Factory(t) { return new (t || AdminAccountService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ AdminAccountService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: AdminAccountService, factory: AdminAccountService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminAccountService, [{
+AdminAccountService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminAccountService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminAccountService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminAccountService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminAccountService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
 
 /**
  * Services for managing club activities - for account administrator only
@@ -2500,7 +2497,7 @@ class AdminActivitiesService {
         if (day != null) {
             params.push(`day=${day}`);
         }
-        return this.rest.post(`${this.baseUrl}/default`, null, ...params);
+        return this.rest.post(`${this.baseUrl}/default`, '', ...params);
     }
     /**
      * Clear all month activities
@@ -2520,18 +2517,16 @@ class AdminActivitiesService {
         return this.rest.delete(`${this.baseUrl}/default`, ...params);
     }
 }
-/** @nocollapse */ /** @nocollapse */ AdminActivitiesService.ɵfac = function AdminActivitiesService_Factory(t) { return new (t || AdminActivitiesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ AdminActivitiesService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: AdminActivitiesService, factory: AdminActivitiesService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminActivitiesService, [{
+AdminActivitiesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminActivitiesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminActivitiesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminActivitiesService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminActivitiesService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
 
 /**
  * List of all user related actions for account administrator only
@@ -2559,7 +2554,7 @@ class AdminMembersService {
      * @Return: ActionResponse
      */
     reInvite(id) {
-        return this.rest.post(`${this.baseUrl}/re-invite/${id}`, null);
+        return this.rest.post(`${this.baseUrl}/re-invite/${id}`, '');
     }
     /**
      * Update member
@@ -2577,7 +2572,7 @@ class AdminMembersService {
         if (status != null) {
             params.push(`status=${status}`);
         }
-        return this.rest.put(`${this.baseUrl}/${id}/status/{status}`, null, ...params);
+        return this.rest.put(`${this.baseUrl}/${id}/status/{status}`, '', ...params);
     }
     /**
      * Delete member from the account
@@ -2593,7 +2588,7 @@ class AdminMembersService {
      * @Return: ActionResponse
      */
     resetPassword(id) {
-        return this.rest.post(`${this.baseUrl}/${id}/reset-password`, null);
+        return this.rest.post(`${this.baseUrl}/${id}/reset-password`, '');
     }
     /**
      * Get single member by id (including user data)
@@ -2701,7 +2696,7 @@ class AdminMembersService {
      * @return ActionResponse
      */
     importFile() {
-        return this.rest.post(`${this.baseUrl}/import`, null);
+        return this.rest.post(`${this.baseUrl}/import`, '');
     }
     /**
      * Export members to a file
@@ -2747,18 +2742,16 @@ class AdminMembersService {
         return this.rest.get(`${this.baseUrl}/resources`, ...params);
     }
 }
-/** @nocollapse */ /** @nocollapse */ AdminMembersService.ɵfac = function AdminMembersService_Factory(t) { return new (t || AdminMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ AdminMembersService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: AdminMembersService, factory: AdminMembersService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminMembersService, [{
+AdminMembersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminMembersService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminMembersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminMembersService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminMembersService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
 
 /**
  * List of all notifications actions for account administrator only
@@ -2872,18 +2865,16 @@ class AdminNotificationsService {
         return this.rest.post(`${this.baseUrl}/members`, typeof body === 'object' ? JSON.stringify(body) : body, ...params);
     }
 }
-/** @nocollapse */ /** @nocollapse */ AdminNotificationsService.ɵfac = function AdminNotificationsService_Factory(t) { return new (t || AdminNotificationsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ AdminNotificationsService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: AdminNotificationsService, factory: AdminNotificationsService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminNotificationsService, [{
+AdminNotificationsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminNotificationsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminNotificationsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminNotificationsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminNotificationsService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
 
 /**
  * Services for planing club resource placements - for account administrator only
@@ -2938,7 +2929,7 @@ class AdminPlaningService {
      * @Return: EntitiesResponse<ActivityBookingGroup>
      */
     autoDailyPlaning(day) {
-        return this.rest.post(`${this.baseUrl}/daily/${day}/auto`, null);
+        return this.rest.post(`${this.baseUrl}/daily/${day}/auto`, '');
     }
     /**
      * Reset auto planing - un-assign resources and clear auto approve booking
@@ -2959,14 +2950,14 @@ class AdminPlaningService {
      * @Return: ActionResponse
      */
     assignResource(id, resourceId) {
-        return this.rest.post(`${this.baseUrl}/bookings/${id}/assign/${resourceId}`, null);
+        return this.rest.post(`${this.baseUrl}/bookings/${id}/assign/${resourceId}`, '');
     }
     /**
      * Un assign resource from booking request
      * @Return: ActionResponse
      */
     unAssignResource(id) {
-        return this.rest.post(`${this.baseUrl}/bookings/${id}/un-assign`, null);
+        return this.rest.post(`${this.baseUrl}/bookings/${id}/un-assign`, '');
     }
     /**
      * Find all bookings by filter
@@ -2996,14 +2987,14 @@ class AdminPlaningService {
      * @Return: EntitiesResponse<ActivityBookingGroup>
      */
     mergeBookings(day, source, target) {
-        return this.rest.post(`${this.baseUrl}/daily/${day}/bookings/${source}/merge/${target}`, null);
+        return this.rest.post(`${this.baseUrl}/daily/${day}/bookings/${source}/merge/${target}`, '');
     }
     /**
      * Split booking and recalculate the daily planing
      * @Return: EntitiesResponse<ActivityBookingGroup>
      */
     splitBookings(day, id) {
-        return this.rest.post(`${this.baseUrl}/daily/${day}/bookings/${id}/split`, null);
+        return this.rest.post(`${this.baseUrl}/daily/${day}/bookings/${id}/split`, '');
     }
     /**
      * Delete booking and recalculate the daily planing
@@ -3049,7 +3040,7 @@ class AdminPlaningService {
         if (userId != null) {
             params.push(`userId=${userId}`);
         }
-        return this.rest.post(`${this.baseUrl}/bookings/${id}/absence`, null, ...params);
+        return this.rest.post(`${this.baseUrl}/bookings/${id}/absence`, '', ...params);
     }
     /**
      * Report incident from registration
@@ -3063,18 +3054,16 @@ class AdminPlaningService {
         return this.rest.post(`${this.baseUrl}/bookings/${id}/incident`, typeof body === 'object' ? JSON.stringify(body) : body, ...params);
     }
 }
-/** @nocollapse */ /** @nocollapse */ AdminPlaningService.ɵfac = function AdminPlaningService_Factory(t) { return new (t || AdminPlaningService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ AdminPlaningService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: AdminPlaningService, factory: AdminPlaningService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminPlaningService, [{
+AdminPlaningService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminPlaningService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminPlaningService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminPlaningService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminPlaningService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
 
 /**
  * Services for analytics reports - for account administrator only
@@ -3261,18 +3250,16 @@ class AdminReportsService {
         return this.rest.download(`admin-reports`, `${this.baseUrl}/period-incidents/export`, ...params);
     }
 }
-/** @nocollapse */ /** @nocollapse */ AdminReportsService.ɵfac = function AdminReportsService_Factory(t) { return new (t || AdminReportsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ AdminReportsService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: AdminReportsService, factory: AdminReportsService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminReportsService, [{
+AdminReportsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminReportsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminReportsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminReportsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminReportsService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
 
 /**
  * Services for managing club resources - for account administrator only
@@ -3400,7 +3387,7 @@ class AdminResourcesService {
      * @return ActionResponse
      */
     importFile() {
-        return this.rest.post(`${this.baseUrl}/import`, null);
+        return this.rest.post(`${this.baseUrl}/import`, '');
     }
     /**
      * Export resources to a file
@@ -3432,18 +3419,16 @@ class AdminResourcesService {
         return this.rest.download(`admin-resources`, `${this.baseUrl}/export`, ...params);
     }
 }
-/** @nocollapse */ /** @nocollapse */ AdminResourcesService.ɵfac = function AdminResourcesService_Factory(t) { return new (t || AdminResourcesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ AdminResourcesService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: AdminResourcesService, factory: AdminResourcesService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(AdminResourcesService, [{
+AdminResourcesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminResourcesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminResourcesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminResourcesService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: AdminResourcesService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
 
 /**
  * Health check service, no X-API-KEY or X-ACCESS-TOKEN are required
@@ -3467,594 +3452,16 @@ class HealthCheckService {
         return this.rest.get(`${this.baseUrl}`);
     }
 }
-/** @nocollapse */ /** @nocollapse */ HealthCheckService.ɵfac = function HealthCheckService_Factory(t) { return new (t || HealthCheckService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ HealthCheckService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: HealthCheckService, factory: HealthCheckService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(HealthCheckService, [{
+HealthCheckService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: HealthCheckService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+HealthCheckService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: HealthCheckService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: HealthCheckService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
-
-/**
- * List of account related actions
- */
-class UserAccountsService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/accounts';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Find list of accounts and filter
-     * @Return: QueryResponse<Account>
-     */
-    find(search, type, status, sort, page, pageSize) {
-        const params = new Array();
-        if (search != null) {
-            params.push(`search=${search}`);
-        }
-        if (type != null) {
-            params.push(`type=${type}`);
-        }
-        if (status != null) {
-            params.push(`status=${status}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-    /**
-     * Get single account by id
-     * @Return: EntityResponse<Account>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Get list of user memberships
-     * @Return: EntitiesResponse<Membership>
-     */
-    getMemberships() {
-        return this.rest.get(`${this.baseUrl}/memberships`);
-    }
-    /**
-     * Delete membership by id
-     * @Return: ActionResponse
-     */
-    deleteMemberships(id) {
-        return this.rest.delete(`${this.baseUrl}/memberships/${id}`);
-    }
-}
-/** @nocollapse */ /** @nocollapse */ UserAccountsService.ɵfac = function UserAccountsService_Factory(t) { return new (t || UserAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ UserAccountsService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: UserAccountsService, factory: UserAccountsService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UserAccountsService, [{
-            type: Injectable
-        }], function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    }, null);
-})();
-
-/**
- * List of all user related actions for account administrator only
- */
-class UsrMembersService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/members';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Get single member by id (including user data)
-     * @Return: EntityResponse<MemberUser>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Get my (logged-in user) member info (including user data)
-     * @Return: EntityResponse<MemberUser>
-     */
-    getMy() {
-        return this.rest.get(`${this.baseUrl}/my`);
-    }
-    /**
-     * Find list of users and filter the list
-     * System user will see all users, Account system will see all users of the account, registered user will get an error.
-     * @Return: QueryResponse<MemberUser>
-     */
-    find(search, role, status, sort, page, pageSize) {
-        const params = new Array();
-        if (search != null) {
-            params.push(`search=${search}`);
-        }
-        if (role != null) {
-            params.push(`role=${role}`);
-        }
-        if (status != null) {
-            params.push(`status=${status}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-    /**
-     * Find list of resources by filter
-     * @Return: EntitiesResponse<Resource>
-     */
-    findResources(accountId, search, include, exclude) {
-        const params = new Array();
-        if (accountId != null) {
-            params.push(`accountId=${accountId}`);
-        }
-        if (search != null) {
-            params.push(`search=${search}`);
-        }
-        if (include != null) {
-            params.push(`include=${include}`);
-        }
-        if (exclude != null) {
-            params.push(`exclude=${exclude}`);
-        }
-        return this.rest.get(`${this.baseUrl}/resources`, ...params);
-    }
-    /**
-     * Update member
-     * @Return: EntityResponse<Member>
-     */
-    update(body) {
-        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-}
-/** @nocollapse */ /** @nocollapse */ UsrMembersService.ɵfac = function UsrMembersService_Factory(t) { return new (t || UsrMembersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ UsrMembersService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: UsrMembersService, factory: UsrMembersService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UsrMembersService, [{
-            type: Injectable
-        }], function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    }, null);
-})();
-
-/**
- * Services for user registration and login
- */
-class UserService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/user';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Login to the system with user email and password
-     * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
-     * @Return: EntityResponse<LoginData>
-     */
-    login(body) {
-        return this.rest.post(`${this.baseUrl}/login`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Refresh token (set new expiration time) and associate with new account if required
-     * @Return: EntityResponse<LoginData>
-     */
-    refreshToken() {
-        return this.rest.post(`${this.baseUrl}/refresh-token`, null);
-    }
-    /**
-     * Verify user by temporary login key
-     * @Return: EntityResponse<User>
-     */
-    verifyLoginKey(key) {
-        const params = new Array();
-        if (key != null) {
-            params.push(`key=${key}`);
-        }
-        return this.rest.get(`${this.baseUrl}/login/verify`, ...params);
-    }
-    /**
-     * Send verification code by email
-     * @Return: ActionResponse
-     */
-    sendVerificationCode(body) {
-        return this.rest.post(`${this.baseUrl}/verify`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Validate verification code and reset password
-     * @Return: ActionResponse
-     */
-    resetPassword(code) {
-        return this.rest.post(`${this.baseUrl}/reset-password`, typeof code === 'object' ? JSON.stringify(code) : code);
-    }
-    /**
-     * Change password
-     * @Return: ActionResponse
-     */
-    changePassword(body) {
-        return this.rest.post(`${this.baseUrl}/change-password`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Check if password was used before (according to password policy)
-     * @Return: ActionResponse
-     */
-    checkUnusedPassword(body) {
-        return this.rest.post(`${this.baseUrl}/check-password`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Change current user name
-     * @Return: ActionResponse
-     */
-    changeName(body) {
-        return this.rest.put(`${this.baseUrl}/name`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Change current user mobile
-     * @Return: ActionResponse
-     */
-    changeMobile(body) {
-        return this.rest.put(`${this.baseUrl}/mobile`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Get all user accessible accounts for the user
-     * @Return: EntitiesResponse<Account>
-     */
-    getAccounts() {
-        return this.rest.get(`${this.baseUrl}/accounts`);
-    }
-    /**
-     * Refresh token (set new expiration time) and associate with new account if required
-     * @Return: EntityResponse<UserAccountInfo>
-     */
-    switchAccount(body) {
-        return this.rest.post(`${this.baseUrl}/switch-account`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Switch to the next account
-     * @Return: EntityResponse<UserAccountInfo>
-     */
-    switchNext() {
-        return this.rest.post(`${this.baseUrl}/switch-next`, null);
-    }
-    /**
-     * Get user profile
-     * @Return: EntityResponse<User>
-     */
-    getProfile() {
-        return this.rest.get(`${this.baseUrl}/profile`);
-    }
-    /**
-     * Update user profile
-     * @Return: EntityResponse<User>
-     */
-    setProfile(body) {
-        return this.rest.put(`${this.baseUrl}/profile`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Get app version
-     * @Return: ActionResponse
-     */
-    getVersion() {
-        return this.rest.get(`${this.baseUrl}/version`);
-    }
-    /**
-     * Find list of notifications by filter
-     * @Return: ActionResponse
-     */
-    findNotifications(search, type, sort, page, pageSize) {
-        const params = new Array();
-        if (search != null) {
-            params.push(`search=${search}`);
-        }
-        if (type != null) {
-            params.push(`type=${type}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}/notifications`, ...params);
-    }
-    /**
-     * Mark user notification as read
-     * @Return: ActionResponse
-     */
-    readNotification(id) {
-        return this.rest.put(`${this.baseUrl}/notifications/${id}`, null);
-    }
-    /**
-     * Delete notification
-     * @Return: ActionResponse
-     */
-    deleteNotification(id) {
-        return this.rest.delete(`${this.baseUrl}/notifications/${id}`);
-    }
-}
-/** @nocollapse */ /** @nocollapse */ UserService.ɵfac = function UserService_Factory(t) { return new (t || UserService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ UserService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: UserService, factory: UserService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UserService, [{
-            type: Injectable
-        }], function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    }, null);
-})();
-
-/**
- * List of account related actions for system administrator only
- * @RequestHeader X-API-KEY The key to identify the application (console)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class SysAccountsService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/sys/accounts';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Create new account
-     * @Return: EntityResponse<Account>
-     */
-    create(body) {
-        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Update existing account in the system
-     * @Return: EntityResponse<Account>
-     */
-    update(body) {
-        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Delete account from the system
-     * The account is moved to DELETED mode and will be deleted after 90 days
-     * Only account marked as SUSPENDED can be deleted
-     * @Return: ActionResponse
-     */
-    delete(id) {
-        return this.rest.delete(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Delete account immediately without account status restrictions
-     * @Return: ActionResponse
-     */
-    purge(id) {
-        return this.rest.delete(`${this.baseUrl}/purge/${id}`);
-    }
-    /**
-     * Reset account - remove all operational data older than the retention time in days (events, status, log ...) but leave configuration data
-     * @Return: ActionResponse
-     */
-    reset(id, days) {
-        return this.rest.delete(`${this.baseUrl}/reset/${id}/days/${days}`);
-    }
-    /**
-     * Get single account by id
-     * @Return: EntityResponse<Account>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Find list of accounts and filter
-     * @Return: QueryResponse<Account>
-     */
-    find(search, type, status, sort, page, pageSize) {
-        const params = new Array();
-        if (search != null) {
-            params.push(`search=${search}`);
-        }
-        if (type != null) {
-            params.push(`type=${type}`);
-        }
-        if (status != null) {
-            params.push(`status=${status}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-}
-/** @nocollapse */ /** @nocollapse */ SysAccountsService.ɵfac = function SysAccountsService_Factory(t) { return new (t || SysAccountsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ SysAccountsService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: SysAccountsService, factory: SysAccountsService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SysAccountsService, [{
-            type: Injectable
-        }], function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    }, null);
-})();
-
-/**
- * List of all user related actions for account administrator only
- * @RequestHeader X-API-KEY The key to identify the application (console)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class SysUsersService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/sys/users';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Create a new user for the current account
-     * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
-     * @Return: ActionResponse
-     */
-    create(body) {
-        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Update user
-     * @Return: EntityResponse<User>
-     */
-    update(id, body) {
-        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Change user name
-     * @Return: EntityResponse<User>
-     */
-    changeName(id, body) {
-        return this.rest.put(`${this.baseUrl}/${id}/name`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Change user mobile
-     * @Return: EntityResponse<User>
-     */
-    changeMobile(id, body) {
-        return this.rest.put(`${this.baseUrl}/${id}/mobile`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Change user type
-     * @Return: EntityResponse<User>
-     */
-    changeType(id, type) {
-        return this.rest.put(`${this.baseUrl}/${id}/type/${type}`, null);
-    }
-    /**
-     * Change user status
-     * @Return: EntityResponse<User>
-     */
-    changeStatus(id, status) {
-        return this.rest.put(`${this.baseUrl}/${id}/status/${status}`, null);
-    }
-    /**
-     * Change user default account
-     * @Return: EntityResponse<User>
-     */
-    changeDefaultAccount(id, accountId) {
-        return this.rest.put(`${this.baseUrl}/${id}/defaultAccount/${accountId}`, null);
-    }
-    /**
-     * Reset password for user, generate one-time temporary password
-     * @Return: ActionResponse
-     */
-    resetPassword(id) {
-        return this.rest.post(`${this.baseUrl}/${id}/reset-password`, null);
-    }
-    /**
-     * Delete user from the system
-     * @Return: ActionResponse
-     */
-    delete(id) {
-        return this.rest.delete(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Get single user by Id
-     * @Return: EntityResponse<User>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Find list of users by filter
-     * @Return: QueryResponse<User>
-     */
-    find(accountId, search, type, status, sort, page, pageSize) {
-        const params = new Array();
-        if (accountId != null) {
-            params.push(`accountId=${accountId}`);
-        }
-        if (search != null) {
-            params.push(`search=${search}`);
-        }
-        if (type != null) {
-            params.push(`type=${type}`);
-        }
-        if (status != null) {
-            params.push(`status=${status}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-}
-/** @nocollapse */ /** @nocollapse */ SysUsersService.ɵfac = function SysUsersService_Factory(t) { return new (t || SysUsersService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ SysUsersService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: SysUsersService, factory: SysUsersService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(SysUsersService, [{
-            type: Injectable
-        }], function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
 
 /**
  * Services for managing club activities - for account administrator only
@@ -4130,18 +3537,16 @@ class UsrActivitiesService {
         return this.rest.get(`${this.baseUrl}/${id}/all-resources`);
     }
 }
-/** @nocollapse */ /** @nocollapse */ UsrActivitiesService.ɵfac = function UsrActivitiesService_Factory(t) { return new (t || UsrActivitiesService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ UsrActivitiesService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: UsrActivitiesService, factory: UsrActivitiesService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UsrActivitiesService, [{
+UsrActivitiesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UsrActivitiesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UsrActivitiesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UsrActivitiesService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UsrActivitiesService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
 
 /**
  * Services for managing kayak resources - for account administrator only
@@ -4295,18 +3700,16 @@ class UserBookingsService {
         return this.rest.get(`${this.baseUrl}/activities`, ...params);
     }
 }
-/** @nocollapse */ /** @nocollapse */ UserBookingsService.ɵfac = function UserBookingsService_Factory(t) { return new (t || UserBookingsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ UserBookingsService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: UserBookingsService, factory: UserBookingsService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UserBookingsService, [{
+UserBookingsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserBookingsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UserBookingsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserBookingsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserBookingsService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
 
 /**
  * Services for managing user placements (approved bookings)
@@ -4382,20 +3785,591 @@ class UserPlacementsService {
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
 }
-/** @nocollapse */ /** @nocollapse */ UserPlacementsService.ɵfac = function UserPlacementsService_Factory(t) { return new (t || UserPlacementsService)(i0.ɵɵinject('config'), i0.ɵɵinject(RestUtil)); };
-/** @nocollapse */ /** @nocollapse */ UserPlacementsService.ɵprov = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjectable({ token: UserPlacementsService, factory: UserPlacementsService.ɵfac });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(UserPlacementsService, [{
+UserPlacementsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserPlacementsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UserPlacementsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserPlacementsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserPlacementsService, decorators: [{
             type: Injectable
-        }], function () {
+        }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
                         type: Inject,
                         args: ['config']
                     }] }, { type: RestUtil }];
-    }, null);
-})();
+    } });
+
+/**
+ * List of account related actions
+ */
+class UserAccountsService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/accounts';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Find list of accounts and filter
+     * @Return: QueryResponse<Account>
+     */
+    find(search, type, status, sort, page, pageSize) {
+        const params = new Array();
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+    /**
+     * Get single account by id
+     * @Return: EntityResponse<Account>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Get list of user memberships
+     * @Return: EntitiesResponse<Membership>
+     */
+    getMemberships() {
+        return this.rest.get(`${this.baseUrl}/memberships`);
+    }
+    /**
+     * Delete membership by id
+     * @Return: ActionResponse
+     */
+    deleteMemberships(id) {
+        return this.rest.delete(`${this.baseUrl}/memberships/${id}`);
+    }
+}
+UserAccountsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserAccountsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UserAccountsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserAccountsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserAccountsService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () {
+        return [{ type: CoreConfig, decorators: [{
+                        type: Inject,
+                        args: ['config']
+                    }] }, { type: RestUtil }];
+    } });
+
+/**
+ * List of all user related actions for account administrator only
+ */
+class UsrMembersService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/members';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Get single member by id (including user data)
+     * @Return: EntityResponse<MemberUser>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Get my (logged-in user) member info (including user data)
+     * @Return: EntityResponse<MemberUser>
+     */
+    getMy() {
+        return this.rest.get(`${this.baseUrl}/my`);
+    }
+    /**
+     * Find list of users and filter the list
+     * System user will see all users, Account system will see all users of the account, registered user will get an error.
+     * @Return: QueryResponse<MemberUser>
+     */
+    find(search, role, status, sort, page, pageSize) {
+        const params = new Array();
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (role != null) {
+            params.push(`role=${role}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+    /**
+     * Find list of resources by filter
+     * @Return: EntitiesResponse<Resource>
+     */
+    findResources(accountId, search, include, exclude) {
+        const params = new Array();
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (include != null) {
+            params.push(`include=${include}`);
+        }
+        if (exclude != null) {
+            params.push(`exclude=${exclude}`);
+        }
+        return this.rest.get(`${this.baseUrl}/resources`, ...params);
+    }
+    /**
+     * Update member
+     * @Return: EntityResponse<Member>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+}
+UsrMembersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UsrMembersService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UsrMembersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UsrMembersService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UsrMembersService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () {
+        return [{ type: CoreConfig, decorators: [{
+                        type: Inject,
+                        args: ['config']
+                    }] }, { type: RestUtil }];
+    } });
+
+/**
+ * Services for user registration and login
+ */
+class UserService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/user';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Login to the system with user email and password
+     * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
+     * @Return: EntityResponse<LoginData>
+     */
+    login(body) {
+        return this.rest.post(`${this.baseUrl}/login`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Refresh token (set new expiration time) and associate with new account if required
+     * @Return: EntityResponse<LoginData>
+     */
+    refreshToken() {
+        return this.rest.post(`${this.baseUrl}/refresh-token`, '');
+    }
+    /**
+     * Verify user by temporary login key
+     * @Return: EntityResponse<User>
+     */
+    verifyLoginKey(key) {
+        const params = new Array();
+        if (key != null) {
+            params.push(`key=${key}`);
+        }
+        return this.rest.get(`${this.baseUrl}/login/verify`, ...params);
+    }
+    /**
+     * Send verification code by email
+     * @Return: ActionResponse
+     */
+    sendVerificationCode(body) {
+        return this.rest.post(`${this.baseUrl}/verify`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Validate verification code and reset password
+     * @Return: ActionResponse
+     */
+    resetPassword(code) {
+        return this.rest.post(`${this.baseUrl}/reset-password`, typeof code === 'object' ? JSON.stringify(code) : code);
+    }
+    /**
+     * Change password
+     * @Return: ActionResponse
+     */
+    changePassword(body) {
+        return this.rest.post(`${this.baseUrl}/change-password`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Check if password was used before (according to password policy)
+     * @Return: ActionResponse
+     */
+    checkUnusedPassword(body) {
+        return this.rest.post(`${this.baseUrl}/check-password`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Change current user name
+     * @Return: ActionResponse
+     */
+    changeName(body) {
+        return this.rest.put(`${this.baseUrl}/name`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Change current user mobile
+     * @Return: ActionResponse
+     */
+    changeMobile(body) {
+        return this.rest.put(`${this.baseUrl}/mobile`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Get all user accessible accounts for the user
+     * @Return: EntitiesResponse<Account>
+     */
+    getAccounts() {
+        return this.rest.get(`${this.baseUrl}/accounts`);
+    }
+    /**
+     * Refresh token (set new expiration time) and associate with new account if required
+     * @Return: EntityResponse<UserAccountInfo>
+     */
+    switchAccount(body) {
+        return this.rest.post(`${this.baseUrl}/switch-account`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Switch to the next account
+     * @Return: EntityResponse<UserAccountInfo>
+     */
+    switchNext() {
+        return this.rest.post(`${this.baseUrl}/switch-next`, '');
+    }
+    /**
+     * Get user profile
+     * @Return: EntityResponse<User>
+     */
+    getProfile() {
+        return this.rest.get(`${this.baseUrl}/profile`);
+    }
+    /**
+     * Update user profile
+     * @Return: EntityResponse<User>
+     */
+    setProfile(body) {
+        return this.rest.put(`${this.baseUrl}/profile`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Get app version
+     * @Return: ActionResponse
+     */
+    getVersion() {
+        return this.rest.get(`${this.baseUrl}/version`);
+    }
+    /**
+     * Find list of notifications by filter
+     * @Return: ActionResponse
+     */
+    findNotifications(search, type, sort, page, pageSize) {
+        const params = new Array();
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}/notifications`, ...params);
+    }
+    /**
+     * Mark user notification as read
+     * @Return: ActionResponse
+     */
+    readNotification(id) {
+        return this.rest.put(`${this.baseUrl}/notifications/${id}`, '');
+    }
+    /**
+     * Delete notification
+     * @Return: ActionResponse
+     */
+    deleteNotification(id) {
+        return this.rest.delete(`${this.baseUrl}/notifications/${id}`);
+    }
+}
+UserService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UserService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: UserService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () {
+        return [{ type: CoreConfig, decorators: [{
+                        type: Inject,
+                        args: ['config']
+                    }] }, { type: RestUtil }];
+    } });
+
+/**
+ * List of account related actions for system administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (console)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class SysAccountsService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/sys/accounts';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create new account
+     * @Return: EntityResponse<Account>
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update existing account in the system
+     * @Return: EntityResponse<Account>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete account from the system
+     * The account is moved to DELETED mode and will be deleted after 90 days
+     * Only account marked as SUSPENDED can be deleted
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Delete account immediately without account status restrictions
+     * @Return: ActionResponse
+     */
+    purge(id) {
+        return this.rest.delete(`${this.baseUrl}/purge/${id}`);
+    }
+    /**
+     * Reset account - remove all operational data older than the retention time in days (events, status, log ...) but leave configuration data
+     * @Return: ActionResponse
+     */
+    reset(id, days) {
+        return this.rest.delete(`${this.baseUrl}/reset/${id}/days/${days}`);
+    }
+    /**
+     * Get single account by id
+     * @Return: EntityResponse<Account>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find list of accounts and filter
+     * @Return: QueryResponse<Account>
+     */
+    find(search, type, status, sort, page, pageSize) {
+        const params = new Array();
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+SysAccountsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: SysAccountsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+SysAccountsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: SysAccountsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: SysAccountsService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () {
+        return [{ type: CoreConfig, decorators: [{
+                        type: Inject,
+                        args: ['config']
+                    }] }, { type: RestUtil }];
+    } });
+
+/**
+ * List of all user related actions for account administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (console)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class SysUsersService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/sys/users';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create a new user for the current account
+     * The response includes access token valid for 20 minutes. The client side should renew the token before expiration using refresh-token method
+     * @Return: ActionResponse
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update user
+     * @Return: EntityResponse<User>
+     */
+    update(id, body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Change user name
+     * @Return: EntityResponse<User>
+     */
+    changeName(id, body) {
+        return this.rest.put(`${this.baseUrl}/${id}/name`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Change user mobile
+     * @Return: EntityResponse<User>
+     */
+    changeMobile(id, body) {
+        return this.rest.put(`${this.baseUrl}/${id}/mobile`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Change user type
+     * @Return: EntityResponse<User>
+     */
+    changeType(id, type) {
+        return this.rest.put(`${this.baseUrl}/${id}/type/${type}`, '');
+    }
+    /**
+     * Change user status
+     * @Return: EntityResponse<User>
+     */
+    changeStatus(id, status) {
+        return this.rest.put(`${this.baseUrl}/${id}/status/${status}`, '');
+    }
+    /**
+     * Change user default account
+     * @Return: EntityResponse<User>
+     */
+    changeDefaultAccount(id, accountId) {
+        return this.rest.put(`${this.baseUrl}/${id}/defaultAccount/${accountId}`, '');
+    }
+    /**
+     * Reset password for user, generate one-time temporary password
+     * @Return: ActionResponse
+     */
+    resetPassword(id) {
+        return this.rest.post(`${this.baseUrl}/${id}/reset-password`, '');
+    }
+    /**
+     * Delete user from the system
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Get single user by Id
+     * @Return: EntityResponse<User>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find list of users by filter
+     * @Return: QueryResponse<User>
+     */
+    find(accountId, search, type, status, sort, page, pageSize) {
+        const params = new Array();
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
+        }
+        if (search != null) {
+            params.push(`search=${search}`);
+        }
+        if (type != null) {
+            params.push(`type=${type}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+SysUsersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: SysUsersService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+SysUsersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: SysUsersService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: SysUsersService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () {
+        return [{ type: CoreConfig, decorators: [{
+                        type: Inject,
+                        args: ['config']
+                    }] }, { type: RestUtil }];
+    } });
 
 const Services = [
+    AdminActivitiesService,
+    AdminPlaningService,
+    AdminReportsService,
+    AdminResourcesService,
+    UsrActivitiesService,
+    UserBookingsService,
+    UserPlacementsService,
     AdminMembersService,
     AdminNotificationsService,
     UserAccountsService,
@@ -4405,18 +4379,10 @@ const Services = [
     HealthCheckService,
     SysAccountsService,
     SysUsersService,
-    AdminActivitiesService,
-    AdminPlaningService,
-    AdminReportsService,
-    AdminResourcesService,
-    UsrActivitiesService,
-    UserBookingsService,
-    UserPlacementsService,
 ];
 
 class CoreLibModule {
     static forRoot(config) {
-        // console.log(config);
         return {
             ngModule: CoreLibModule,
             providers: [
@@ -4427,18 +4393,15 @@ class CoreLibModule {
         };
     }
 }
-/** @nocollapse */ /** @nocollapse */ CoreLibModule.ɵfac = function CoreLibModule_Factory(t) { return new (t || CoreLibModule)(); };
-/** @nocollapse */ /** @nocollapse */ CoreLibModule.ɵmod = /** @pureOrBreakMyCode */ i0.ɵɵdefineNgModule({ type: CoreLibModule });
-/** @nocollapse */ /** @nocollapse */ CoreLibModule.ɵinj = /** @pureOrBreakMyCode */ i0.ɵɵdefineInjector({ imports: [[CommonModule, HttpClientModule]] });
-(function () {
-    (typeof ngDevMode === "undefined" || ngDevMode) && i0.ɵsetClassMetadata(CoreLibModule, [{
+CoreLibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: CoreLibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+CoreLibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "14.0.0", version: "14.0.1", ngImport: i0, type: CoreLibModule, imports: [CommonModule, HttpClientModule] });
+CoreLibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: CoreLibModule, imports: [CommonModule, HttpClientModule] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "14.0.1", ngImport: i0, type: CoreLibModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, HttpClientModule]
                 }]
-        }], null, null);
-})();
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && i0.ɵɵsetNgModuleScope(CoreLibModule, { imports: [CommonModule, HttpClientModule] }); })();
+        }] });
 
 /* Public API Surface of ng-core-lib */
 
@@ -4447,4 +4410,4 @@ class CoreLibModule {
  */
 
 export { Absence, AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, Activity, ActivityBookingGroup, ActivityIdRequest, ActivityStatusCode, Actual, AdminAccountService, AdminAccountSettingsUpdateRequest, AdminActivitiesService, AdminActivityBulkCreateRequest, AdminActivityDefaultCreateRequest, AdminActivityDefaultDeleteRequest, AdminActivityFindFreeResourcesRequest, AdminActivityFindRequest, AdminActivityPlaningRequest, AdminBookingHistoryRequest, AdminBookingMonthHistoryRequest, AdminCreateActivityRequest, AdminCreateResourceRequest, AdminDailyPlaningExportRequest, AdminDailyPlaningRequest, AdminDailyRegistrationRequest, AdminDailyResourcesRequest, AdminFindFreeResourcesRequest, AdminMembersExportCsvRequest, AdminMembersFindRequest, AdminMembersImportCsvRequest, AdminMembersService, AdminNotificationsService, AdminPlaningAssignResourceRequest, AdminPlaningDeleteActivityRequest, AdminPlaningDeleteBookingRequest, AdminPlaningFindBookingsRequest, AdminPlaningMergeBookingsRequest, AdminPlaningService, AdminPlaningSplitBookingRequest, AdminPlaningUnAssignResourceRequest, AdminReportAbsenceRequest, AdminReportIncidentRequest, AdminReportsService, AdminResourceBulkCreateRequest, AdminResourceExportCsvRequest, AdminResourceFindRequest, AdminResourceHistoryRequest, AdminResourceImportCsvRequest, AdminResourceMonthHistoryRequest, AdminResourcesService, AdminUpdateActivityRequest, AdminUpdateRegistrationRequest, AdminUpdateResourceRequest, ApiKey, AuditLog, BaseEntity, Booking, BookingGroup, BookingIdRequest, BookingOptionsMask, BookingRequest, BookingRequestIdRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, CountDataPoint, DayOfWeekCode, DistributionRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAbsence, EntitiesResponseOfAccount, EntitiesResponseOfActivity, EntitiesResponseOfActivityBookingGroup, EntitiesResponseOfActual, EntitiesResponseOfBooking, EntitiesResponseOfBookingGroup, EntitiesResponseOfBookingRequest, EntitiesResponseOfCountDataPoint, EntitiesResponseOfIncident, EntitiesResponseOfMemberUsage, EntitiesResponseOfMembership, EntitiesResponseOfNotification, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntitiesResponseOfStringIntValue, EntitiesResponseOfStringKeyValue, EntitiesResponseOfUsage, EntityResponse, EntityResponseOfAccount, EntityResponseOfAccountSettings, EntityResponseOfActivity, EntityResponseOfBooking, EntityResponseOfBookingRequest, EntityResponseOfLoginData, EntityResponseOfMember, EntityResponseOfMemberUser, EntityResponseOfPlacement, EntityResponseOfPlaning, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, FindNotificationsRequest, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Member, MemberIdRequest, MemberRegistration, MemberStatusCode, MemberUsage, MemberUser, MembersBulkImportRequest, MembersCountOvertimeRequest, MembersFindRequest, MembersFindResourcesRequest, MembersServiceInviteRequest, MembersServiceUpdateRequest, MembersServiceUpdateStatusRequest, Membership, MembershipIdRequest, MembershipsRequest, MonthlyCountRequest, Notification, NotificationIdRequest, NotificationTypeCode, NotifyActivityUsersRequest, NotifyAllMembersRequest, NotifyBookingUsersRequest, NotifyDailyUsersRequest, NotifyUserRequest, PeriodCountRequest, Placement, PlacementIdRequest, PlacementStatusCode, Planing, QueryResponse, QueryResponseOfAccount, QueryResponseOfActivity, QueryResponseOfBooking, QueryResponseOfBookingRequest, QueryResponseOfMemberUser, QueryResponseOfMembership, QueryResponseOfNotification, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentActivity, RecurrentTimeFrame, Registration, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, ResourcesCountOvertimeRequest, RestUtil, RowingBoatTypeCode, Services, StreamResponse, StringIntValue, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, Usage, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingGroupRequest, UserBookingHistoryRequest, UserBookingRequestFindRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreateBookingRequestRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceReadNotificationRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceUpdateRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdateBookingRequestRequest, UserUpdatePlacementRequest, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, UsrActivitiesService, UsrMembersService, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
-//# sourceMappingURL=mottyc-ng-core-lib.mjs.map
+//# sourceMappingURL=mottyc-bookme-lib.mjs.map

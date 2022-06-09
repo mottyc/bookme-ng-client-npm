@@ -1,5 +1,5 @@
 /**
  * Generated bundle index. Do not edit.
  */
-/// <amd-module name="@mottyc/ng-core-lib" />
+/// <amd-module name="@mottyc/bookme-lib" />
 export * from './public-api';
