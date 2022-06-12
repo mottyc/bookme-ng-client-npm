@@ -1,5 +1,5 @@
-import { AccountStatusCode } from '../enums/AccountStatusCode';
 import { AccountTypeCode } from '../enums/AccountTypeCode';
+import { AccountStatusCode } from '../enums/AccountStatusCode';
 export declare class UserAccountsFindRequest {
     search: string;
     type: AccountTypeCode[];
