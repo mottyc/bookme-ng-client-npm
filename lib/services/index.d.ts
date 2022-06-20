@@ -1,5 +1,6 @@
 export * from './adminAccountService';
 export * from './adminActivitiesService';
+export * from './adminAuditLogService';
 export * from './adminMembersService';
 export * from './adminNotificationsService';
 export * from './adminPlaningService';
@@ -8,6 +9,7 @@ export * from './adminResourcesService';
 export * from './healthCheckService';
 export * from './services.export';
 export * from './sysAccountsService';
+export * from './sysAuditLogService';
 export * from './sysUsersService';
 export * from './userAccountsService';
 export * from './userBookingsService';
