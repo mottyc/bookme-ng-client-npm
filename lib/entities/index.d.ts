@@ -5,6 +5,7 @@ export * from './ActivityBookingGroup';
 export * from './Actual';
 export * from './ApiKey';
 export * from './AuditLog';
+export * from './AutoPlacementLog';
 export * from './BaseEntity';
 export * from './Booking';
 export * from './BookingGroup';

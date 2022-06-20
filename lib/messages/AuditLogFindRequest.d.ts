@@ -6,11 +6,11 @@ export declare class AuditLogFindRequest {
     userId: string;
     itemId: string;
     itemType: EntityTypeCode;
-    action: string;
+    of: string;
     sort: string;
     page: number;
     pageSize: number;
-    constructor(from?: number, to?: number, accountId?: string, userId?: string, itemId?: string, itemType?: EntityTypeCode, action?: string, sort?: string, page?: number, pageSize?: number);
+    constructor(from?: number, to?: number, accountId?: string, userId?: string, itemId?: string, itemType?: EntityTypeCode, of?: string, sort?: string, page?: number, pageSize?: number);
 }
 export interface IAuditLogFindRequest {
     from?: number;
@@ -19,7 +19,7 @@ export interface IAuditLogFindRequest {
     userId?: string;
     itemId?: string;
     itemType?: EntityTypeCode;
-    action?: string;
+    of?: string;
     sort?: string;
     page?: number;
     pageSize?: number;

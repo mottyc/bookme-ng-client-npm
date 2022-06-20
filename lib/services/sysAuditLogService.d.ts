@@ -24,7 +24,7 @@ export declare class SysAuditLogService {
      * Find list of audit log entries by filters
      * @Return: EntityResponse<AuditLog>
      */
-    find(from: number, to: number, accountId: string, userId: string, itemId: string, itemType: EntityTypeCode, action: string, sort: string, page: number, pageSize: number): import("rxjs").Observable<any>;
+    find(from: number, to: number, accountId: string, userId: string, itemId: string, itemType: EntityTypeCode, of: string, sort: string, page: number, pageSize: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<SysAuditLogService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<SysAuditLogService>;
 }

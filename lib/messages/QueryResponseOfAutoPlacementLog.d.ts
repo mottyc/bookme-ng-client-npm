@@ -1,8 +1,8 @@
+import { AutoPlacementLog } from '../entities/AutoPlacementLog';
 import { QueryResponse } from '../messages/QueryResponse';
-import { Notification } from '../entities/Notification';
 import { IQueryResponse } from '../messages/QueryResponse';
-export declare class QueryResponseOfNotification extends QueryResponse {
-    list: Notification[];
+export declare class QueryResponseOfAutoPlacementLog extends QueryResponse {
+    list: AutoPlacementLog[];
     code: number;
     error: string;
     page: number;
@@ -12,8 +12,8 @@ export declare class QueryResponseOfNotification extends QueryResponse {
     queryDef: string;
     docType: string;
 }
-export interface IQueryResponseOfNotification extends IQueryResponse {
-    list?: Notification[];
+export interface IQueryResponseOfAutoPlacementLog extends IQueryResponse {
+    list?: AutoPlacementLog[];
     code?: number;
     error?: string;
     page?: number;
