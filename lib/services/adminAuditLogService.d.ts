@@ -1,5 +1,6 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
+import { EntityTypeCode } from '../enums/EntityTypeCode';
 import * as i0 from "@angular/core";
 /**
  * Services for audit log queries - for account administrator only
@@ -23,7 +24,7 @@ export declare class AdminAuditLogService {
      * Find list of audit log entries by filters
      * @Return: EntityResponse<AuditLog>
      */
-    find(from: number, to: number, item: string, account: string, sort: string, page: number, pageSize: number): import("rxjs").Observable<any>;
+    find(from: number, to: number, accountId: string, userId: string, itemId: string, itemType: EntityTypeCode, action: string, sort: string, page: number, pageSize: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<AdminAuditLogService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AdminAuditLogService>;
 }

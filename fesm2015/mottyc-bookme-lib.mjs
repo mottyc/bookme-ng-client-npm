@@ -1218,11 +1218,14 @@ class AdminUpdateResourceRequest {
 /*
 */
 class AuditLogFindRequest {
-    constructor(from, to, item, account, sort, page, pageSize) {
+    constructor(from, to, accountId, userId, itemId, itemType, action, sort, page, pageSize) {
         this.from = from;
         this.to = to;
-        this.item = item;
-        this.account = account;
+        this.accountId = accountId;
+        this.userId = userId;
+        this.itemId = itemId;
+        this.itemType = itemType;
+        this.action = action;
         this.sort = sort;
         this.page = page;
         this.pageSize = pageSize;
@@ -2587,7 +2590,7 @@ class AdminAuditLogService {
      * Find list of audit log entries by filters
      * @Return: EntityResponse<AuditLog>
      */
-    find(from, to, item, account, sort, page, pageSize) {
+    find(from, to, accountId, userId, itemId, itemType, action, sort, page, pageSize) {
         const params = new Array();
         if (from != null) {
             params.push(`from=${from}`);
@@ -2595,11 +2598,20 @@ class AdminAuditLogService {
         if (to != null) {
             params.push(`to=${to}`);
         }
-        if (item != null) {
-            params.push(`item=${item}`);
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
         }
-        if (account != null) {
-            params.push(`account=${account}`);
+        if (userId != null) {
+            params.push(`userId=${userId}`);
+        }
+        if (itemId != null) {
+            params.push(`itemId=${itemId}`);
+        }
+        if (itemType != null) {
+            params.push(`itemType=${itemType}`);
+        }
+        if (action != null) {
+            params.push(`action=${action}`);
         }
         if (sort != null) {
             params.push(`sort=${sort}`);
@@ -3812,7 +3824,7 @@ class SysAuditLogService {
      * Find list of audit log entries by filters
      * @Return: EntityResponse<AuditLog>
      */
-    find(from, to, item, account, sort, page, pageSize) {
+    find(from, to, accountId, userId, itemId, itemType, action, sort, page, pageSize) {
         const params = new Array();
         if (from != null) {
             params.push(`from=${from}`);
@@ -3820,11 +3832,20 @@ class SysAuditLogService {
         if (to != null) {
             params.push(`to=${to}`);
         }
-        if (item != null) {
-            params.push(`item=${item}`);
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
         }
-        if (account != null) {
-            params.push(`account=${account}`);
+        if (userId != null) {
+            params.push(`userId=${userId}`);
+        }
+        if (itemId != null) {
+            params.push(`itemId=${itemId}`);
+        }
+        if (itemType != null) {
+            params.push(`itemType=${itemType}`);
+        }
+        if (action != null) {
+            params.push(`action=${action}`);
         }
         if (sort != null) {
             params.push(`sort=${sort}`);
