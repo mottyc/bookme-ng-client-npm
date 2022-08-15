@@ -1,5 +1,5 @@
-import { EntityResponse } from '../messages/EntityResponse';
 import { MemberUsage } from '../common/MemberUsage';
+import { EntityResponse } from '../messages/EntityResponse';
 import { IEntityResponse } from '../messages/EntityResponse';
 export declare class EntitiesResponseOfMemberUsage extends EntityResponse {
     list: MemberUsage[];

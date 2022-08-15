@@ -1,9 +1,9 @@
+import { ResourceStatusCode } from '../enums/ResourceStatusCode';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { WeightRange } from '../common/WeightRange';
 import { BaseEntity } from '../entities/BaseEntity';
 import { ResourceClassCode } from '../enums/ResourceClassCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
-import { ResourceStatusCode } from '../enums/ResourceStatusCode';
-import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Resource extends BaseEntity {
     name: string;
