@@ -134,6 +134,7 @@ export * from './UserCreatePlacementRequest';
 export * from './UserIdRequest';
 export * from './UserIdsRequest';
 export * from './UserPlacementFindRequest';
+export * from './UserServiceBoardRequest';
 export * from './UserServiceChangeMobileRequest';
 export * from './UserServiceChangeNameRequest';
 export * from './UserServiceChangePasswordRequest';

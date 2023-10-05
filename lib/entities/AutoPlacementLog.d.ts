@@ -1,7 +1,7 @@
-import { EntityTypeCode } from '../enums/EntityTypeCode';
-import { Booking } from '../entities/Booking';
 import { BaseEntity } from '../entities/BaseEntity';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
+import { EntityTypeCode } from '../enums/EntityTypeCode';
+import { Booking } from '../entities/Booking';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class AutoPlacementLog extends BaseEntity {
     accountId: string;

@@ -1976,6 +1976,15 @@ class UserPlacementFindRequest {
 
 /*
 */
+class UserServiceBoardRequest {
+    constructor(time, account) {
+        this.time = time;
+        this.account = account;
+    }
+}
+
+/*
+*/
 class UserServiceChangeMobileRequest {
     constructor(body) {
         this.body = body;
@@ -2391,9 +2400,9 @@ class RestUtil {
         return Promise.reject(error.message || error);
     }
 }
-RestUtil.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: RestUtil, deps: [{ token: i1.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });
-RestUtil.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: RestUtil });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: RestUtil, decorators: [{
+RestUtil.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: RestUtil, deps: [{ token: i1.HttpClient }], target: i0.ɵɵFactoryTarget.Injectable });
+RestUtil.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: RestUtil });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: RestUtil, decorators: [{
             type: Injectable
         }], ctorParameters: function () { return [{ type: i1.HttpClient }]; } });
 
@@ -2431,9 +2440,9 @@ class AdminAccountService {
         return this.rest.put(`${this.baseUrl}/settings`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
 }
-AdminAccountService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminAccountService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-AdminAccountService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminAccountService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminAccountService, decorators: [{
+AdminAccountService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminAccountService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminAccountService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminAccountService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminAccountService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -2585,9 +2594,9 @@ class AdminActivitiesService {
         return this.rest.delete(`${this.baseUrl}/default`, ...params);
     }
 }
-AdminActivitiesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminActivitiesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-AdminActivitiesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminActivitiesService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminActivitiesService, decorators: [{
+AdminActivitiesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminActivitiesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminActivitiesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminActivitiesService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminActivitiesService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -2696,9 +2705,9 @@ class AdminAuditLogService {
         return this.rest.get(`${this.baseUrl}/auto-placement`, ...params);
     }
 }
-AdminAuditLogService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminAuditLogService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-AdminAuditLogService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminAuditLogService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminAuditLogService, decorators: [{
+AdminAuditLogService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminAuditLogService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminAuditLogService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminAuditLogService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminAuditLogService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -2921,9 +2930,9 @@ class AdminMembersService {
         return this.rest.get(`${this.baseUrl}/resources`, ...params);
     }
 }
-AdminMembersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminMembersService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-AdminMembersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminMembersService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminMembersService, decorators: [{
+AdminMembersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminMembersService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminMembersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminMembersService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminMembersService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -3044,9 +3053,9 @@ class AdminNotificationsService {
         return this.rest.post(`${this.baseUrl}/members`, typeof body === 'object' ? JSON.stringify(body) : body, ...params);
     }
 }
-AdminNotificationsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminNotificationsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-AdminNotificationsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminNotificationsService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminNotificationsService, decorators: [{
+AdminNotificationsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminNotificationsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminNotificationsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminNotificationsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminNotificationsService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -3233,9 +3242,9 @@ class AdminPlaningService {
         return this.rest.post(`${this.baseUrl}/bookings/${id}/incident`, typeof body === 'object' ? JSON.stringify(body) : body, ...params);
     }
 }
-AdminPlaningService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminPlaningService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-AdminPlaningService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminPlaningService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminPlaningService, decorators: [{
+AdminPlaningService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminPlaningService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminPlaningService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminPlaningService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminPlaningService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -3429,9 +3438,9 @@ class AdminReportsService {
         return this.rest.download(`admin-reports`, `${this.baseUrl}/period-incidents/export`, ...params);
     }
 }
-AdminReportsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminReportsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-AdminReportsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminReportsService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminReportsService, decorators: [{
+AdminReportsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminReportsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminReportsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminReportsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminReportsService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -3598,9 +3607,9 @@ class AdminResourcesService {
         return this.rest.download(`admin-resources`, `${this.baseUrl}/export`, ...params);
     }
 }
-AdminResourcesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminResourcesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-AdminResourcesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminResourcesService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: AdminResourcesService, decorators: [{
+AdminResourcesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminResourcesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+AdminResourcesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminResourcesService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminResourcesService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -3631,9 +3640,9 @@ class HealthCheckService {
         return this.rest.get(`${this.baseUrl}`);
     }
 }
-HealthCheckService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HealthCheckService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-HealthCheckService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HealthCheckService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: HealthCheckService, decorators: [{
+HealthCheckService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: HealthCheckService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+HealthCheckService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: HealthCheckService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: HealthCheckService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -3729,9 +3738,9 @@ class SysAccountsService {
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
 }
-SysAccountsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: SysAccountsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-SysAccountsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: SysAccountsService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: SysAccountsService, decorators: [{
+SysAccountsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAccountsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+SysAccountsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAccountsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAccountsService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -3857,9 +3866,9 @@ class SysUsersService {
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
 }
-SysUsersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: SysUsersService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-SysUsersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: SysUsersService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: SysUsersService, decorators: [{
+SysUsersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysUsersService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+SysUsersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysUsersService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysUsersService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -3930,9 +3939,9 @@ class SysAuditLogService {
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
 }
-SysAuditLogService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: SysAuditLogService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-SysAuditLogService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: SysAuditLogService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: SysAuditLogService, decorators: [{
+SysAuditLogService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+SysAuditLogService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -4015,9 +4024,9 @@ class UsrActivitiesService {
         return this.rest.get(`${this.baseUrl}/${id}/all-resources`);
     }
 }
-UsrActivitiesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UsrActivitiesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-UsrActivitiesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UsrActivitiesService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UsrActivitiesService, decorators: [{
+UsrActivitiesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UsrActivitiesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -4178,9 +4187,9 @@ class UserBookingsService {
         return this.rest.get(`${this.baseUrl}/activities`, ...params);
     }
 }
-UserBookingsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserBookingsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-UserBookingsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserBookingsService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserBookingsService, decorators: [{
+UserBookingsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UserBookingsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -4263,9 +4272,9 @@ class UserPlacementsService {
         return this.rest.get(`${this.baseUrl}`, ...params);
     }
 }
-UserPlacementsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserPlacementsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-UserPlacementsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserPlacementsService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserPlacementsService, decorators: [{
+UserPlacementsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UserPlacementsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -4336,9 +4345,9 @@ class UserAccountsService {
         return this.rest.delete(`${this.baseUrl}/memberships/${id}`);
     }
 }
-UserAccountsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserAccountsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-UserAccountsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserAccountsService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserAccountsService, decorators: [{
+UserAccountsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserAccountsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UserAccountsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserAccountsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserAccountsService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -4430,9 +4439,9 @@ class UsrMembersService {
         return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
     }
 }
-UsrMembersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UsrMembersService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-UsrMembersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UsrMembersService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UsrMembersService, decorators: [{
+UsrMembersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrMembersService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UsrMembersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrMembersService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrMembersService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -4462,6 +4471,20 @@ class UserService {
      */
     login(body) {
         return this.rest.post(`${this.baseUrl}/login`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Get daily activity board (for the kiosk application)
+     * @Return: EntityResponse<ActivityBookingGroup>
+     */
+    board(time, account) {
+        const params = new Array();
+        if (time != null) {
+            params.push(`time=${time}`);
+        }
+        if (account != null) {
+            params.push(`account=${account}`);
+        }
+        return this.rest.get(`${this.baseUrl}/board`, ...params);
     }
     /**
      * Refresh token (set new expiration time) and associate with new account if required
@@ -4603,9 +4626,9 @@ class UserService {
         return this.rest.delete(`${this.baseUrl}/notifications/${id}`);
     }
 }
-UserService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-UserService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: UserService, decorators: [{
+UserService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UserService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserService, decorators: [{
             type: Injectable
         }], ctorParameters: function () {
         return [{ type: CoreConfig, decorators: [{
@@ -4647,10 +4670,10 @@ class CoreLibModule {
         };
     }
 }
-CoreLibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: CoreLibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
-CoreLibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: CoreLibModule, imports: [CommonModule, HttpClientModule] });
-CoreLibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: CoreLibModule, imports: [[CommonModule, HttpClientModule]] });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImport: i0, type: CoreLibModule, decorators: [{
+CoreLibModule.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: CoreLibModule, deps: [], target: i0.ɵɵFactoryTarget.NgModule });
+CoreLibModule.ɵmod = i0.ɵɵngDeclareNgModule({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: CoreLibModule, imports: [CommonModule, HttpClientModule] });
+CoreLibModule.ɵinj = i0.ɵɵngDeclareInjector({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: CoreLibModule, imports: [[CommonModule, HttpClientModule]] });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: CoreLibModule, decorators: [{
             type: NgModule,
             args: [{
                     imports: [CommonModule, HttpClientModule]
@@ -4663,5 +4686,5 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.3.11", ngImpo
  * Generated bundle index. Do not edit.
  */
 
-export { Absence, AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, Activity, ActivityBookingGroup, ActivityIdRequest, ActivityStatusCode, Actual, AdminAccountService, AdminAccountSettingsUpdateRequest, AdminActivitiesService, AdminActivityBulkCreateRequest, AdminActivityDefaultCreateRequest, AdminActivityDefaultDeleteRequest, AdminActivityFindFreeResourcesRequest, AdminActivityFindRequest, AdminActivityPlaningRequest, AdminAuditLogService, AdminBookingHistoryRequest, AdminBookingMonthHistoryRequest, AdminCreateActivityRequest, AdminCreateResourceRequest, AdminDailyPlaningExportRequest, AdminDailyPlaningRequest, AdminDailyRegistrationRequest, AdminDailyResourcesRequest, AdminFindFreeResourcesRequest, AdminMembersExportCsvRequest, AdminMembersFindRequest, AdminMembersImportCsvRequest, AdminMembersService, AdminNotificationsService, AdminPlaningAssignResourceRequest, AdminPlaningDeleteActivityRequest, AdminPlaningDeleteBookingRequest, AdminPlaningFindBookingsRequest, AdminPlaningMergeBookingsRequest, AdminPlaningService, AdminPlaningSplitBookingRequest, AdminPlaningUnAssignResourceRequest, AdminReportAbsenceRequest, AdminReportIncidentRequest, AdminReportsService, AdminResourceBulkCreateRequest, AdminResourceExportCsvRequest, AdminResourceFindRequest, AdminResourceHistoryRequest, AdminResourceImportCsvRequest, AdminResourceMonthHistoryRequest, AdminResourcesService, AdminUpdateActivityRequest, AdminUpdateRegistrationRequest, AdminUpdateResourceRequest, ApiKey, AuditLog, AuditLogFindRequest, AuditLogIdRequest, AutoPlacementLog, BaseEntity, Booking, BookingGroup, BookingIdRequest, BookingOptionsMask, BookingRequest, BookingRequestIdRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, CountDataPoint, DayOfWeekCode, DistributionRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAbsence, EntitiesResponseOfAccount, EntitiesResponseOfActivity, EntitiesResponseOfActivityBookingGroup, EntitiesResponseOfActual, EntitiesResponseOfBooking, EntitiesResponseOfBookingGroup, EntitiesResponseOfBookingRequest, EntitiesResponseOfCountDataPoint, EntitiesResponseOfIncident, EntitiesResponseOfMemberUsage, EntitiesResponseOfMembership, EntitiesResponseOfNotification, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntitiesResponseOfStringIntValue, EntitiesResponseOfStringKeyValue, EntitiesResponseOfUsage, EntityResponse, EntityResponseOfAccount, EntityResponseOfAccountSettings, EntityResponseOfActivity, EntityResponseOfAuditLog, EntityResponseOfAutoPlacementLog, EntityResponseOfBooking, EntityResponseOfBookingRequest, EntityResponseOfLoginData, EntityResponseOfMember, EntityResponseOfMemberUser, EntityResponseOfPlacement, EntityResponseOfPlaning, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, FindNotificationsRequest, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Member, MemberIdRequest, MemberRegistration, MemberStatusCode, MemberUsage, MemberUser, MembersBulkImportRequest, MembersCountOvertimeRequest, MembersFindRequest, MembersFindResourcesRequest, MembersServiceInviteRequest, MembersServiceUpdateRequest, MembersServiceUpdateStatusRequest, Membership, MembershipIdRequest, MembershipsRequest, MonthlyCountRequest, Notification, NotificationIdRequest, NotificationTypeCode, NotifyActivityUsersRequest, NotifyAllMembersRequest, NotifyBookingUsersRequest, NotifyDailyUsersRequest, NotifyUserRequest, PeriodCountRequest, Placement, PlacementIdRequest, PlacementStatusCode, Planing, QueryResponse, QueryResponseOfAccount, QueryResponseOfActivity, QueryResponseOfAuditLog, QueryResponseOfAutoPlacementLog, QueryResponseOfBooking, QueryResponseOfBookingRequest, QueryResponseOfMemberUser, QueryResponseOfMembership, QueryResponseOfNotification, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentActivity, RecurrentTimeFrame, Registration, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, ResourcesCountOvertimeRequest, RestUtil, RowingBoatTypeCode, Services, SeverityCode, StreamResponse, StringIntValue, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysAuditLogService, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, Usage, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingGroupRequest, UserBookingHistoryRequest, UserBookingRequestFindRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreateBookingRequestRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceReadNotificationRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceUpdateRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdateBookingRequestRequest, UserUpdatePlacementRequest, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, UsrActivitiesService, UsrMembersService, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
+export { Absence, AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, Activity, ActivityBookingGroup, ActivityIdRequest, ActivityStatusCode, Actual, AdminAccountService, AdminAccountSettingsUpdateRequest, AdminActivitiesService, AdminActivityBulkCreateRequest, AdminActivityDefaultCreateRequest, AdminActivityDefaultDeleteRequest, AdminActivityFindFreeResourcesRequest, AdminActivityFindRequest, AdminActivityPlaningRequest, AdminAuditLogService, AdminBookingHistoryRequest, AdminBookingMonthHistoryRequest, AdminCreateActivityRequest, AdminCreateResourceRequest, AdminDailyPlaningExportRequest, AdminDailyPlaningRequest, AdminDailyRegistrationRequest, AdminDailyResourcesRequest, AdminFindFreeResourcesRequest, AdminMembersExportCsvRequest, AdminMembersFindRequest, AdminMembersImportCsvRequest, AdminMembersService, AdminNotificationsService, AdminPlaningAssignResourceRequest, AdminPlaningDeleteActivityRequest, AdminPlaningDeleteBookingRequest, AdminPlaningFindBookingsRequest, AdminPlaningMergeBookingsRequest, AdminPlaningService, AdminPlaningSplitBookingRequest, AdminPlaningUnAssignResourceRequest, AdminReportAbsenceRequest, AdminReportIncidentRequest, AdminReportsService, AdminResourceBulkCreateRequest, AdminResourceExportCsvRequest, AdminResourceFindRequest, AdminResourceHistoryRequest, AdminResourceImportCsvRequest, AdminResourceMonthHistoryRequest, AdminResourcesService, AdminUpdateActivityRequest, AdminUpdateRegistrationRequest, AdminUpdateResourceRequest, ApiKey, AuditLog, AuditLogFindRequest, AuditLogIdRequest, AutoPlacementLog, BaseEntity, Booking, BookingGroup, BookingIdRequest, BookingOptionsMask, BookingRequest, BookingRequestIdRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, CountDataPoint, DayOfWeekCode, DistributionRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAbsence, EntitiesResponseOfAccount, EntitiesResponseOfActivity, EntitiesResponseOfActivityBookingGroup, EntitiesResponseOfActual, EntitiesResponseOfBooking, EntitiesResponseOfBookingGroup, EntitiesResponseOfBookingRequest, EntitiesResponseOfCountDataPoint, EntitiesResponseOfIncident, EntitiesResponseOfMemberUsage, EntitiesResponseOfMembership, EntitiesResponseOfNotification, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntitiesResponseOfStringIntValue, EntitiesResponseOfStringKeyValue, EntitiesResponseOfUsage, EntityResponse, EntityResponseOfAccount, EntityResponseOfAccountSettings, EntityResponseOfActivity, EntityResponseOfAuditLog, EntityResponseOfAutoPlacementLog, EntityResponseOfBooking, EntityResponseOfBookingRequest, EntityResponseOfLoginData, EntityResponseOfMember, EntityResponseOfMemberUser, EntityResponseOfPlacement, EntityResponseOfPlaning, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, FindNotificationsRequest, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Member, MemberIdRequest, MemberRegistration, MemberStatusCode, MemberUsage, MemberUser, MembersBulkImportRequest, MembersCountOvertimeRequest, MembersFindRequest, MembersFindResourcesRequest, MembersServiceInviteRequest, MembersServiceUpdateRequest, MembersServiceUpdateStatusRequest, Membership, MembershipIdRequest, MembershipsRequest, MonthlyCountRequest, Notification, NotificationIdRequest, NotificationTypeCode, NotifyActivityUsersRequest, NotifyAllMembersRequest, NotifyBookingUsersRequest, NotifyDailyUsersRequest, NotifyUserRequest, PeriodCountRequest, Placement, PlacementIdRequest, PlacementStatusCode, Planing, QueryResponse, QueryResponseOfAccount, QueryResponseOfActivity, QueryResponseOfAuditLog, QueryResponseOfAutoPlacementLog, QueryResponseOfBooking, QueryResponseOfBookingRequest, QueryResponseOfMemberUser, QueryResponseOfMembership, QueryResponseOfNotification, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentActivity, RecurrentTimeFrame, Registration, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, ResourcesCountOvertimeRequest, RestUtil, RowingBoatTypeCode, Services, SeverityCode, StreamResponse, StringIntValue, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysAuditLogService, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, Usage, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingGroupRequest, UserBookingHistoryRequest, UserBookingRequestFindRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreateBookingRequestRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceBoardRequest, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceReadNotificationRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceUpdateRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdateBookingRequestRequest, UserUpdatePlacementRequest, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, UsrActivitiesService, UsrMembersService, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
 //# sourceMappingURL=mottyc-bookme-lib.mjs.map
