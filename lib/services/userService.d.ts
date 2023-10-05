@@ -1,10 +1,10 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
+import { LoginParams } from '../common/LoginParams';
 import { ChangePasswordRequest } from '../messages/ChangePasswordRequest';
 import { TokenRequest } from '../messages/TokenRequest';
 import { User } from '../entities/User';
 import { NotificationTypeCode } from '../enums/NotificationTypeCode';
-import { LoginParams } from '../common/LoginParams';
 import * as i0 from "@angular/core";
 /**
  * Services for user registration and login
@@ -27,7 +27,7 @@ export declare class UserService {
      * Get daily activity board (for the kiosk application)
      * @Return: EntityResponse<ActivityBookingGroup>
      */
-    board(time: number, account: string): import("rxjs").Observable<any>;
+    getBoard(from: number, account: string): import("rxjs").Observable<any>;
     /**
      * Refresh token (set new expiration time) and associate with new account if required
      * @Return: EntityResponse<LoginData>

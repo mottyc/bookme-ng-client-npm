@@ -1,9 +1,9 @@
 export declare class UserServiceBoardRequest {
-    time: number;
+    from: number;
     account: string;
-    constructor(time?: number, account?: string);
+    constructor(from?: number, account?: string);
 }
 export interface IUserServiceBoardRequest {
-    time?: number;
+    from?: number;
     account?: string;
 }
