@@ -1,5 +1,5 @@
-import { BaseEntity } from '../entities/BaseEntity';
 import { DayOfWeekCode } from '../enums/DayOfWeekCode';
+import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Usage extends BaseEntity {
     weekday: DayOfWeekCode;
