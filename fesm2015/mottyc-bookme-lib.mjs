@@ -3652,6 +3652,412 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImpor
     } });
 
 /**
+ * Services for audit log queries - for account administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (portal)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class SysAuditLogService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/sys/audit_log';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Get single audit log entry
+     * @Return: EntityResponse<AuditLog>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find list of audit log entries by filters
+     * @Return: EntityResponse<AuditLog>
+     */
+    find(from, to, accountId, userId, itemId, itemType, of, sort, page, pageSize) {
+        const params = new Array();
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (accountId != null) {
+            params.push(`accountId=${accountId}`);
+        }
+        if (userId != null) {
+            params.push(`userId=${userId}`);
+        }
+        if (itemId != null) {
+            params.push(`itemId=${itemId}`);
+        }
+        if (itemType != null) {
+            params.push(`itemType=${itemType}`);
+        }
+        if (of != null) {
+            params.push(`of=${of}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+SysAuditLogService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+SysAuditLogService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () {
+        return [{ type: CoreConfig, decorators: [{
+                        type: Inject,
+                        args: ['config']
+                    }] }, { type: RestUtil }];
+    } });
+
+/**
+ * Services for managing club activities - for account administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (portal)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class UsrActivitiesService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/activities';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Get single activity by id
+     * @Return: EntityResponse<Activity>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find activities by time range
+     * @Return: QueryResponse<Activity>
+     */
+    find(from, to, year, month, day, total) {
+        const params = new Array();
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (year != null) {
+            params.push(`year=${year}`);
+        }
+        if (month != null) {
+            params.push(`month=${month}`);
+        }
+        if (day != null) {
+            params.push(`day=${day}`);
+        }
+        if (total != null) {
+            params.push(`total=${total}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+    /**
+     * Find list of free resources for activity by filter
+     * @Return: EntitiesResponse<Resource>
+     */
+    findFreeResources(id, resType, weight, forUseBy) {
+        const params = new Array();
+        if (resType != null) {
+            params.push(`resType=${resType}`);
+        }
+        if (weight != null) {
+            params.push(`weight=${weight}`);
+        }
+        if (forUseBy != null) {
+            params.push(`forUseBy=${forUseBy}`);
+        }
+        return this.rest.get(`${this.baseUrl}/${id}/resources`, ...params);
+    }
+    /**
+     * Find list of all resources for activity and mark the assigned activities
+     * @Return: EntitiesResponse<Resource>
+     */
+    findAllResources(id) {
+        return this.rest.get(`${this.baseUrl}/${id}/all-resources`);
+    }
+}
+UsrActivitiesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UsrActivitiesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () {
+        return [{ type: CoreConfig, decorators: [{
+                        type: Inject,
+                        args: ['config']
+                    }] }, { type: RestUtil }];
+    } });
+
+/**
+ * Services for managing kayak resources - for account administrator only
+ * @RequestHeader X-API-KEY The key to identify the application (portal)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class UserBookingsService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/bookings';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create new booking
+     * @Return: EntityResponse<Booking>
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update booking
+     * @Return: EntityResponse<Booking>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update actual activity log (duration and distance)
+     * @Return: EntityResponse<Booking>
+     */
+    updateLog(body) {
+        return this.rest.put(`${this.baseUrl}/log`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete booking
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Remove current user from booking
+     * @Return: ActionResponse
+     */
+    removeMe(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}/remove-me`);
+    }
+    /**
+     * Get single booking by id
+     * @Return: EntityResponse<Booking>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Get extended booking info by id including names
+     * @Return: EntityResponse<Booking>
+     */
+    getExt(id) {
+        return this.rest.get(`${this.baseUrl}/${id}/ext`);
+    }
+    /**
+     * Find bookings by filters
+     * @Return: QueryResponse<Booking>
+     */
+    find(userId, resourceId, from, to, sort, page, pageSize) {
+        const params = new Array();
+        if (userId != null) {
+            params.push(`userId=${userId}`);
+        }
+        if (resourceId != null) {
+            params.push(`resourceId=${resourceId}`);
+        }
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+    /**
+     * Find bookings daily / monthly / yearly history by filters
+     * @Return: QueryResponse<Booking>
+     */
+    history(resourceId, year, month, day, sort) {
+        const params = new Array();
+        if (resourceId != null) {
+            params.push(`resourceId=${resourceId}`);
+        }
+        if (year != null) {
+            params.push(`year=${year}`);
+        }
+        if (month != null) {
+            params.push(`month=${month}`);
+        }
+        if (day != null) {
+            params.push(`day=${day}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        return this.rest.get(`${this.baseUrl}/history`, ...params);
+    }
+    /**
+     * Group my bookings by time period
+     * @Return: EntitiesResponse<BookingGroup>
+     */
+    groups(from, to, groupBy) {
+        const params = new Array();
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (groupBy != null) {
+            params.push(`groupBy=${groupBy}`);
+        }
+        return this.rest.get(`${this.baseUrl}/groups`, ...params);
+    }
+    /**
+     * Find list of activities groups by time period
+     * @Return: EntitiesResponse<BookingGroup>
+     */
+    activities(from, to, groupBy) {
+        const params = new Array();
+        if (from != null) {
+            params.push(`from=${from}`);
+        }
+        if (to != null) {
+            params.push(`to=${to}`);
+        }
+        if (groupBy != null) {
+            params.push(`groupBy=${groupBy}`);
+        }
+        return this.rest.get(`${this.baseUrl}/activities`, ...params);
+    }
+}
+UserBookingsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UserBookingsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () {
+        return [{ type: CoreConfig, decorators: [{
+                        type: Inject,
+                        args: ['config']
+                    }] }, { type: RestUtil }];
+    } });
+
+/**
+ * Services for managing user placements (approved bookings)
+ * @RequestHeader X-API-KEY The key to identify the application (portal)
+ * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
+ */
+class UserPlacementsService {
+    /**
+     * Class constructor
+     */
+    constructor(config, rest) {
+        this.config = config;
+        this.rest = rest;
+        // URL to web api
+        this.baseUrl = '/user/placements';
+        this.baseUrl = this.config.api + this.baseUrl;
+    }
+    /**
+     * Create new placement
+     * @Return: EntityResponse<Placement>
+     */
+    create(body) {
+        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Update placement
+     * @Return: EntityResponse<Placement>
+     */
+    update(body) {
+        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
+    }
+    /**
+     * Delete placement
+     * @Return: ActionResponse
+     */
+    delete(id) {
+        return this.rest.delete(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Get single placement by id
+     * @Return: EntityResponse<Placement>
+     */
+    get(id) {
+        return this.rest.get(`${this.baseUrl}/${id}`);
+    }
+    /**
+     * Find placements by filters
+     * @Return: QueryResponse<Placement>
+     */
+    find(userId, resourceId, bookingId, status, sort, page, pageSize) {
+        const params = new Array();
+        if (userId != null) {
+            params.push(`userId=${userId}`);
+        }
+        if (resourceId != null) {
+            params.push(`resourceId=${resourceId}`);
+        }
+        if (bookingId != null) {
+            params.push(`bookingId=${bookingId}`);
+        }
+        if (status != null) {
+            params.push(`status=${status}`);
+        }
+        if (sort != null) {
+            params.push(`sort=${sort}`);
+        }
+        if (page != null) {
+            params.push(`page=${page}`);
+        }
+        if (pageSize != null) {
+            params.push(`pageSize=${pageSize}`);
+        }
+        return this.rest.get(`${this.baseUrl}`, ...params);
+    }
+}
+UserPlacementsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
+UserPlacementsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService });
+i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService, decorators: [{
+            type: Injectable
+        }], ctorParameters: function () {
+        return [{ type: CoreConfig, decorators: [{
+                        type: Inject,
+                        args: ['config']
+                    }] }, { type: RestUtil }];
+    } });
+
+/**
  * List of account related actions
  */
 class UserAccountsService {
@@ -4231,422 +4637,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImpor
                     }] }, { type: RestUtil }];
     } });
 
-/**
- * Services for audit log queries - for account administrator only
- * @RequestHeader X-API-KEY The key to identify the application (portal)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class SysAuditLogService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/sys/audit_log';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Get single audit log entry
-     * @Return: EntityResponse<AuditLog>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Find list of audit log entries by filters
-     * @Return: EntityResponse<AuditLog>
-     */
-    find(from, to, accountId, userId, itemId, itemType, of, sort, page, pageSize) {
-        const params = new Array();
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (accountId != null) {
-            params.push(`accountId=${accountId}`);
-        }
-        if (userId != null) {
-            params.push(`userId=${userId}`);
-        }
-        if (itemId != null) {
-            params.push(`itemId=${itemId}`);
-        }
-        if (itemType != null) {
-            params.push(`itemType=${itemType}`);
-        }
-        if (of != null) {
-            params.push(`of=${of}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-}
-SysAuditLogService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-SysAuditLogService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService, decorators: [{
-            type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
-
-/**
- * Services for managing club activities - for account administrator only
- * @RequestHeader X-API-KEY The key to identify the application (portal)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class UsrActivitiesService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/activities';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Get single activity by id
-     * @Return: EntityResponse<Activity>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Find activities by time range
-     * @Return: QueryResponse<Activity>
-     */
-    find(from, to, year, month, day, total) {
-        const params = new Array();
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (year != null) {
-            params.push(`year=${year}`);
-        }
-        if (month != null) {
-            params.push(`month=${month}`);
-        }
-        if (day != null) {
-            params.push(`day=${day}`);
-        }
-        if (total != null) {
-            params.push(`total=${total}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-    /**
-     * Find list of free resources for activity by filter
-     * @Return: EntitiesResponse<Resource>
-     */
-    findFreeResources(id, resType, weight, forUseBy) {
-        const params = new Array();
-        if (resType != null) {
-            params.push(`resType=${resType}`);
-        }
-        if (weight != null) {
-            params.push(`weight=${weight}`);
-        }
-        if (forUseBy != null) {
-            params.push(`forUseBy=${forUseBy}`);
-        }
-        return this.rest.get(`${this.baseUrl}/${id}/resources`, ...params);
-    }
-    /**
-     * Find list of all resources for activity and mark the assigned activities
-     * @Return: EntitiesResponse<Resource>
-     */
-    findAllResources(id) {
-        return this.rest.get(`${this.baseUrl}/${id}/all-resources`);
-    }
-}
-UsrActivitiesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-UsrActivitiesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService, decorators: [{
-            type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
-
-/**
- * Services for managing kayak resources - for account administrator only
- * @RequestHeader X-API-KEY The key to identify the application (portal)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class UserBookingsService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/bookings';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Create new booking
-     * @Return: EntityResponse<Booking>
-     */
-    create(body) {
-        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Update booking
-     * @Return: EntityResponse<Booking>
-     */
-    update(body) {
-        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Update actual activity log (duration and distance)
-     * @Return: EntityResponse<Booking>
-     */
-    updateLog(body) {
-        return this.rest.put(`${this.baseUrl}/log`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Delete booking
-     * @Return: ActionResponse
-     */
-    delete(id) {
-        return this.rest.delete(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Remove current user from booking
-     * @Return: ActionResponse
-     */
-    removeMe(id) {
-        return this.rest.delete(`${this.baseUrl}/${id}/remove-me`);
-    }
-    /**
-     * Get single booking by id
-     * @Return: EntityResponse<Booking>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Get extended booking info by id including names
-     * @Return: EntityResponse<Booking>
-     */
-    getExt(id) {
-        return this.rest.get(`${this.baseUrl}/${id}/ext`);
-    }
-    /**
-     * Find bookings by filters
-     * @Return: QueryResponse<Booking>
-     */
-    find(userId, resourceId, from, to, sort, page, pageSize) {
-        const params = new Array();
-        if (userId != null) {
-            params.push(`userId=${userId}`);
-        }
-        if (resourceId != null) {
-            params.push(`resourceId=${resourceId}`);
-        }
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-    /**
-     * Find bookings daily / monthly / yearly history by filters
-     * @Return: QueryResponse<Booking>
-     */
-    history(resourceId, year, month, day, sort) {
-        const params = new Array();
-        if (resourceId != null) {
-            params.push(`resourceId=${resourceId}`);
-        }
-        if (year != null) {
-            params.push(`year=${year}`);
-        }
-        if (month != null) {
-            params.push(`month=${month}`);
-        }
-        if (day != null) {
-            params.push(`day=${day}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        return this.rest.get(`${this.baseUrl}/history`, ...params);
-    }
-    /**
-     * Group my bookings by time period
-     * @Return: EntitiesResponse<BookingGroup>
-     */
-    groups(from, to, groupBy) {
-        const params = new Array();
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (groupBy != null) {
-            params.push(`groupBy=${groupBy}`);
-        }
-        return this.rest.get(`${this.baseUrl}/groups`, ...params);
-    }
-    /**
-     * Find list of activities groups by time period
-     * @Return: EntitiesResponse<BookingGroup>
-     */
-    activities(from, to, groupBy) {
-        const params = new Array();
-        if (from != null) {
-            params.push(`from=${from}`);
-        }
-        if (to != null) {
-            params.push(`to=${to}`);
-        }
-        if (groupBy != null) {
-            params.push(`groupBy=${groupBy}`);
-        }
-        return this.rest.get(`${this.baseUrl}/activities`, ...params);
-    }
-}
-UserBookingsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-UserBookingsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService, decorators: [{
-            type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
-
-/**
- * Services for managing user placements (approved bookings)
- * @RequestHeader X-API-KEY The key to identify the application (portal)
- * @RequestHeader X-ACCESS-TOKEN The token to identify the logged-in user
- */
-class UserPlacementsService {
-    /**
-     * Class constructor
-     */
-    constructor(config, rest) {
-        this.config = config;
-        this.rest = rest;
-        // URL to web api
-        this.baseUrl = '/user/placements';
-        this.baseUrl = this.config.api + this.baseUrl;
-    }
-    /**
-     * Create new placement
-     * @Return: EntityResponse<Placement>
-     */
-    create(body) {
-        return this.rest.post(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Update placement
-     * @Return: EntityResponse<Placement>
-     */
-    update(body) {
-        return this.rest.put(`${this.baseUrl}`, typeof body === 'object' ? JSON.stringify(body) : body);
-    }
-    /**
-     * Delete placement
-     * @Return: ActionResponse
-     */
-    delete(id) {
-        return this.rest.delete(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Get single placement by id
-     * @Return: EntityResponse<Placement>
-     */
-    get(id) {
-        return this.rest.get(`${this.baseUrl}/${id}`);
-    }
-    /**
-     * Find placements by filters
-     * @Return: QueryResponse<Placement>
-     */
-    find(userId, resourceId, bookingId, status, sort, page, pageSize) {
-        const params = new Array();
-        if (userId != null) {
-            params.push(`userId=${userId}`);
-        }
-        if (resourceId != null) {
-            params.push(`resourceId=${resourceId}`);
-        }
-        if (bookingId != null) {
-            params.push(`bookingId=${bookingId}`);
-        }
-        if (status != null) {
-            params.push(`status=${status}`);
-        }
-        if (sort != null) {
-            params.push(`sort=${sort}`);
-        }
-        if (page != null) {
-            params.push(`page=${page}`);
-        }
-        if (pageSize != null) {
-            params.push(`pageSize=${pageSize}`);
-        }
-        return this.rest.get(`${this.baseUrl}`, ...params);
-    }
-}
-UserPlacementsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService, deps: [{ token: 'config' }, { token: RestUtil }], target: i0.ɵɵFactoryTarget.Injectable });
-UserPlacementsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService });
-i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService, decorators: [{
-            type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
-
 const Services = [
-    AdminMembersService,
-    AdminNotificationsService,
-    UserAccountsService,
-    UsrMembersService,
-    UserService,
-    AdminAccountService,
-    HealthCheckService,
-    SysAccountsService,
-    SysUsersService,
     AdminActivitiesService,
     AdminAuditLogService,
     AdminPlaningService,
@@ -4656,6 +4647,15 @@ const Services = [
     UsrActivitiesService,
     UserBookingsService,
     UserPlacementsService,
+    AdminMembersService,
+    AdminNotificationsService,
+    UserAccountsService,
+    UsrMembersService,
+    UserService,
+    AdminAccountService,
+    HealthCheckService,
+    SysAccountsService,
+    SysUsersService,
 ];
 
 class CoreLibModule {
