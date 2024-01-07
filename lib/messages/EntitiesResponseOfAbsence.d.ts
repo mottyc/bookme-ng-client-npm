@@ -1,5 +1,5 @@
-import { EntityResponse } from '../messages/EntityResponse';
 import { Absence } from '../entities/Absence';
+import { EntityResponse } from '../messages/EntityResponse';
 import { IEntityResponse } from '../messages/EntityResponse';
 export declare class EntitiesResponseOfAbsence extends EntityResponse {
     list: Absence[];
