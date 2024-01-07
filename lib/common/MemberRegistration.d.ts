@@ -1,5 +1,5 @@
-import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { UserGenderCode } from '../enums/UserGenderCode';
+import { AccountRoleCode } from '../enums/AccountRoleCode';
 export declare class MemberRegistration {
     name: string;
     email: string;
