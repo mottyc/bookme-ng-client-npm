@@ -1,5 +1,5 @@
-import { Resource } from '../entities/Resource';
 import { EntitiesResponse } from '../messages/EntitiesResponse';
+import { Resource } from '../entities/Resource';
 import { IEntitiesResponse } from '../messages/EntitiesResponse';
 export declare class EntitiesResponseOfResource extends EntitiesResponse {
     list: Resource[];
