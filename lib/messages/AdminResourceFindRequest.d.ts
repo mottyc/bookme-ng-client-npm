@@ -1,7 +1,7 @@
+import { ResourceStatusCode } from '../enums/ResourceStatusCode';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { ResourceClassCode } from '../enums/ResourceClassCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
-import { ResourceStatusCode } from '../enums/ResourceStatusCode';
 export declare class AdminResourceFindRequest {
     search: string;
     resourceClass: ResourceClassCode;
