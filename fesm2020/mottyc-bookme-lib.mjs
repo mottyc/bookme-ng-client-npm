@@ -2444,12 +2444,10 @@ AdminAccountService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", vers
 AdminAccountService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminAccountService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminAccountService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Services for managing club activities - for account administrator only
@@ -2598,12 +2596,10 @@ AdminActivitiesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", v
 AdminActivitiesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminActivitiesService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminActivitiesService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Services for audit log queries - for account administrator only
@@ -2709,12 +2705,10 @@ AdminAuditLogService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", ver
 AdminAuditLogService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminAuditLogService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminAuditLogService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * List of all user related actions for account administrator only
@@ -2934,12 +2928,10 @@ AdminMembersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", vers
 AdminMembersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminMembersService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminMembersService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * List of all notifications actions for account administrator only
@@ -3057,12 +3049,10 @@ AdminNotificationsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0"
 AdminNotificationsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminNotificationsService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminNotificationsService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Services for planing club resource placements - for account administrator only
@@ -3260,12 +3250,10 @@ AdminPlaningService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", vers
 AdminPlaningService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminPlaningService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminPlaningService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Services for analytics reports - for account administrator only
@@ -3456,12 +3444,10 @@ AdminReportsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", vers
 AdminReportsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminReportsService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminReportsService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Services for managing club resources - for account administrator only
@@ -3625,12 +3611,10 @@ AdminResourcesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", ve
 AdminResourcesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminResourcesService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: AdminResourcesService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Health check service, no X-API-KEY or X-ACCESS-TOKEN are required
@@ -3658,12 +3642,10 @@ HealthCheckService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", versi
 HealthCheckService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: HealthCheckService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: HealthCheckService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * List of account related actions for system administrator only
@@ -3756,12 +3738,10 @@ SysAccountsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", versi
 SysAccountsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAccountsService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAccountsService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * List of all user related actions for account administrator only
@@ -3884,12 +3864,10 @@ SysUsersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version:
 SysUsersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysUsersService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysUsersService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Services for audit log queries - for account administrator only
@@ -3957,12 +3935,10 @@ SysAuditLogService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", versi
 SysAuditLogService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: SysAuditLogService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Services for managing club activities - for account administrator only
@@ -4042,12 +4018,10 @@ UsrActivitiesService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", ver
 UsrActivitiesService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrActivitiesService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Services for managing kayak resources - for account administrator only
@@ -4205,12 +4179,10 @@ UserBookingsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", vers
 UserBookingsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserBookingsService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Services for managing user placements (approved bookings)
@@ -4290,12 +4262,10 @@ UserPlacementsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", ve
 UserPlacementsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserPlacementsService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * List of account related actions
@@ -4363,12 +4333,10 @@ UserAccountsService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", vers
 UserAccountsService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserAccountsService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserAccountsService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * List of all user related actions for account administrator only
@@ -4457,12 +4425,10 @@ UsrMembersService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", versio
 UsrMembersService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrMembersService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UsrMembersService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 /**
  * Services for user registration and login
@@ -4644,12 +4610,10 @@ UserService.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0", version: "13
 UserService.ɵprov = i0.ɵɵngDeclareInjectable({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserService });
 i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImport: i0, type: UserService, decorators: [{
             type: Injectable
-        }], ctorParameters: function () {
-        return [{ type: CoreConfig, decorators: [{
-                        type: Inject,
-                        args: ['config']
-                    }] }, { type: RestUtil }];
-    } });
+        }], ctorParameters: function () { return [{ type: CoreConfig, decorators: [{
+                    type: Inject,
+                    args: ['config']
+                }] }, { type: RestUtil }]; } });
 
 const Services = [
     AdminAccountService,
@@ -4701,4 +4665,4 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.4.0", ngImpor
  */
 
 export { Absence, AbsoluteTimeFrame, Account, AccountIdRequest, AccountRole, AccountRoleCode, AccountSettings, AccountStatusCode, AccountTypeCode, ActionResponse, Activity, ActivityBookingGroup, ActivityIdRequest, ActivityStatusCode, Actual, AdminAccountService, AdminAccountSettingsUpdateRequest, AdminActivitiesService, AdminActivityBulkCreateRequest, AdminActivityDefaultCreateRequest, AdminActivityDefaultDeleteRequest, AdminActivityFindFreeResourcesRequest, AdminActivityFindRequest, AdminActivityPlaningRequest, AdminAuditLogService, AdminBookingHistoryRequest, AdminBookingMonthHistoryRequest, AdminCreateActivityRequest, AdminCreateResourceRequest, AdminDailyPlaningExportRequest, AdminDailyPlaningRequest, AdminDailyRegistrationRequest, AdminDailyResourcesRequest, AdminFindFreeResourcesRequest, AdminMembersExportCsvRequest, AdminMembersFindRequest, AdminMembersImportCsvRequest, AdminMembersService, AdminNotificationsService, AdminPlaningAssignResourceRequest, AdminPlaningDeleteActivityRequest, AdminPlaningDeleteBookingRequest, AdminPlaningFindBookingsRequest, AdminPlaningMergeBookingsRequest, AdminPlaningService, AdminPlaningSplitBookingRequest, AdminPlaningUnAssignResourceRequest, AdminReportAbsenceRequest, AdminReportIncidentRequest, AdminReportsService, AdminResourceBulkCreateRequest, AdminResourceExportCsvRequest, AdminResourceFindRequest, AdminResourceHistoryRequest, AdminResourceImportCsvRequest, AdminResourceMonthHistoryRequest, AdminResourcesService, AdminUpdateActivityRequest, AdminUpdateRegistrationRequest, AdminUpdateResourceRequest, ApiKey, AuditLog, AuditLogFindRequest, AuditLogIdRequest, AutoPlacementLog, BaseEntity, Booking, BookingGroup, BookingIdRequest, BookingOptionsMask, BookingRequest, BookingRequestIdRequest, BookingStatusCode, ChangePasswordRequest, CoreConfig, CoreLibModule, CountDataPoint, DayOfWeekCode, DistributionRequest, EmptyRequest, EmptyResponse, EntitiesResponse, EntitiesResponseOfAbsence, EntitiesResponseOfAccount, EntitiesResponseOfActivity, EntitiesResponseOfActivityBookingGroup, EntitiesResponseOfActual, EntitiesResponseOfBooking, EntitiesResponseOfBookingGroup, EntitiesResponseOfBookingRequest, EntitiesResponseOfCountDataPoint, EntitiesResponseOfIncident, EntitiesResponseOfMemberUsage, EntitiesResponseOfMembership, EntitiesResponseOfNotification, EntitiesResponseOfPlacement, EntitiesResponseOfResource, EntitiesResponseOfStringIntValue, EntitiesResponseOfStringKeyValue, EntitiesResponseOfUsage, EntityResponse, EntityResponseOfAccount, EntityResponseOfAccountSettings, EntityResponseOfActivity, EntityResponseOfAuditLog, EntityResponseOfAutoPlacementLog, EntityResponseOfBooking, EntityResponseOfBookingRequest, EntityResponseOfLoginData, EntityResponseOfMember, EntityResponseOfMemberUser, EntityResponseOfPlacement, EntityResponseOfPlaning, EntityResponseOfResource, EntityResponseOfUser, EntityResponseOfUserAccountInfo, EntityTypeCode, Feature, FeatureCode, FeaturesGroup, FindNotificationsRequest, HealthCheckService, Incident, KayakTypeCode, LoginData, LoginParams, Member, MemberIdRequest, MemberRegistration, MemberStatusCode, MemberUsage, MemberUser, MembersBulkImportRequest, MembersCountOvertimeRequest, MembersFindRequest, MembersFindResourcesRequest, MembersServiceInviteRequest, MembersServiceUpdateRequest, MembersServiceUpdateStatusRequest, Membership, MembershipIdRequest, MembershipsRequest, MonthlyCountRequest, Notification, NotificationIdRequest, NotificationTypeCode, NotifyActivityUsersRequest, NotifyAllMembersRequest, NotifyBookingUsersRequest, NotifyDailyUsersRequest, NotifyUserRequest, PeriodCountRequest, Placement, PlacementIdRequest, PlacementStatusCode, Planing, QueryResponse, QueryResponseOfAccount, QueryResponseOfActivity, QueryResponseOfAuditLog, QueryResponseOfAutoPlacementLog, QueryResponseOfBooking, QueryResponseOfBookingRequest, QueryResponseOfMemberUser, QueryResponseOfMembership, QueryResponseOfNotification, QueryResponseOfPlacement, QueryResponseOfResource, QueryResponseOfUser, RecurrentActivity, RecurrentTimeFrame, Registration, Resource, ResourceClassCode, ResourceIdRequest, ResourceStatusCode, ResourceTypeMask, ResourcesCountOvertimeRequest, RestUtil, RowingBoatTypeCode, Services, SeverityCode, StreamResponse, StringIntValue, StringKeyValue, SysAccountsService, SysAdminAccountCreateRequest, SysAdminAccountResetRequest, SysAdminAccountUpdateRequest, SysAdminAccountsFindRequest, SysAuditLogService, SysUsersService, TimeFrame, TimeUnitCode, TokenRequest, Usage, User, UserAccountInfo, UserAccountsFindRequest, UserAccountsService, UserBookingFindRequest, UserBookingGroupRequest, UserBookingHistoryRequest, UserBookingRequestFindRequest, UserBookingsService, UserByEmailRequest, UserCreateBookingRequest, UserCreateBookingRequestRequest, UserCreatePlacementRequest, UserGenderCode, UserIdRequest, UserIdsRequest, UserInvitation, UserPlacementFindRequest, UserPlacementsService, UserRegistration, UserService, UserServiceBoardRequest, UserServiceChangeMobileRequest, UserServiceChangeNameRequest, UserServiceChangePasswordRequest, UserServiceCheckPasswordRequest, UserServiceLoginRequest, UserServiceReadNotificationRequest, UserServiceResetPasswordRequest, UserServiceSendVerificationRequest, UserServiceSwitchAccountRequest, UserServiceUpdateRequest, UserServiceVerifyLoginRequest, UserStatusCode, UserTokenRequest, UserTypeCode, UserUpdateBookingRequest, UserUpdateBookingRequestRequest, UserUpdatePlacementRequest, UsersServiceChangeDefaultAccountRequest, UsersServiceChangeMobileRequest, UsersServiceChangeNameRequest, UsersServiceChangeRoleRequest, UsersServiceChangeStatusRequest, UsersServiceChangeTypeRequest, UsersServiceCreateRequest, UsersServiceExportRequest, UsersServiceFindRequest, UsersServiceInviteRequest, UsersServiceSetRolesRequest, UsersServiceUpdateRequest, UsrActivitiesService, UsrMembersService, Verification, WebSocketMessageHeader, WeightRange, getToken, removeToken, setToken };
-//# sourceMappingURL=ngx-pulse-lib.mjs.map
+//# sourceMappingURL=mottyc-bookme-lib.mjs.map
