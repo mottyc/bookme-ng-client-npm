@@ -3095,6 +3095,20 @@ class AdminPlaningService {
         return this.rest.get(`${this.baseUrl}/daily/${day}`, ...params);
     }
     /**
+     * Get daily planing for the board - bookings group by activities
+     * @Return: EntitiesResponse<ActivityBookingGroup>
+     */
+    getDailyPlaningForBoard(day, resFilter, userFilter) {
+        const params = new Array();
+        if (resFilter != null) {
+            params.push(`resFilter=${resFilter}`);
+        }
+        if (userFilter != null) {
+            params.push(`userFilter=${userFilter}`);
+        }
+        return this.rest.get(`${this.baseUrl}/board/${day}`, ...params);
+    }
+    /**
      * Get list of resources in a specific day
      * @Return: EntitiesResponse<StringKeyValue>
      */

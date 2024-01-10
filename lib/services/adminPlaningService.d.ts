@@ -21,6 +21,11 @@ export declare class AdminPlaningService {
      */
     getDailyPlaning(day: number, resFilter: string, userFilter: string): import("rxjs").Observable<any>;
     /**
+     * Get daily planing for the board - bookings group by activities
+     * @Return: EntitiesResponse<ActivityBookingGroup>
+     */
+    getDailyPlaningForBoard(day: number, resFilter: string, userFilter: string): import("rxjs").Observable<any>;
+    /**
      * Get list of resources in a specific day
      * @Return: EntitiesResponse<StringKeyValue>
      */
