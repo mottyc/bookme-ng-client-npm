@@ -3,5 +3,6 @@ export declare enum UserTypeCode {
     SYSADMIN = 1,
     SUPPORT = 2,
     USER = 4,
-    SERVICE = 5
+    SERVICE = 5,
+    KIOSK = 6
 }
