@@ -1,5 +1,5 @@
-import { EntitiesResponse } from '../messages/EntitiesResponse';
 import { Actual } from '../entities/Actual';
+import { EntitiesResponse } from '../messages/EntitiesResponse';
 import { IEntitiesResponse } from '../messages/EntitiesResponse';
 export declare class EntitiesResponseOfActual extends EntitiesResponse {
     list: Actual[];
