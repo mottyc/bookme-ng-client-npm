@@ -1,7 +1,6 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
 import { User } from '../entities/User';
-import { NotificationTypeCode } from '../enums/NotificationTypeCode';
 import { LoginParams } from '../common/LoginParams';
 import { ChangePasswordRequest } from '../messages/ChangePasswordRequest';
 import { TokenRequest } from '../messages/TokenRequest';
@@ -102,7 +101,7 @@ export declare class UserService {
      * Find list of notifications by filter
      * @Return: ActionResponse
      */
-    findNotifications(search: string, type: NotificationTypeCode, sort: string, page: number, pageSize: number): import("rxjs").Observable<any>;
+    findNotifications(): import("rxjs").Observable<any>;
     /**
      * Mark user notification as read
      * @Return: ActionResponse

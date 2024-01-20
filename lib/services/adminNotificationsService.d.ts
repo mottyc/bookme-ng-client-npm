@@ -38,6 +38,11 @@ export declare class AdminNotificationsService {
      * @Return: ActionResponse
      */
     notifyAllMembers(type: NotificationTypeCode, from: number, to: number, body: string): import("rxjs").Observable<any>;
+    /**
+     * Get list of daily notifications for all club members
+     * @Return: EntitiesResponse<Notification>
+     */
+    getDailyNotifications(dayId: number): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<AdminNotificationsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AdminNotificationsService>;
 }
