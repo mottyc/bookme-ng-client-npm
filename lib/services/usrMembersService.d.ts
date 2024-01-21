@@ -1,9 +1,9 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
-import { Member } from '../entities/Member';
 import { AccountRoleCode } from '../enums/AccountRoleCode';
 import { MemberStatusCode } from '../enums/MemberStatusCode';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
+import { Member } from '../entities/Member';
 import * as i0 from "@angular/core";
 /**
  * List of all user related actions for account administrator only
