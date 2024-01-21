@@ -1,7 +1,7 @@
+import { BaseEntity } from '../entities/BaseEntity';
 import { ResourceTypeMask } from '../enums/ResourceTypeMask';
 import { BookingStatusCode } from '../enums/BookingStatusCode';
 import { SeverityCode } from '../enums/SeverityCode';
-import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Booking extends BaseEntity {
     accountId: string;

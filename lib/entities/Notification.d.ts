@@ -3,6 +3,7 @@ import { NotificationTypeCode } from '../enums/NotificationTypeCode';
 import { BaseEntity } from '../entities/BaseEntity';
 import { IBaseEntity } from '../entities/BaseEntity';
 export declare class Notification extends BaseEntity {
+    accountId: string;
     userId: string;
     notifyOn: TimeFrame;
     message: string;
@@ -13,6 +14,7 @@ export declare class Notification extends BaseEntity {
     updatedOn: number;
 }
 export interface INotification extends IBaseEntity {
+    accountId?: string;
     userId?: string;
     notifyOn?: TimeFrame;
     message?: string;
