@@ -1,5 +1,5 @@
-import { AutoPlacementLog } from '../entities/AutoPlacementLog';
 import { EntityResponse } from '../messages/EntityResponse';
+import { AutoPlacementLog } from '../entities/AutoPlacementLog';
 import { IEntityResponse } from '../messages/EntityResponse';
 export declare class EntityResponseOfAutoPlacementLog extends EntityResponse {
     entity: AutoPlacementLog;
