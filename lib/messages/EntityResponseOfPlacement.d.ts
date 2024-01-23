@@ -1,5 +1,5 @@
-import { Placement } from '../entities/Placement';
 import { EntityResponse } from '../messages/EntityResponse';
+import { Placement } from '../entities/Placement';
 import { IEntityResponse } from '../messages/EntityResponse';
 export declare class EntityResponseOfPlacement extends EntityResponse {
     entity: Placement;

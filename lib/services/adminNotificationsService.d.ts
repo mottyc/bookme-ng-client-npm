@@ -63,7 +63,7 @@ export declare class AdminNotificationsService {
      * Get list of kiosk notifications for specific club members
      * @Return: EntitiesResponse<Notification>
      */
-    findKioskMessages(): import("rxjs").Observable<any>;
+    findKioskMessages(userId: string, search: string, type: NotificationTypeCode, sort: string, page: number, pageSize: number): import("rxjs").Observable<any>;
     /**
      * Get kiosk notification message by Id
      * @Return: EntityResponse<Notification>

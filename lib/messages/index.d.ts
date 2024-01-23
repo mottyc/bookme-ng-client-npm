@@ -97,6 +97,7 @@ export * from './MonthlyCountRequest';
 export * from './NotificationCreateRequest';
 export * from './NotificationIdRequest';
 export * from './NotificationUpdateRequest';
+export * from './NotificationsFindRequest';
 export * from './NotifyActivityUsersRequest';
 export * from './NotifyAllMembersRequest';
 export * from './NotifyBookingUsersRequest';
