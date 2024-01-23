@@ -1,13 +1,13 @@
-import { Notification } from '../entities/Notification';
+import { Member } from '../entities/Member';
 import { EntityResponse } from '../messages/EntityResponse';
 import { IEntityResponse } from '../messages/EntityResponse';
 export declare class EntityResponseOfMember extends EntityResponse {
-    entity: Notification;
+    entity: Member;
     code: number;
     error: string;
 }
 export interface IEntityResponseOfMember extends IEntityResponse {
-    entity?: Notification;
+    entity?: Member;
     code?: number;
     error?: string;
 }

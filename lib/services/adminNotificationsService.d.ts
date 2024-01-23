@@ -1,6 +1,7 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
 import { NotificationTypeCode } from '../enums/NotificationTypeCode';
+import { Notification } from '../entities/Notification';
 import * as i0 from "@angular/core";
 /**
  * List of all notifications actions for account administrator only
@@ -43,6 +44,31 @@ export declare class AdminNotificationsService {
      * @Return: EntitiesResponse<Notification>
      */
     getDailyNotifications(dayId: number): import("rxjs").Observable<any>;
+    /**
+     * Create new kiosk message
+     * @Return: EntityResponse<Notification>
+     */
+    createKioskMessage(body: Notification): import("rxjs").Observable<any>;
+    /**
+     * Update kiosk message
+     * @Return: EntityResponse<Notification>
+     */
+    updateKioskMessage(body: Notification): import("rxjs").Observable<any>;
+    /**
+     * Delete kiosk message
+     * @Return: ActionResponse
+     */
+    deleteKioskMessage(id: string): import("rxjs").Observable<any>;
+    /**
+     * Get list of kiosk notifications for specific club members
+     * @Return: EntitiesResponse<Notification>
+     */
+    findKioskMessages(): import("rxjs").Observable<any>;
+    /**
+     * Get kiosk notification message by Id
+     * @Return: EntityResponse<Notification>
+     */
+    getKioskMessage(id: string): import("rxjs").Observable<any>;
     static ɵfac: i0.ɵɵFactoryDeclaration<AdminNotificationsService, never>;
     static ɵprov: i0.ɵɵInjectableDeclaration<AdminNotificationsService>;
 }

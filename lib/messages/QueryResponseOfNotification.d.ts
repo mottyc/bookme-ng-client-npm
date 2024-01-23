@@ -1,5 +1,5 @@
-import { Notification } from '../entities/Notification';
 import { QueryResponse } from '../messages/QueryResponse';
+import { Notification } from '../entities/Notification';
 import { IQueryResponse } from '../messages/QueryResponse';
 export declare class QueryResponseOfNotification extends QueryResponse {
     list: Notification[];
