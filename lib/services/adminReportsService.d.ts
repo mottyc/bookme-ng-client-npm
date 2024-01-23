@@ -20,10 +20,15 @@ export declare class AdminReportsService {
      */
     getMonthlyCount(year: number, month: number): import("rxjs").Observable<any>;
     /**
-     * Get count of members over time period
+     * Get usage report over time period
      * @Return: EntitiesResponse<Usage>
      */
     getPeriodCount(from: number, to: number): import("rxjs").Observable<any>;
+    /**
+     * Export usage over time period to EXCEL
+     * @Return: StreamContent
+     */
+    exportPeriodCount(from: number, to: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
     /**
      * Get distribution by week days over time
      * @Return: EntitiesResponse<StringIntValue>
@@ -40,7 +45,7 @@ export declare class AdminReportsService {
      */
     getPeriodCountByMember(from: number, to: number): import("rxjs").Observable<any>;
     /**
-     * Export count of activities per member over time period to CSV
+     * Export count of activities per member over time period to EXCEL
      * @Return: StreamContent
      */
     exportPeriodCountByMember(from: number, to: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
@@ -50,7 +55,7 @@ export declare class AdminReportsService {
      */
     getPeriodCountByResource(from: number, to: number): import("rxjs").Observable<any>;
     /**
-     * Export count of activities per resource over time period to CSV
+     * Export count of activities per resource over time period to EXCEL
      * @Return: StreamContent
      */
     exportPeriodCountByResource(from: number, to: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
@@ -60,7 +65,7 @@ export declare class AdminReportsService {
      */
     getPeriodAbsences(from: number, to: number): import("rxjs").Observable<any>;
     /**
-     * Export members absence report over time period
+     * Export members absence report over time period to EXCEL
      * @Return: StreamContent
      */
     exportPeriodAbsences(from: number, to: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;
@@ -70,7 +75,7 @@ export declare class AdminReportsService {
      */
     getPeriodIncidents(from: number, to: number): import("rxjs").Observable<any>;
     /**
-     * Export members incidents report over time period
+     * Export members incidents report over time period to EXCEL
      * @Return: StreamContent
      */
     exportPeriodIncidents(from: number, to: number): import("rxjs").Observable<import("@angular/common/http").HttpEvent<Blob>>;

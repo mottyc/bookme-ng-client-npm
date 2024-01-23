@@ -1,9 +1,9 @@
 import { RestUtil } from '../../utils/rest-util';
 import { CoreConfig } from '../../config';
+import { ChangePasswordRequest } from '../messages/ChangePasswordRequest';
 import { TokenRequest } from '../messages/TokenRequest';
 import { User } from '../entities/User';
 import { LoginParams } from '../common/LoginParams';
-import { ChangePasswordRequest } from '../messages/ChangePasswordRequest';
 import * as i0 from "@angular/core";
 /**
  * Services for user registration and login

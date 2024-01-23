@@ -1,5 +1,5 @@
-import { AutoPlacementLog } from '../entities/AutoPlacementLog';
 import { QueryResponse } from '../messages/QueryResponse';
+import { AutoPlacementLog } from '../entities/AutoPlacementLog';
 import { IQueryResponse } from '../messages/QueryResponse';
 export declare class QueryResponseOfAutoPlacementLog extends QueryResponse {
     list: AutoPlacementLog[];
